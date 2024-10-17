@@ -28,9 +28,9 @@ $username = $isLoggedIn ? $_SESSION['username'] : '';
                 <li class="nav-item">
                     <a class="nav-link" href="#projects">Products</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#contact">Contact</a>
-                </li>
+               <li class="nav-item">
+               <a class="nav-link" href="contactform.php">Contact</a>
+                             </li>
                 <li class="nav-item">
                     <a class="nav-link" href="wishlist.html"><i class="far fa-heart"></i></a>
                 </li>
