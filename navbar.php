@@ -1,4 +1,4 @@
-<?php
+<?php 
 // Check if a session is already started before calling session_start()
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -30,6 +30,12 @@ $username = $isLoggedIn ? $_SESSION['username'] : '';
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#contact">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="wishlist.html"><i class="far fa-heart"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mini-cart-shop-link"><i class="fas fa-shopping-bag"></i></a>
                 </li>
                 <?php if ($isLoggedIn): ?>
                     <li class="nav-item dropdown">
