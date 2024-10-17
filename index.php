@@ -39,7 +39,6 @@ session_start();
     </header>
       <!--====== End - Main Header ======-->
 
-<<<<<<< HEAD
       <!--====== App Content ======-->
       <div class="app-content">
         <!--====== Primary Slider ======-->
@@ -65,10 +64,8 @@ session_start();
 
                       <span class="content-span-4 u-c-secondary"
                         >Starting At
-=======
     <section class="contact-section" id="contact">
         <div class="container">
->>>>>>> 2cf908cf64099d2427ee97a35df0c1ef5448a958
 
                         <span class="u-c-brand">$1050.00</span></span
                       >
