@@ -28,9 +28,7 @@ session_start();
 
             <div class="row gy-4">
 
-<<<<<<< HEAD
               
-=======
                 <h1>contact us</h1>
                 <div class="col-lg-6">
 
@@ -97,7 +95,6 @@ session_start();
 
                 </div>
 
->>>>>>> d2add8bec91abda5c29515f5a885334f35843e07
             </div>
 
         </div>

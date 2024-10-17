@@ -14,6 +14,10 @@
 </head>
 
 <body>
+
+<!-- navbar section   -->
+<?php include 'navbar.php'; ?>
+
 <section class="contact-section" id="contact">
         <div class="container">
 
@@ -89,6 +93,9 @@
 
         </div>
     </section>
+    <!-- footer section  -->
+
+    <?php include 'footer.php'; ?>
     </body>
 
 </html>
