@@ -11,16 +11,17 @@ if (isset($_POST['login'])) {
     $email = $_POST['email'];
     $pass = $_POST['password'];
 
-    $sql = "SELECT * FROM users WHERE email='$email'";
-    $res = mysqli_query($conn, $sql);
+    $stmt = $conn->prepare("SELECT * FROM customers WHERE customer_email = :email");
+    $stmt->bindParam(':email', $email);
+    $stmt->execute();
 
-    if (mysqli_num_rows($res) > 0) {
-        $row = mysqli_fetch_assoc($res);
-        $password = $row['password'];
+    if ($stmt->rowCount() > 0) {
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stored_password = $row['customer_password'];
 
-        if (password_verify($pass, $password)) {
-            $_SESSION['id'] = $row['id'];
-            $_SESSION['username'] = $row['username'];
+        if (password_verify($pass, $stored_password)) {
+            $_SESSION['id'] = $row['customer_ID'];
+            $_SESSION['username'] = $row['customer_name'];
             header("Location: index.php");
             exit();
         } else {
@@ -38,18 +39,21 @@ if (isset($_POST['register'])) {
     $pass = $_POST['password'];
     $cpass = $_POST['cpass'];
 
-    $check = "SELECT * FROM users WHERE email='$email'";
-    $res = mysqli_query($conn, $check);
+    $stmt = $conn->prepare("SELECT * FROM customers WHERE customer_email = :email");
+    $stmt->bindParam(':email', $email);
+    $stmt->execute();
 
-    if (mysqli_num_rows($res) > 0) {
+    if ($stmt->rowCount() > 0) {
         $error = "This email is already used, try another one please!";
     } else {
         if ($pass === $cpass) {
-            $passwd = password_hash($pass, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO users (username, email, password) VALUES ('$name', '$email', '$passwd')";
-            $result = mysqli_query($conn, $sql);
-
-            if ($result) {
+            $hashed_password = password_hash($pass, PASSWORD_DEFAULT);
+            $stmt = $conn->prepare("INSERT INTO customers (customer_name, customer_email, customer_password) VALUES (:name, :email, :password)");
+            $stmt->bindParam(':name', $name);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':password', $hashed_password);
+            
+            if ($stmt->execute()) {
                 $success = "You are registered successfully!";
             } else {
                 $error = "Registration failed, please try again!";
@@ -77,7 +81,8 @@ $username = $isLoggedIn ? $_SESSION['username'] : '';
     <title>Login Page</title>
 </head>
 <body>
-<!-- Add a simple navigation -->
+
+<!-- Simple Navigation -->
 <nav>
     <?php if ($isLoggedIn): ?>
         <p>Welcome, <?php echo htmlspecialchars($username); ?>! <a href="logout.php">Sign Out</a></p>
@@ -101,9 +106,14 @@ $username = $isLoggedIn ? $_SESSION['username'] : '';
             <input type="password" name="cpass" placeholder="Confirm Password" required />
             <button type="submit" name="register">Sign Up</button>
         </form>
-        <?php if ($success) echo "<div class='message'><p>$success</p></div>"; ?>
-        <?php if ($error) echo "<div class='message'><p>$error</p></div>"; ?>
+        <!-- Display success or error message -->
+        <?php if ($success): ?>
+            <div class="message success"><p><?php echo $success; ?></p></div>
+        <?php elseif ($error): ?>
+            <div class="message error"><p><?php echo $error; ?></p></div>
+        <?php endif; ?>
     </div>
+
     <div class="sign-in">
         <form method="POST" action="">
             <h1>Sign In</h1>
@@ -119,8 +129,12 @@ $username = $isLoggedIn ? $_SESSION['username'] : '';
             <a href="#">Forgot password</a>
             <button type="submit" name="login">Sign In</button>
         </form>
-        <?php if ($error) echo "<div class='message'><p>$error</p></div>"; ?>
+        <!-- Display error message -->
+        <?php if ($error): ?>
+            <div class="message error"><p><?php echo $error; ?></p></div>
+        <?php endif; ?>
     </div>
+
     <div class="toogle-container">
         <div class="toogle">
             <div class="toogle-panel toogle-left">
@@ -136,21 +150,16 @@ $username = $isLoggedIn ? $_SESSION['username'] : '';
         </div>
     </div>
 </div>
+
 <script src="script.js"></script>
 
+<!-- Hide the container if user is logged in -->
 <?php if ($isLoggedIn): ?>
-<script>
-    // Hide the login/register container if user is logged in
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('container').style.display = 'none';
-    });
-
-    
-</script>
-
-
-
+    <style>
+        #container {
+            display: none;
+        }
+    </style>
 <?php endif; ?>
-
 </body>
 </html>
