@@ -13,10 +13,13 @@
 
 
 /* navbar section  */
-
 .navbar {
     padding: 20px;
     background: linear-gradient(to right, #00093c, #2d0b00);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 .navbar .navbar-toggler {
@@ -31,7 +34,6 @@
 .navbar #navbarNav {
     text-align: center;
     width: 100%;
-    margin-top: 20px;
 }
 
 .navbar .navbar-brand {
@@ -41,32 +43,20 @@
     font-weight: 600;
 }
 
-.navbar .navbar-brand i {
-    font-size: 25px;
-    background: linear-gradient(to right, #00093c, #2d0b00);
-    border-radius: 50%;
-    padding: 10px 15px;
+.navbar .navbar-brand img {
+    margin-right: 10px; 
 }
 
 .navbar .collapse {
     background: linear-gradient(to right, #00093c, #2d0b00);
 }
 
-.navbar .dropdown-menu{
-    width: 12px;
+.navbar ul {
+    padding-left: 0;
 }
 
-.navbar .dropdown-menu li a{
-    color: linear-gradient(to right, #00093c, #2d0b00);
-    font-size: 15px;
-}
-
-.navbar ul li .bi{
-    background: #fff;
-    color: linear-gradient(to right, #00093c, #2d0b00);
-    font-weight: bold;
-    padding: 10px 15px;
-    border-radius: 50%;
+.navbar ul li {
+    list-style: none;
 }
 
 .navbar ul li a {
@@ -74,12 +64,39 @@
     text-decoration: none;
     text-transform: capitalize;
     font-size: 18px;
-    margin-right: 40px;
+    margin: 0 15px; 
 }
 
 .navbar ul li a:hover {
     color: #FFB6C1;
 }
+
+/* Icon Styles */
+.navbar ul li .fa-heart,
+.navbar ul li .fa-shopping-bag {
+    font-size: 15px;
+    color: #f1f1f1;
+    transition: color 0.3s ease;
+}
+
+.navbar ul li .fa-heart:hover,
+.navbar ul li .fa-shopping-bag:hover {
+    color: #FFB6C1;
+}
+
+/* Optional: Adding a badge for the shopping cart */
+.mini-cart-shop-link::after {
+    content: '3'; /* Example cart count */
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background: #FFB6C1;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 50%;
+    padding: 3px 6px;
+}
+
 
 
 /* contact section  */
