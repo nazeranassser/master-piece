@@ -31,6 +31,10 @@ $username = $isLoggedIn ? $_SESSION['username'] : '';
                 <li class="nav-item">
                     <a class="nav-link" href="#contact">Contact</a>
                 </li>
+                <a href="wishlist.html"><i class="far fa-heart"></i></a></li>
+                                    <li class="has-dropdown">
+
+                                        <a class="mini-cart-shop-link"><i class="fas fa-shopping-bag"></i>
                 <?php if ($isLoggedIn): ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
