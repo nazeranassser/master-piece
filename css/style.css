@@ -74,7 +74,7 @@
 /* Icon Styles */
 .navbar ul li .fa-heart,
 .navbar ul li .fa-shopping-bag {
-    font-size: 22px;
+    font-size: 15px;
     color: #f1f1f1;
     transition: color 0.3s ease;
 }
