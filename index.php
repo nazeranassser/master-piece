@@ -39,6 +39,7 @@ session_start();
     </header>
       <!--====== End - Main Header ======-->
 
+<<<<<<< HEAD
       <!--====== App Content ======-->
       <div class="app-content">
         <!--====== Primary Slider ======-->
@@ -64,10 +65,15 @@ session_start();
 
                       <span class="content-span-4 u-c-secondary"
                         >Starting At
+=======
+    <section class="contact-section" id="contact">
+        <div class="container">
+>>>>>>> 2cf908cf64099d2427ee97a35df0c1ef5448a958
 
                         <span class="u-c-brand">$1050.00</span></span
                       >
 
+<<<<<<< HEAD
                       <a
                         class="shop-now-link btn--e-brand"
                         href="shop-side-version-2.html"
@@ -86,6 +92,11 @@ session_start();
                       <span class="content-span-1 u-c-white"
                         >Find Top Brands</span
                       >
+=======
+              
+                <h1>contact us</h1>
+                <div class="col-lg-6">
+>>>>>>> 2cf908cf64099d2427ee97a35df0c1ef5448a958
 
                       <span class="content-span-2 u-c-white"
                         >10% Off On Electronics</span
@@ -573,6 +584,7 @@ session_start();
                             ></span
                           >
                         </div>
+<<<<<<< HEAD
                       </div>
                       <div
                         class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item sportgadget"
@@ -631,6 +643,13 @@ session_start();
                                   ></a>
                                 </li>
                               </ul>
+=======
+                        <div class="col-md-6">
+                            <div class="info-box">
+                                <i class="bi bi-clock"></i>
+                                <h3>Open Hours</h3>
+                                <p>Monday  Friday<br>9:00AM - 05:00PM</p>
+>>>>>>> 2cf908cf64099d2427ee97a35df0c1ef5448a958
                             </div>
                           </div>
 
@@ -1345,6 +1364,7 @@ session_start();
         </div>
         <!--====== End - Section 3 ======-->
 
+<<<<<<< HEAD
         <!--====== Section 4 ======-->
         <div class="u-s-p-b-60">
           <!--====== Section Intro ======-->
@@ -1356,6 +1376,10 @@ session_start();
                     <h1 class="section__heading u-c-secondary u-s-m-b-12">
                       NEW ARRIVALS
                     </h1>
+=======
+
+    <!-- footer section  -->
+>>>>>>> 2cf908cf64099d2427ee97a35df0c1ef5448a958
 
                     <span class="section__span u-c-silver"
                       >GET UP FOR NEW ARRIVALS</span
