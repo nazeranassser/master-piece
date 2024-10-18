@@ -24,9 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $customer_ID = $row['customer_ID'];
 
             // Insert the message into the database
-            $stmt = $conn->prepare("INSERT INTO messages (customer_ID, subject, message_text) VALUES (:customer_ID, :subject, :message_text)");
+            $stmt = $conn->prepare("INSERT INTO messages (customer_ID, message_text) VALUES (:customer_ID, :message_text)");
             $stmt->bindParam(':customer_ID', $customer_ID);
-            $stmt->bindParam(':subject', $subject);
             $stmt->bindParam(':message_text', $message_text);
 
             // Execute the insert statement and check the result
