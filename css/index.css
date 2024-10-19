@@ -22,7 +22,7 @@ html, body {
     text-align: center;
     color: white; /* Text color */
     z-index: 1; /* Ensure content is above the background */
-    background-color: rgba(0, 0, 0, 0.5); /* Optional: semi-transparent background */
+    background-color: rgba(0, 0, 0, 0.3); /* Optional: semi-transparent background */
     padding: 20px; /* Optional: add padding */
     width: 100%; /* Make it full width to keep the text centered */
     max-width: 1200px; /* Optional: limit the width of the content */
