@@ -31,6 +31,7 @@
 
     <!--====== App ======-->
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="config">
     <div class="preloader is-active">
