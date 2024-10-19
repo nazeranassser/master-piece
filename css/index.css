@@ -1,1 +1,185 @@
+/* Global styles to prevent scrolling */
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
 
+/* Style for the hero section */
+#hero-section {
+    position: relative;
+    height: 100vh; /* Full height of the viewport */
+    background-size: cover; /* Cover the entire section */
+    background-position: center; /* Center the image */
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center;
+    padding-bottom: 20px; /* Adjust padding at the bottom for spacing */
+}
+
+.hero-content {
+    position: absolute;
+    text-align: center;
+    color: white; /* Text color */
+    z-index: 1; /* Ensure content is above the background */
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: semi-transparent background */
+    padding: 20px; /* Optional: add padding */
+    width: 100%; /* Make it full width to keep the text centered */
+    max-width: 1200px; /* Optional: limit the width of the content */
+    box-sizing: border-box; /* Ensure padding is inside the content width */
+    margin-top: 400px;
+}
+
+#hero-text {
+    font-size: 3rem; /* Font size for large screens */
+    font-weight: bold;
+    opacity: 0;
+    transform: translateX(-100%);
+    animation: slide-in 1.5s forwards; /* Animation for text */
+}
+
+.cta-button {
+    padding: 1rem 2rem;
+    background-color: #F191AC; /* Button color */
+    color: #F7EEED; /* Button text color */
+    font-size: 1.2rem;
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #e75a82; /* Change color on hover */
+}
+
+/* Animation Keyframes */
+@keyframes slide-in {
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* General Styles for Section */
+.u-s-p-y-60 {
+    padding: 60px 0;
+}
+
+.section__intro {
+    margin-bottom: 46px;
+}
+
+.section__heading {
+    font-size: 2.5rem; /* Adjust size as needed */
+    color: #1f1f7a; /* Primary color */
+}
+
+.section__span {
+    color: #a1a1a1; /* Silver color */
+    font-size: 1.2rem;
+}
+
+/* Collection Styles */
+.collection {
+    text-decoration: none; /* Remove underline from links */
+}
+
+.aspect {
+    overflow: hidden; /* Ensure images don't overflow */
+    border-radius: 8px; /* Rounded corners for images */
+}
+
+.aspect__img {
+    width: 100%; /* Make images responsive */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove bottom space */
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+    .section__heading {
+        font-size: 2rem; /* Smaller heading for mobile */
+    }
+
+    .section__span {
+        font-size: 1rem; /* Smaller subheading for mobile */
+    }
+}
+
+.cake-category {
+    display: block; /* Make it block to occupy full width */
+    margin-top: 8px; /* Space above the category text */
+    font-size: 1rem; /* Font size for category text */
+    color: #F191AC; /* Color for category text */
+    text-align: center; /* Center align the text */
+}
+
+
+/* Animation for sliding in the text */
+@keyframes slide-in {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    #hero-text {
+        font-size: 2rem; /* Smaller font size for tablets and phones */
+    }
+
+    .cta-button {
+        padding: 0.8rem 1.5rem; /* Adjust button padding for smaller screens */
+        font-size: 1rem; /* Smaller button text */
+    }
+}
+
+@media (max-width: 480px) {
+    #hero-text {
+        font-size: 1.5rem; /* Even smaller font size for mobile */
+    }
+
+    .cta-button {
+        padding: 0.6rem 1.2rem; /* Adjust button padding for mobile */
+        font-size: 0.9rem; /* Smaller button text */
+    }
+}
+
+
+/* Product Styles */
+.product-o {
+    background-color: #fff;
+    border: 1px solid #eee;
+    padding: 15px;
+    transition: all 0.3s ease;
+}
+.product-o--hover-on:hover {
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+.product-o__wrap img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+.product-o__name a {
+    font-weight: bold;
+    color: #333;
+    transition: color 0.3s ease;
+}
+.product-o__name a:hover {
+    color: #F191AC;
+}
+.product-o__rating i {
+    color: #ffcc00;
+}
+.product-o__price {
+    font-size: 18px;
+    color: #F191AC;
+}
+.product-o__category a {
+    color: #333;
+}
