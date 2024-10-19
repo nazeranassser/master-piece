@@ -7,8 +7,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="images/favicon.png" rel="shortcut icon">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ENjdO4Dr2bkBIFxQpeoJgGHa0roUOFzT1iNQ36PE8G5OeMySkAzYFCAFK5L9jAc" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/style.css">
@@ -27,6 +27,8 @@
 
     <!--====== App ======-->
     <link rel="stylesheet" href="css/app.css">
+
+    <link rel="stylesheet" href="css/index.css">
     
 </head>
 <body class="config">
@@ -47,74 +49,86 @@
         <!--====== App Content ======-->
         <div class="app-content">
 
-            <!--====== Primary Slider ======-->
-            <div class="s-skeleton s-skeleton--h-600 s-skeleton--bg-grey">
-                <div class="owl-carousel primary-style-1" id="hero-slider">
-                    <div class="hero-slide hero-slide--1">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="slider-content slider-content--animation">
-
-                                        <span class="content-span-1 u-c-secondary">Latest Update Stock</span>
-
-                                        <span class="content-span-2 u-c-secondary">30% Off On Electronics</span>
-
-                                        <span class="content-span-3 u-c-secondary">Find electronics on best prices, Also Discover most selling products of electronics</span>
-
-                                        <span class="content-span-4 u-c-secondary">Starting At
-
-                                            <span class="u-c-brand">$1050.00</span></span>
-
-                                        <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP NOW</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hero-slide hero-slide--2">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="slider-content slider-content--animation">
-
-                                        <span class="content-span-1 u-c-white">Find Top Brands</span>
-
-                                        <span class="content-span-2 u-c-white">10% Off On Electronics</span>
-
-                                        <span class="content-span-3 u-c-white">Find electronics on best prices, Also Discover most selling products of electronics</span>
-
-                                        <span class="content-span-4 u-c-white">Starting At
-
-                                            <span class="u-c-brand">$380.00</span></span>
-
-                                        <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP NOW</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hero-slide hero-slide--3">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="slider-content slider-content--animation">
-
-                                        <span class="content-span-1 u-c-secondary">Find Top Brands</span>
-
-                                        <span class="content-span-2 u-c-secondary">10% Off On Electronics</span>
-
-                                        <span class="content-span-3 u-c-secondary">Find electronics on best prices, Also Discover most selling products of electronics</span>
-
-                                        <span class="content-span-4 u-c-secondary">Starting At
-
-                                            <span class="u-c-brand">$550.00</span></span>
-
-                                        <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP NOW</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+           <!--====== Bootstrap Styled Hero Slider with Images ======-->
+<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    
+    <!-- Slide 1 -->
+    <div class="carousel-item active">
+      <div class="container-fluid hero-slide hero-slide--1 bg-light d-flex align-items-center" style="height: 600px;">
+        <!-- Add your image here -->
+        <img src="images/products/hero1.jpg" class="w-100" alt="Cake Image 1">
+        <div class="container text-center position-absolute" style="top: 50%; transform: translateY(-50%);">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="slider-content">
+                <span class="display-6 text-secondary">Delicious Cakes Available</span>
+                <h2 class="text-secondary">20% Off On All Cakes</h2>
+                <p class="lead text-secondary">Discover freshly baked cakes for all occasions</p>
+                <p class="lead text-brand">Starting At <strong>$25.00</strong></p>
+                <a href="shop-cakes.html" class="btn btn-primary btn-lg">SHOP NOW</a>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="carousel-item">
+      <div class="container-fluid hero-slide hero-slide--2 bg-dark text-white d-flex align-items-center" style="height: 600px;">
+        <!-- Add your image here -->
+        <img src="images/products/hero2.jpg" class="w-100" alt="Cake Image 2">
+        <div class="container text-center position-absolute" style="top: 50%; transform: translateY(-50%);">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="slider-content">
+                <span class="display-6">Special Occasion Cakes</span>
+                <h2>30% Off On Custom Orders</h2>
+                <p class="lead">Create custom cakes for birthdays, weddings, and more</p>
+                <p class="lead">Starting At <strong class="text-brand">$50.00</strong></p>
+                <a href="custom-orders.html" class="btn btn-primary btn-lg">ORDER NOW</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="carousel-item">
+      <div class="container-fluid hero-slide hero-slide--3 bg-light d-flex align-items-center" style="height: 600px;">
+        <!-- Add your image here -->
+        <img src="images/products/hero3.jpg" class="w-100" alt="Cake Image 3">
+        <div class="container text-center position-absolute" style="top: 50%; transform: translateY(-50%);">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="slider-content">
+                <span class="display-6 text-secondary">Sugar-Free & Gluten-Free</span>
+                <h2 class="text-secondary">Healthy Cakes Available</h2>
+                <p class="lead text-secondary">Enjoy our selection of sugar-free and gluten-free cakes</p>
+                <p class="lead text-brand">Starting At <strong>$35.00</strong></p>
+                <a href="healthy-options.html" class="btn btn-primary btn-lg">DISCOVER MORE</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Controls -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
             <!--====== End - Primary Slider ======-->
 
 
@@ -1391,5 +1405,8 @@
             </div>
         </div>
     </noscript>
+    <!-- Bootstrap JS (with Popper.js) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-mQ93Egh+y31Xi+Y2Q7n4I4qXTtJfha/t9g17RIqDk0sELTQ5ZTcCqP5Fu8bB9VuF" crossorigin="anonymous"></script>
+
 </body>
 </html>
