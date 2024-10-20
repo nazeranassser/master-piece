@@ -1,3 +1,4 @@
+
 <?php
 include('connection.php');
 session_start();
@@ -44,7 +45,7 @@ session_start();
     <div class="preloader is-active">
         <div class="preloader__wrap">
 
-            <img class="preloader__img" src="images/preloader.png" alt="">
+            <img class="preloader__img" src="../images/preloader.png" alt="">
         </div>
     </div>
 
@@ -80,6 +81,7 @@ session_start();
  <?php
 // Database connection (PDO)
 $dsn = 'mysql:host=localhost;dbname=cake_project';
+
 $username = 'root'; // Update as needed
 $password = ''; // Update as needed
 $options = [
@@ -1009,13 +1011,12 @@ $specialOccasions = $specialOccasionsQuery->fetchAll(PDO::FETCH_ASSOC);
         ga('create', 'UA-XXXXX-Y', 'auto');
         ga('send', 'pageview')
     </script>
-    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
 
     <!--====== Vendor Js ======-->
     <script src="js/vendor.js"></script>
 
-    <!--====== jQuery Shopnav plugin ======-->
-    <script src="js/jquery.shopnav.js"></script>
+    <!-- ====== jQuery Shopnav plugin ====== -->
+     <script src="js/jquery.shopnav.js"></script> 
 
     <!--====== App ======-->
     <script src="js/app.js"></script>
