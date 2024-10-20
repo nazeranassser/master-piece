@@ -1,4 +1,8 @@
 <?php
+include('connection.php');
+session_start();
+?>
+<?php
         // PHP: Handle cart clearing
         if (isset($_POST['clear_cart'])) {
             setcookie('cart', '', time() - 3600, '/'); // Expire the cart cookie

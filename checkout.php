@@ -1,4 +1,8 @@
 <?php
+include('connection.php');
+session_start();
+?>
+<?php
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // 1. Capture form data
