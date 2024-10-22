@@ -52,9 +52,7 @@
     margin-right: 10px; 
 }
 
-.navbar .collapse {
-    background: linear-gradient(to right, var(--color-1), var(--color-2));
-}
+
 
 .navbar ul {
     padding-left: 0;
@@ -65,7 +63,7 @@
 }
 
 .navbar ul li a {
-    color: var(--color-4);
+    color: #000000 !important;    
     text-decoration: none;
     text-transform: capitalize;
     font-size: 18px;
@@ -73,7 +71,7 @@
 }
 
 .navbar ul li a:hover {
-    color: var(--color-3);
+    color:#F4BBC9 !important;
 }
 
 /* Icon Styles */
@@ -205,61 +203,59 @@
     }
 }
 
-/* Footer Section */
+/* Footer Styling */
+/* Footer Styling */
 footer {
     background: linear-gradient(to right, var(--color-1), var(--color-2));
     border-top-left-radius: 100px;
-    position: relative; 
+    position: relative;
     bottom: 0;
     width: 100%;
     height: auto;
-    padding: 40px 0; 
-}
-
-footer * {
+    padding: 40px 0;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
     color: white;
+    transition: background 0.5s ease-in-out;
 }
 
+footer:hover {
+    background: linear-gradient(to right, var(--color-2), var(--color-1));
+}
+
+/* Footer Grid Layout */
 .contain {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Four columns */
+    gap: 30px;
     padding: 50px 7%;
 }
 
+/* Footer Column Style */
 .footer-col {
-    width: 25%;
-    min-width: 200px;
     margin-bottom: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.footer-col:hover {
+    transform: scale(1.05);
 }
 
 .footer-col h2, .footer-col h3 {
     font-size: 1.7em;
     text-transform: uppercase;
     margin-bottom: 20px;
+    letter-spacing: 1px;
+    color:black;
 }
 
-p.email {
-    margin: 30px 0;
-}
-
-p.phone {
-    font-size: 20px;
-    font-weight: 400;
-}
-
-.footer-col .text-office {
-    margin-bottom: 20px;
-}
-
+/* Centering the underline effect */
 .underline {
     width: 70px;
     height: 3px;
-    position: relative;
     background-color: var(--color-3);
-    margin-top: 5px;
-    margin-bottom: 20px;
+    margin: 5px 0 20px;
     border-radius: 3px;
+    position: relative;
     overflow: hidden;
 }
 
@@ -273,6 +269,7 @@ p.phone {
     animation: moving 1.5s linear infinite;
 }
 
+/* Keyframe for underline animation */
 @keyframes moving {
     0% {
         left: -20px;
@@ -282,70 +279,128 @@ p.phone {
     }
 }
 
+/* Styling the menu list */
 .footer-col ul {
-    list-style-type: none;
-    padding-top: 10px;
+    list-style: none; /* Removes bullet points */
+    padding: 0;
+    margin: 0;
 }
 
+/* Menu Item Styling */
 .footer-col ul li {
-    margin: 10px;
+    margin: 10px 0;
 }
 
-.footer-col form {
-    margin-top: 20px;
-    border-bottom: 1px solid white;
-    padding-bottom: 10px;
-    display: flex;
-}
-
-.footer-col form input {
-    width: 70%;
-    background: transparent;
-    border: none;
-    outline: none;
-    padding-left: 10px;
+/* Link Styling */
+.nav-link1 {
     color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    padding: 10px;
+    transition: color 0.3s ease-in-out;
 }
 
-.footer-col form i {
-    font-size: 15px;
-    color: white;
+/* Hover Effect */
+.nav-link1:hover {
+    color: var(--color-3);
 }
 
+/* Optional: Add padding or margin below the list to create some space */
+.footer-col ul {
+    padding-bottom: 20px;
+}
+
+/* For social media icons */
 .footer-col .social-icons {
     margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+/* Social Icons Styling */
+.footer-col .social-icons {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
 }
 
+/* Icon Styling with Hover Effect */
 .footer-col .social-icons i {
     padding: 10px;
     background-color: white;
-    color: var(--color-1);
+    color: var(--color-1); /* Primary color */
     border-radius: 50%;
-    margin: 5px;
+    transition: background-color 0.3s, transform 0.3s; /* Add transition for hover effect */
 }
 
-.footer-para {
-    max-width: 250px;
+.footer-col .social-icons i:hover {
+    background-color: var(--color-2); /* Change to secondary color on hover */
+    transform: scale(1.2); /* Add scaling animation on hover */
 }
 
-/* Back-to-top button */
-.back-to-top {
-    display: inline-block; 
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: var(--color-1); 
-    border-radius: 5px;
-    padding: 10px; 
-    transition: background-color 0.3s;
-    z-index: 1000;
+/* Optional: Specific colors for Facebook and Instagram icons */
+.footer-col .social-icons .fa-facebook {
+    color: #3b5998; /* Facebook color */
 }
 
-.back-to-top:hover {
-    background-color: var(--color-2);
+.footer-col .social-icons .fa-instagram {
+    color: #C13584; /* Instagram color */
 }
 
-.icon-image {
-    width: 30px; 
-    height: auto;
+/* Dropdown Menu Styling */
+.dropdown-menu {
+    background-color: var(--color-4) !important; /* Light background color */
+    border-radius: 8px !important; /* Rounded corners */
+    padding: 10px 0 !important;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1) !important; /* Soft shadow for depth */
+    min-width: 150px !important; /* Minimum width of the dropdown */
+    text-align: left !important;
+    overflow: hidden !important; /* Ensure no overflow */
+    white-space: nowrap !important; /* Prevent text from wrapping */
+    position: absolute !important;
+    left: 0 !important;
+    right: auto !important;
+    top: 100% !important;
+    z-index: 1000 !important;
+    transform: translateX(0) !important; /* Ensure dropdown opens directly below */
+    max-width: calc(100vw - 20px) !important; /* Ensure the dropdown stays within viewport */
+    overflow-x: hidden !important; /* Prevent horizontal overflow */
+    overflow-y: auto !important; /* Allow vertical scroll if content is too long */
+}
+
+/* Ensure the dropdown stays within screen bounds */
+.dropdown-menu {
+    left: auto !important;
+    right: 0 !important; /* Align to the right to prevent overflow */
+    transform: translateX(-10px) !important; /* Adjust position slightly if necessary */
+}
+
+/* Dropdown Menu Links */
+.dropdown-menu li {
+    list-style: none !important;
+}
+
+.dropdown-menu a.dropdown-item {
+    color: #000000 !important; /* Dark text color */
+    text-decoration: none !important;
+    padding: 10px 20px !important; /* Adjust padding for uniform spacing */
+    display: block !important; /* Make links fill the width */
+    font-size: 16px !important; /* Font size */
+    transition: background-color 0.3s ease, color 0.3s ease !important;
+    white-space: nowrap !important; /* Prevent text wrapping */
+}
+
+.dropdown-menu a.dropdown-item:hover {
+    background-color: var(--color-2) !important; /* Change background on hover */
+    color: #fff !important; /* White text color on hover */
+}
+
+.dropdown-menu li + li {
+    margin-top: 5px !important; /* Space between items */
+}
+
+/* Adjust for screen size */
+@media (max-width: 768px) {
+    .dropdown-menu {
+        max-width: 90vw !important; /* Ensure it fits smaller screens */
+    }
 }

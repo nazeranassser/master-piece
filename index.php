@@ -1,7 +1,21 @@
 
 <?php
-include('connection.php');
 session_start();
+include('config.php');
+include('connection.php');
+ // Include the database connection file
+
+// Initialize $user as null
+$user = null;
+
+// Check if user is logged in
+if (isset($_SESSION['customer_ID'])) {
+    // Get user data
+    $sql = "SELECT * FROM customers WHERE customer_ID = :id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute(['id' => $_SESSION['customer_ID']]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+}
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -22,6 +36,7 @@ session_start();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" />
+    <title><?php echo $user ? 'Welcome, ' . htmlspecialchars($user['customer_name']) : 'Welcome to Our Website'; ?></title>
 
     <title>cakaty</title>
 
