@@ -1,5 +1,5 @@
 <?php
-require_once 'Database.php';
+require_once 'config.php';
 require_once '../models/Order.php';  // Assuming OrderModel is here
 require_once '../models/Customers.php';  // Assuming CustomerModel is here
 

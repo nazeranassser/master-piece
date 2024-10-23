@@ -1,6 +1,6 @@
 <?php
 require_once 'CartController.php';
-
+require_once 'config.php';
 // Initialize CartController
 $cartController = new CartController();
 
