@@ -14,3 +14,9 @@ class Customer{
     
 
 }
+class CustomerModel {
+    // Placeholder for customer data handling
+    public function getCustomerById($customerId) {
+        // Implement logic to retrieve customer data
+    }
+}
