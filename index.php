@@ -44,15 +44,17 @@ if (isset($_SESSION['customer_ID'])) {
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
 
     <!--====== Vendor Css ======-->
-    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" href="public/css/vendor.css">
 
     <!--====== Utility-Spacing ======-->
-    <link rel="stylesheet" href="css/utility.css">
+    <link rel="stylesheet" href="public/css/utility.css">
 
     <!--====== App ======-->
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="public/css/app.css">
 
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="public/css/index.css">
+
+    <link rel="stylesheet" href="public/css/style.css">
 
 </head>
 
@@ -1028,13 +1030,13 @@ $specialOccasions = $specialOccasionsQuery->fetchAll(PDO::FETCH_ASSOC);
     </script>
 
     <!--====== Vendor Js ======-->
-    <script src="js/vendor.js"></script>
+    <script src="public/js/vendor.js"></script>
 
     <!-- ====== jQuery Shopnav plugin ====== -->
-     <script src="js/jquery.shopnav.js"></script> 
+     <script src="public/js/jquery.shopnav.js"></script> 
 
     <!--====== App ======-->
-    <script src="js/app.js"></script>
+    <script src="public/js/app.js"></script>
 
     <!--====== Noscript ======-->
     <noscript>
