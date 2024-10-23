@@ -70,7 +70,7 @@ if (isset($_SESSION['customer_ID'])) {
     <div id="app">
 
         <!--====== Main Header ======-->
-        <?php include 'navbar.php'; ?>
+        <?php include 'views/partials/navbar.php'; ?>
         <!--====== End - Main Header ======-->
 
 
@@ -725,7 +725,7 @@ $specialOccasions = $specialOccasionsQuery->fetchAll(PDO::FETCH_ASSOC);
 
     <!--====== Main Footer ======-->
     <footer>
-        <?php include 'footer.php' ?>
+        <?php include 'views/partials/footer.php' ?>
     </footer>
 
     <!--====== Modal Section ======-->
