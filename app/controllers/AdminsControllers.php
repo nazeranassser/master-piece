@@ -80,6 +80,9 @@ class AdminsController {
     public function add() {
         require 'views/admin/admins/dash-admin-add.php'; // Adjust the path accordingly
     }
+    public function edit() {
+        require 'views/admin/admins/dash-admin-edit.php'; // Adjust the path accordingly
+    }
 
     public function register() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -88,6 +91,7 @@ class AdminsController {
                 'admin_name' => $_POST['name'],
                 'admin_email' => $_POST['email'],
                 'admin_password' => password_hash($_POST['password'], PASSWORD_DEFAULT), // Hash the password
+                'date' => date("Y/m/d h:m:s")
             ];
 
             // Call the model to add the admin
@@ -100,6 +104,21 @@ class AdminsController {
         } else {
             // If it's not a POST request, redirect or show an error
             echo "Invalid request.";
+        }
+    }
+
+    function update() {
+        $data = [
+            'admin_id' => $_POST['edit'],
+            'admin_name' => $_POST['admin_name'],
+            'admin_email' => $_POST['email'],
+            'admin_password' => password_hash($_POST['password'], PASSWORD_DEFAULT), // Hash the password
+        ];
+        if ($this->adminModel->update($data)) {
+            // Redirect or show a success message
+            $this->get();
+        } else {
+            echo "Failed to add admin.";
         }
     }
 }

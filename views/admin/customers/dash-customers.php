@@ -1,6 +1,5 @@
+<?php include('views/partials/navbar.php');?>
 
-        <!--====== Main Header ======-->
-        <?php include('views/partials/navbar.php');?>
         <!--====== End - Main Header ======-->
 
         <!--====== App Content ======-->

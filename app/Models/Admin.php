@@ -39,14 +39,14 @@ class Admin {
     }
 
     function update($data) {        
-        $sql = "UPDATE admins SET admin_name=:name, admin_email=:email, admin_password=:password WHERE admin_ID =:id";
+        $sql = $this->conn->prepare("UPDATE admins SET admin_name=:name, admin_email=:email, admin_password=:password WHERE admin_ID =:id");
         $sql->bindParam(':id', $data['admin_id']);
         $sql->bindParam(':name', $data['admin_name']);
         $sql->bindParam(':email', $data['admin_email']);
         $sql->bindParam(':password', $data['admin_password']);
-        $sql->bindParam(':date', $data['date']);
-        $start = $this->conn->query($sql);
-        return $start;
+        // $sql->bindParam(':date', $data['date']);
+        // $start = $this->conn->query($sql);
+        return $sql->execute();
     }
 
     function addNew($data){

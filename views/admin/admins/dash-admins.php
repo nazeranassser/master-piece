@@ -70,7 +70,7 @@
                                               
                                                   foreach($admins as $admin) {
                                                     echo "  <tr>
-                                                    <form method='POST' action='dash-admin-edit.php'>
+                                                    <form method='POST' action='/edit-admin'>
                                                             <th>".$admin['admin_name']."<input type='hidden' value='".$admin['admin_name']."' name='admin_name' style='visibility: hidden;display: none;'></th>
                                                             <th>".$admin['admin_email']."<input type='hidden' value='".$admin['admin_email']."' name='admin_email' style='visibility: hidden;display: none;'></th>
                                                             <th>".$admin['admin_password']."<input type='text' value='".$admin['admin_password']."' name='admin_password' style='visibility: hidden;display: none;'></th>

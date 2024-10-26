@@ -50,11 +50,11 @@ $router = new Router();
 // Add routes
 $router->add('', ['controller' => 'Admins', 'action' => 'index']);// dashboard-admin.php "/"
 $router->add('admins', ['controller' => 'Admins', 'action' => 'get']);// dash-admins.php
-// $router->add('customers', ['controller' => 'Customer', 'action' => 'get']);// dash-admins.php
-$router->add('customer/get', ['controller' => 'customer', 'action' => 'get']);
-
 $router->add('add-admin', ['controller' => 'Admins', 'action' => 'add']);// dash-admin-add.php
+$router->add('edit-admin', ['controller' => 'Admins', 'action' => 'edit']);// dash-admin-edit.php
 $router->add('register', ['controller' => 'Admins', 'action' => 'register']);//admins-controllers->register()
+$router->add('update_admin', ['controller' => 'Admins', 'action' => 'update']);//admins-controllers->update_admin()
+$router->add('customer/get', ['controller' => 'customer', 'action' => 'get']);
 $router->add('cart', ['controller' => 'Carts', 'action' => 'getCartItems']);//cart-controllers->getCartItems()
 
 //  Router::get()
