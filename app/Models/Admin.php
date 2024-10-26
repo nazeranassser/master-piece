@@ -1,11 +1,10 @@
 <?php
-
+namespace App\Models;
+use PDO; // Use the global PDO class
+use PDOException;
 // include '../../config.php';
-include 'config.php';
-
 class Admin {
     // Properties
-    private $dbInstance;
     private $conn;
     private $id;
     private $name;
@@ -13,10 +12,8 @@ class Admin {
     private $password;
     private $date;
 
-
     public function __construct() {
-        $this->dbInstance = Database::getInstance();
-        $this->conn = $this->dbInstance->getConnection();
+        $this->conn = Database::getInstance()->getConnection(); // Get the database connection
     }
 
     function showAdminId($data) {
@@ -70,3 +67,4 @@ class Admin {
         return $result->execute(['admin_id' => $admin_id]);
     }
 }
+

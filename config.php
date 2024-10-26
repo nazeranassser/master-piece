@@ -3,7 +3,7 @@ class Database {
     private static $instance = null;
     private $conn;
     private $host = 'localhost';
-    private $db = 'cakes_db';
+    private $db = 'cake_project';
     private $user = 'root';
     private $pass = '';
 

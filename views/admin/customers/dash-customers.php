@@ -1,7 +1,6 @@
 
         <!--====== Main Header ======-->
         <?php include('views/partials/navbar.php');?>
-
         <!--====== End - Main Header ======-->
 
         <!--====== App Content ======-->
@@ -71,14 +70,14 @@
                                                   foreach($admins as $admin) {
                                                     echo "  <tr>
                                                     <form method='POST' action='dash-admin-edit.php'>
-                                                            <th>".$admin['admin_name']."<input type='hidden' value='".$admin['admin_name']."' name='admin_name' style='visibility: hidden;display: none;'></th>
-                                                            <th>".$admin['admin_email']."<input type='hidden' value='".$admin['admin_email']."' name='admin_email' style='visibility: hidden;display: none;'></th>
-                                                            <th>".$admin['admin_password']."<input type='text' value='".$admin['admin_password']."' name='admin_password' style='visibility: hidden;display: none;'></th>
+                                                            <th>".$admin['customer_name']."<input type='hidden' value='".$admin['customer_name']."' name='customer_name' style='visibility: hidden;display: none;'></th>
+                                                            <th>".$admin['customer_email']."<input type='hidden' value='".$admin['customer_email']."' name='customer_email' style='visibility: hidden;display: none;'></th>
+                                                            <th>".$admin['customer_address1']."<input type='text' value='".$admin['customer_address1']."' name='customer_address1' style='visibility: hidden;display: none;'></th>
                                                             <th style='display: flex;''>
-                                                            <input type='text' value='".$admin['admin_ID']."' name='edit' style='visibility: hidden;display: none;'>
+                                                            <input type='text' value='".$admin['customer_ID']."' name='edit' style='visibility: hidden;display: none;'>
                                                             <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2' style='margin-right:4px ;'>Edit</button></form>
                                                             <form method='POST' action='show_admin.php'>
-                                                            <input type='text' value='".$admin['admin_ID']."' name='admin_delete' style='visibility: hidden;display: none;'>
+                                                            <input type='text' value='".$admin['customer_ID']."' name='customer_delete' style='visibility: hidden;display: none;'>
                                                             <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2'>Delete</button></form></th>
                                                         </tr>";
                                                 }

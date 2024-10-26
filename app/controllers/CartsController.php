@@ -1,9 +1,11 @@
 <?php
-require '../../config.php';
-require_once '../../models/Order.php';  // Assuming OrderModel is here
-require_once '../models/Customers.php';  // Assuming CustomerModel is here
+namespace App\Controllers;
+use App\Models\Cart;
+// require '../../config.php';
+// require_once '../../models/Order.php';  // Assuming OrderModel is here
+// require_once '../models/Customers.php';  // Assuming CustomerModel is here
 
-class CartController {
+class CartsController {
     private $cart = [];
 
     public function __construct() {
