@@ -1,43 +1,4 @@
 <?php
-// include 'controllers/users/add-admins.php';
-
-// require_once 'app/Router.php';
-// require_once 'controllers/admins-controllers.php';
-
-// $router = new Router();
-
-// // Add routes
-// $router->add('', ['controller' => 'admins', 'action' => 'index']);
-// $router->add('admins', ['controller' => 'admins', 'action' => 'index']);
-// $router->add('post/{id:\d+}', ['controller' => 'Admin', 'action' => 'show']);
-
-// // var_dump($_SERVER);
-
-// // Dispatch the request
-// // $url = $_SERVER['QUERY_STRING'];  // Assuming you're using the query string for routing
-// $url = $_SERVER['REQUEST_URI'];
-// $router->dispatch($url);
-
-
-// // foreach ($routes as $rou => $index){
-// //     if($_SERVER['REQUEST_URI'] == $rou){
-// //         require $routs[$_SERVER['REQUEST_URI']];
-// //     }
-// // }
-
-// // $controller = new AdminController();
-// // var_dump($_SERVER['REQUEST_URI']);
-// // if(array_key_exists($_SERVER['REQUEST_URI'],$routes)){
-// //        require $routes[$_SERVER['REQUEST_URI']];
-// // }else 
-// // if($_SERVER['REQUEST_URI'] == '/register' && ){
-// //     // $controller->register();
-// //     require 'dash-admin-add.php';
-// // }
-// //     else{
-// //         require 'login.php';
-// //     }
-// require 'app/Router.php';
 require  __DIR__ .'/app/controllers/AdminsControllers.php';
 
 require 'vendor/autoload.php';
@@ -57,6 +18,11 @@ $router->add('update_admin', ['controller' => 'Admins', 'action' => 'update']);/
 $router->add('customer/get', ['controller' => 'customer', 'action' => 'get']);
 $router->add('cart', ['controller' => 'Carts', 'action' => 'getCartItems']);//cart-controllers->getCartItems()
 $router->add('', ['controller' => 'Products', 'action' => 'showHomePage']);
+$router->add('update_product', ['controller' => 'Products', 'action' => 'edit']);//admins-controllers->update_admin()
+$router->add('products', ['controller' => 'Products', 'action' => 'index']);//admins-controllers->update_admin()
+$router->add('product/update', ['controller' => 'Products', 'action' => 'update']);//ProductsControllers->update()
+$router->add('product/add', ['controller' => 'Products', 'action' => 'add']);//admins-controllers->update_admin()
+
 
 //  Router::get()
 
