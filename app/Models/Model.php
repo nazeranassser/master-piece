@@ -1,12 +1,16 @@
 <?php
+namespace App\Models;
+use PDO; // Use the global PDO class
+use PDOException;
 
 class Model {
     protected $db;
     protected $table;
 
     public function __construct($table) {
+        $this->db = Database::getInstance()->getConnection();
         // Initialize the Database connection
-        $this->db = new Database();  // Assuming there's a Database class for connection
+        // Assuming there's a Database class for connection
         $this->table = $table;       // The table name to perform operations on
     }
 
@@ -17,15 +21,15 @@ class Model {
         $placeholders = ':' . implode(', :', array_keys($data));
 
         $sql = "INSERT INTO $this->table ($columns) VALUES ($placeholders)";
-        $this->db->query($sql);
+        $stmt=$this->db->prepare($sql);
 
         // Bind the data
         foreach ($data as $key => $value) {
-            $this->db->bind(":$key", $value);
+            $stmt->bindValue(":$key", $value);
         }
 
         // Execute the query
-        return $this->db->execute();
+        return $stmt->execute();
     }
 
     // READ: Fetch all records or a specific record by ID
@@ -35,36 +39,37 @@ class Model {
             $this->db->bind(':id', $id);
             return $this->db->single();  // Fetch a single record
         } else {
-            $this->db->query("SELECT * FROM $this->table");
-            return $this->db->resultSet();  // Fetch all records
+            return $this->db->query("SELECT * FROM $this->table")->fetchAll(PDO::FETCH_ASSOC);  // Fetch all records
         }
     }
 
     // UPDATE: Update a record by ID
     public function update($id, $data) {
         // Prepare SQL with column placeholders for each field
+        $table_id = rtrim($this->table,'s');
+        $table_id = $table_id."_ID";
         $setString = '';
         foreach ($data as $key => $value) {
             $setString .= "$key = :$key, ";
         }
         $setString = rtrim($setString, ', ');
 
-        $sql = "UPDATE $this->table SET $setString WHERE id = :id";
-        $this->db->query($sql);
+        $sql = "UPDATE $this->table SET $setString WHERE $table_id = :id";
+        // echo $sql;
+        $stmt=$this->db->prepare($sql);
 
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         // Bind data
         foreach ($data as $key => $value) {
-            $this->db->bind(":$key", $value);
+            $stmt->bindValue(":$key", $value);
         }
-        $this->db->bind(':id', $id);
-
         // Execute query
-        return $this->db->execute();
-    }
+        return $stmt->execute();    }
 
     // DELETE: Delete a record by ID
     public function delete($id) {
-        $this->db->query("DELETE FROM $this->table WHERE id = :id");
+        $table_id = $this->table."_ID";
+        $this->db->query("DELETE FROM $this->table WHERE $table_id = :id");
         $this->db->bind(':id', $id);
         return $this->db->execute();
     }
@@ -76,3 +81,4 @@ class Model {
         return $this->db->resultSet();
     }
 }
+

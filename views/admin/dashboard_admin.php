@@ -1,46 +1,7 @@
 <?php
 session_start();
-?>
-<!DOCTYPE html>
-<html class="no-js" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="images/favicon.png" rel="shortcut icon">
-    <title>Admin Dashboard</title>
+ include('views/partials/navbar.php');?>
 
-    <!--====== Google Font ======-->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
-
-    <!--====== Vendor Css ======-->
-    <link rel="stylesheet" href="css/vendor.css">
-
-    <!--====== Utility-Spacing ======-->
-    <link rel="stylesheet" href="css/utility.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!--====== App ======-->
-    <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/index.css">
-</head>
-<body class="config">
-    <br>
-
-    <br>
-    <!-- <div class="preloader is-active">
-        <div class="preloader__wrap">
-
-            <img class="preloader__img" src="images/preloader.png" alt=""></div>
-    </div> -->
-
-    <!--====== Main App ======-->
-    <div id="app">
-
-        <!--====== Main Header ======-->
-        <?php include('navbar.php');?>
         <!--====== End - Main Header ======-->
 
         <br>
@@ -101,11 +62,11 @@ session_start();
                                                                 <a href="dash-edit-profile.html"><br></a></div>
 
                                                             <h1 class="dash__h1 u-s-m-b-14" style='font-size:30px'><?php
-                                                             include('show_admin.php');
+                                                            //  include('show_admin.php');
                                                                                             
-                                                             $sales = new sales();
-                                                             $sales_total = $sales->totalSales();
-                                                             print_r($sales_total[0]['total']);
+                                                            //  $sales = new sales();
+                                                            //  $sales_total = $sales->totalSales();
+                                                             print_r($total[0]['total']);
                                                             ?> JD</h1>
                                                             <br>
                                                             <span class="dash__text">From <?php echo date('Y-m-d', strtotime('-30 days'));?></span>
@@ -166,9 +127,9 @@ session_start();
                                                 
                                                 // include('./php/show_admin.php');
                                                                                             
-                                                $order = new orders();
-                                                $order_row = $order->showOrders();
-                                                  foreach($order_row as $order) {
+                                                // $order = new orders();
+                                                // $order_row = $order->showOrders();
+                                                  foreach($orders as $order) {
                                                     echo "<tr>
                                                         <td>".$order['order_ID']."</td>
                                                         <td>".$order['customer_phone']."</td>
@@ -205,76 +166,10 @@ session_start();
 
 
         <!--====== Main Footer ======-->
-        <?php include('footer.php');?>
+        <?php
+    include('views/partials/footer.php');
+    ?>
         <!--====== Modal Section ======-->
 
 
-        <!--====== Unsubscribe or Subscribe Newsletter ======-->
-        <div class="modal fade" id="dash-newsletter">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content modal--shadow">
-                    <div class="modal-body">
-                        <form class="d-modal__form">
-                            <div class="u-s-m-b-15">
-                                <h1 class="gl-modal-h1">Newsletter Subscription</h1>
-
-                                <span class="gl-modal-text">I have read and understood</span>
-
-                                <a class="d_modal__link" href="dashboard.html">Ludus Privacy Policy</a>
-                            </div>
-                            <div class="gl-modal-btn-group">
-
-                                <button class="btn btn--e-brand-b-2" type="submit">SUBSCRIBE</button>
-
-                                <button class="btn btn--e-grey-b-2" type="button" data-dismiss="modal">CANCEL</button></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--====== Unsubscribe or Subscribe Newsletter ======-->
-        <!--====== End - Modal Section ======-->
-    </div>
-    <!--====== End - Main App ======-->
-
-
-    <!--====== Google Analytics: change UA-XXXXX-Y to be your site's ID ======-->
-    <script>
-        window.ga = function() {
-            ga.q.push(arguments)
-        };
-        ga.q = [];
-        ga.l = +new Date;
-        ga('create', 'UA-XXXXX-Y', 'auto');
-        ga('send', 'pageview')
-    </script>
-    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
-
-    <!--====== Vendor Js ======-->
-    <script src="js/vendor.js"></script>
-
-    <!--====== jQuery Shopnav plugin ======-->
-    <script src="js/jquery.shopnav.js"></script>
-
-    <!--====== App ======-->
-    <script src="js/app.js"></script>
-
-    <!--====== Noscript ======-->
-    <noscript>
-        <div class="app-setting">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="app-setting__wrap">
-                            <h1 class="app-setting__h1">JavaScript is disabled in your browser.</h1>
-
-                            <span class="app-setting__text">Please enable JavaScript in your browser or upgrade to a JavaScript-capable browser.</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </noscript>
-</body>
-</html>
+       

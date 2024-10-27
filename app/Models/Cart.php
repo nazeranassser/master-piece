@@ -1,7 +1,7 @@
 <?php
 namespace App\Models;
-use PDO; // Use the global PDO class
-use PDOException;
+use App\Models\Model;
+
 // require_once 'config/Database.php';
 class Cart {
     private $cartItems = [];

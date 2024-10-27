@@ -1,5 +1,6 @@
 <?php
 namespace App\Models;
+use App\Models\Model;
 use PDO; // Use the global PDO class
 use PDOException;
 class Customer{

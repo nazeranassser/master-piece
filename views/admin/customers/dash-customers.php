@@ -19,7 +19,7 @@
                                         <a href="index.html">Home</a></li>
                                     <li class="is-marked">
 
-                                        <a href="dash-address-book.php">Admins</a></li>
+                                        <a href="dash-address-book.php">Customers</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                                     <div class="dash__box dash__box--shadow dash__box--bg-white dash__box--radius u-s-m-b-30">
                                     <div class="dash__pad-2">
                                             <div class="dash__address-header">
-                                                <h1 class="dash__h1">Admins</h1>
+                                                <h1 class="dash__h1">Customers</h1>
                                             </div>
                                         </div>
                                         <div class="dash__table-2-wrap gl-scroll">
@@ -58,7 +58,7 @@
                                                     <tr>
                                                         <th>Name</th>
                                                         <th>Email</th>
-                                                        <th>Password</th>
+                                                        <th>Address 1</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -66,17 +66,17 @@
                                                 <?php
                                             
                                               
-                                                  foreach($admins as $admin) {
+                                                  foreach($customers as $customer) {
                                                     echo "  <tr>
                                                     <form method='POST' action='dash-admin-edit.php'>
-                                                            <th>".$admin['customer_name']."<input type='hidden' value='".$admin['customer_name']."' name='customer_name' style='visibility: hidden;display: none;'></th>
-                                                            <th>".$admin['customer_email']."<input type='hidden' value='".$admin['customer_email']."' name='customer_email' style='visibility: hidden;display: none;'></th>
-                                                            <th>".$admin['customer_address1']."<input type='text' value='".$admin['customer_address1']."' name='customer_address1' style='visibility: hidden;display: none;'></th>
+                                                            <th>".$customer['customer_name']."<input type='hidden' value='".$customer['customer_name']."' name='customer_name' style='visibility: hidden;display: none;'></th>
+                                                            <th>".$customer['customer_email']."<input type='hidden' value='".$customer['customer_email']."' name='customer_email' style='visibility: hidden;display: none;'></th>
+                                                            <th>".$customer['customer_address1']."<input type='text' value='".$customer['customer_address1']."' name='customer_address1' style='visibility: hidden;display: none;'></th>
                                                             <th style='display: flex;''>
-                                                            <input type='text' value='".$admin['customer_ID']."' name='edit' style='visibility: hidden;display: none;'>
+                                                            <input type='text' value='".$customer['customer_ID']."' name='edit' style='visibility: hidden;display: none;'>
                                                             <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2' style='margin-right:4px ;'>Edit</button></form>
                                                             <form method='POST' action='show_admin.php'>
-                                                            <input type='text' value='".$admin['customer_ID']."' name='customer_delete' style='visibility: hidden;display: none;'>
+                                                            <input type='text' value='".$customer['customer_ID']."' name='customer_delete' style='visibility: hidden;display: none;'>
                                                             <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2'>Delete</button></form></th>
                                                         </tr>";
                                                 }
