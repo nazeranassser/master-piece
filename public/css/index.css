@@ -1,4 +1,5 @@
 /* Global styles to prevent scrolling */
+
 html, body {
     margin: 0;
     padding: 0;
@@ -54,7 +55,7 @@ html, body {
 }
 
 .section__intro {
-    margin-bottom: 46px; /* Margin for the intro section */
+    margin-bottom: 50px; /* Margin for the intro section */
     text-align: center; /* Center align the intro section */
 }
 
@@ -74,13 +75,13 @@ html, body {
 .section__content {
     display: flex; /* Flex container */
     justify-content: center; /* Center content */
+    margin-bottom: 50px; /* Bottom margin */
 }
 
 .product-grid {
     display: flex; /* Flex display for product grid */
     flex-wrap: wrap; /* Allow wrapping of product cards */
     justify-content: center; /* Center the product cards */
-    margin: -15px; /* Negative margin to offset the padding */
 }
 
 /* Product Card Styles */
@@ -142,7 +143,7 @@ html, body {
     text-decoration: none;
 }
 
-.product-category a,
+
 .product-name a {
     color: #3E2723; /* Category and product name color */
     text-decoration: none; /* Remove underline */
@@ -197,4 +198,92 @@ html, body {
 }
 
 
+/* Section intro */
+.section__intro {
+    padding: 60px 0; /* Adjust top and bottom padding */
+    text-align: center; /* Center align the text */
+}
 
+.section__heading {
+    margin-top: -15px;
+    font-size: 2.5rem; /* Large heading */
+    margin-bottom: 12px; /* Spacing below the heading */
+}
+
+.section__span {
+    font-size: 1.2rem; /* Slightly larger for emphasis */
+    color: #80005a; /* Your preferred color */
+}
+
+/* Filter buttons */
+.filter-category-container {
+    display: flex; /* Flexbox for button alignment */
+    justify-content: center; /* Center the buttons */
+    margin-bottom: 30px; /* Spacing below the buttons */
+}
+
+.filter__category-wrapper {
+    margin: 0 10px; /* Spacing between buttons */
+}
+
+.filter__btn {
+    padding: 10px 20px; /* Padding around the button */
+    background-color: #d4ff00; /* Your preferred color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    color: #000; /* Text color */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.filter__btn:hover {
+    background-color: #05c605; /* Darker shade on hover */
+}
+
+/* Product grid */
+.filter__grid-wrapper {
+    margin-top: 30px; /* Spacing above the product grid */
+}
+
+.product-o {
+    background-color: #fff; /* White background for products */
+    border: 1px solid #eaeaea; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    overflow: hidden; /* Ensure content stays within bounds */
+    transition: transform 0.2s; /* Smooth scale on hover */
+    height: 270px;
+}
+
+.product-o:hover {
+    transform: scale(1.02); /* Slightly scale up on hover */
+}
+
+.product-o__wrap {
+    position: relative; /* Positioning for action buttons */
+}
+
+.product-o__action-wrap {
+    position: absolute; /* Position buttons over the image */
+    top: 90px; /* Positioning */
+    right: 10px; /* Positioning */
+}
+
+.product-o__category {
+    display: block; /* Block display for category */
+    font-size: 0.9rem; /* Smaller font */
+    color: #3E2723; /* Your preferred color */
+    margin-bottom: 5px; /* Spacing below category */
+}
+
+.product-o__name {
+    display: block; /* Block display for product name */
+    font-size: 1.1rem; /* Slightly larger */
+    color: #333; /* Darker text */
+    margin-bottom: 5px; /* Spacing below name */
+}
+
+.product-o__price {
+    font-size: 1.2rem; /* Larger font for price */
+    color: #3E2723; /* Your preferred color */
+}
