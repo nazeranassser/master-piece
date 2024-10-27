@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('config.php');
+// include('config.php');
 // Include the database connection file
 
 // Initialize $user as null
@@ -69,7 +69,7 @@ if (isset($_SESSION['customer_ID'])) {
     <div id="app">
 
         <!--====== Main Header ======-->
-        <?php include 'views/partials/header.php'; ?>
+        <?php include 'header.php'; ?>
         <!--====== End - Main Header ======-->
 
 
@@ -88,7 +88,7 @@ if (isset($_SESSION['customer_ID'])) {
             <!--====== End - hero section ======-->
 
 
-          
+
 
 
 
@@ -114,8 +114,7 @@ if (isset($_SESSION['customer_ID'])) {
                                     </div>
                                     <div class="product-details">
                                         <span class="product-category">
-                                            <a
-                                                href="category.php?id=<?= $product['category_id']; ?>"><?= htmlspecialchars($product['category_name']); ?></a>
+                                            <?= htmlspecialchars($product['category_name']); ?>
                                         </span>
                                         <h3 class="product-name">
                                             <a
@@ -135,16 +134,19 @@ if (isset($_SESSION['customer_ID'])) {
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="product-price"><?= number_format($product['product_price'], 2); ?>JD
                                             </div>
-                                            <div class="action-buttons">
-                                            <form action="cart.php" method="POST" style="display: inline;">
-                                            <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
-                                            <button type="submit" class="btn btn-outline-secondary btn-sm">
-                                            <i class="fas fa-shopping-cart"></i></button>
-                                            </form>
-                                                
-                                                <button class="btn btn-outline-secondary btn-sm"><i
-                                                        class="fas fa-heart"></i></button>
-                                            </div>
+                                            <div class="action-buttons d-flex">
+                                                            <a href="cart.php?id=<?= $product['product_id'] ?>"
+                                                                class="btn btn-outline-secondary btn-sm"
+                                                                data-tooltip="tooltip" data-placement="top"
+                                                                title="Add to Cart">
+                                                                <i class="fas fa-shopping-cart"></i>
+                                                            </a>
+                                                            <button class="btn btn-outline-secondary btn-sm ms-2"
+                                                                data-tooltip="tooltip" data-placement="top"
+                                                                title="Add to Favorites">
+                                                                <i class="fas fa-heart"></i>
+                                                            </button>
+                                                        </div>
                                         </div>
                                     </div>
                                 </div>
@@ -215,51 +217,121 @@ if (isset($_SESSION['customer_ID'])) {
                                                     <div class="product-o__wrap">
                                                         <a class="aspect aspect--bg-grey aspect--square u-d-block"
                                                             href="product-detail.php?id=<?= $product['product_id'] ?>">
-                                                            <img class="aspect__img" src="public/images/products/<?= $product['product_image'] ?>"
-                                                                alt="<?= $product['product_name'] ?>">
+                                                            <img class="aspect__img"
+                                                                src="public/images/products/<?= $product['product_image'] ?>"
+                                                                alt="<?= htmlspecialchars($product['product_name']) ?>">
                                                         </a>
-                                                        <div class="product-o__action-wrap">
-                                                            <ul class="product-o__action-list">
-                                                                <li><a href="add-to-cart.php?id=<?= $product['product_id'] ?>"
-                                                                        data-tooltip="tooltip" data-placement="top"
-                                                                        title="Add to Cart"><i
-                                                                            class="fas fa-plus-circle"></i></a></li>
-                                                            </ul>
+                                                    </div>
+
+                                                    <!-- Category -->
+                                                    <span class="product-o__category">
+                                                        <?= htmlspecialchars($product['category_name']) ?>
+                                                    </span>
+
+                                                    <!-- Product Name -->
+                                                    <span class="product-o__name">
+                                                        <a
+                                                            href="product-detail.php?id=<?= $product['product_id'] ?>"><?= htmlspecialchars($product['product_name']) ?></a>
+                                                    </span>
+
+                                                    <!-- Rating -->
+                                                    <div class="product-o__rating">
+                                                        <?php
+                                                        $rating = $product['total_review'];
+                                                        $fullStars = floor($rating);
+                                                        $halfStar = ($rating - $fullStars) >= 0.5;
+                                                        for ($i = 0; $i < 5; $i++) {
+                                                            echo $i < $fullStars ? '<i class="fas fa-star"></i>' : ($halfStar && $i == $fullStars ? '<i class="fas fa-star-half-alt"></i>' : '<i class="far fa-star"></i>');
+                                                        }
+                                                        ?>
+                                                        <span
+                                                            class="product-review">(<?= number_format($rating, 1); ?>)</span>
+                                                    </div>
+
+                                                    <!-- Price and Action Buttons -->
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                        <span
+                                                            class="product-o__price"><?= number_format($product['product_price'], 2); ?>
+                                                            JD</span>
+
+                                                        <!-- Cart and Favorite Icons -->
+                                                        <div class="action-buttons d-flex">
+                                                            <a href="cart.php?id=<?= $product['product_id'] ?>"
+                                                                class="btn btn-outline-secondary btn-sm"
+                                                                data-tooltip="tooltip" data-placement="top"
+                                                                title="Add to Cart">
+                                                                <i class="fas fa-shopping-cart"></i>
+                                                            </a>
+                                                            <button class="btn btn-outline-secondary btn-sm ms-2"
+                                                                data-tooltip="tooltip" data-placement="top"
+                                                                title="Add to Favorites">
+                                                                <i class="fas fa-heart"></i>
+                                                            </button>
                                                         </div>
                                                     </div>
-                                                    <span class="product-o__category"><a
-                                                            href="shop-side-version-2.php?category=<?= $product['category_id'] ?>"><?= $product['category_name'] ?></a></span>
-                                                    <span class="product-o__name"><a
-                                                            href="product-detail.php?id=<?= $product['product_id'] ?>"><?= $product['product_name'] ?></a></span>
-                                                    <span class="product-o__price"><?= $product['product_price'] ?>JD</span>
                                                 </div>
                                             </div>
                                         <?php endforeach; ?>
+
                                         <!-- Display Top Seller Products -->
                                         <?php foreach ($topSellers as $product): ?>
-                                            <div
-                                                class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item top-seller">
+                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item top-seller">
                                                 <div class="product-o product-o--hover-on product-o--radius">
                                                     <div class="product-o__wrap">
                                                         <a class="aspect aspect--bg-grey aspect--square u-d-block"
                                                             href="product-detail.php?id=<?= $product['product_id'] ?>">
-                                                            <img class="aspect__img" src="public/images/products/<?= $product['product_image'] ?>"
-                                                                alt="<?= $product['product_name'] ?>">
+                                                            <img class="aspect__img"
+                                                                src="public/images/products/<?= $product['product_image'] ?>"
+                                                                alt="<?= htmlspecialchars($product['product_name']) ?>">
                                                         </a>
-                                                        <div class="product-o__action-wrap">
-                                                            <ul class="product-o__action-list">
-                                                                <li><a href="add-to-cart.php?id=<?= $product['product_id'] ?>"
-                                                                        data-tooltip="tooltip" data-placement="top"
-                                                                        title="Add to Cart"><i
-                                                                            class="fas fa-plus-circle"></i></a></li>
-                                                            </ul>
+                                                    </div>
+
+                                                    <!-- Category -->
+                                                    <span class="product-o__category">
+                                                        <?= htmlspecialchars($product['category_name']) ?>
+                                                    </span>
+
+                                                    <!-- Product Name -->
+                                                    <span class="product-o__name">
+                                                        <a
+                                                            href="product-detail.php?id=<?= $product['product_id'] ?>"><?= htmlspecialchars($product['product_name']) ?></a>
+                                                    </span>
+
+                                                    <!-- Rating -->
+                                                    <div class="product-o__rating">
+                                                        <?php
+                                                        $rating = $product['total_review'];
+                                                        $fullStars = floor($rating);
+                                                        $halfStar = ($rating - $fullStars) >= 0.5;
+                                                        for ($i = 0; $i < 5; $i++) {
+                                                            echo $i < $fullStars ? '<i class="fas fa-star"></i>' : ($halfStar && $i == $fullStars ? '<i class="fas fa-star-half-alt"></i>' : '<i class="far fa-star"></i>');
+                                                        }
+                                                        ?>
+                                                        <span
+                                                            class="product-review">(<?= number_format($rating, 1); ?>)</span>
+                                                    </div>
+
+                                                    <!-- Price and Action Buttons -->
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                        <span
+                                                            class="product-o__price"><?= number_format($product['product_price'], 2); ?>
+                                                            JD</span>
+
+                                                        <!-- Cart and Favorite Icons -->
+                                                        <div class="action-buttons d-flex">
+                                                            <a href="cart.php?id=<?= $product['product_id'] ?>"
+                                                                class="btn btn-outline-secondary btn-sm"
+                                                                data-tooltip="tooltip" data-placement="top"
+                                                                title="Add to Cart">
+                                                                <i class="fas fa-shopping-cart"></i>
+                                                            </a>
+                                                            <button class="btn btn-outline-secondary btn-sm ms-2"
+                                                                data-tooltip="tooltip" data-placement="top"
+                                                                title="Add to Favorites">
+                                                                <i class="fas fa-heart"></i>
+                                                            </button>
                                                         </div>
                                                     </div>
-                                                    <span class="product-o__category"><a
-                                                            href="shop-side-version-2.php?category=<?= $product['category_id'] ?>"><?= $product['category_name'] ?></a></span>
-                                                    <span class="product-o__name"><a
-                                                            href="product-detail.php?id=<?= $product['product_id'] ?>"><?= $product['product_name'] ?></a></span>
-                                                    <span class="product-o__price">$<?= $product['product_price'] ?></span>
                                                 </div>
                                             </div>
                                         <?php endforeach; ?>
@@ -267,116 +339,252 @@ if (isset($_SESSION['customer_ID'])) {
                                         <!-- Similarly, display other categories -->
                                         <!-- OUR CAKE -->
                                         <?php foreach ($ourCake as $product): ?>
-                                            <div
-                                                class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item our-cake">
+                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item our-cake">
                                                 <div class="product-o product-o--hover-on product-o--radius">
                                                     <div class="product-o__wrap">
                                                         <a class="aspect aspect--bg-grey aspect--square u-d-block"
                                                             href="product-detail.php?id=<?= $product['product_id'] ?>">
-                                                            <img class="aspect__img" src="public/images/products/<?= $product['product_image'] ?>"
-                                                                alt="<?= $product['product_name'] ?>">
+                                                            <img class="aspect__img"
+                                                                src="public/images/products/<?= $product['product_image'] ?>"
+                                                                alt="<?= htmlspecialchars($product['product_name']) ?>">
                                                         </a>
-                                                        <div class="product-o__action-wrap">
-                                                            <ul class="product-o__action-list">
-                                                                <li><a href="add-to-cart.php?id=<?= $product['product_id'] ?>"
-                                                                        data-tooltip="tooltip" data-placement="top"
-                                                                        title="Add to Cart"><i
-                                                                            class="fas fa-plus-circle"></i></a></li>
-                                                            </ul>
+                                                    </div>
+
+                                                    <!-- Category -->
+                                                    <span class="product-o__category">
+                                                        <?= htmlspecialchars($product['category_name']) ?>
+                                                    </span>
+
+                                                    <!-- Product Name -->
+                                                    <span class="product-o__name">
+                                                        <a
+                                                            href="product-detail.php?id=<?= $product['product_id'] ?>"><?= htmlspecialchars($product['product_name']) ?></a>
+                                                    </span>
+
+                                                    <!-- Rating -->
+                                                    <div class="product-o__rating">
+                                                        <?php
+                                                        $rating = $product['total_review'];
+                                                        $fullStars = floor($rating);
+                                                        $halfStar = ($rating - $fullStars) >= 0.5;
+                                                        for ($i = 0; $i < 5; $i++) {
+                                                            echo $i < $fullStars ? '<i class="fas fa-star"></i>' : ($halfStar && $i == $fullStars ? '<i class="fas fa-star-half-alt"></i>' : '<i class="far fa-star"></i>');
+                                                        }
+                                                        ?>
+                                                        <span
+                                                            class="product-review">(<?= number_format($rating, 1); ?>)</span>
+                                                    </div>
+
+                                                    <!-- Price and Action Buttons -->
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                        <span
+                                                            class="product-o__price"><?= number_format($product['product_price'], 2); ?>
+                                                            JD</span>
+
+                                                        <!-- Cart and Favorite Icons -->
+                                                        <div class="action-buttons d-flex">
+                                                            <a href="/cart/<?php echo $product['product_id']; ?>"
+                                                                class="btn btn-outline-secondary btn-sm"
+                                                                data-tooltip="tooltip" data-placement="top"
+                                                                title="Add to Cart">
+                                                                <i class="fas fa-shopping-cart"></i>
+                                                            </a>
+                                                            <button class="btn btn-outline-secondary btn-sm ms-2"
+                                                                data-tooltip="tooltip" data-placement="top"
+                                                                title="Add to Favorites">
+                                                                <i class="fas fa-heart"></i>
+                                                            </button>
                                                         </div>
                                                     </div>
-                                                    <span class="product-o__category"><a
-                                                            href="shop-side-version-2.php?category=<?= $product['category_id'] ?>"><?= $product['category_name'] ?></a></span>
-                                                    <span class="product-o__name"><a
-                                                            href="product-detail.php?id=<?= $product['product_id'] ?>"><?= $product['product_name'] ?></a></span>
-                                                    <span class="product-o__price">$<?= $product['product_price'] ?></span>
                                                 </div>
                                             </div>
                                         <?php endforeach; ?>
 
                                         <!-- SUGAR FREE -->
                                         <?php foreach ($sugarFree as $product): ?>
-                                            <div
-                                                class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item sugar-free">
+                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item sugar-free">
                                                 <div class="product-o product-o--hover-on product-o--radius">
                                                     <div class="product-o__wrap">
                                                         <a class="aspect aspect--bg-grey aspect--square u-d-block"
                                                             href="product-detail.php?id=<?= $product['product_id'] ?>">
-                                                            <img class="aspect__img" src="public/images/products/<?= $product['product_image'] ?>"
-                                                                alt="<?= $product['product_name'] ?>">
+                                                            <img class="aspect__img"
+                                                                src="public/images/products/<?= $product['product_image'] ?>"
+                                                                alt="<?= htmlspecialchars($product['product_name']) ?>">
                                                         </a>
-                                                        <div class="product-o__action-wrap">
-                                                            <ul class="product-o__action-list">
-                                                                <li><a href="add-to-cart.php?id=<?= $product['product_id'] ?>"
-                                                                        data-tooltip="tooltip" data-placement="top"
-                                                                        title="Add to Cart"><i
-                                                                            class="fas fa-plus-circle"></i></a></li>
-                                                            </ul>
+                                                    </div>
+
+                                                    <!-- Category -->
+                                                    <span class="product-o__category">
+                                                        <?= htmlspecialchars($product['category_name']) ?>
+                                                    </span>
+
+                                                    <!-- Product Name -->
+                                                    <span class="product-o__name">
+                                                        <a
+                                                            href="product-detail.php?id=<?= $product['product_id'] ?>"><?= htmlspecialchars($product['product_name']) ?></a>
+                                                    </span>
+
+                                                    <!-- Rating -->
+                                                    <div class="product-o__rating">
+                                                        <?php
+                                                        $rating = $product['total_review'];
+                                                        $fullStars = floor($rating);
+                                                        $halfStar = ($rating - $fullStars) >= 0.5;
+                                                        for ($i = 0; $i < 5; $i++) {
+                                                            echo $i < $fullStars ? '<i class="fas fa-star"></i>' : ($halfStar && $i == $fullStars ? '<i class="fas fa-star-half-alt"></i>' : '<i class="far fa-star"></i>');
+                                                        }
+                                                        ?>
+                                                        <span
+                                                            class="product-review">(<?= number_format($rating, 1); ?>)</span>
+                                                    </div>
+
+                                                    <!-- Price and Action Buttons -->
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                        <span
+                                                            class="product-o__price"><?= number_format($product['product_price'], 2); ?>
+                                                            JD</span>
+
+                                                        <!-- Cart and Favorite Icons -->
+                                                        <div class="action-buttons d-flex">
+                                                            <a href="/cart/<?php echo $product['product_id']; ?>"
+                                                                class="btn btn-outline-secondary btn-sm"
+                                                                data-tooltip="tooltip" data-placement="top"
+                                                                title="Add to Cart">
+                                                                <i class="fas fa-shopping-cart"></i>
+                                                            </a>
+                                                            <button class="btn btn-outline-secondary btn-sm ms-2"
+                                                                data-tooltip="tooltip" data-placement="top"
+                                                                title="Add to Favorites">
+                                                                <i class="fas fa-heart"></i>
+                                                            </button>
                                                         </div>
                                                     </div>
-                                                    <span class="product-o__category"><a
-                                                            href="shop-side-version-2.php?category=<?= $product['category_id'] ?>"><?= $product['category_name'] ?></a></span>
-                                                    <span class="product-o__name"><a
-                                                            href="product-detail.php?id=<?= $product['product_id'] ?>"><?= $product['product_name'] ?></a></span>
-                                                    <span class="product-o__price">$<?= $product['product_price'] ?></span>
                                                 </div>
                                             </div>
                                         <?php endforeach; ?>
 
                                         <!-- GLUTEN FREE -->
                                         <?php foreach ($glutenFree as $product): ?>
-                                            <div
-                                                class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item gluten-free">
+                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item gluten-free">
                                                 <div class="product-o product-o--hover-on product-o--radius">
                                                     <div class="product-o__wrap">
                                                         <a class="aspect aspect--bg-grey aspect--square u-d-block"
                                                             href="product-detail.php?id=<?= $product['product_id'] ?>">
-                                                            <img class="aspect__img" src="public/images/products/<?= $product['product_image'] ?>"
-                                                                alt="<?= $product['product_name'] ?>">
+                                                            <img class="aspect__img"
+                                                                src="public/images/products/<?= $product['product_image'] ?>"
+                                                                alt="<?= htmlspecialchars($product['product_name']) ?>">
                                                         </a>
-                                                        <div class="product-o__action-wrap">
-                                                            <ul class="product-o__action-list">
-                                                                <li><a href="add-to-cart.php?id=<?= $product['product_id'] ?>"
-                                                                        data-tooltip="tooltip" data-placement="top"
-                                                                        title="Add to Cart"><i
-                                                                            class="fas fa-plus-circle"></i></a></li>
-                                                            </ul>
+                                                    </div>
+
+                                                    <!-- Category -->
+                                                    <span class="product-o__category">
+                                                        <?= htmlspecialchars($product['category_name']) ?>
+                                                    </span>
+
+                                                    <!-- Product Name -->
+                                                    <span class="product-o__name">
+                                                        <a
+                                                            href="product-detail.php?id=<?= $product['product_id'] ?>"><?= htmlspecialchars($product['product_name']) ?></a>
+                                                    </span>
+
+                                                    <!-- Rating -->
+                                                    <div class="product-o__rating">
+                                                        <?php
+                                                        $rating = $product['total_review'];
+                                                        $fullStars = floor($rating);
+                                                        $halfStar = ($rating - $fullStars) >= 0.5;
+                                                        for ($i = 0; $i < 5; $i++) {
+                                                            echo $i < $fullStars ? '<i class="fas fa-star"></i>' : ($halfStar && $i == $fullStars ? '<i class="fas fa-star-half-alt"></i>' : '<i class="far fa-star"></i>');
+                                                        }
+                                                        ?>
+                                                        <span
+                                                            class="product-review">(<?= number_format($rating, 1); ?>)</span>
+                                                    </div>
+
+                                                    <!-- Price and Action Buttons -->
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                        <span
+                                                            class="product-o__price"><?= number_format($product['product_price'], 2); ?>
+                                                            JD</span>
+
+                                                        <!-- Cart and Favorite Icons -->
+                                                        <div class="action-buttons d-flex">
+                                                            <a href="/cart/<?php echo $product['product_id']; ?>"
+                                                                class="btn btn-outline-secondary btn-sm"
+                                                                data-tooltip="tooltip" data-placement="top"
+                                                                title="Add to Cart">
+                                                                <i class="fas fa-shopping-cart"></i>
+                                                            </a>
+                                                            <button class="btn btn-outline-secondary btn-sm ms-2"
+                                                                data-tooltip="tooltip" data-placement="top"
+                                                                title="Add to Favorites">
+                                                                <i class="fas fa-heart"></i>
+                                                            </button>
                                                         </div>
                                                     </div>
-                                                    <span class="product-o__category"><a
-                                                            href="shop-side-version-2.php?category=<?= $product['category_id'] ?>"><?= $product['category_name'] ?></a></span>
-                                                    <span class="product-o__name"><a
-                                                            href="product-detail.php?id=<?= $product['product_id'] ?>"><?= $product['product_name'] ?></a></span>
-                                                    <span class="product-o__price">$<?= $product['product_price'] ?></span>
                                                 </div>
                                             </div>
                                         <?php endforeach; ?>
 
                                         <!-- SPECIAL OCCASIONS -->
                                         <?php foreach ($specialOccasions as $product): ?>
-                                            <div
-                                                class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item special-occasions">
+                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item special-occasions">
                                                 <div class="product-o product-o--hover-on product-o--radius">
                                                     <div class="product-o__wrap">
                                                         <a class="aspect aspect--bg-grey aspect--square u-d-block"
                                                             href="product-detail.php?id=<?= $product['product_id'] ?>">
-                                                            <img class="aspect__img" src="public/images/products/<?= $product['product_image'] ?>"
-                                                                alt="<?= $product['product_name'] ?>">
+                                                            <img class="aspect__img"
+                                                                src="public/images/products/<?= $product['product_image'] ?>"
+                                                                alt="<?= htmlspecialchars($product['product_name']) ?>">
                                                         </a>
-                                                        <div class="product-o__action-wrap">
-                                                            <ul class="product-o__action-list">
-                                                                <li><a href="add-to-cart.php?id=<?= $product['product_id'] ?>"
-                                                                        data-tooltip="tooltip" data-placement="top"
-                                                                        title="Add to Cart"><i
-                                                                            class="fas fa-plus-circle"></i></a></li>
-                                                            </ul>
+                                                    </div>
+
+                                                    <!-- Category -->
+                                                    <span class="product-o__category">
+                                                        <?= htmlspecialchars($product['category_name']) ?>
+                                                    </span>
+
+                                                    <!-- Product Name -->
+                                                    <span class="product-o__name">
+                                                        <a
+                                                            href="product-detail.php?id=<?= $product['product_id'] ?>"><?= htmlspecialchars($product['product_name']) ?></a>
+                                                    </span>
+
+                                                    <!-- Rating -->
+                                                    <div class="product-o__rating">
+                                                        <?php
+                                                        $rating = $product['total_review'];
+                                                        $fullStars = floor($rating);
+                                                        $halfStar = ($rating - $fullStars) >= 0.5;
+                                                        for ($i = 0; $i < 5; $i++) {
+                                                            echo $i < $fullStars ? '<i class="fas fa-star"></i>' : ($halfStar && $i == $fullStars ? '<i class="fas fa-star-half-alt"></i>' : '<i class="far fa-star"></i>');
+                                                        }
+                                                        ?>
+                                                        <span
+                                                            class="product-review">(<?= number_format($rating, 1); ?>)</span>
+                                                    </div>
+
+                                                    <!-- Price and Action Buttons -->
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                        <span
+                                                            class="product-o__price"><?= number_format($product['product_price'], 2); ?>
+                                                            JD</span>
+
+                                                        <!-- Cart and Favorite Icons -->
+                                                        <div class="action-buttons d-flex">
+                                                            <a href="/cart/<?php echo $product['product_id']; ?>"
+                                                                class="btn btn-outline-secondary btn-sm"
+                                                                data-tooltip="tooltip" data-placement="top"
+                                                                title="Add to Cart">
+                                                                <i class="fas fa-shopping-cart"></i>
+                                                            </a>
+                                                            <button class="btn btn-outline-secondary btn-sm ms-2"
+                                                                data-tooltip="tooltip" data-placement="top"
+                                                                title="Add to Favorites">
+                                                                <i class="fas fa-heart"></i>
+                                                            </button>
                                                         </div>
                                                     </div>
-                                                    <span class="product-o__category"><a
-                                                            href="shop-side-version-2.php?category=<?= $product['category_id'] ?>"><?= $product['category_name'] ?></a></span>
-                                                    <span class="product-o__name"><a
-                                                            href="product-detail.php?id=<?= $product['product_id'] ?>"><?= $product['product_name'] ?></a></span>
-                                                    <span class="product-o__price">$<?= $product['product_price'] ?></span>
                                                 </div>
                                             </div>
                                         <?php endforeach; ?>

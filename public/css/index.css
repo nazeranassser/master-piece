@@ -228,7 +228,7 @@ html, body {
 
 .filter__btn {
     padding: 10px 20px; /* Padding around the button */
-    background-color: #d4ff00; /* Your preferred color */
+    background-color: #FFFAF3; /* Your preferred color */
     border: none; /* No border */
     border-radius: 5px; /* Rounded corners */
     color: #000; /* Text color */
@@ -237,7 +237,7 @@ html, body {
 }
 
 .filter__btn:hover {
-    background-color: #05c605; /* Darker shade on hover */
+    background-color: #f9dfbb; /* Darker shade on hover */
 }
 
 /* Product grid */
@@ -252,7 +252,7 @@ html, body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     overflow: hidden; /* Ensure content stays within bounds */
     transition: transform 0.2s; /* Smooth scale on hover */
-    height: 270px;
+    height: 300px;
 }
 
 .product-o:hover {
@@ -261,6 +261,10 @@ html, body {
 
 .product-o__wrap {
     position: relative; /* Positioning for action buttons */
+}
+
+.product-o__rating {
+    color: #FFA000; /* Color for stars */
 }
 
 .product-o__action-wrap {
@@ -279,11 +283,21 @@ html, body {
 .product-o__name {
     display: block; /* Block display for product name */
     font-size: 1.1rem; /* Slightly larger */
+    font-weight: normal;
     color: #333; /* Darker text */
     margin-bottom: 5px; /* Spacing below name */
 }
 
 .product-o__price {
     font-size: 1.2rem; /* Larger font for price */
+    font-weight: normal;
     color: #3E2723; /* Your preferred color */
 }
+
+.fa-star{
+color: #FFA000;
+}
+
+.fa-star-half-alt{
+color: #FFA000;
+}   

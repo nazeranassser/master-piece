@@ -17,7 +17,7 @@ $router->add('edit-admin', ['controller' => 'Admins', 'action' => 'edit']);// da
 $router->add('register', ['controller' => 'Admins', 'action' => 'register']);//admins-controllers->register()
 $router->add('update_admin', ['controller' => 'Admins', 'action' => 'update']);//admins-controllers->update_admin()
 $router->add('customer/get', ['controller' => 'customer', 'action' => 'get']);
-$router->add('cart', ['controller' => 'Carts', 'action' => 'getCartItems']);//cart-controllers->getCartItems()
+$router->add('cart/{id:\d+}', ['controller' => 'Carts', 'action' => 'addToCart']);
 $router->add('update_product', ['controller' => 'Products', 'action' => 'edit']);//admins-controllers->update_admin()
 $router->add('products', ['controller' => 'Products', 'action' => 'index']);//admins-controllers->update_admin()
 $router->add('product/update', ['controller' => 'Products', 'action' => 'update']);//ProductsControllers->update()

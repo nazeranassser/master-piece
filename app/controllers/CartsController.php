@@ -34,6 +34,8 @@ class CartsController {
                 break;
             }
         }
+        echo $productId;
+        die;
 
         // If the product doesn't exist, add it
         if (!$exists) {
@@ -47,7 +49,7 @@ class CartsController {
         $this->saveCartToCookies();
 
         // Redirect back to the index or any specified page
-        header("Location: index.php");
+        header("Location: index-view.php");
         exit;
     }
 
