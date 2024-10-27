@@ -13,8 +13,8 @@ class CreateProductsTable{
             `product_image` varchar(255) NOT NULL,
             `category_id` int(11) NOT NULL,
             `product_quantity` int(11) NOT NULL,
+            `total_review` int(11) NOT NULL,
             `product_discount` int(11) NOT NULL,
-            `add_to_cart_clicks` int(11) NOT NULL,
             `created_at` timestamp NULL DEFAULT NULL,
             `updated_at` timestamp NULL DEFAULT NULL,
             foreign key (category_id) references categories(category_id)

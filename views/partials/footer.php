@@ -1,101 +1,82 @@
-<footer>
-    <div class="contain">
-        <!-- Column 1: Logo and About -->
-        <div class="footer-col">
-            <h2>Logo</h2>
-            <p class="footer-para">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt labore quod ipsa eos magnam? Architecto quas magnam mollitia nemo.
-            </p>
-        </div>
-        
-        <!-- Column 2: Office Information -->
-        <div class="footer-col">
-            <h3 class="text-office">Office
-                <div class="underline"><span></span></div>
-            </h3>
-            <p>Street No 5</p>
-            <p>Gulistan Colony</p>
-            <p>Faisalabad Punjab, Pakistan</p>
-            <p class="email">info.finegap@gmail.com</p>
-            <p class="phone">+92 304 110 0028</p>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Footer HTML & CSS</title>
 
-        <!-- Column 3: Menu -->
-        <div class="footer-col">
-            <h3>Menu
-                <div class="underline"><span></span></div>
-            </h3>
-            <ul>
-                <li class="nav-item1">
-                    <a class="nav-link1" href="#about">About Us</a>
-                </li>
-                <li class="nav-item1">
-                    <a class="nav-link1" href="#projects">Products</a>
-                </li>
-                <li class="nav-item1">
-                    <a class="nav-link1" href="#contact">Contact</a>
-                </li>
-                <li class="nav-item1">
-                    <a class="nav-link1" href="login.php">Login</a>
-                </li>
-            </ul>
-        </div>
+    <link rel="stylesheet" href="public/css/footer.css">
 
-        <!-- Column 4: Newsletter and Social Icons -->
-        <div class="footer-col">
-            <h3>Newsletter
-                <div class="underline"><span></span></div>
-            </h3>
-            <form action="">
-                <i class="fa-solid fa-envelope"></i>
-                <input type="text" placeholder="Enter Company Email">
-                <a href="#"><i class="fa-solid fa-arrow-right"></i></a>
-            </form>
-            <div class="social-icons">
-                <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                <a href="#"><i class="fa-brands fa-google-plus"></i></a>
+    
+    <!----- FONT AWESOME CSS FOR ICONS FONTS ------>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+
+</head>
+<body>
+     <footer>
+        <div class="container">
+            <div class="row">
+                  <div class="col" id="company">
+                      <img src="public/images/logo.png" alt="" class="logo">
+                      <p>
+                        We are specialized in designings, make your business a brand.
+                        Try our premium services.
+                      </p>
+                      <div class="social">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                      </div>
+                  </div>
+
+
+                  <div class="col" id="services">
+                     <h3>Services</h3>
+                     <div class="links">
+                        <a href="#">Illustration</a>
+                        <a href="#">Creatives</a>
+                        <a href="#">Poster Design</a>
+                        <a href="#">Card Design</a>
+                     </div>
+                  </div>
+
+                  <div class="col" id="useful-links">
+                     <h3>Links</h3>
+                     <div class="links">
+                        <a href="#">About</a>
+                        <a href="#">Services</a>
+                        <a href="#">Our Policy</a>
+                        <a href="#">Help</a>
+                     </div>
+                  </div>
+
+                  <div class="col" id="contact">
+                      <h3>Contact</h3>
+                      <div class="contact-details">
+                         <i class="fa fa-location"></i>
+                         <p>FF-42, Procube Avenue, <br> NY, USA</p>
+                      </div>
+                      <div class="contact-details">
+                         <i class="fa fa-phone"></i>
+                         <p>+1-8755856858</p>
+                      </div>
+                  </div>
             </div>
-        </div>
-    </div>
-</footer>
-  <!--====== Google Analytics: change UA-XXXXX-Y to be your site's ID ======-->
-  <script>
-        window.ga = function() {
-            ga.q.push(arguments)
-        };
-        ga.q = [];
-        ga.l = +new Date;
-        ga('create', 'UA-XXXXX-Y', 'auto');
-        ga('send', 'pageview')
-    </script>
-    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
 
-    <!--====== Vendor Js ======-->
-    <script src="public/js/vendor.js"></script>
-
-    <!--====== jQuery Shopnav plugin ======-->
-    <script src="public/js/jquery.shopnav.js"></script>
-
-    <!--====== App ======-->
-    <script src="public/js/app.js"></script>
-
-    <!--====== Noscript ======-->
-    <noscript>
-        <div class="app-setting">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="app-setting__wrap">
-                            <h1 class="app-setting__h1">JavaScript is disabled in your browser.</h1>
-
-                            <span class="app-setting__text">Please enable JavaScript in your browser or upgrade to a JavaScript-capable browser.</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="row">
+                  <div class="form">
+                    <form action="">
+                        <input type="text" placeholder="Email here...">
+                        <button><i class="fa fa-paper-plane"></i></button>
+                    </form>
+                  </div>
             </div>
+
         </div>
-    </noscript>
+     </footer>
 </body>
 </html>

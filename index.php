@@ -56,6 +56,7 @@ $router->add('register', ['controller' => 'Admins', 'action' => 'register']);//a
 $router->add('update_admin', ['controller' => 'Admins', 'action' => 'update']);//admins-controllers->update_admin()
 $router->add('customer/get', ['controller' => 'customer', 'action' => 'get']);
 $router->add('cart', ['controller' => 'Carts', 'action' => 'getCartItems']);//cart-controllers->getCartItems()
+$router->add('', ['controller' => 'Products', 'action' => 'showHomePage']);
 
 //  Router::get()
 

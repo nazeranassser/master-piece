@@ -66,7 +66,7 @@ class AdminsController {
 
     public function index() {
         $admins = $this->adminModel->showRow();
-        require 'views/admin/admins/dash-admins.php';
+        require 'views/pages/index-view.php';
     }
 
     public function get() {
