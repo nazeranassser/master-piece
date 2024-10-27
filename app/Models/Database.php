@@ -8,7 +8,7 @@ class Database {
     private static $instance = null;
     private $conn;
     private $host = 'localhost';
-    private $db = 'cakes_db'; // Make sure this database exists
+    private $db = 'cake_project'; // Make sure this database exists
     private $user = 'root'; // Your database username
     private $pass = ''; // Your database password
 

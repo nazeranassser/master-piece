@@ -105,9 +105,9 @@
                                                 
                                                 include('show_admin.php');
                                                                                             
-                                                $order = new orders();
-                                                $order_row = $order->showOrders();
-                                                  foreach($order_row as $order) {
+                                                // $order = new orders();
+                                                // $order_row = $order->showOrders();
+                                                  foreach($orders as $order) {
                                                         $status ='';
                                                         if($order['order_status'] == 'processing'){
                                                             $status ='badge--processing';

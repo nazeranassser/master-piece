@@ -136,8 +136,12 @@ if (isset($_SESSION['customer_ID'])) {
                                             <div class="product-price"><?= number_format($product['product_price'], 2); ?>JD
                                             </div>
                                             <div class="action-buttons">
-                                                <button class="btn btn-outline-secondary btn-sm"><i
-                                                        class="fas fa-shopping-cart"></i></button>
+                                            <form action="cart.php" method="POST" style="display: inline;">
+                                            <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+                                            <button type="submit" class="btn btn-outline-secondary btn-sm">
+                                            <i class="fas fa-shopping-cart"></i></button>
+                                            </form>
+                                                
                                                 <button class="btn btn-outline-secondary btn-sm"><i
                                                         class="fas fa-heart"></i></button>
                                             </div>

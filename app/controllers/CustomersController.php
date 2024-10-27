@@ -2,7 +2,7 @@
 namespace App\Controllers;
 use App\Models\Customer;
 
-class CustomerController {
+class CustomersController {
     private $adminModel;
 
     public function __construct() {
@@ -10,12 +10,12 @@ class CustomerController {
     }
 
     public function index() {
-        $admins = $this->adminModel->showRow();
+        $customers = $this->adminModel->showRow();
         require 'views/admin/customers/dash-customers.php';
     }
 
     public function get() {
-        if ($admins = $this->adminModel->showRow()) {
+        if ($customers = $this->adminModel->showRow()) {
             require 'views/admin/customers/dash-customers.php'; // Adjust path as needed
         } else {
             echo 'No admins found.';
