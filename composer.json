@@ -1,18 +1,5 @@
 {
-    "name": "user/cake-project",
-    "description": "Simple Custom PHP Router",
-    "type": "project",
-    "autoload": {
-        "psr-4": {
-            "App\\": "app/"
-        }
-    },
-    "authors": [
-        {
-            "name": "salemqundil",
-            "email": "salem.qundil.w@gmail.com"
-        }
-    ],
-    "minimum-stability": "stable",
-    "require": {}
+    "require": {
+        "phpmailer/phpmailer": "^6.9"
+    }
 }

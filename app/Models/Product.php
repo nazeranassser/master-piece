@@ -154,7 +154,7 @@ class Product
     JOIN order_Products op ON p.product_id = op.product_id 
     GROUP BY p.product_id 
     ORDER BY COUNT(op.product_id) DESC 
-    LIMIT 4";
+    LIMIT :limit";
     $stmt = $this->conn->prepare($query);
     $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
     $stmt->execute();

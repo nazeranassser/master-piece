@@ -9,7 +9,8 @@ use App\Router;
 $router = new Router();
 
 // Add routes
-$router->add('', ['controller' => 'Admins', 'action' => 'index']);// dashboard-admin.php "/"
+$router->add('', ['controller' => 'Products', 'action' => 'showHomePage']);
+$router->add('dash', ['controller' => 'Admins', 'action' => 'index']);// dashboard-admin.php "/"
 $router->add('admins', ['controller' => 'Admins', 'action' => 'get']);// dash-admins.php
 $router->add('add-admin', ['controller' => 'Admins', 'action' => 'add']);// dash-admin-add.php
 $router->add('edit-admin', ['controller' => 'Admins', 'action' => 'edit']);// dash-admin-edit.php
@@ -17,7 +18,6 @@ $router->add('register', ['controller' => 'Admins', 'action' => 'register']);//a
 $router->add('update_admin', ['controller' => 'Admins', 'action' => 'update']);//admins-controllers->update_admin()
 $router->add('customer/get', ['controller' => 'customer', 'action' => 'get']);
 $router->add('cart', ['controller' => 'Carts', 'action' => 'getCartItems']);//cart-controllers->getCartItems()
-$router->add('', ['controller' => 'Products', 'action' => 'showHomePage']);
 $router->add('update_product', ['controller' => 'Products', 'action' => 'edit']);//admins-controllers->update_admin()
 $router->add('products', ['controller' => 'Products', 'action' => 'index']);//admins-controllers->update_admin()
 $router->add('product/update', ['controller' => 'Products', 'action' => 'update']);//ProductsControllers->update()

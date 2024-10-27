@@ -65,12 +65,12 @@ class AdminsController {
     }
 
     public function index() {
-        $admins = $this->adminModel->showRow();
+        $admins = $this->adminModel->getAll();
         require 'views/pages/index-view.php';
     }
 
     public function get() {
-        if ($admins = $this->adminModel->showRow()) {
+        if ($admins = $this->adminModel->getAll()) {
             require 'views/admin/admins/dash-admins.php'; // Adjust path as needed
         } else {
             echo 'No admins found.';
