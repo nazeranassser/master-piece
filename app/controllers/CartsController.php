@@ -1,9 +1,7 @@
 <?php
 namespace App\Controllers;
+
 use App\Models\Cart;
-// require '../../config.php';
-// require_once '../../models/Order.php';  // Assuming OrderModel is here
-// require_once '../models/Customers.php';  // Assuming CustomerModel is here
 
 class CartsController {
     private $cart = [];
@@ -23,13 +21,34 @@ class CartsController {
 
     // Save cart items to cookies
     private function saveCartToCookies() {
-        setcookie('cart', json_encode($this->cart), time() + (86400 * 30), "/"); // 30 days
+        setcookie('cart', json_encode($this->cart), time() + (86400 * 30), "/"); // Store for 30 days
     }
 
     // Add item to cart
-    public function addToCart($product) {
-        $this->cart[] = $product;
+    public function addToCart($productId) {
+        // Check if the product already exists in the cart
+        $exists = false;
+        foreach ($this->cart as &$item) {
+            if ($item['id'] === $productId) {
+                $exists = true;
+                break;
+            }
+        }
+
+        // If the product doesn't exist, add it
+        if (!$exists) {
+            $this->cart[] = ['id' => $productId, 'quantity' => 1];
+            $_SESSION['message'] = "Product successfully added to cart!";
+        } else {
+            $_SESSION['message'] = "Product is already in the cart.";
+        }
+
+        // Save the updated cart to cookies
         $this->saveCartToCookies();
+
+        // Redirect back to the index or any specified page
+        header("Location: index.php");
+        exit;
     }
 
     // Remove item from cart
