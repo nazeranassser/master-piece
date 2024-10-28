@@ -1,20 +1,4 @@
-<?php
-session_start();
-// include('config.php');
-// Include the database connection file
 
-// Initialize $user as null
-$user = null;
-
-// Check if user is logged in
-if (isset($_SESSION['customer_ID'])) {
-    // Get user data
-    $sql = "SELECT * FROM customers WHERE customer_ID = :id";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute(['id' => $_SESSION['customer_ID']]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-}
-?>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
@@ -37,7 +21,7 @@ if (isset($_SESSION['customer_ID'])) {
     <title><?php echo $user ? 'Welcome, ' . htmlspecialchars($user['customer_name']) : 'Welcome to Our Website'; ?>
     </title>
 
-    <title>cakaty</title>
+    <title>Revoly Cake</title>
 
     <!--====== Google Font ======-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
@@ -69,7 +53,9 @@ if (isset($_SESSION['customer_ID'])) {
     <div id="app">
 
         <!--====== Main Header ======-->
-        <?php include 'header.php'; ?>
+           <?php 
+           include_once 'header.php';
+           ?>
         <!--====== End - Main Header ======-->
 
 
@@ -732,9 +718,9 @@ if (isset($_SESSION['customer_ID'])) {
 
 
         <!--====== Main Footer ======-->
-        <footer>
-            <?php include 'footer.php' ?>
-        </footer>
+        <?php 
+            include_once 'footer.php';
+        ?>
         <!--====== End - Main Footer ======-->
     </div>
     <!--====== End - Main App ======-->
