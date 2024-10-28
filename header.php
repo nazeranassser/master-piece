@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,10 +35,10 @@
 
             <div class="auth-buttons">
                 <?php if(!isset($_SESSION['usersId'])) : ?>
-                    <a href="login.php" class="auth-btn login nav-item" style="animation-delay: 0.8s;">Login</a>
-                    <a href="signup.php" class="auth-btn signup nav-item" style="animation-delay: 0.9s;">Sign Up</a>
+                    <a href="login" class="auth-btn login nav-item" style="animation-delay: 0.8s;">Login</a>
+                    <a href="signup" class="auth-btn signup nav-item" style="animation-delay: 0.9s;">Sign Up</a>
                 <?php else: ?>
-                    <a href="./controllers/Users.php?q=logout" class="auth-btn logout nav-item" style="animation-delay: 0.8s;">Logout</a>
+                    <a href="/sign-out" class="auth-btn logout nav-item" style="animation-delay: 0.8s;">Logout</a>
                 <?php endif; ?>
             </div>
 
