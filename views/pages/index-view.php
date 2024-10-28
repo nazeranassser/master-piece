@@ -37,7 +37,7 @@ if (isset($_SESSION['customer_ID'])) {
     <title><?php echo $user ? 'Welcome, ' . htmlspecialchars($user['customer_name']) : 'Welcome to Our Website'; ?>
     </title>
 
-    <title>cakaty</title>
+    <title>Revoly Cake</title>
 
     <!--====== Google Font ======-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
@@ -69,7 +69,9 @@ if (isset($_SESSION['customer_ID'])) {
     <div id="app">
 
         <!--====== Main Header ======-->
-        <?php include 'header.php'; ?>
+           <?php 
+           include_once 'header.php';
+           ?>
         <!--====== End - Main Header ======-->
 
 
@@ -730,9 +732,9 @@ if (isset($_SESSION['customer_ID'])) {
 
 
         <!--====== Main Footer ======-->
-        <footer>
-            <?php include 'views/partials/footer.php' ?>
-        </footer>
+        <?php 
+            include_once 'footer.php';
+        ?>
         <!--====== End - Main Footer ======-->
     </div>
     <!--====== End - Main App ======-->

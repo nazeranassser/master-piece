@@ -67,7 +67,7 @@
                   </div>
             </div>
 
-            <div class="row">
+            <!-- <div class="row">
                   <div class="form">
                     <form action="">
                         <input type="text" placeholder="Email here...">
@@ -76,7 +76,7 @@
                   </div>
             </div>
 
-        </div>
+        </div> -->
      </footer>
 </body>
 </html>
