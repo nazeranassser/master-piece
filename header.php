@@ -59,3 +59,5 @@
             <?php endif; ?>
         </div>
     </nav>
+</body>
+</html>
