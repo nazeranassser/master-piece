@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 // include('config.php');
 // Include the database connection file
 
@@ -37,7 +37,7 @@ if (isset($_SESSION['customer_ID'])) {
     <title><?php echo $user ? 'Welcome, ' . htmlspecialchars($user['customer_name']) : 'Welcome to Our Website'; ?>
     </title>
 
-    <title>cakaty</title>
+    <title>Revoly Cake</title>
 
     <!--====== Google Font ======-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
@@ -69,7 +69,9 @@ if (isset($_SESSION['customer_ID'])) {
     <div id="app">
 
         <!--====== Main Header ======-->
-        <?php include 'header.php'; ?>
+           <?php 
+           include_once 'header.php';
+           ?>
         <!--====== End - Main Header ======-->
 
 
@@ -698,25 +700,23 @@ if (isset($_SESSION['customer_ID'])) {
 
                         <!--====== Testimonial Slider ======-->
                         <div class="slider-fouc">
-                            <div class="owl-carousel" id="testimonial-slider">
-                                <!-- <?php foreach ($testimonials as $testimonial): ?>
+                            <div class="owl-carousel owl-theme owl-loaded owl-drag" id="testimonial-slider">
+                                <?php foreach ($testimonials as $testimonial): ?>
                                     <div class="testimonial">
                                         <div class="testimonial__img-wrap">
                                             <img class="testimonial__img"
-                                                src="images/about/test-<?= $testimonial['customer_id'] ?>.jpg" alt="">
+                                                src="public/images/testimonials/<?= $testimonial['image'] ?>" alt="">
                                         </div>
                                         <div class="testimonial__content-wrap">
                                             <span class="testimonial__double-quote"><i
                                                     class="fas fa-quote-right"></i></span>
                                             <blockquote class="testimonial__block-quote">
-                                                <p><?= htmlspecialchars($testimonial['message_text']) ?></p>
+                                                <p><?= htmlspecialchars($testimonial['testimonial_text']) ?></p>
                                             </blockquote>
-                                            <span
-                                                class="testimonial__author"><?= htmlspecialchars($testimonial['customer_name']) ?>
-                                                / <?= htmlspecialchars($testimonial['message_subject']) ?></span>
+                                            <span class="testimonial__author"><?= htmlspecialchars($testimonial['name']) ?>
                                         </div>
                                     </div>
-                                <?php endforeach; ?> -->
+                                <?php endforeach; ?>
                             </div>
                         </div>
                         <!--====== End - Testimonial Slider ======-->
@@ -732,9 +732,9 @@ if (isset($_SESSION['customer_ID'])) {
 
 
         <!--====== Main Footer ======-->
-        <footer>
-            <?php include 'views/partials/footer.php' ?>
-        </footer>
+        <?php 
+            include_once 'footer.php';
+        ?>
         <!--====== End - Main Footer ======-->
     </div>
     <!--====== End - Main App ======-->
@@ -810,6 +810,22 @@ if (isset($_SESSION['customer_ID'])) {
             setInterval(updateCountdown, 1000);
         });
     </script>
+    <script>
+        $(document).ready(function () {
+            $("#testimonial-slider").owlCarousel({
+                $('#testimonial-slider').owlCarousel({
+                    items: 1,
+                    loop: true,
+                    autoplay: true,
+                    autoplayTimeout: 5000,
+                    smartSpeed: 600,
+                    margin: 30,
+                    dots: true
+                });
+            });
+        });
+    </script>
+
 </body>
 
 </html>

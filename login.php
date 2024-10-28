@@ -1,4 +1,3 @@
-
 <?php 
     include_once 'header.php';
     include_once 'helpers/session_helper.php';
@@ -7,7 +6,7 @@
 
     <?php flash('login') ?>
 
-    <form method="post" action="./controllers/Users.php">
+    <form method="post" action="login/add">
     <input type="hidden" name="type" value="login">
         <input type="text" name="name/email"  
         placeholder="Username/Email...">

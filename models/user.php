@@ -1,26 +1,24 @@
 <?php
-require '../config.php';
+require_once '../libraries/Database.php';
 
 class User {
 
     private $db;
 
     public function __construct(){
-        $this->db = Database::getInstance()->getConnection();
+        $this->db = new Database;
     }
 
     //Find user by email or username
-    public function findUserByEmailOrUsername($email){
-        $stmt =$this->db->prepare('SELECT * FROM customers WHERE customer_email = :email');
-        $stmt->bindParam(':email', $email);
-        // Execute the statement
-        $stmt->execute();
-        // Fetch the result
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        // var_dump($row);
-        // die();
-        // Check row
-        if($row){
+    public function findUserByEmailOrUsername($email, $username){
+        $this->db->query('SELECT * FROM users WHERE usersUid = :username OR usersEmail = :email');
+        $this->db->bind(':username', $username);
+        $this->db->bind(':email', $email);
+
+        $row = $this->db->single();
+
+        //Check row
+        if($this->db->rowCount() > 0){
             return $row;
         }else{
             return false;
@@ -29,19 +27,19 @@ class User {
 
     //Register User
     public function register($data) {
-        $stmt = $this->db->prepare("INSERT INTO `customers`( `customer_name`, `customer_email`, `customer_password`, `customer_address1`, `customer_address2`, `customer_phone`) VALUES
-            (:name,:email,:password,:firstAddress,:secondAddress,:phoneNumber);");
+        $this->db->query('INSERT INTO users (usersName, usersEmail, usersUid, usersPwd, usersFirstAddress, usersSecondAddress, usersPhoneNumber) 
+        VALUES (:name, :email, :Uid, :password, :firstAddress, :secondAddress, :phoneNumber)');
         //Bind values
-        $stmt->bindParam(':name', $data['usersName']);
-        $stmt->bindParam(':email', $data['usersEmail']);
-        // $stmt->bindParam(':Uid', $data['usersUid']);
-        $stmt->bindParam(':password', $data['usersPwd']);
-        $stmt->bindParam(':firstAddress', $data['usersFirstAddress']);
-        $stmt->bindParam(':secondAddress', $data['usersSecondAddress']);
-        $stmt->bindParam(':phoneNumber', $data['usersPhoneNumber']);
+        $this->db->bind(':name', $data['usersName']);
+        $this->db->bind(':email', $data['usersEmail']);
+        $this->db->bind(':Uid', $data['usersUid']);
+        $this->db->bind(':password', $data['usersPwd']);
+        $this->db->bind(':firstAddress', $data['usersFirstAddress']);
+        $this->db->bind(':secondAddress', $data['usersSecondAddress']);
+        $this->db->bind(':phoneNumber', $data['usersPhoneNumber']);
 
         //Execute
-        if($stmt->execute()){
+        if($this->db->execute()){
             return true;
         }else{
             return false;
@@ -50,11 +48,11 @@ class User {
 
     //Login user
     public function login($nameOrEmail, $password){
-        $row = $this->findUserByEmailOrUsername($nameOrEmail);
+        $row = $this->findUserByEmailOrUsername($nameOrEmail, $nameOrEmail);
 
         if($row == false) return false;
-        // var_dump($row);
-        $hashedPassword = $row['customer_password'];
+
+        $hashedPassword = $row->usersPwd;
         if(password_verify($password, $hashedPassword)){
             return $row;
         }else{

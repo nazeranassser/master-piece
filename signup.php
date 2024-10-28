@@ -10,24 +10,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup Form</title>
     <style>
-      
-        /* Password section styling */
+/*       
+        /* Password section styling 
         .password-section {
-            flex: 1 1 100%; /* Full width for password fields */
+            flex: 1 1 100% ; /* Full width for password fields 
             display: flex;
-            gap: 1rem; /* Space between password fields */
-            align-items: center; /* Center align vertically */
+            gap: 1rem; /* Space between password fields 
+            align-items: center; /* Center align vertically 
         }
 
-        /* Focus state for inputs */
+        /* Focus state for inputs 
         form input:focus {
             border-color: var(--accent-orange);
             box-shadow: 0 0 0 3px rgba(210, 105, 30, 0.2);
         }
 
-        /* Button Styling */
+        /* Button Styling 
         form button {
-            width: 100%;
+            width: 150% !important;
             margin-top: 1.5rem;
             padding: 12px 24px;
             background-color: var(--accent-orange);
@@ -44,7 +44,24 @@
         form button:hover {
             background-color: var(--accent-pink);
             transform: translateY(-2px);
-        }
+        } */
+        .toggle-pass {
+            background: #D2691E;
+          border: none; /* Remove default border */
+    cursor: pointer; /* Change cursor to pointer */
+    font-size: 20px; /* Adjust font size */
+    padding: 5px; /* Add some padding */
+    position: relative; /* Allows positioning if needed */
+    right: 10px; /* Positioning from the right */
+    top: -10px; /* Adjust this value to move the button up */
+}
+
+/* Optional: Add hover effect */
+.toggle-pass:hover {
+    color: #007BFF; /* Change color on hover */
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
 
 
         /* Animations */
@@ -148,6 +165,10 @@
     <button type="submit" name="submit">Sign Up</button>
 </form>
 <script src = "public/js/passwordStrength.js"></script>
+<script src="public/js/signupanimation.js"></script>
 
+<?php
+include_once 'footer.php';
+?>
 </body>
 </html>
