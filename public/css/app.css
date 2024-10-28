@@ -2715,9 +2715,10 @@ input::-ms-clear {
 
 .testimonial .testimonial__img-wrap .testimonial__img {
   display: inline-block;
-  width: 165px;
-  height: 165px;
-  border-radius: 50%; }
+  width: 180px;
+  /* height: 165px; */
+  /* border-radius: 50%;  */
+}
 
 /*--------------------------------------------------------------
 10.0 Contact-Page

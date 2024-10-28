@@ -369,3 +369,6 @@ color: #FFA000;
     margin-bottom: 1.5rem !important; /* Adjust bottom margin for spacing */
 }
 
+.owl-carousel, .owl-stage-outer, .owl-stage {
+    overflow: visible !important;
+}
