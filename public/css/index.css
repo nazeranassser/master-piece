@@ -301,3 +301,71 @@ color: #FFA000;
 .fa-star-half-alt{
 color: #FFA000;
 }   
+
+/* deal of the day */
+
+.section__heading {
+    font-size: 2rem; /* Font size */
+    font-weight: bold; /* Make it bold */
+    color: #80005a; /* Example color */
+    margin-bottom: 20px; /* Space below the heading */
+}
+
+
+.section__content {
+    padding: 30px 0; /* Add padding to the section */
+}
+
+.card {
+    width: 100%; /* Full width of the column */
+    height: 100%; /* Full height of the column */
+    transition: transform 0.2s ease; /* Smooth transform on hover */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.card-img-top {
+    width: 100%; /* Make image responsive */
+    height: 200px; /* Set a fixed height */
+    object-fit: cover; /* Cover the image */
+}
+
+.card-body {
+    padding: 15px; /* Custom padding inside card body */
+}
+
+.special-countdown {
+    font-size: 36px; /* Larger font size for the countdown */
+    color: #80005a; /* Customize color */
+    font-weight: bold; /* Bold for emphasis */
+    margin-bottom: 15px; /* Spacing below countdown */
+}
+
+.badge {
+    font-size: 14px; /* Adjust badge font size */
+}
+
+.card-title {
+    font-size: 18px; /* Larger font size for product name */
+    margin-bottom: 10px; /* Space below product name */
+}
+
+.product-o__price {
+    font-size: 16px; /* Font size for price */
+    margin-top: 10px; /* Space above price */
+}
+
+.product-o__price .text-danger {
+    font-weight: bold; /* Emphasize the original price */
+}
+
+.product-o__price .text-muted {
+    font-weight: normal; /* Normal weight for discounted price */
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem !important; /* Adjust bottom margin for spacing */
+}
+

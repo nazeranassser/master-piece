@@ -32,6 +32,14 @@ class Model {
         return $stmt->execute();
     }
 
+    public function fetchAll() {
+
+        $stmt = $this->db->query("SELECT * FROM $this->table");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    
     // READ: Fetch all records or a specific record by ID
     public function get($id = null) {
         if ($id) {

@@ -135,18 +135,16 @@ if (isset($_SESSION['customer_ID'])) {
                                             <div class="product-price"><?= number_format($product['product_price'], 2); ?>JD
                                             </div>
                                             <div class="action-buttons d-flex">
-                                                            <a href="cart.php?id=<?= $product['product_id'] ?>"
-                                                                class="btn btn-outline-secondary btn-sm"
-                                                                data-tooltip="tooltip" data-placement="top"
-                                                                title="Add to Cart">
-                                                                <i class="fas fa-shopping-cart"></i>
-                                                            </a>
-                                                            <button class="btn btn-outline-secondary btn-sm ms-2"
-                                                                data-tooltip="tooltip" data-placement="top"
-                                                                title="Add to Favorites">
-                                                                <i class="fas fa-heart"></i>
-                                                            </button>
-                                                        </div>
+                                                <a href="cart.php?id=<?= $product['product_id'] ?>"
+                                                    class="btn btn-outline-secondary btn-sm" data-tooltip="tooltip"
+                                                    data-placement="top" title="Add to Cart">
+                                                    <i class="fas fa-shopping-cart"></i>
+                                                </a>
+                                                <button class="btn btn-outline-secondary btn-sm ms-2" data-tooltip="tooltip"
+                                                    data-placement="top" title="Add to Favorites">
+                                                    <i class="fas fa-heart"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -275,7 +273,8 @@ if (isset($_SESSION['customer_ID'])) {
 
                                         <!-- Display Top Seller Products -->
                                         <?php foreach ($topSellers as $product): ?>
-                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item top-seller">
+                                            <div
+                                                class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item top-seller">
                                                 <div class="product-o product-o--hover-on product-o--radius">
                                                     <div class="product-o__wrap">
                                                         <a class="aspect aspect--bg-grey aspect--square u-d-block"
@@ -339,7 +338,8 @@ if (isset($_SESSION['customer_ID'])) {
                                         <!-- Similarly, display other categories -->
                                         <!-- OUR CAKE -->
                                         <?php foreach ($ourCake as $product): ?>
-                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item our-cake">
+                                            <div
+                                                class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item our-cake">
                                                 <div class="product-o product-o--hover-on product-o--radius">
                                                     <div class="product-o__wrap">
                                                         <a class="aspect aspect--bg-grey aspect--square u-d-block"
@@ -402,7 +402,8 @@ if (isset($_SESSION['customer_ID'])) {
 
                                         <!-- SUGAR FREE -->
                                         <?php foreach ($sugarFree as $product): ?>
-                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item sugar-free">
+                                            <div
+                                                class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item sugar-free">
                                                 <div class="product-o product-o--hover-on product-o--radius">
                                                     <div class="product-o__wrap">
                                                         <a class="aspect aspect--bg-grey aspect--square u-d-block"
@@ -465,7 +466,8 @@ if (isset($_SESSION['customer_ID'])) {
 
                                         <!-- GLUTEN FREE -->
                                         <?php foreach ($glutenFree as $product): ?>
-                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item gluten-free">
+                                            <div
+                                                class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item gluten-free">
                                                 <div class="product-o product-o--hover-on product-o--radius">
                                                     <div class="product-o__wrap">
                                                         <a class="aspect aspect--bg-grey aspect--square u-d-block"
@@ -528,7 +530,8 @@ if (isset($_SESSION['customer_ID'])) {
 
                                         <!-- SPECIAL OCCASIONS -->
                                         <?php foreach ($specialOccasions as $product): ?>
-                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item special-occasions">
+                                            <div
+                                                class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item special-occasions">
                                                 <div class="product-o product-o--hover-on product-o--radius">
                                                     <div class="product-o__wrap">
                                                         <a class="aspect aspect--bg-grey aspect--square u-d-block"
@@ -596,166 +599,81 @@ if (isset($_SESSION['customer_ID'])) {
                 </div>
             </div>
 
+            <!-- ====== End - our products ====== -->
 
-            <!--====== Section 3 ======-->
-            <div class="u-s-p-b-60">
-
-                <!--====== Section Intro ======-->
-                <div class="section__intro u-s-m-b-46">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="section__text-wrap">
-                                    <h1 class="section__heading u-c-secondary u-s-m-b-12">DEAL OF THE DAY</h1>
-
-                                    <span class="section__span u-c-silver">BUY DEAL OF THE DAY, HURRY UP! THESE NEW
-                                        PRODUCTS
-                                        WILL EXPIRE SOON.</span>
-
-                                    <span class="section__span u-c-silver">ADD THESE ON YOUR CART.</span>
-                                </div>
-                            </div>
+            <!--====== deal of the day section ======-->
+            <div class="section__content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1 class="section__heading text-center u-c-secondary u-s-m-b-30">DEAL OF THE DAY</h1>
+                            <!-- Section heading -->
                         </div>
                     </div>
-                </div>
-                <!--====== End - Section Intro ======-->
-
-
-                <!--====== Section Content ======-->
-                <div class="section__content">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 u-s-m-b-30">
-                                <div class="product-o product-o--radius product-o--hover-off u-h-100">
-                                    <div class="product-o__wrap">
-
-                                        <a class="aspect aspect--bg-grey aspect--square u-d-block"
-                                            href="product-detail.html">
-
-                                            <img class="aspect__img" src="images/product/electronic/product11.jpg"
-                                                alt=""></a>
-                                        <div class="product-o__special-count-wrap">
-                                            <div class="countdown countdown--style-special" data-countdown="2020/05/01">
+                    <div class="row">
+                        <?php foreach ($dealOfTheDay as $product): ?>
+                            <div class="col-lg-6 col-md-6 mb-4"> <!-- Added Bootstrap margin utility class -->
+                                <div class="card border-light rounded shadow-lg h-100">
+                                    <!-- Using Bootstrap card classes -->
+                                    <a href="product-detail.php?id=<?= $product['product_id'] ?>"
+                                        class="text-decoration-none">
+                                        <img src="public/images/products/<?= $product['product_image'] ?>"
+                                            alt="<?= htmlspecialchars($product['product_name']) ?>" class="card-img-top">
+                                    </a>
+                                    <div class="card-body text-center"> <!-- Centered text in the card body -->
+                                        <div class="special-countdown mb-3">
+                                            <div class="countdown countdown--style-special"
+                                                data-end-time="<?= strtotime('+2 days') * 1000 ?>">
                                             </div>
                                         </div>
-                                        <div class="product-o__action-wrap">
-                                            <ul class="product-o__action-list">
-                                                <li>
-
-                                                    <a data-modal="modal" data-modal-id="#quick-look"
-                                                        data-tooltip="tooltip" data-placement="top"
-                                                        title="Quick View"><i class="fas fa-search-plus"></i></a>
-                                                </li>
-                                                <li>
-
-                                                    <a data-modal="modal" data-modal-id="#add-to-cart"
-                                                        data-tooltip="tooltip" data-placement="top"
-                                                        title="Add to Cart"><i class="fas fa-plus-circle"></i></a>
-                                                </li>
-                                                <li>
-
-                                                    <a href="signin.html" data-tooltip="tooltip" data-placement="top"
-                                                        title="Add to Wishlist"><i class="fas fa-heart"></i></a>
-                                                </li>
-                                                <li>
-
-                                                    <a href="signin.html" data-tooltip="tooltip" data-placement="top"
-                                                        title="Email me When the price drops"><i
-                                                            class="fas fa-envelope"></i></a>
-                                                </li>
-                                            </ul>
+                                        <span
+                                            class="badge bg-secondary mb-2"><?= htmlspecialchars($product['category_name']) ?></span>
+                                        <h5 class="card-title"><?= htmlspecialchars($product['product_name']) ?></h5>
+                                        <div class="product-rating">
+                                            <?php
+                                            $rating = $product['total_review'];
+                                            $fullStars = floor($rating);
+                                            $halfStar = ($rating - $fullStars) >= 0.5;
+                                            for ($i = 0; $i < 5; $i++) {
+                                                echo $i < $fullStars ? '<i class="fas fa-star"></i>' : ($halfStar && $i == $fullStars ? '<i class="fas fa-star-half-alt"></i>' : '<i class="far fa-star"></i>');
+                                            }
+                                            ?>
+                                            <span class="product-review">(<?= number_format($rating, 1); ?>)</span>
+                                        </div>
+                                        <div class="product-o__price">
+                                            <span
+                                                class="text-danger fw-bold"><?= number_format($product['product_price'], 2) ?>
+                                                JD</span>
+                                            <span
+                                                class="text-muted text-decoration-line-through"><?= number_format($product['discounted_price'], 2) ?>
+                                                JD</span>
+                                            <span class="action-buttons d-flex">
+                                                <a href="cart.php?id=<?= $product['product_id'] ?>"
+                                                    class="btn btn-outline-secondary btn-sm" data-tooltip="tooltip"
+                                                    data-placement="top" title="Add to Cart">
+                                                    <i class="fas fa-shopping-cart"></i>
+                                                </a>
+                                                <button class="btn btn-outline-secondary btn-sm ms-2" data-tooltip="tooltip"
+                                                    data-placement="top" title="Add to Favorites">
+                                                    <i class="fas fa-heart"></i>
+                                                </button>
+                                            </span>
                                         </div>
                                     </div>
-
-                                    <span class="product-o__category">
-
-                                        <a href="shop-side-version-2.html">Electronics</a></span>
-
-                                    <span class="product-o__name">
-
-                                        <a href="product-detail.html">DJI Phantom Drone 4k</a></span>
-                                    <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i><i class="fas fa-star"></i>
-
-                                        <span class="product-o__review">(2)</span>
-                                    </div>
-
-                                    <span class="product-o__price">$125.00
-
-                                        <span class="product-o__discount">$160.00</span></span>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 u-s-m-b-30">
-                                <div class="product-o product-o--radius product-o--hover-off u-h-100">
-                                    <div class="product-o__wrap">
-
-                                        <a class="aspect aspect--bg-grey aspect--square u-d-block"
-                                            href="product-detail.html">
-
-                                            <img class="aspect__img" src="images/product/electronic/product12.jpg"
-                                                alt=""></a>
-                                        <div class="product-o__special-count-wrap">
-                                            <div class="countdown countdown--style-special" data-countdown="2020/05/01">
-                                            </div>
-                                        </div>
-                                        <div class="product-o__action-wrap">
-                                            <ul class="product-o__action-list">
-                                                <li>
-
-                                                    <a data-modal="modal" data-modal-id="#quick-look"
-                                                        data-tooltip="tooltip" data-placement="top"
-                                                        title="Quick View"><i class="fas fa-search-plus"></i></a>
-                                                </li>
-                                                <li>
-
-                                                    <a data-modal="modal" data-modal-id="#add-to-cart"
-                                                        data-tooltip="tooltip" data-placement="top"
-                                                        title="Add to Cart"><i class="fas fa-plus-circle"></i></a>
-                                                </li>
-                                                <li>
-
-                                                    <a href="signin.html" data-tooltip="tooltip" data-placement="top"
-                                                        title="Add to Wishlist"><i class="fas fa-heart"></i></a>
-                                                </li>
-                                                <li>
-
-                                                    <a href="signin.html" data-tooltip="tooltip" data-placement="top"
-                                                        title="Email me When the price drops"><i
-                                                            class="fas fa-envelope"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <span class="product-o__category">
-
-                                        <a href="shop-side-version-2.html">Electronics</a></span>
-
-                                    <span class="product-o__name">
-
-                                        <a href="product-detail.html">DJI Phantom Drone 2k</a></span>
-                                    <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i><i class="fas fa-star"></i>
-
-                                        <span class="product-o__review">(2)</span>
-                                    </div>
-
-                                    <span class="product-o__price">$125.00
-
-                                        <span class="product-o__discount">$160.00</span></span>
-                                </div>
-                            </div>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
-                <!--====== End - Section Content ======-->
             </div>
-            <!--====== End - Section 3 ======-->
+
+
+            <!--====== End - deal of the day section ======-->
 
 
 
+            <!--====== Section 11 ======-->
+            <!-- views/testimonials.php -->
             <!--====== Section 11 ======-->
             <div class="u-s-p-b-90 u-s-m-b-30">
 
@@ -766,7 +684,6 @@ if (isset($_SESSION['customer_ID'])) {
                             <div class="col-lg-12">
                                 <div class="section__text-wrap">
                                     <h1 class="section__heading u-c-secondary u-s-m-b-12">CLIENTS FEEDBACK</h1>
-
                                     <span class="section__span u-c-silver">WHAT OUR CLIENTS SAY</span>
                                 </div>
                             </div>
@@ -775,7 +692,6 @@ if (isset($_SESSION['customer_ID'])) {
                 </div>
                 <!--====== End - Section Intro ======-->
 
-
                 <!--====== Section Content ======-->
                 <div class="section__content">
                     <div class="container">
@@ -783,90 +699,24 @@ if (isset($_SESSION['customer_ID'])) {
                         <!--====== Testimonial Slider ======-->
                         <div class="slider-fouc">
                             <div class="owl-carousel" id="testimonial-slider">
-                                <div class="testimonial">
-                                    <div class="testimonial__img-wrap">
-
-                                        <img class="testimonial__img" src="images/about/test-1.jpg" alt="">
+                                <!-- <?php foreach ($testimonials as $testimonial): ?>
+                                    <div class="testimonial">
+                                        <div class="testimonial__img-wrap">
+                                            <img class="testimonial__img"
+                                                src="images/about/test-<?= $testimonial['customer_id'] ?>.jpg" alt="">
+                                        </div>
+                                        <div class="testimonial__content-wrap">
+                                            <span class="testimonial__double-quote"><i
+                                                    class="fas fa-quote-right"></i></span>
+                                            <blockquote class="testimonial__block-quote">
+                                                <p><?= htmlspecialchars($testimonial['message_text']) ?></p>
+                                            </blockquote>
+                                            <span
+                                                class="testimonial__author"><?= htmlspecialchars($testimonial['customer_name']) ?>
+                                                / <?= htmlspecialchars($testimonial['message_subject']) ?></span>
+                                        </div>
                                     </div>
-                                    <div class="testimonial__content-wrap">
-
-                                        <span class="testimonial__double-quote"><i
-                                                class="fas fa-quote-right"></i></span>
-                                        <blockquote class="testimonial__block-quote">
-                                            <p>"Far far away, behind the word mountains, far from the countries Vokalia
-                                                and
-                                                Consonantia, there live the blind texts. Separated they live in
-                                                Bookmarksgrove right at the coast of the Semantics, a large language
-                                                ocean."
-                                            </p>
-                                        </blockquote>
-
-                                        <span class="testimonial__author">John D. / DVNTR Inc.</span>
-                                    </div>
-                                </div>
-                                <div class="testimonial">
-                                    <div class="testimonial__img-wrap">
-
-                                        <img class="testimonial__img" src="images/about/test-2.jpg" alt="">
-                                    </div>
-                                    <div class="testimonial__content-wrap">
-
-                                        <span class="testimonial__double-quote"><i
-                                                class="fas fa-quote-right"></i></span>
-                                        <blockquote class="testimonial__block-quote">
-                                            <p>"Far far away, behind the word mountains, far from the countries Vokalia
-                                                and
-                                                Consonantia, there live the blind texts. Separated they live in
-                                                Bookmarksgrove right at the coast of the Semantics, a large language
-                                                ocean."
-                                            </p>
-                                        </blockquote>
-
-                                        <span class="testimonial__author">John D. / DVNTR Inc.</span>
-                                    </div>
-                                </div>
-                                <div class="testimonial">
-                                    <div class="testimonial__img-wrap">
-
-                                        <img class="testimonial__img" src="images/about/test-3.jpg" alt="">
-                                    </div>
-                                    <div class="testimonial__content-wrap">
-
-                                        <span class="testimonial__double-quote"><i
-                                                class="fas fa-quote-right"></i></span>
-                                        <blockquote class="testimonial__block-quote">
-                                            <p>"Far far away, behind the word mountains, far from the countries Vokalia
-                                                and
-                                                Consonantia, there live the blind texts. Separated they live in
-                                                Bookmarksgrove right at the coast of the Semantics, a large language
-                                                ocean."
-                                            </p>
-                                        </blockquote>
-
-                                        <span class="testimonial__author">John D. / DVNTR Inc.</span>
-                                    </div>
-                                </div>
-                                <div class="testimonial">
-                                    <div class="testimonial__img-wrap">
-
-                                        <img class="testimonial__img" src="images/about/test-4.jpg" alt="">
-                                    </div>
-                                    <div class="testimonial__content-wrap">
-
-                                        <span class="testimonial__double-quote"><i
-                                                class="fas fa-quote-right"></i></span>
-                                        <blockquote class="testimonial__block-quote">
-                                            <p>"Far far away, behind the word mountains, far from the countries Vokalia
-                                                and
-                                                Consonantia, there live the blind texts. Separated they live in
-                                                Bookmarksgrove right at the coast of the Semantics, a large language
-                                                ocean."
-                                            </p>
-                                        </blockquote>
-
-                                        <span class="testimonial__author">John D. / DVNTR Inc.</span>
-                                    </div>
-                                </div>
+                                <?php endforeach; ?> -->
                             </div>
                         </div>
                         <!--====== End - Testimonial Slider ======-->
@@ -874,6 +724,7 @@ if (isset($_SESSION['customer_ID'])) {
                 </div>
                 <!--====== End - Section Content ======-->
             </div>
+
             <!--====== End - Section 11 ======-->
 
         </div>
@@ -884,302 +735,7 @@ if (isset($_SESSION['customer_ID'])) {
         <footer>
             <?php include 'views/partials/footer.php' ?>
         </footer>
-
-        <!--====== Modal Section ======-->
-
-
-        <!--====== Quick Look Modal ======-->
-        <div class="modal fade" id="quick-look">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content modal--shadow">
-
-                    <button class="btn dismiss-button fas fa-times" type="button" data-dismiss="modal"></button>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-lg-5">
-
-                                <!--====== Product Breadcrumb ======-->
-                                <div class="pd-breadcrumb u-s-m-b-30">
-                                    <ul class="pd-breadcrumb__list">
-                                        <li class="has-separator">
-
-                                            <a href="index.hml">Home</a>
-                                        </li>
-                                        <li class="has-separator">
-
-                                            <a href="shop-side-version-2.html">Electronics</a>
-                                        </li>
-                                        <li class="has-separator">
-
-                                            <a href="shop-side-version-2.html">DSLR Cameras</a>
-                                        </li>
-                                        <li class="is-marked">
-
-                                            <a href="shop-side-version-2.html">Nikon Cameras</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!--====== End - Product Breadcrumb ======-->
-
-
-                                <!--====== Product Detail ======-->
-                                <div class="pd u-s-m-b-30">
-                                    <div class="pd-wrap">
-                                        <div id="js-product-detail-modal">
-                                            <div>
-
-                                                <img class="u-img-fluid" src="images/product/product-d-1.jpg" alt="">
-                                            </div>
-                                            <div>
-
-                                                <img class="u-img-fluid" src="images/product/product-d-2.jpg" alt="">
-                                            </div>
-                                            <div>
-
-                                                <img class="u-img-fluid" src="images/product/product-d-3.jpg" alt="">
-                                            </div>
-                                            <div>
-
-                                                <img class="u-img-fluid" src="images/product/product-d-4.jpg" alt="">
-                                            </div>
-                                            <div>
-
-                                                <img class="u-img-fluid" src="images/product/product-d-5.jpg" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="u-s-m-t-15">
-                                        <div id="js-product-detail-modal-thumbnail">
-                                            <div>
-
-                                                <img class="u-img-fluid" src="images/product/product-d-1.jpg" alt="">
-                                            </div>
-                                            <div>
-
-                                                <img class="u-img-fluid" src="images/product/product-d-2.jpg" alt="">
-                                            </div>
-                                            <div>
-
-                                                <img class="u-img-fluid" src="images/product/product-d-3.jpg" alt="">
-                                            </div>
-                                            <div>
-
-                                                <img class="u-img-fluid" src="images/product/product-d-4.jpg" alt="">
-                                            </div>
-                                            <div>
-
-                                                <img class="u-img-fluid" src="images/product/product-d-5.jpg" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--====== End - Product Detail ======-->
-                            </div>
-                            <div class="col-lg-7">
-
-                                <!--====== Product Right Side Details ======-->
-                                <div class="pd-detail">
-                                    <div>
-
-                                        <span class="pd-detail__name">Nikon Camera 4k Lens Zoom Pro</span>
-                                    </div>
-                                    <div>
-                                        <div class="pd-detail__inline">
-
-                                            <span class="pd-detail__price">$6.99</span>
-
-                                            <span class="pd-detail__discount">(76% OFF)</span><del
-                                                class="pd-detail__del">$28.97</del>
-                                        </div>
-                                    </div>
-                                    <div class="u-s-m-b-15">
-                                        <div class="pd-detail__rating gl-rating-style"><i class="fas fa-star"></i><i
-                                                class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                                class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-
-                                            <span class="pd-detail__review u-s-m-l-4">
-
-                                                <a href="product-detail.html">23 Reviews</a></span>
-                                        </div>
-                                    </div>
-                                    <div class="u-s-m-b-15">
-                                        <div class="pd-detail__inline">
-
-                                            <span class="pd-detail__stock">200 in stock</span>
-
-                                            <span class="pd-detail__left">Only 2 left</span>
-                                        </div>
-                                    </div>
-                                    <div class="u-s-m-b-15">
-
-                                        <span class="pd-detail__preview-desc">Lorem Ipsum is simply dummy text of the
-                                            printing and typesetting industry. Lorem Ipsum has been the industry's
-                                            standard
-                                            dummy text ever since the 1500s, when an unknown printer took a galley of
-                                            type
-                                            and scrambled it to make a type specimen book.</span>
-                                    </div>
-                                    <div class="u-s-m-b-15">
-                                        <div class="pd-detail__inline">
-
-                                            <span class="pd-detail__click-wrap"><i class="far fa-heart u-s-m-r-6"></i>
-
-                                                <a href="signin.html">Add to Wishlist</a>
-
-                                                <span class="pd-detail__click-count">(222)</span></span>
-                                        </div>
-                                    </div>
-                                    <div class="u-s-m-b-15">
-                                        <div class="pd-detail__inline">
-
-                                            <span class="pd-detail__click-wrap"><i
-                                                    class="far fa-envelope u-s-m-r-6"></i>
-
-                                                <a href="signin.html">Email me When the price drops</a>
-
-                                                <span class="pd-detail__click-count">(20)</span></span>
-                                        </div>
-                                    </div>
-                                    <div class="u-s-m-b-15">
-                                        <ul class="pd-social-list">
-                                            <li>
-
-                                                <a class="s-fb--color-hover" href="#"><i
-                                                        class="fab fa-facebook-f"></i></a>
-                                            </li>
-                                            <li>
-
-                                                <a class="s-tw--color-hover" href="#"><i class="fab fa-twitter"></i></a>
-                                            </li>
-                                            <li>
-
-                                                <a class="s-insta--color-hover" href="#"><i
-                                                        class="fab fa-instagram"></i></a>
-                                            </li>
-                                            <li>
-
-                                                <a class="s-wa--color-hover" href="#"><i
-                                                        class="fab fa-whatsapp"></i></a>
-                                            </li>
-                                            <li>
-
-                                                <a class="s-gplus--color-hover" href="#"><i
-                                                        class="fab fa-google-plus-g"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="u-s-m-b-15">
-                                        <form class="pd-detail__form">
-                                            <div class="pd-detail-inline-2">
-                                                <div class="u-s-m-b-15">
-
-                                                    <!--====== Input Counter ======-->
-                                                    <div class="input-counter">
-
-                                                        <span class="input-counter__minus fas fa-minus"></span>
-
-                                                        <input
-                                                            class="input-counter__text input-counter--text-primary-style"
-                                                            type="text" value="1" data-min="1" data-max="1000">
-
-                                                        <span class="input-counter__plus fas fa-plus"></span>
-                                                    </div>
-                                                    <!--====== End - Input Counter ======-->
-                                                </div>
-                                                <div class="u-s-m-b-15">
-
-                                                    <button class="btn btn--e-brand-b-2" type="submit">Add to
-                                                        Cart</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="u-s-m-b-15">
-
-                                        <span class="pd-detail__label u-s-m-b-8">Product Policy:</span>
-                                        <ul class="pd-detail__policy-list">
-                                            <li><i class="fas fa-check-circle u-s-m-r-8"></i>
-
-                                                <span>Buyer Protection.</span>
-                                            </li>
-                                            <li><i class="fas fa-check-circle u-s-m-r-8"></i>
-
-                                                <span>Full Refund if you don't receive your order.</span>
-                                            </li>
-                                            <li><i class="fas fa-check-circle u-s-m-r-8"></i>
-
-                                                <span>Returns accepted if product not as described.</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!--====== End - Product Right Side Details ======-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--====== End - Quick Look Modal ======-->
-
-
-        <!--====== Add to Cart Modal ======-->
-        <div class="modal fade" id="add-to-cart">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content modal-radius modal-shadow">
-
-                    <button class="btn dismiss-button fas fa-times" type="button" data-dismiss="modal"></button>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-12">
-                                <div class="success u-s-m-b-30">
-                                    <div class="success__text-wrap"><i class="fas fa-check"></i>
-
-                                        <span>Item is added successfully!</span>
-                                    </div>
-                                    <div class="success__img-wrap">
-
-                                        <img class="u-img-fluid" src="images/product/electronic/product1.jpg" alt="">
-                                    </div>
-                                    <div class="success__info-wrap">
-
-                                        <span class="success__name">Beats Bomb Wireless Headphone</span>
-
-                                        <span class="success__quantity">Quantity: 1</span>
-
-                                        <span class="success__price">$170.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-12">
-                                <div class="s-option">
-
-                                    <span class="s-option__text">1 item (s) in your cart</span>
-                                    <div class="s-option__link-box">
-
-                                        <a class="s-option__link btn--e-white-brand-shadow"
-                                            data-dismiss="modal">CONTINUE
-                                            SHOPPING</a>
-
-                                        <a class="s-option__link btn--e-white-brand-shadow" href="cart.html">VIEW
-                                            CART</a>
-
-                                        <a class="s-option__link btn--e-brand-shadow" href="checkout.html">PROCEED TO
-                                            CHECKOUT</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--====== End - Add to Cart Modal ======-->
-
-
-
-        <!--====== End - Newsletter Subscribe Modal ======-->
-        <!--====== End - Modal Section ======-->
+        <!--====== End - Main Footer ======-->
     </div>
     <!--====== End - Main App ======-->
 
@@ -1234,7 +790,26 @@ if (isset($_SESSION['customer_ID'])) {
             $('.filter__btn.js-checked').trigger('click');
         });
     </script>
-
+    <script>
+        // JavaScript Countdown Timer
+        document.querySelectorAll('.countdown').forEach(function (countdown) {
+            const endTime = parseInt(countdown.getAttribute('data-end-time'));
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = endTime - now;
+                if (distance < 0) {
+                    countdown.innerHTML = "Expired";
+                    return;
+                }
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
+            setInterval(updateCountdown, 1000);
+        });
+    </script>
 </body>
 
 </html>

@@ -2,7 +2,7 @@
 namespace App\Models;
 use App\Models\Model;
 
-class Message{
+class Message extends Model{
 
     public $message_id;
     public $customer_id;

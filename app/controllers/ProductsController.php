@@ -19,7 +19,8 @@ class ProductsController
         $sugarFree = $this->productModel->getProductsByCategory('sugar free'); //get the sugar free
         $glutenFree = $this->productModel->getProductsByCategory('gluten free'); //get the gluten free
         $specialOccasions = $this->productModel->getProductsByCategory('special occasions'); //get the special occasions
-        
+        $dealOfTheDay = $this->productModel->getDiscountedProducts(); //get the discounted products
+        $testemonials = Testimonial::getTestimonials();
         // Load the view and pass the products data
         require 'views/pages/index-view.php';
     }

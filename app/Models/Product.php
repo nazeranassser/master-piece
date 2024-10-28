@@ -170,4 +170,22 @@ class Product
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
+  public function getDiscountedProducts() {
+    $sql = "SELECT product_id, product_name, product_image, product_price, product_discount, total_review ,category_name
+            FROM products
+            INNER JOIN categories ON products.category_id = categories.category_id
+            WHERE product_discount IS NOT NULL
+            ORDER BY product_discount DESC
+            LIMIT 2";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute();
+    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($products as &$product) {
+      $product['discounted_price'] = $product['product_price'] - ($product['product_price'] * $product['product_discount']);
+  }
+
+  return $products;
+}
+
 }
