@@ -68,7 +68,7 @@ class Users {
 
 
         // User with the same email or username already exists
-        if($this->userModel->findUserByEmailOrUsername($data['usersEmail'])){
+        if($this->userModel->findUserByEmailOrUsername($data['usersEmail'], $data['usersUid'])){
             flash("register", "Username or email already taken");
             redirect("../signup.php");
         }
@@ -102,7 +102,7 @@ class Users {
         }
 
         // Check for user/email
-        if($this->userModel->findUserByEmailOrUsername($data['name/email'])){
+        if($this->userModel->findUserByEmailOrUsername($data['name/email'], $data['name/email'])){
             // User Found
             $loggedInUser = $this->userModel->login($data['name/email'], $data['usersPwd']);
             if($loggedInUser){
@@ -119,10 +119,10 @@ class Users {
     }
 
     public function createUserSession($user){
-        $_SESSION['usersId'] = $user['customer_ID'];
-        $_SESSION['usersName'] = $user['customer_name'];
-        $_SESSION['usersEmail'] = $user['customer_email'];
-        redirect("/");
+        $_SESSION['usersId'] = $user->usersId;
+        $_SESSION['usersName'] = $user->usersName;
+        $_SESSION['usersEmail'] = $user->usersEmail;
+        redirect("../index.php");
     }
 
     public function logout(){
@@ -130,7 +130,7 @@ class Users {
         unset($_SESSION['usersName']);
         unset($_SESSION['usersEmail']);
         session_destroy();
-        redirect("/");
+        redirect("../index.php");
     }
 }
 
@@ -146,7 +146,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $init->login();
             break;
         default:
-            redirect("/");
+            redirect("../index.php");
     }
 } else {
     switch($_GET['q']){
@@ -154,6 +154,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $init->logout();
             break;
         default:
-            redirect("/");
+            redirect("../index.php");
     }
 }
