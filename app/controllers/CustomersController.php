@@ -192,5 +192,11 @@ class CustomersController {
               require "views/profile/profile.order.php";
               
           }
+          public function update(){
+            //   $id=$_SESSION['sutomer_id'];
+               $customer = $this->customerModel->getCustomer();
+               require "views/profile/profile.edit.php";
+               
+           }
 }
 
