@@ -283,10 +283,10 @@
             }).owlCarousel({
                 items:1,
                 autoplay: false,
-                loop: false,
+                loop: true,
                 dots: true,
                 rewind: false,
-                smartSpeed: 1500,
+                smartSpeed: 1000,
                 nav: false
             });
         }

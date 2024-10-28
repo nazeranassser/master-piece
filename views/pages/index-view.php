@@ -1,4 +1,20 @@
+<?php
+// session_start();
+// include('config.php');
+// Include the database connection file
 
+// Initialize $user as null
+$user = null;
+
+// Check if user is logged in
+if (isset($_SESSION['customer_ID'])) {
+    // Get user data
+    $sql = "SELECT * FROM customers WHERE customer_ID = :id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute(['id' => $_SESSION['customer_ID']]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+}
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
@@ -684,25 +700,23 @@
 
                         <!--====== Testimonial Slider ======-->
                         <div class="slider-fouc">
-                            <div class="owl-carousel" id="testimonial-slider">
-                                <!-- <?php foreach ($testimonials as $testimonial): ?>
+                            <div class="owl-carousel owl-theme owl-loaded owl-drag" id="testimonial-slider">
+                                <?php foreach ($testimonials as $testimonial): ?>
                                     <div class="testimonial">
                                         <div class="testimonial__img-wrap">
                                             <img class="testimonial__img"
-                                                src="images/about/test-<?= $testimonial['customer_id'] ?>.jpg" alt="">
+                                                src="public/images/testimonials/<?= $testimonial['image'] ?>" alt="">
                                         </div>
                                         <div class="testimonial__content-wrap">
                                             <span class="testimonial__double-quote"><i
                                                     class="fas fa-quote-right"></i></span>
                                             <blockquote class="testimonial__block-quote">
-                                                <p><?= htmlspecialchars($testimonial['message_text']) ?></p>
+                                                <p><?= htmlspecialchars($testimonial['testimonial_text']) ?></p>
                                             </blockquote>
-                                            <span
-                                                class="testimonial__author"><?= htmlspecialchars($testimonial['customer_name']) ?>
-                                                / <?= htmlspecialchars($testimonial['message_subject']) ?></span>
+                                            <span class="testimonial__author"><?= htmlspecialchars($testimonial['name']) ?>
                                         </div>
                                     </div>
-                                <?php endforeach; ?> -->
+                                <?php endforeach; ?>
                             </div>
                         </div>
                         <!--====== End - Testimonial Slider ======-->
@@ -796,6 +810,22 @@
             setInterval(updateCountdown, 1000);
         });
     </script>
+    <script>
+        $(document).ready(function () {
+            $("#testimonial-slider").owlCarousel({
+                $('#testimonial-slider').owlCarousel({
+                    items: 1,
+                    loop: true,
+                    autoplay: true,
+                    autoplayTimeout: 5000,
+                    smartSpeed: 600,
+                    margin: 30,
+                    dots: true
+                });
+            });
+        });
+    </script>
+
 </body>
 
 </html>
