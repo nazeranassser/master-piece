@@ -733,7 +733,7 @@ if (isset($_SESSION['customer_ID'])) {
 
         <!--====== Main Footer ======-->
         <footer>
-            <?php include 'views/partials/footer.php' ?>
+            <?php include 'footer.php' ?>
         </footer>
         <!--====== End - Main Footer ======-->
     </div>
