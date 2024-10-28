@@ -1,4 +1,4 @@
-<?php include('views/partials/header.php') ?> 
+<?php include('header.php') ?> 
 <div class="preloader is-active">
         <div class="preloader__wrap">
 
@@ -183,4 +183,4 @@
             </div>
             <!--====== End - Section 2 ======-->
         </div>
-        <?php include('views/partials/footer.php') ?> 
+        <?php include('footer.php') ?> 

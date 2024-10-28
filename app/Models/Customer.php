@@ -3,6 +3,7 @@ namespace App\Models;
 use App\Models\Model;
 use PDO; // Use the global PDO class
 use PDOException;
+
 class Customer{
 
     private $db;
@@ -82,5 +83,25 @@ class Customer{
             return false;
         }
     }
+    public function getCustomer($id=2){ 
+        try{
+            $query = "SELECT * FROM customers WHERE customer_ID=:id";
+            $stmt=$this->db->prepare($query);
+            $stmt->bindParam(":id",$id);
+            $stmt->execute();
+            if($stmt->rowcount()>0){
+                $customer =$stmt->fetch(PDO::FETCH_ASSOC);
+                return $customer;
+            }else{
+                return null;
+            }
+            }catch(PDOExcption $e){
+                error_log($e->getMessage());
+                return FALSE;
+            }
+        }
+    public function update($id, $data){
+        return $this->db->update($id, $data);
+      }
 
 }

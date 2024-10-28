@@ -3,6 +3,7 @@ namespace App\Controllers;
 use App\Models\Customer;
 require 'helpers/session_helper.php';
 
+
 class CustomersController {
     private $customerModel;
 
@@ -179,5 +180,17 @@ class CustomersController {
         session_destroy();
         header("Location: /");
     }
+    public function getById(){
+        //   $id=$_SESSION['sutomer_id'];
+           $customer = $this->customerModel->getCustomer();
+           require "views/profile/profile.main.php";
+           
+       }
+       public function getById1(){
+           //   $id=$_SESSION['sutomer_id'];
+              $customer = $this->customerModel->getCustomer();
+              require "views/profile/profile.order.php";
+              
+          }
 }
 
