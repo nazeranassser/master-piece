@@ -9,7 +9,7 @@ use App\Router;
 $router = new Router();
 
 // Add routes
-$router->add('', ['controller' => 'Products', 'action' => 'showHomePage']); 
+$router->add('', ['controller' => 'Products', 'action' => 'showHomePage']);
 $router->add('dash', ['controller' => 'Admins', 'action' => 'index']);// dashboard-admin.php "/"
 $router->add('admins', ['controller' => 'Admins', 'action' => 'get']);// dash-admins.php
 $router->add('add-admin', ['controller' => 'Admins', 'action' => 'add']);// dash-admin-add.php
