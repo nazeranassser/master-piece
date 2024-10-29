@@ -1,5 +1,5 @@
 <!--====== Main Header ======-->
-<?php include('views/partials/navbar.php');?>
+<?php include('views/partials/header_admin.php');?>
 
         <!--====== End - Main Header ======-->
 
@@ -49,9 +49,23 @@
                                 </div>
                                 <div class="col-lg-9 col-md-12">
                                     <div class="dash__box dash__box--shadow dash__box--bg-white dash__box--radius u-s-m-b-30">
-                                    <div class="dash__pad-2">
+                                        <div class="dash__pad-2" style="display:flex;justify-content: space-between;">
                                             <div class="dash__address-header">
                                                 <h1 class="dash__h1">Products</h1>
+                                            </div>
+                                            <div class="dash__filter">
+                                                <form method="POST" action="product-category-filter">
+                                                    <select class="select-box select-box--primary-style" style="border-radius:6px" name="categoryFilter" id="categoryFilter" onchange="this.form.submit()">
+                                                        <option value="">All Categories</option>
+                                                        <?php foreach ($categories as $category): ?>
+                                                            
+                                                            <option value="<?= $category['category_ID'] ?>" 
+                                                                <?= isset($_POST['categoryFilter']) && $_POST['categoryFilter'] == $category['category_ID'] ? 'selected' : '' ?>>
+                                                                <?= $category['category_name']; ?>
+                                                            </option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                </form>
                                             </div>
                                         </div>
                                         <div class="dash__table">
@@ -69,6 +83,7 @@
                                                 <?php
 
                                                   foreach($products as $product){
+                                                    // var_dump($product);
                                                     echo "  <tr>
                                                          <form method='POST' action='update_product'>
                                                             <th><div  class='description__img-wrap'>
@@ -77,13 +92,13 @@
                                                             <th>".$product['product_price']."<input type='hidden' value='".$product['product_price']."' name='product_price''></th>
                                                             <th>".$product['product_quantity']."<input type='hidden' value='".$product['product_quantity']."' name='product_quantity''></th>
                                                             <th style='display: flex;''>
-                                                            <input type='hidden' value='".$product['product_ID']."' name='edit''>
+                                                            <input type='hidden' value='".$product['product_id']."' name='edit''>
                                                             <input type='hidden' value='".$product['product_image']."' name='product_image''>
                                                             <input type='hidden' value='".$product['category_ID']."' name='category'>
                                                             <input type='hidden' value='".$product['product_description']."' name='product_description'>
                                                             <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2' style='margin-right:4px ;'>Edit</button></form>
                                                             <form method='POST' action=''>
-                                                            <input type='hidden' value='".$product['product_ID']."' name='delete_product''>
+                                                            <input type='hidden' value='".$product['product_id']."' name='delete_product''>
                                                             <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2'>Delete</button></form></th>
                                                         </tr>";
                                                 }
@@ -94,7 +109,7 @@
                                     </div>
                                     <div>
 
-                                        <a class="dash__custom-link btn--e-brand-b-2" href="product/add"><i class="fas fa-plus u-s-m-r-8"></i>
+                                        <a class="dash__custom-link btn--e-brand-b-2" href="product-add"><i class="fas fa-plus u-s-m-r-8"></i>
 
                                             <span>Add New Product</span></a></div>
                                 </div>
@@ -110,4 +125,4 @@
 
 
         <!--====== Main Footer ======-->
-        <?php include('views/partials/footer.php');?>
+        <?php include('views/partials/footer_admin.php');?>

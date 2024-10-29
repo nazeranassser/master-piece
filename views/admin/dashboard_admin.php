@@ -1,11 +1,5 @@
-<?php
-session_start();
- include('views/partials/navbar.php');?>
+<?php include('views/partials/header_admin.php');?>
 
-        <!--====== End - Main Header ======-->
-
-        <br>
-        <br>
         <!--====== App Content ======-->
         <div class="app-content">
 
@@ -130,7 +124,8 @@ session_start();
                                                 // $order = new orders();
                                                 // $order_row = $order->showOrders();
                                                   foreach($orders as $order) {
-                                                    echo "<tr>
+                                                    if($order['order_status']=='processing'){
+                                                        echo "<tr>
                                                         <td>".$order['order_ID']."</td>
                                                         <td>".$order['customer_phone']."</td>
                                                         <td>".$order['created_at']."</td>
@@ -146,6 +141,7 @@ session_start();
                                                             </div>
                                                         </td>
                                                     </tr>";
+                                                    }
                                                   }
                                                   ?>
                                                   
@@ -167,7 +163,7 @@ session_start();
 
         <!--====== Main Footer ======-->
         <?php
-    include('views/partials/footer.php');
+    include('views/partials/footer_admin.php');
     ?>
         <!--====== Modal Section ======-->
 

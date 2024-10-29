@@ -1,6 +1,6 @@
 
         <!--====== Main Header ======-->
-        <?php include('views/partials/navbar.php');?>
+        <?php include('views/partials/header_admin.php');?>
         <!--====== End - Main Header ======-->
 
 
@@ -138,4 +138,4 @@
 
 
     <!--====== Google Analytics: change UA-XXXXX-Y to be your site's ID ======-->
-    <?php include('views/partials/footer.php');?>
+    <?php include('views/partials/footer_admin.php');?>

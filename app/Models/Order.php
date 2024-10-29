@@ -1,6 +1,9 @@
 <?php
 namespace App\Models;
 use App\Models\Model;
+use PDO; // Use the global PDO class
+use PDOException;
+session_start();
 class Order extends Model {
 
     public $order_id;
@@ -19,10 +22,39 @@ class Order extends Model {
     
 
     function showOrders(){
-        $sql =" SELECT orders.order_ID,orders.order_total_amount_after,orders.delivery_address,orders.created_at , customers.customer_phone FROM `orders` CROSS JOIN customers WHERE customers.customer_ID = orders.customer_ID;";
+        $sql =" SELECT orders.order_ID,orders.order_status,orders.order_total_amount_after,orders.delivery_address,orders.created_at , customers.customer_phone FROM `orders` CROSS JOIN customers WHERE customers.customer_ID = orders.customer_ID;";
         $start = $this->db->query($sql);
         if ($start) {
             $row = $start->fetchAll(PDO::FETCH_ASSOC); 
+            return $row;
+        }
+    }
+
+    function showOrdersProcessing(){
+        $sql =" SELECT COUNT(*) FROM `orders` WHERE order_status = 'processing';";
+        $start = $this->db->query($sql);
+        if ($start) {
+            $row = $start->fetchAll(PDO::FETCH_ASSOC); 
+            $_SESSION['processing']=$row[0]['COUNT(*)'];
+            return $row;
+        }
+    }
+    function showOrdersDelivered(){
+        $sql =" SELECT COUNT(*) FROM `orders` WHERE order_status = 'delivered';";
+        $start = $this->db->query($sql);
+        if ($start) {
+            $row = $start->fetchAll(PDO::FETCH_ASSOC); 
+            $_SESSION['delivered']=$row[0]['COUNT(*)'];
+            return $row;
+        }
+    }
+
+    function showOrdersCancelled(){
+        $sql =" SELECT COUNT(*) FROM `orders` WHERE order_status = 'cancelled';";
+        $start = $this->db->query($sql);
+        if ($start) {
+            $row = $start->fetchAll(PDO::FETCH_ASSOC); 
+            $_SESSION['cancelled']=$row[0]['COUNT(*)'];
             return $row;
         }
     }

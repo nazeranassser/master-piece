@@ -56,17 +56,24 @@
 // namespace Controller;
 namespace App\Controllers;
 use App\Models\Admin;
+use App\Models\Order;
 
 class AdminsController {
     private $adminModel;
 
     public function __construct() {
         $this->adminModel = new Admin();
+        $this->orderModel = new Order();
+        $this->orderModel->showOrdersProcessing();
+        $this->orderModel->showOrdersDelivered();
+        $this->orderModel->showOrdersCancelled();
     }
 
     public function index() {
         $admins = $this->adminModel->getAll();
-        require 'views/pages/index-view.php';
+        $orders = $this->orderModel->showOrders();
+        $total = $this->orderModel->totalSales();
+        require 'views/admin/dashboard_admin.php';
     }
 
     public function get() {

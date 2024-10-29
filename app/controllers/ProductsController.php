@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 use App\Models\Product;
+use App\Models\Category;
 use App\Models\Testimonial;
 class ProductsController
 {
@@ -9,7 +10,43 @@ class ProductsController
     public function __construct()
     {
         $this->productModel = new Product();
+        $this->categoryModel = new Category();
         $this->testimonialModel = new Testimonial();
+    }
+
+    public function index() {
+        $categoryFilter = $_POST['categoryFilter'] ?? null;
+        if($categoryFilter){
+            $products = $this->productModel->getProductsByCategoryId($categoryFilter);
+        }else{
+            $products = $this->productModel->showRow();
+        }
+        $categories = $this->categoryModel->get();
+        require 'views/admin/product/dash-products.php';
+    }
+
+    
+    public function edit() {
+        require 'views/admin/product/dash-product-edit.php';
+    }
+
+    public function add() {
+        require 'views/admin/product/dash-product-add.php';
+    }
+
+    public function create() {
+        $products = $this->productModel->addNewProduct($_POST);
+        require 'views/admin/product/dash-product-add.php';
+    }
+
+    public function update() {
+        $products = $this->productModel->updateProduct($_POST);
+        require 'views/admin/product/dash-product-edit.php';
+    }
+
+    public function addProduct() {
+        $products = $this->productModel->addNewProduct($_POST);
+        header('location:/products');
     }
 
     public function showHomePage()

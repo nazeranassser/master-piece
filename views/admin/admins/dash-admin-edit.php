@@ -1,5 +1,5 @@
         <!--====== Main Header ======-->
-        <?php include('views/partials/navbar.php');?>
+        <?php include('views/partials/header.php');?>
 
         <!--====== End - Main Header ======-->
 
@@ -107,6 +107,6 @@
 
         <!--====== Main Footer ======-->
         <?php include('views/partials/footer.php');?>
-    </div>
+        </div>
     <!--====== End - Main App ======-->
 

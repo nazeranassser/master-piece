@@ -1,6 +1,6 @@
 
         <!--====== Main Header ======-->
-        <?php include('views/partials/navbar.php');?>
+        <?php include('views/partials/header.php');?>
 
         <!--====== End - Main Header ======-->
 
