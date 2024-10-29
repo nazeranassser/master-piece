@@ -25,7 +25,7 @@
         </div>
 
         <div class="nav-links">
-            <a href="index.php" class="nav-item" style="animation-delay: 0.2s;">Home</a>
+            <a href="/" class="nav-item" style="animation-delay: 0.2s;">Home</a>
             <a href="#" class="nav-item" style="animation-delay: 0.3s;">About Us</a>
             <a href="#" class="nav-item" style="animation-delay: 0.4s;">Products</a>
             <a href="contactform.php" class="nav-item" style="animation-delay: 0.5s;">Contact</a>
