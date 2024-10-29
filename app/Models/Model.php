@@ -3,6 +3,7 @@ namespace App\Models;
 use PDO; // Use the global PDO class
 use PDOException;
 
+
 class Model {
     protected $db;
     protected $table;
@@ -88,5 +89,6 @@ class Model {
         $this->db->bind(':value', $value);
         return $this->db->resultSet();
     }
+    
 }
 

@@ -26,6 +26,10 @@ $router->add('login/add', ['controller' => 'Customers', 'action' => 'login']);
 $router->add('login', ['controller' => 'Customers', 'action' => 'loginPage']);
 $router->add('signup', ['controller' => 'Customers', 'action' => 'signupPage']);
 $router->add('sign-out', ['controller' => 'Customers', 'action' => 'logout']);
+$router->add('profile-main', ['controller' => 'Customers', 'action' => 'getById']);
+$router->add('profile-order', ['controller' => 'Customers', 'action' => 'getById1']);
+
+
 
 
 
