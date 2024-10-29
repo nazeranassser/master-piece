@@ -1,5 +1,5 @@
 
-     <footer>
+<footer>
         <div class="container">
             <div class="row">
                   <div class="col" id="company">
@@ -51,6 +51,12 @@
                   </div>
             </div>
 
+            <!-- <div class="preloader is-active">
+        <div class="preloader__wrap">
+
+            <img class="preloader__img" src="images/preloader.png" alt=""></div>
+    </div> -->
+
             <!-- <div class="row">
                   <div class="form">
                     <form action="">
@@ -62,6 +68,13 @@
 
         </div> -->
      </footer>
+
+     <!-- <script>
+    window.addEventListener('load', function() {
+        document.querySelector('.preloader').classList.remove('is-active');
+    });
+</script> -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

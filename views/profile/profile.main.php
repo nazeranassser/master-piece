@@ -1,12 +1,10 @@
-<?php include("views/partials/header.php");?> 
-<div class="preloader is-active">
-        <div class="preloader__wrap">
+<?php include('views/partials/header.php') ?> 
 
-            <img class="preloader__img" src="images/preloader.png" alt=""></div>
-    </div>
+<link rel="stylesheet" href="public/css/app.css">
 
  
         <div class="app-content">
+            
 
             <!--====== Section 1 ======-->
             <div class="u-s-p-y-60">
@@ -183,4 +181,4 @@
             </div>
             <!--====== End - Section 2 ======-->
         </div>
-        <?php include("views/partials/footer.php");?> 
+        <?php include('views/partials/footer.php') ?> 
