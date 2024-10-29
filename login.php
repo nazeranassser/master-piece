@@ -7,9 +7,10 @@
 
 <?php flash('login') ?>
 
-<form style="display: flex !important; flex-direction: column !important;" action='login-add' method='POST'>
+<form style="display: flex !important; flex-direction: column !important; " method="post" action="login/add">
     
     <input type="hidden" name="type" value="login">
+    
     <input type="text" name="customerNameOrEmail" placeholder="Username/Email..." required> <!-- Updated name for clarity -->
     <input type="password" name="customerPassword" placeholder="Password..." required> <!-- Updated name for clarity -->
     
