@@ -70,8 +70,8 @@ if (isset($_SESSION['customer_ID'])) {
 
         <!--====== Main Header ======-->
         <?php
-        include_once 'header.php';
-        ?>
+    include_once('views/partials/header.php');
+    ?>
         <!--====== End - Main Header ======-->
 
 
@@ -743,8 +743,8 @@ if (isset($_SESSION['customer_ID'])) {
 
         <!--====== Main Footer ======-->
         <?php
-        include_once 'footer.php';
-        ?>
+    include_once('views/partials/footer.php');
+    ?>
         <!--====== End - Main Footer ======-->
     </div>
     <!--====== End - Main App ======-->

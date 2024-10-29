@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const passwordInput = document.querySelector('input[name="usersPwd"]');
+    const passwordInput = document.querySelector('input[name="customerPassword"]');
     const confirmPasswordInput = document.querySelector('input[name="pwdRepeat"]'); // إضافة حقل التأكيد
     const requirementsList = document.querySelector('#password-requirements');
     
