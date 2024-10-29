@@ -8,11 +8,11 @@
                     We are specialized in designings, make your business a brand.
                   </p>
                   <div class="social">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.facebook.com/cakeboss"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/bakerella/"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/user/CakeBoss"><i class="fab fa-youtube"></i></a>
+                    <a href="https://twitter.com/CakeBoss"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/in/shehab-alsanuury-01ab04326/"><i class="fab fa-linkedin"></i></a>
                   </div>
               </div>
 
