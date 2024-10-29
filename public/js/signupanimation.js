@@ -4,8 +4,10 @@ document.addEventListener('DOMContentLoaded', function() {
     container.className = 'floating-images';
     document.body.appendChild(container);
     
-    const images = ['🍰', '🧁', '🎂', '🍪', '🥮', '🥯', '🍩', '🍦', '🍫', '🍭', '🍬', '🍇', '🍉'];
-    
+    const images = [
+        '🎂', '🍰', '🧁', '🍪', '🍫', '🍩', '🍬', '🍭', '🍦', '🍮', '🥮', '🍧', '🍨', '🍯', '🍎', '🍒', '🍓', '🍋', '🍌'
+    ];
+        
     function createFloatingImage() {
         const div = document.createElement('div');
         div.className = 'floating-image';
