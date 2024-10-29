@@ -181,19 +181,19 @@ class CustomersController {
     }
     public function getById(){
         //   $id=$_SESSION['sutomer_id'];
-           $customer = $this->customerModel->getCustomer();
+           $customer = $this->customerModel->getCustomer($_SESSION['usersId']);
            require "views/profile/profile.main.php";
            
        }
        public function getById1(){
            //   $id=$_SESSION['sutomer_id'];
-              $customer = $this->customerModel->getCustomer();
+              $customer = $this->customerModel->getCustomer($_SESSION['usersId']);
               require "views/profile/profile.order.php";
               
           }
           public function update(){
             //   $id=$_SESSION['sutomer_id'];
-               $customer = $this->customerModel->getCustomer();
+               $customer = $this->customerModel->getCustomer($_SESSION['usersId']);
                require "views/profile/profile.edit.php";
                
            }

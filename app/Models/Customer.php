@@ -83,7 +83,7 @@ class Customer{
             return false;
         }
     }
-    public function getCustomer($id=2){ 
+    public function getCustomer($id){ 
         try{
             $query = "SELECT * FROM customers WHERE customer_ID=:id";
             $stmt=$this->db->prepare($query);

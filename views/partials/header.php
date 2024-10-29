@@ -53,7 +53,7 @@
             <!-- إضافة الترحيب واسم المستخدم والصورة هنا -->
             <?php if (isset($_SESSION['usersId'])): ?>
                 <div class="user-welcome nav-item" style="animation-delay: 1.0s;">
-                    <span>Welcome, <?php echo explode(" ", $_SESSION['usersName'])[0]; ?></span>
+                    <a href="profile-main"><span>Welcome, <?php echo explode(" ", $_SESSION['usersName'])[0]; ?></span></a>
                     <?php 
                     // عرض الصورة
                     if (isset($user['customer_image'])) {

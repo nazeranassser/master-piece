@@ -1,9 +1,10 @@
-<?php include('header.php') ?> 
-<div class="preloader is-active">
-        <div class="preloader__wrap">
+<?php include('views/partials/header.php') ?> 
 
-            <img class="preloader__img" src="images/preloader.png" alt=""></div>
-    </div>
+<link rel="stylesheet" href="public/css/app.css">
+
+ 
+        <div class="app-content">
+
     <div id="app">
         <div class="app-content">
             <div class="u-s-p-y-60">
@@ -33,21 +34,19 @@
                                     <div class="dash__box dash__box--bg-white dash__box--shadow u-s-m-b-30">
                                         <div class="dash__pad-1">
 
-                                        <span><?php echo $customer['customer_name'];?></span>
+                                        <span><?php echo $_SESSION['usersName'];?></span>
                                         <ul class="dash__f-list">
                                                 <li>
 
                                                     <a href="dashboard.">Manage My Account</a></li>
                                                 <li>
 
-                                                    <a href="dash-my-profile.php">My Profile</a></li>
-                                                <li>
-
-                                                    <a href="dash-address-book.php">Address Book</a></li>
+                                                    <a href="profile-main">My Profile</a></li>
+                                                
                                                 
                                                 <li>
 
-                                                    <a class="dash-active" href="dash-my-order.php">My Orders</a></li>
+                                                    <a class="dash-active" href="profile-order">My Orders</a></li>
                                         
                                             </ul>
                                         </div>
@@ -197,4 +196,4 @@
             </div>
         </div>
     </noscript>
-    <?php include('footer.php') ?> 
+    <?php include('views/partials/footer.php') ?>  
