@@ -100,8 +100,6 @@ class Customer{
                 return FALSE;
             }
         }
-    public function update($id, $data){
-        return $this->db->update($id, $data);
-      }
+  
 
 }

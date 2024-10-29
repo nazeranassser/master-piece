@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 use App\Models\Customer;
-require 'helpers/session_helper.php';
+// require 'helpers/session_helper.php';
 
 
 class CustomersController {
