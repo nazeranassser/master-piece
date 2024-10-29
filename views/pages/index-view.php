@@ -859,7 +859,7 @@ if (isset($_SESSION['customer_ID'])) {
         setInterval(updateCountdown, 1000);
 
     </script>
-    <scrip>
+    <script>
         $(document).ready(function () {
             $("#testimonial-slider").owlCarousel({
                 $('#testimonial-slider').owlCarousel({
