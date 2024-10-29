@@ -14,8 +14,8 @@ class ProductsController
         $this->testimonialModel = new Testimonial();
     }
 
-    public function index() {
-        $categoryFilter = $_POST['categoryFilter'] ?? null;
+    public function filter($id) {
+        $categoryFilter = $_GET['categoryFilter'] ?? null;
         if($categoryFilter){
             $products = $this->productModel->getProductsByCategoryId($categoryFilter);
         }else{

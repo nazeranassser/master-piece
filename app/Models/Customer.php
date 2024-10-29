@@ -55,12 +55,12 @@ class Customer{
         $stmt = $this->db->prepare("INSERT INTO `customers`( `customer_name`, `customer_email`, `customer_password`, `customer_address1`, `customer_address2`, `customer_phone`) VALUES
             (:name,:email,:password,:firstAddress,:secondAddress,:phoneNumber);");
         //Bind values
-        $stmt->bindParam(':name', $data['usersName']);
-        $stmt->bindParam(':email', $data['usersEmail']);
-        $stmt->bindParam(':password', $data['usersPwd']);
-        $stmt->bindParam(':firstAddress', $data['usersFirstAddress']);
-        $stmt->bindParam(':secondAddress', $data['usersSecondAddress']);
-        $stmt->bindParam(':phoneNumber', $data['usersPhoneNumber']);
+        $stmt->bindParam(':name', $data['customer_name']);
+        $stmt->bindParam(':email', $data['customer_email']);
+        $stmt->bindParam(':password', $data['customer_password']);
+        $stmt->bindParam(':firstAddress', $data['customer_address']);
+        $stmt->bindParam(':secondAddress', $data['customer_address2']);
+        $stmt->bindParam(':phoneNumber', $data['customer_phone']);
 
         //Execute
         if($stmt->execute()){

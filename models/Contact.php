@@ -1,4 +1,7 @@
+
+
 <?php
+
 // Modified Contact.php
 class Contact {
     private $db;

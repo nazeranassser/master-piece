@@ -10,14 +10,18 @@ class Router {
 
     // Add a route to the routing table
     public function add($route, $params = []) {
-        // Convert the route to a regular expression
+        // Convert the route to a regular expression: escape forward slashes
         $route = preg_replace('/\//', '\\/', $route);
-        $route = preg_replace('/\{([a-z]+)\}/', '(?P<\1>[a-z-]+)', $route);
-        $route = preg_replace('/\{([a-z]+)\:\d+\}/', '(?P<\1>\d+)', $route);
+        
+        // Convert variables e.g. {id:\d+}
+        $route = preg_replace('/\{([a-z]+):([^\}]+)\}/', '(?P<\1>\2)', $route);
+        
+        // Add start and end delimiters, and case insensitive flag
         $route = '/^' . $route . '$/i';
-
+        
         $this->routes[$route] = $params;
     }
+    
 
     // Get all routes from the routing table
     public function getRoutes() {
@@ -45,7 +49,6 @@ class Router {
         return $this->params;
     }
 
-    // Dispatch the route by creating the controller and calling the method (action)
     public function dispatch($url) {
         // Remove query string variables from the URL
         $url = $this->removeQueryStringVariables($url);
@@ -73,7 +76,8 @@ class Router {
     
                 // Check if the method (action) exists and is callable
                 if (is_callable([$controller_object, $action])) {
-                    $controller_object->$action();
+                    // Pass URL parameters (like `id`) to the action method
+                    call_user_func_array([$controller_object, $action], array_values($this->params));
                 } else {
                     throw new \Exception("Method $action in controller $controller cannot be called.");
                 }
@@ -84,10 +88,6 @@ class Router {
             throw new \Exception("No route matched.", 404);
         }
     }
-    
-    
-    
-    
 
     // Convert the string to StudlyCaps (e.g., post-new => PostNew)
     protected function convertToStudlyCaps($string) {

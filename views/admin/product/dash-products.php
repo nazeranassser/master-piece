@@ -54,13 +54,13 @@
                                                 <h1 class="dash__h1">Products</h1>
                                             </div>
                                             <div class="dash__filter">
-                                                <form method="POST" action="product-category-filter">
-                                                    <select class="select-box select-box--primary-style" style="border-radius:6px" name="categoryFilter" id="categoryFilter" onchange="this.form.submit()">
+                                                <form method="GET" action="" id="categoryForm">
+                                                    <select class="select-box select-box--primary-style" style="border-radius:6px" name="categoryFilter" id="categoryFilter" onchange="redirectToCategory()">
                                                         <option value="">All Categories</option>
                                                         <?php foreach ($categories as $category): ?>
                                                             
-                                                            <option value="<?= $category['category_ID'] ?>" 
-                                                                <?= isset($_POST['categoryFilter']) && $_POST['categoryFilter'] == $category['category_ID'] ? 'selected' : '' ?>>
+                                                            <option value="<?= $category['category_id'] ?>" 
+                                                                <?= isset($_GET['categoryFilter']) && $_GET['categoryFilter'] == $category['category_id'] ? 'selected' : '' ?>>
                                                                 <?= $category['category_name']; ?>
                                                             </option>
                                                         <?php endforeach; ?>
@@ -94,7 +94,7 @@
                                                             <th style='display: flex;''>
                                                             <input type='hidden' value='".$product['product_id']."' name='edit''>
                                                             <input type='hidden' value='".$product['product_image']."' name='product_image''>
-                                                            <input type='hidden' value='".$product['category_ID']."' name='category'>
+                                                            <input type='hidden' value='".$product['category_id']."' name='category'>
                                                             <input type='hidden' value='".$product['product_description']."' name='product_description'>
                                                             <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2' style='margin-right:4px ;'>Edit</button></form>
                                                             <form method='POST' action=''>
@@ -123,6 +123,18 @@
         </div>
         <!--====== End - App Content ======-->
 
-
+        <script>
+    function redirectToCategory() {
+        const selectElement = document.getElementById("categoryFilter");
+        const selectedCategoryId = selectElement.value;
+        if (selectedCategoryId) {
+            // Redirect to the dynamic category route
+            window.location.href = `products/category/${selectedCategoryId}`;
+        } else {
+            // Redirect to show all categories if no specific category is selected
+            window.location.href = "products";
+        }
+    }
+</script>
         <!--====== Main Footer ======-->
         <?php include('views/partials/footer_admin.php');?>

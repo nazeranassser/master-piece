@@ -1,4 +1,4 @@
-<?php include('views/partials/header_admin.php');?>
+<?php require('views/partials/header_admin.php');?>
 
         <!--====== App Content ======-->
         <div class="app-content">
@@ -126,7 +126,7 @@
                                                   foreach($orders as $order) {
                                                     if($order['order_status']=='processing'){
                                                         echo "<tr>
-                                                        <td>".$order['order_ID']."</td>
+                                                        <td>".$order['order_id']."</td>
                                                         <td>".$order['customer_phone']."</td>
                                                         <td>".$order['created_at']."</td>
                                                         <td>".$order['delivery_address']."</td>
@@ -134,7 +134,7 @@
                                                                 <span>".$order['order_total_amount_after']." JD</span>
                                                                 <div class='dash__link dash__link--brand'>
                                                                     <form method='POST' action='dash-manage-order.php'>
-                                                                        <input type='text' value='".$order['order_ID']."' name='order_id' style='visibility: hidden;display: none;'>
+                                                                        <input type='text' value='".$order['order_id']."' name='order_id' style='visibility: hidden;display: none;'>
                                                                         <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2' style='border:0;color:#ff4500'><a>MANAGE</a></button>
                                                                     </form>
                                                                 </div>

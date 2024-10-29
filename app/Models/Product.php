@@ -68,12 +68,12 @@ class Product extends Model
 
     $sql = "UPDATE products 
             SET product_name = :name, 
-                category_ID = :category, 
+                category_id = :category, 
                 product_description = :description, 
                 product_price = :price, 
                 product_quantity = :quantity, 
                 product_image = :image 
-            WHERE product_ID = :id";
+            WHERE product_id = :id";
 
     $stmt = $this->conn->prepare($sql);
 
@@ -111,17 +111,17 @@ class Product extends Model
         $productDesc = $_POST['description'];
         $productPrice = $_POST['price'];
         $productQty = $_POST['quantity'];
-        $categoryID = $_POST['category'];
+        $categoryid = $_POST['category'];
         // var_dump($targetFile);
 
 
         // الاتصال بقاعدة البيانات
         $pdo = new PDO('mysql:host=localhost;dbname=cake_project', 'root', '');
-        $sql = "INSERT INTO products (product_name, product_description, product_price, product_quantity, category_ID, product_image) 
-                  VALUES ('$productName', '$productDesc', '$productPrice', '$productQty', '$categoryID', '$product_image')";
+        $sql = "INSERT INTO products (product_name, product_description, product_price, product_quantity, category_id, product_image) 
+                  VALUES ('$productName', '$productDesc', '$productPrice', '$productQty', '$categoryid', '$product_image')";
         $stmt = $pdo->prepare($sql);
         return $pdo->query($sql);
-        // $stmt->execute([$productName, $productDesc, $productPrice, $productQty, $categoryID, $targetFile]);
+        // $stmt->execute([$productName, $productDesc, $productPrice, $productQty, $categoryid, $targetFile]);
 
         // header("Location: dash-products.php");
       } else {
@@ -141,7 +141,7 @@ class Product extends Model
             SELECT p.product_id, p.product_name, p.product_price, p.product_image, p.total_review, c.category_name, c.category_id 
             FROM products p
             INNER JOIN categories c ON p.category_id = c.category_id
-            ORDER BY p.product_ID DESC
+            ORDER BY p.product_id DESC
             LIMIT :limit
         ";
 
@@ -182,7 +182,7 @@ class Product extends Model
   {
     $query = "SELECT p.*, c.category_name FROM products p JOIN categories c ON p.category_id = c.category_id";
     if($category!=''){
-      $query.="  WHERE c.category_ID = :category";
+      $query.="  WHERE c.category_id = :category";
       $stmt = $this->conn->prepare($query);
       $stmt->bindParam(':category', $category);
     }else{
