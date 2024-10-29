@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const passwordInput = document.querySelector('input[name="customerPassword"]'); // Updated field name
-    const confirmPasswordInput = document.querySelector('input[name="pwdRepeat"]'); // Confirmation password
+    const passwordInput = document.querySelector('input[name="usersPwd"]');
+    const confirmPasswordInput = document.querySelector('input[name="pwdRepeat"]'); // إضافة حقل التأكيد
     const requirementsList = document.querySelector('#password-requirements');
     
     const requirements = [
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { label: 'Special', validate: pwd => /[\W_]/.test(pwd) }
     ];
 
-    // Create requirement elements
+    // إنشاء عناصر المتطلبات
     requirements.forEach(req => {
         const reqElement = document.createElement('div');
         reqElement.className = 'requirement-item';
@@ -23,14 +23,14 @@ document.addEventListener('DOMContentLoaded', function() {
         requirementsList.appendChild(reqElement);
     });
 
-    // Add toggle password visibility button
+    // إضافة زر رؤية كلمة المرور
     const togglePassword = document.createElement('button');
     togglePassword.type = 'button';
     togglePassword.className = 'toggle-pass';
     togglePassword.innerHTML = '👁️';
     passwordInput.parentNode.appendChild(togglePassword);
 
-    // Update requirements on password input
+    // تحديث المتطلبات عند إدخال كلمة المرور
     const updateRequirements = () => {
         const password = passwordInput.value;
         requirements.forEach((req, index) => {
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     passwordInput.addEventListener('input', updateRequirements);
-    confirmPasswordInput.addEventListener('input', updateRequirements); // Monitor confirm password field
+    confirmPasswordInput.addEventListener('input', updateRequirements); // إضافة هذا السطر لمراقبة حقل التأكيد
 
     // Toggle password visibility
     togglePassword.addEventListener('click', function() {
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
         passwordInput.setAttribute('type', type);
         this.innerHTML = type === 'password' ? '👁️' : '🙈';
         
-        // Change type of confirm password field based on main field
+        // تغيير نوع حقل التأكيد بناءً على نوع الحقل الرئيسي
         confirmPasswordInput.setAttribute('type', type);
     });
 });

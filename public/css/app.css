@@ -67,7 +67,9 @@ html {
 body {
   line-height: 1.5;
   font-size: 1rem;
-  -webkit-font-smoothing: antialiased; }
+  -webkit-font-smoothing: antialiased;
+
+}
 
 .config {
   overflow: hidden; }
