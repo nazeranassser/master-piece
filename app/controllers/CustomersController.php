@@ -126,7 +126,7 @@ class CustomersController {
 
         // Register User
         if($this->customerModel->register($data)){
-            header("location: /");
+            header("location: /login");
         } else {
             die("Something went wrong");
         }

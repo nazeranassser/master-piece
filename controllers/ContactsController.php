@@ -15,20 +15,17 @@ class ContactsController {
 
             $contact = new Contact();
 
-            // Get the logged-in user's ID
-            $userId = isset($_SESSION['usersId']) ? $_SESSION['usersId'] : null;
+            // Get the logged-in customer's ID
+            $customerId = isset($_SESSION['usersId']) ? $_SESSION['usersId'] : null;
 
-            // Debug line - remove in production
-            error_log("User ID from session: " . print_r($userId, true));
-
-            // Sanitize input data - allow user to use any name and email
+            // Sanitize input data
             $name = htmlspecialchars(strip_tags($_POST['name']));
             $email = htmlspecialchars(strip_tags($_POST['email']));
             $subject = htmlspecialchars(strip_tags($_POST['subject']));
             $message_text = htmlspecialchars(strip_tags($_POST['message']));
-            
-            // Make sure to pass the user_id
-            $contact->setData($name, $email, $subject, $message_text, $userId);
+
+            // Set the data including customer_id
+            $contact->setData($name, $email, $subject, $message_text, $customerId);
 
             if (!$contact->validate()) {
                 $this->message = 'Please fill all fields correctly';

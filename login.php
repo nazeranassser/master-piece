@@ -7,7 +7,7 @@
 
 <?php flash('login') ?>
 
-<form style="display: flex !important; flex-direction: column !important; " method="post" action="login/add">
+<form style="display: flex !important; flex-direction: column !important; " method="post" action="login-add">
     
     <input type="hidden" name="type" value="login">
     

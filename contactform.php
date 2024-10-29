@@ -1,14 +1,15 @@
-<?php
 
+<?php
+session_start();
 include_once('views/partials/header.php');
 require_once 'libraries/Database.php';
 require_once 'models/Contact.php';
 require 'controllers/ContactsController.php';
 
-// Start session if not already started
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+// // Start session if not already started
+// if (session_status() === PHP_SESSION_NONE) {
+//     session_start();
+// }
 
 $contactController = new ContactsController();
 $contactController->handleRequest();
@@ -86,7 +87,7 @@ $messageType = $contactController->getMessageType();
                             </div>
                             <div class="col-md-6">
                                 <input type="email" class="form-control" name="email" placeholder="Your Email" required
-                                    value="<?php echo isset($_SESSION['usersEmail']) ? htmlspecialchars($_SESSION['usersEmail']) : (isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''); ?>">
+                                    value="<?php echo isset($_SESSION['customerEmail']) ? htmlspecialchars($_SESSION['customerEmail']) : (isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''); ?>">
                             </div>
                             <div class="col-md-12">
                                 <input type="text" class="form-control" name="subject" placeholder="Subject" required

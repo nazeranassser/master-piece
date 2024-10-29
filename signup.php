@@ -128,7 +128,7 @@
 
 <?php flash('register') ?>
 
-<form method="post" action="registerCustomer">
+<form method="post" action="signup-action">
     <input type="hidden" name="type" value="register">
     
     <input type="text" name="customerName" placeholder="Full name..." required> <!-- Added name attribute -->
