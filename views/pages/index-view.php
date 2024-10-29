@@ -58,7 +58,7 @@ if (isset($_SESSION['customer_ID'])) {
 </head>
 
 <body class="config">
-    <div class="preloader is-active">
+        <div class="preloader is-active">
         <div class="preloader__wrap">
 
             <img class="preloader__img" src="../images/preloader.png" alt="">
@@ -69,9 +69,9 @@ if (isset($_SESSION['customer_ID'])) {
     <div id="app">
 
         <!--====== Main Header ======-->
-           <?php 
-           include_once 'header.php';
-           ?>
+        <?php
+        include_once 'header.php';
+        ?>
         <!--====== End - Main Header ======-->
 
 
@@ -80,10 +80,20 @@ if (isset($_SESSION['customer_ID'])) {
 
             <!--====== start - hero section ======-->
             <div id="hero-section">
-                <img id="hero-img" src="public/images/products/herooooo.jpg" alt="Test Image" style="width:100%">
+                <img id="hero-img" src="public/images/products/herooooo.jpg" alt="Delicious Cakes" style="width: 100%;">
+
                 <div class="hero-content">
-                    <h1 id="hero-text">Delicious Cakes Made<br><span id="hero-text2"> with Love! </span></h1>
-                    <button class="cta-button">Order Now</button>
+                    <h1 id="hero-text">Welcome to Our Cake Shop!</h1>
+                    <p class="hero-welcome">Indulge in the sweetest treats, crafted with love and the finest ingredients
+                        just for you.</p>
+                    <div class="search-bar">
+                        <form id="search-form" onsubmit="handleSearch(event)">
+                            <input type="text" id="search-input" placeholder="Search for cakes..."
+                                aria-label="Search for cakes" required>
+                            <button type="submit" class="search-button">Search</button>
+                        </form>
+                    </div>
+                    <button class="cta-button">Order Your Favorite Cake</button>
                 </div>
             </div>
 
@@ -623,14 +633,9 @@ if (isset($_SESSION['customer_ID'])) {
                                             alt="<?= htmlspecialchars($product['product_name']) ?>" class="card-img-top">
                                     </a>
                                     <div class="card-body text-center"> <!-- Centered text in the card body -->
-                                        <div class="special-countdown mb-3">
-                                            <div class="countdown countdown--style-special"
-                                                data-end-time="<?= strtotime('+2 days') * 1000 ?>">
-                                            </div>
-                                        </div>
                                         <span
                                             class="badge bg-secondary mb-2"><?= htmlspecialchars($product['category_name']) ?></span>
-                                        <h5 class="card-title"><?= htmlspecialchars($product['product_name']) ?></h5>
+                                        <h2 class="card-title"><?= htmlspecialchars($product['product_name']) ?></h2>
                                         <div class="product-rating">
                                             <?php
                                             $rating = $product['total_review'];
@@ -665,6 +670,11 @@ if (isset($_SESSION['customer_ID'])) {
                                 </div>
                             </div>
                         <?php endforeach; ?>
+                        <div class="special-countdown mb-3"><span> The Deal Ends On </span>
+                            <div class="countdown countdown--style-special"
+                                data-end-time="<?= strtotime('+1 days') * 1000 ?>">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -732,8 +742,8 @@ if (isset($_SESSION['customer_ID'])) {
 
 
         <!--====== Main Footer ======-->
-        <?php 
-            include_once 'footer.php';
+        <?php
+        include_once 'footer.php';
         ?>
         <!--====== End - Main Footer ======-->
     </div>
@@ -811,6 +821,45 @@ if (isset($_SESSION['customer_ID'])) {
         });
     </script>
     <script>
+        // Set the end time for the countdown in milliseconds
+        let endTime = localStorage.getItem('countdownEndTime');
+
+        // If no end time is stored, set it to 24 hours from now and save it
+        if (!endTime) {
+            endTime = new Date().getTime() + 24 * 60 * 60 * 1000;
+            localStorage.setItem('countdownEndTime', endTime);
+        }
+
+        const countdownElement = document.querySelector('.countdown--style-special');
+
+        // Function to update countdown display
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = endTime - now;
+
+            if (distance < 0) {
+                countdownElement.innerHTML = "Deal Expired";
+                localStorage.removeItem('countdownEndTime'); // Clear storage after expiration
+                return;
+            }
+
+            // Calculate hours, minutes, and seconds
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            countdownElement.innerHTML = `
+        <span>${hours}h</span> : 
+        <span>${minutes}m</span> : 
+        <span>${seconds}s</span>
+    `;
+        }
+
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+
+    </script>
+    <scrip>
         $(document).ready(function () {
             $("#testimonial-slider").owlCarousel({
                 $('#testimonial-slider').owlCarousel({
@@ -825,6 +874,32 @@ if (isset($_SESSION['customer_ID'])) {
             });
         });
     </script>
+<script>
+// Sample product data (you may fetch this from your server instead)
+const products = [
+    { name: "Chocolate Cake", id: 1 },
+    { name: "Vanilla Cake", id: 2 },
+    { name: "Red Velvet Cake", id: 3 },
+    { name: "Carrot Cake", id: 4 },
+    // Add more products as needed
+];
+
+// Function to handle search
+function handleSearch(event) {
+    event.preventDefault(); // Prevent the form from submitting
+    const query = document.getElementById('search-input').value.toLowerCase();
+    
+    // Find the first matching product
+    const product = products.find(product => product.name.toLowerCase().includes(query));
+
+    if (product) {
+        // Redirect to the product details page
+        window.location.href = `product-details.php?id=${product.id}`;
+    } else {
+        alert("No products found. Please try a different search.");
+    }
+}
+</script>
 
 </body>
 
