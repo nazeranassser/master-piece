@@ -1,5 +1,5 @@
 <?php
-include_once 'header.php';
+include_once('views/partials/header.php');
 require_once 'libraries/Database.php';
 require_once 'models/Contact.php';
 require 'controllers/ContactsController.php';
@@ -104,6 +104,7 @@ $messageType = $contactController->getMessageType();
         </div>
     </section>
 
-    <?php include_once 'footer.php'; ?>
+    <?php     include_once('views/partials/footer.php');?>
+
 </body>
 </html>
