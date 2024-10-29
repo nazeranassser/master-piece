@@ -14,7 +14,7 @@ $router->add('dash', ['controller' => 'Admins', 'action' => 'index']);// dashboa
 $router->add('admins', ['controller' => 'Admins', 'action' => 'get']);// dash-admins.php
 $router->add('add-admin', ['controller' => 'Admins', 'action' => 'add']);// dash-admin-add.php
 $router->add('edit-admin', ['controller' => 'Admins', 'action' => 'edit']);// dash-admin-edit.php
-$router->add('register', ['controller' => 'Admins', 'action' => 'register']);//admins-controllers->register()
+$router->add('register', ['controller' => 'Admins', 'action' => 'registerCustomer']);//admins-controllers->register()
 $router->add('update_admin', ['controller' => 'Admins', 'action' => 'update']);//admins-controllers->update_admin()
 $router->add('customer/get', ['controller' => 'customer', 'action' => 'get']);
 $router->add('cart/{id:\d+}', ['controller' => 'Carts', 'action' => 'addToCart']);

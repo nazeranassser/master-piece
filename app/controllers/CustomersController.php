@@ -11,7 +11,7 @@ class CustomersController {
     }
 
     public function loginPage(){
-        require 'login.php';
+        require 'login.php'; // Adjust the path accordingly
     }
 
     public function signupPage(){
@@ -66,63 +66,62 @@ class CustomersController {
 
         // Init data
         $data = [
-            'usersName' => trim($_POST['usersName']),
-            'usersEmail' => trim($_POST['usersEmail']),
-            'usersUid' => trim($_POST['usersUid']),
-            'usersPwd' => trim($_POST['usersPwd']),
+            'customer_email' => trim($_POST['customerEmail']),
+            'customer_name' => trim($_POST['customerName']),
+            'customer_password' => trim($_POST['customerPassword']),
             'pwdRepeat' => trim($_POST['pwdRepeat']),
-            'usersFirstAddress' => trim($_POST['usersFirstAddress']),
-            'usersSecondAddress' => trim($_POST['usersSecondAddress']),
-            'usersPhoneNumber' => trim($_POST['usersPhoneNumber'])
+            'customer_address' => trim($_POST['customerAddress']),
+            'customer_address2' => trim($_POST['customerAddress2']),
+            'customer_phone' => trim($_POST['customerPhone'])
         ];
 
         // Validate inputs
-        if(empty($data['usersName']) || empty($data['usersEmail']) || empty($data['usersUid']) || 
-        empty($data['usersPwd']) || empty($data['pwdRepeat'])){
+        if(empty($data['customer_email']) || empty($data['customer_name']) || 
+        empty($data['customer_password']) || empty($data['pwdRepeat'])){
             flash("register", "Please fill out all inputs");
             redirect("../signup.php");
         }
 
-        if(!preg_match("/^[a-zA-Z0-9]*$/", $data['usersUid'])){
+        if(!preg_match("/^[a-zA-Z0-9]*$/", $data['customer_name'])){
             flash("register", "Invalid username");
             redirect("../signup.php");
         }
 
-        if(!filter_var($data['usersEmail'], FILTER_VALIDATE_EMAIL)){
+        if(!filter_var($data['customer_email'], FILTER_VALIDATE_EMAIL)){
             flash("register", "Invalid email");
             redirect("../signup.php");
         }
 
         // Validate password
-          if(strlen($data['usersPwd']) < 8 || 
-          !preg_match("/[A-Z]/", $data['usersPwd']) || 
-          !preg_match("/[a-z]/", $data['usersPwd']) || 
-          !preg_match("/[0-9]/", $data['usersPwd']) || 
-          !preg_match("/[\W_]/", $data['usersPwd'])) {
+          if(strlen($data['customer_password']) < 8 || 
+          !preg_match("/[A-Z]/", $data['customer_password']) || 
+          !preg_match("/[a-z]/", $data['customer_password']) || 
+          !preg_match("/[0-9]/", $data['customer_password']) || 
+          !preg_match("/[\W_]/", $data['customer_password'])) {
           flash("register", "Password must be at least 8 characters long, include at least one uppercase letter, one lowercase letter, one number, and one special character");
           redirect("../signup.php");
-           } else if($data['usersPwd'] !== $data['pwdRepeat']){
+           } else if($data['customer_password'] !== $data['pwdRepeat']){
           flash("register", "Passwords don't match");
            redirect("../signup.php");
            }
 
 
           // Validate phone number
-        if (!preg_match("/^07\d{8}$/", $data['usersPhoneNumber']) || !ctype_digit($data['usersPhoneNumber'])) {
+        if (!preg_match("/^07\d{8}$/", $data['customer_phone']) || !ctype_digit($data['customer_phone'])) {
            flash("register", "Phone number must be exactly 10 digits and start with 07");
            redirect("../signup.php");
         }
 
 
         // User with the same email or username already exists
-        if($this->customerModel->findUserByEmailOrUsername($data['usersEmail'])){
+        if($this->customerModel->findUserByEmailOrUsername($data['customer_email'])){
             flash("register", "Username or email already taken");
             redirect("../signup.php");
         }
 
         // Passed all validation checks.
         // Now going to hash password
-        $data['usersPwd'] = password_hash($data['usersPwd'], PASSWORD_DEFAULT);
+        $data['customer_password'] = password_hash($data['customer_password'], PASSWORD_DEFAULT);
 
         // Register User
         if($this->customerModel->register($data)){
@@ -138,20 +137,20 @@ class CustomersController {
 
         // Init data
         $data = [
-            'name/email' => trim($_POST['name/email']),
-            'usersPwd' => trim($_POST['usersPwd'])
+            'customer_name' => trim($_POST['name']),
+            'customer_password' => trim($_POST['customer_password'])
         ];
 
-        if(empty($data['name/email']) || empty($data['usersPwd'])){
+        if(empty($data['customer_name']) || empty($data['customer_password'])){
             flash("login", "Please fill out all inputs");
             header("location: /login");
             exit();
         }
 
         // Check for user/email
-        if($this->customerModel->findUserByEmailOrUsername($data['name/email'])){
+        if($this->customerModel->findUserByEmailOrUsername($data['customer_Name'])){
             // User Found
-            $loggedInUser = $this->customerModel->login($data['name/email'], $data['usersPwd']);
+            $loggedInUser = $this->customerModel->login($data['customer_name'], $data['customer_password']);
             if($loggedInUser){
                 // Create session
                 $this->createUserSession($loggedInUser);
@@ -166,16 +165,16 @@ class CustomersController {
     }
 
     public function createUserSession($user){
-        $_SESSION['usersId'] = $user['customer_ID'];
+        $_SESSION['usersId'] = $user['customer_id'];
         $_SESSION['usersName'] = $user['customer_name'];
-        $_SESSION['usersEmail'] = $user['customer_email'];
+        $_SESSION['customerEmail'] = $user['customer_email'];
         header("Location: / ");
     }
 
     public function logout(){
         unset($_SESSION['usersId']);
         unset($_SESSION['usersName']);
-        unset($_SESSION['usersEmail']);
+        unset($_SESSION['customerEmail']);
         session_destroy();
         header("Location: /");
     }

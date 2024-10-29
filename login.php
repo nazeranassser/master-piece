@@ -2,21 +2,24 @@
     include_once 'header.php';
     include_once 'helpers/session_helper.php';
 ?>
-    <h1 class="header">Please Login</h1>
 
-    <?php flash('login') ?>
+<h1 class="header">Please Login</h1>
 
-    <form method="post" action="login/add">
+<?php flash('login') ?>
+
+<form method="post" action="login/add">
     <input type="hidden" name="type" value="login">
-        <input type="text" name="name/email"  
-        placeholder="Username/Email...">
-        <input type="password" name="usersPwd" 
-        placeholder="Password...">
-        <button type="submit" name="submit">Log In</button>
-    </form>
+    
+    <input type="text" name="customerNameOrEmail" placeholder="Username/Email..." required> <!-- Updated name for clarity -->
+    <input type="password" name="customerPassword" placeholder="Password..." required> <!-- Updated name for clarity -->
+    
+    <button type="submit" name="submit">Log In</button>
+</form>
 
-    <div class="form-sub-msg"><a href="./reset-password.php">Forgotten Password?</a></div>
-    <script src="public/js/forms.js"></script>
+<div class="form-sub-msg"><a href="./reset-password.php">Forgot Password?</a></div>
+
+<script src="public/js/forms.js"></script>
+
 <?php 
-    include_once 'footer.php'
+    include_once 'footer.php';
 ?>

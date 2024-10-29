@@ -1,7 +1,7 @@
 <?php
 require_once '../libraries/Database.php';
 
-class User {
+class Customer {
 
     private $db;
 
@@ -9,15 +9,15 @@ class User {
         $this->db = new Database;
     }
 
-    //Find user by email or username
-    public function findUserByEmailOrUsername($email, $username){
-        $this->db->query('SELECT * FROM users WHERE usersUid = :username OR usersEmail = :email');
+    // Find customer by email or username
+    public function findCustomerByEmailOrUsername($email, $username){
+        $this->db->query('SELECT * FROM customers WHERE customersUid = :username OR customersEmail = :email');
         $this->db->bind(':username', $username);
         $this->db->bind(':email', $email);
 
-        $row = $this->db->single();
+        $row = $this->db->fetchOne();
 
-        //Check row
+        // Check row
         if($this->db->rowCount() > 0){
             return $row;
         }else{
@@ -25,34 +25,31 @@ class User {
         }
     }
 
-    //Register User
+    // Register Customer
     public function register($data) {
-        $this->db->query('INSERT INTO users (usersName, usersEmail, usersUid, usersPwd, usersFirstAddress, usersSecondAddress, usersPhoneNumber) 
+        $this->db->query('INSERT INTO customers (customersName, customersEmail, customersUid, customersPwd, customersFirstAddress, customersSecondAddress, customersPhoneNumber) 
         VALUES (:name, :email, :Uid, :password, :firstAddress, :secondAddress, :phoneNumber)');
-        //Bind values
-        $this->db->bind(':name', $data['usersName']);
-        $this->db->bind(':email', $data['usersEmail']);
-        $this->db->bind(':Uid', $data['usersUid']);
-        $this->db->bind(':password', $data['usersPwd']);
-        $this->db->bind(':firstAddress', $data['usersFirstAddress']);
-        $this->db->bind(':secondAddress', $data['usersSecondAddress']);
-        $this->db->bind(':phoneNumber', $data['usersPhoneNumber']);
+        
+        // Bind values
+        $this->db->bind(':name', $data['customersName']);
+        $this->db->bind(':email', $data['customersEmail']);
+        $this->db->bind(':Uid', $data['customersUid']);
+        $this->db->bind(':password', $data['customersPwd']);
+        $this->db->bind(':firstAddress', $data['customersFirstAddress']);
+        $this->db->bind(':secondAddress', $data['customersSecondAddress']);
+        $this->db->bind(':phoneNumber', $data['customersPhoneNumber']);
 
-        //Execute
-        if($this->db->execute()){
-            return true;
-        }else{
-            return false;
-        }
+        // Execute
+        return $this->db->execute();
     }
 
-    //Login user
+    // Login customer
     public function login($nameOrEmail, $password){
-        $row = $this->findUserByEmailOrUsername($nameOrEmail, $nameOrEmail);
+        $row = $this->findCustomerByEmailOrUsername($nameOrEmail, $nameOrEmail);
 
         if($row == false) return false;
 
-        $hashedPassword = $row->usersPwd;
+        $hashedPassword = $row->customersPwd;
         if(password_verify($password, $hashedPassword)){
             return $row;
         }else{
@@ -60,17 +57,13 @@ class User {
         }
     }
 
-    //Reset Password
+    // Reset Password
     public function resetPassword($newPwdHash, $tokenEmail){
-        $this->db->query('UPDATE users SET usersPwd=:pwd WHERE usersEmail=:email');
+        $this->db->query('UPDATE customers SET customersPwd = :pwd WHERE customersEmail = :email');
         $this->db->bind(':pwd', $newPwdHash);
         $this->db->bind(':email', $tokenEmail);
 
-        //Execute
-        if($this->db->execute()){
-            return true;
-        }else{
-            return false;
-        }
+        // Execute
+        return $this->db->execute();
     }
 }
