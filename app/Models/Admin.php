@@ -19,6 +19,10 @@ class Admin extends Model{
         return $this->get($id);
     }
 
+    public function findByEmail($email) {
+        return $this->findBy('admin_email',$email);
+    }
+
     public function getAll(){
         return $this->get();
     }
@@ -33,6 +37,14 @@ class Admin extends Model{
 
     public function createAdmin($data){
         return $this->create($data);
+    }
+
+    public function login($enterPass, $password){
+        if(password_verify($password, $enterPass)){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
 

@@ -129,7 +129,7 @@
         const selectedCategoryId = selectElement.value;
         if (selectedCategoryId) {
             // Redirect to the dynamic category route
-            window.location.href = `products/category/${selectedCategoryId}`;
+            window.location.href = `products/${selectedCategoryId}`;
         } else {
             // Redirect to show all categories if no specific category is selected
             window.location.href = "products";

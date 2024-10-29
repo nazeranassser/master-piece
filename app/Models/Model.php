@@ -85,9 +85,10 @@ class Model {
 
     // Optional: Search by a specific field
     public function findBy($column, $value) {
-        $this->db->query("SELECT * FROM $this->table WHERE $column = :value");
-        $this->db->bind(':value', $value);
-        return $this->db->resultSet();
+        $stmt = $this->db->prepare("SELECT * FROM $this->table WHERE $column = :value");
+        $stmt->bindParam(':value', $value);
+        $stmt->execute();
+        return $stmt->fetch();
     }
     
 }

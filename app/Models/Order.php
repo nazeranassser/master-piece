@@ -3,7 +3,7 @@ namespace App\Models;
 use App\Models\Model;
 use PDO; // Use the global PDO class
 use PDOException;
-session_start();
+require_once 'app/helpers/session_helper.php';
 class Order extends Model {
 
     public $order_id;
