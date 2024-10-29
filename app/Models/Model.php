@@ -56,7 +56,7 @@ class Model {
     public function update($id, $data) {
         // Prepare SQL with column placeholders for each field
         $table_id = rtrim($this->table,'s');
-        $table_id = $table_id."_ID";
+        $table_id = $table_id."_id";
         $setString = '';
         foreach ($data as $key => $value) {
             $setString .= "$key = :$key, ";
@@ -77,7 +77,7 @@ class Model {
 
     // DELETE: Delete a record by ID
     public function delete($id) {
-        $table_id = $this->table."_ID";
+        $table_id = $this->table."_id";
         $this->db->query("DELETE FROM $this->table WHERE $table_id = :id");
         $this->db->bind(':id', $id);
         return $this->db->execute();

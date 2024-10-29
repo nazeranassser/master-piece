@@ -1,14 +1,12 @@
 <?php 
-    include_once('views/partials/header.php');
+    // include_once 'views/partials/header_admin.php';
     include_once 'app/helpers/session_helper.php';
 ?>
 
-<h1 class="header">Please Login</h1>
 
 <?php flash('login') ?>
 
-<form style="display: flex !important; flex-direction: column !important; " method="post" action="login/add">
-    
+<form method="post" action="admin-login">
     <input type="hidden" name="type" value="login">
     
     <input type="text" name="customerNameOrEmail" placeholder="Username/Email..." required> <!-- Updated name for clarity -->
@@ -22,5 +20,5 @@
 <script src="public/js/forms.js"></script>
 
 <?php 
-    include_once('views/partials/footer.php');
-    ?>
+    // include_once 'views/partials/footer.php';
+?>

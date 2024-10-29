@@ -22,12 +22,16 @@ $router->add('update_product', ['controller' => 'Products', 'action' => 'edit'])
 $router->add('products', ['controller' => 'Products', 'action' => 'index']);//admins-controllers->update_admin()
 $router->add('product/update', ['controller' => 'Products', 'action' => 'update']);//ProductsControllers->update()
 $router->add('product/add', ['controller' => 'Products', 'action' => 'add']);//admins-controllers->update_admin()
-$router->add('login/add', ['controller' => 'Customers', 'action' => 'login']);
+$router->add('login-add', ['controller' => 'Customers', 'action' => 'login']);
 $router->add('login', ['controller' => 'Customers', 'action' => 'loginPage']);
 $router->add('signup', ['controller' => 'Customers', 'action' => 'signupPage']);
 $router->add('sign-out', ['controller' => 'Customers', 'action' => 'logout']);
 $router->add('profile-main', ['controller' => 'Customers', 'action' => 'getById']);
 $router->add('profile-order', ['controller' => 'Customers', 'action' => 'getById1']);
+$router->add('signup-action', ['controller' => 'Customers', 'action' => 'register']);
+$router->add('create-product', ['controller' => 'Products', 'action' => 'addProduct']);//admins-controllers->update_admin()
+$router->add('product-category-filter', ['controller' => 'Products', 'action' => 'index']);
+$router->add('admin-login', ['controller' => 'Admins', 'action' => 'index']);
 
 
 

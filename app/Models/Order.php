@@ -22,7 +22,7 @@ class Order extends Model {
     
 
     function showOrders(){
-        $sql =" SELECT orders.order_ID,orders.order_status,orders.order_total_amount_after,orders.delivery_address,orders.created_at , customers.customer_phone FROM `orders` CROSS JOIN customers WHERE customers.customer_ID = orders.customer_ID;";
+        $sql =" SELECT orders.order_id,orders.order_status,orders.order_total_amount_after,orders.delivery_address,orders.created_at , customers.customer_phone FROM `orders` CROSS JOIN customers WHERE customers.customer_id = orders.customer_id;";
         $start = $this->db->query($sql);
         if ($start) {
             $row = $start->fetchAll(PDO::FETCH_ASSOC); 
@@ -60,7 +60,7 @@ class Order extends Model {
     }
   
     function showOrderItems($id){
-      $sql ="SELECT products.product_name, products.product_price, products.product_image, order_products.quantity, customers.customer_name, customers.customer_phone, customers.customer_address1, orders.order_total_amount, orders.order_total_amount_after,orders.created_at,orders.order_status, coupons.coupon_amount FROM products JOIN order_products ON products.product_ID = order_products.product_ID JOIN orders ON orders.order_ID = order_products.order_ID JOIN customers ON customers.customer_ID = orders.customer_ID JOIN coupons ON coupons.coupon_ID=orders.coupon_ID WHERE order_products.order_ID = $id;";
+      $sql ="SELECT products.product_name, products.product_price, products.product_image, order_products.quantity, customers.customer_name, customers.customer_phone, customers.customer_address1, orders.order_total_amount, orders.order_total_amount_after,orders.created_at,orders.order_status, coupons.coupon_amount FROM products JOIN order_products ON products.product_id = order_products.product_id JOIN orders ON orders.order_id = order_products.order_id JOIN customers ON customers.customer_id = orders.customer_id JOIN coupons ON coupons.coupon_id=orders.coupon_id WHERE order_products.order_id = $id;";
       $start = $this->db->query($sql);
       if ($start) {
           $row = $start->fetchAll(PDO::FETCH_ASSOC); 

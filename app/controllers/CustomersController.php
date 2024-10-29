@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 use App\Models\Customer;
-// require 'helpers/session_helper.php';
+require 'app/helpers/session_helper.php';
 
 
 class CustomersController {
@@ -48,7 +48,7 @@ class CustomersController {
             // Call the model to add the admin
             if ($this->customerModel->addNew($data)) {
                 // Redirect or show a success message
-                $this->get();
+                header('location: /');
             } else {
                 echo "Failed to add admin.";
             }
@@ -126,7 +126,7 @@ class CustomersController {
 
         // Register User
         if($this->customerModel->register($data)){
-            redirect("../login.php");
+            header("location: /");
         } else {
             die("Something went wrong");
         }
@@ -138,20 +138,20 @@ class CustomersController {
 
         // Init data
         $data = [
-            'customer_name' => trim($_POST['name']),
-            'customer_password' => trim($_POST['customer_password'])
+            'customer_email' => trim($_POST['customerNameOrEmail']),
+            'customer_password' => trim($_POST['customerPassword'])
         ];
 
-        if(empty($data['customer_name']) || empty($data['customer_password'])){
+        if(empty($data['customer_email']) || empty($data['customer_password'])){
             flash("login", "Please fill out all inputs");
             header("location: /login");
             exit();
         }
 
         // Check for user/email
-        if($this->customerModel->findUserByEmailOrUsername($data['customer_Name'])){
+        if($this->customerModel->findUserByEmailOrUsername($data['customer_email'])){
             // User Found
-            $loggedInUser = $this->customerModel->login($data['customer_name'], $data['customer_password']);
+            $loggedInUser = $this->customerModel->login($data['customer_email'], $data['customer_password']);
             if($loggedInUser){
                 // Create session
                 $this->createUserSession($loggedInUser);
