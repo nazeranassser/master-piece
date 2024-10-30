@@ -21,5 +21,9 @@ class Coupons extends Model{
     public function updateCoupons($id,$data){
         return $this->update($id,$data);
     }
+
+    public function createCoupon($data){
+        return $this->create($data);
+    }
 }
 

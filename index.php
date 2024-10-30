@@ -45,6 +45,7 @@ $router->add('profile-update', ['controller' => 'Customers', 'action' => 'update
 $router->add('edit-admin/{id:\d+}', ['controller' => 'Admins', 'action' => 'getById']);
 $router->add('coupons', ['controller' => 'Coupons', 'action' => 'get']);
 $router->add('coupons-add', ['controller' => 'Coupons', 'action' => 'addPage']);
+$router->add('new_coupon', ['controller' => 'Coupons', 'action' => 'add']);
 
 
 

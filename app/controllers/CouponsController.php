@@ -29,4 +29,20 @@ class CouponsController{
             }
     }
 
+    function add($admin){
+
+        $data = [
+            'coupon_name' => $_POST['coupon_name'],
+            'coupon_amount' => $_POST['coupon_amount_new'],
+            'coupon_expire' => $_POST['coupon_expire_new'],
+            'created_at' => date("Y/m/d h:m:s"),
+        ];
+        if ($this->couponsModel->create($data)) {
+            // Redirect or show a success message
+            header("location:/coupons");
+        } else {
+            echo "Failed to add admin.";
+        }
+      }
+
 }
