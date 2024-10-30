@@ -154,7 +154,7 @@ if (isset($_SESSION['customer_ID'])) {
                                                 </a>
                                                 <button class="btn btn-outline-secondary btn-sm ms-2" data-tooltip="tooltip"
         data-placement="top" title="Add to Favorites" onclick="toggleFavorite(this)">
-    <i class="fas fa-heart" style="color: gray;"></i>
+    <i class="fas fa-heart" ></i>
 </button>
 
                                             </div>
