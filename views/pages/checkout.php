@@ -1,50 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="images/favicon.png" rel="shortcut icon">
-    <title>Checkout - Ludus</title>
 
-    <!--====== Google Font ======-->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
 
-    <!--====== Vendor Css ======-->
-    <link rel="stylesheet" href="css/vendor.css">
-
-    <!--====== Utility-Spacing ======-->
-    <link rel="stylesheet" href="css/utility.css">
-
-    <!--====== App Css ======-->
-    <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-
-<body class="config">
-    <!--====== Preloader ======-->
-    <div class="preloader is-active">
-        <div class="preloader__wrap">
-            <img class="preloader__img" src="images/preloader.png" alt="">
-        </div>
-    </div>
-
-    <!--====== Main App ======-->
-    <div id="app">
+   
 
         <!--====== Main Header ======-->
-        <?php include 'views/partials/navbar.php'; ?>
+        <?php include 'views/partials/header.php'; ?>
         <!--====== End - Main Header ======-->
-
+ 
         <!--====== Checkout Content ======-->
         <div class="container">
             <!-- Breadcrumb -->
             <div class="breadcrumb">
                 <ul>
-                    <li><a href="index.php">Home</a></li>
+                    <li><a href="index-view.php">Home</a></li>
                     <li>Checkout</li>
                 </ul>
             </div>
