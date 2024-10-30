@@ -44,21 +44,18 @@
                                     <div class="dash__box dash__box--bg-white dash__box--shadow u-s-m-b-30">
                                         <div class="dash__pad-1">
 
-                                            <span class="dash__text u-s-m-b-16"><?php echo "Hello"." ".$customer['customer_name']; ?></span>
+                                            <span class="dash__text u-s-m-b-16"><?php echo "Hello"." ".$_SESSION['usersName']; ?></span>
                                             <ul class="dash__f-list">
                                                 <li>
 
                                                     <a href="profile-main.php">Manage My Account</a></li>
                                                 <li>
 
-                                                    <a class="dash-active" href="dash-my-profile.php">My Profile</a></li>
+                                                    <a class="dash-active" href="profile-main">My Profile</a></li>
+                                              
                                                 <li>
 
-                                                    <a href="dash-address-book.html">Address Book</a></li>
-                                                
-                                                <li>
-
-                                                    <a href="dash-my-order.php">My Orders</a></li>
+                                                    <a href="profile-order">My Orders</a></li>
                                              
 
                                             </ul>
@@ -164,7 +161,7 @@
                                                         
                                                     <div class="u-s-m-b-16">
 
-                                                        <a class="dash__custom-link btn--e-transparent-brand-b-2" href="dash-edit-profile.php">Edit Profile</a></div>
+                                                        <a class="dash__custom-link btn--e-transparent-brand-b-2" href="profile-edit">Edit Profile</a></div>
                                                     <div>
 
                                                         <a class="dash__custom-link btn--e-brand-b-2" href="#">Change Password</a></div>

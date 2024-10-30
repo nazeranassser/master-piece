@@ -1,6 +1,6 @@
 <?php 
-    include_once('views/partials/header.php');
-    include_once 'app/helpers/session_helper.php';
+    require_once ('views/partials/header.php');
+    require_once 'app/helpers/session_helper.php';
 ?>
 
 <h1 class="header">Get Ready to Savor!</h1>

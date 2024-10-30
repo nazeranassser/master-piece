@@ -219,4 +219,75 @@ class Product extends Model
     return $products;
   }
 
+  public function getProductById($productID) {
+    $query = "SELECT p.*, c.category_name, AVG(r.review_rating) AS avg_rating, COUNT(r.review_id) AS review_count
+              FROM products p
+              LEFT JOIN categories c ON p.category_id = c.category_id
+              LEFT JOIN reviews r ON p.product_id = r.product_id
+              WHERE p.product_id = :productID
+              GROUP BY p.product_id";
+    
+    $stmt = $this->conn->prepare($query);
+    $stmt->execute([':productID' => $productID]);
+    
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+public function getCategories() {
+  try {
+      $query = "SELECT c.category_name, COUNT(p.product_id) AS product_count 
+                FROM categories c
+                LEFT JOIN products p ON c.category_id = p.category_id
+                GROUP BY c.category_name";
+
+      $stmt = $this->conn->prepare($query);
+      $stmt->execute();
+
+      return $stmt;
+  } catch (PDOException $e) {
+      echo "Error: " . $e->getMessage();
+      return null;
+  }
+}
+public function getProducts($search = '', $category = '', $sort = '') {
+  $query = "SELECT p.*, c.category_name, AVG(r.review_rating) AS avg_rating, COUNT(r.review_id) AS review_count
+            FROM products p
+            LEFT JOIN categories c ON p.category_id = c.category_id
+            LEFT JOIN reviews r ON p.product_id = r.product_id
+            WHERE 1=1";
+
+  $params = [];
+
+  // Add search filter
+  if (!empty($search)) {
+      $query .= " AND p.product_name LIKE :search";
+      $params[':search'] = "%$search%";
+  }
+
+  // Add category filter
+  if (!empty($category)) {
+      $query .= " AND c.category_name = :category";
+      $params[':category'] = $category;
+  }
+
+  // Sorting
+  switch ($sort) {
+      case 'price_asc':
+          $query .= " ORDER BY p.product_price ASC";
+          break;
+      case 'price_desc':
+          $query .= " ORDER BY p.product_price DESC";
+          break;
+      case 'rating':
+          $query .= " ORDER BY avg_rating DESC";
+          break;
+      default:
+          $query .= " ORDER BY p.created_at DESC";
+  }
+
+  $stmt = $this->conn->prepare($query);
+  $stmt->execute($params);
+
+  return $stmt;
+}
+
 }

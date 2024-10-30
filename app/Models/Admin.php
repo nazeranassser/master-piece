@@ -13,10 +13,15 @@ class Admin extends Model{
 
     public function __construct() {
         parent::__construct('admins');
+        
     }
 
     public function findById($id) {
         return $this->get($id);
+    }
+
+    public function findByEmail($email) {
+        return $this->findBy('admin_email',$email);
     }
 
     public function getAll(){
@@ -33,6 +38,14 @@ class Admin extends Model{
 
     public function createAdmin($data){
         return $this->create($data);
+    }
+
+    public function login($enterPass, $password){
+        if(password_verify($password, $enterPass)){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
 

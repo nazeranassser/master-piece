@@ -79,8 +79,8 @@
                                                             
                                                             <label class="gl-label" for="address-country">Type *</label><select class="select-box select-box--primary-style" id="address-country">
                                                                 <option selected value="">Choose Type</option>
-                                                                <option value="admin">Admin</option>
-                                                                <option value="driver">Driver</option>
+                                                                <option value="1">Active</option>
+                                                                <option value="0">Deactivate</option>
                                                             </select>
                                                             <!--====== End - Select Box ======-->
                                                         </div>

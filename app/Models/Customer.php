@@ -4,9 +4,13 @@ use App\Models\Model;
 use PDO; // Use the global PDO class
 use PDOException;
 
-class Customer{
+class Customer extends Model{
+    public $uploadDir = 'images/products/';
+  public $allowedTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
 
-    private $db;
+  
+
+    protected $db;
     public $customer_id;
     public $customer_name;
     public $customer_email;
@@ -19,6 +23,7 @@ class Customer{
     
     public function __construct() {
         $this->db = Database::getInstance()->getConnection(); // Get the database connection
+        parent::__construct('customers');
     }
 
 
@@ -83,9 +88,9 @@ class Customer{
             return false;
         }
     }
-    public function getCustomer($id=2){ 
+    public function getCustomer($id){ 
         try{
-            $query = "SELECT * FROM customers WHERE customer_ID=:id";
+            $query = "SELECT * FROM customers WHERE customer_Id=:id";
             $stmt=$this->db->prepare($query);
             $stmt->bindParam(":id",$id);
             $stmt->execute();
@@ -99,6 +104,23 @@ class Customer{
                 error_log($e->getMessage());
                 return FALSE;
             }
+        }
+        public function updatecustomer($id,$data){
+            if (isset($_FILES['image']) && in_array($_FILES['image']['type'], $this->allowedTypes)) {
+                $fileName = uniqid() . '' . basename($_FILES['image']['name']);
+                $targetFile = $this->uploadDir . $fileName;
+        
+                if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
+                    $customer_image = 'images/products/' . $fileName;
+                } else {
+                    echo "Error uploading image.";
+                    return; // Stop execution if image upload fails
+                }
+            } else {
+                $customer_image = $admin['image'] ?? null;
+            }
+            return $this->update($id,$data);
+            
         }
   
 

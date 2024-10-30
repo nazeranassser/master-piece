@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 // include('config.php');
 // Include the database connection file
 
@@ -70,8 +70,8 @@ if (isset($_SESSION['customer_ID'])) {
 
         <!--====== Main Header ======-->
         <?php
-    include_once('views/partials/header.php');
-    ?>
+        include_once 'views/partials/header.php';
+        ?>
         <!--====== End - Main Header ======-->
 
 
@@ -119,7 +119,7 @@ if (isset($_SESSION['customer_ID'])) {
                             <?php foreach ($products as $product): ?>
                                 <div class="product-card">
                                     <div class="product-image-wrap">
-                                        <a href="product-detail.php?id=<?= $product['product_id']; ?>">
+                                        <a href="product/<?= $product['product_id']; ?>">
                                             <img src="public/images/categories/<?= $product['product_image']; ?>"
                                                 alt="<?= htmlspecialchars($product['product_name']); ?>">
                                         </a>
@@ -130,7 +130,7 @@ if (isset($_SESSION['customer_ID'])) {
                                         </span>
                                         <h3 class="product-name">
                                             <a
-                                                href="product-detail.php?id=<?= $product['product_id']; ?>"><?= htmlspecialchars($product['product_name']); ?></a>
+                                                href="product/<?= $product['product_id']; ?>"><?= htmlspecialchars($product['product_name']); ?></a>
                                         </h3>
                                         <div class="product-rating">
                                             <?php
@@ -147,7 +147,7 @@ if (isset($_SESSION['customer_ID'])) {
                                             <div class="product-price"><?= number_format($product['product_price'], 2); ?>JD
                                             </div>
                                             <div class="action-buttons d-flex">
-                                                <a href="cart.php?id=<?= $product['product_id'] ?>"
+                                                <a href="cart/<?= $product['product_id'] ?>"
                                                     class="btn btn-outline-secondary btn-sm" data-tooltip="tooltip"
                                                     data-placement="top" title="Add to Cart">
                                                     <i class="fas fa-shopping-cart"></i>
@@ -226,7 +226,7 @@ if (isset($_SESSION['customer_ID'])) {
                                                 <div class="product-o product-o--hover-on product-o--radius">
                                                     <div class="product-o__wrap">
                                                         <a class="aspect aspect--bg-grey aspect--square u-d-block"
-                                                            href="product-detail.php?id=<?= $product['product_id'] ?>">
+                                                            href="product/<?= $product['product_id'] ?>">
                                                             <img class="aspect__img"
                                                                 src="public/images/products/<?= $product['product_image'] ?>"
                                                                 alt="<?= htmlspecialchars($product['product_name']) ?>">
@@ -241,7 +241,7 @@ if (isset($_SESSION['customer_ID'])) {
                                                     <!-- Product Name -->
                                                     <span class="product-o__name">
                                                         <a
-                                                            href="product-detail.php?id=<?= $product['product_id'] ?>"><?= htmlspecialchars($product['product_name']) ?></a>
+                                                            href="product/<?= $product['product_id'] ?>"><?= htmlspecialchars($product['product_name']) ?></a>
                                                     </span>
 
                                                     <!-- Rating -->
@@ -290,7 +290,7 @@ if (isset($_SESSION['customer_ID'])) {
                                                 <div class="product-o product-o--hover-on product-o--radius">
                                                     <div class="product-o__wrap">
                                                         <a class="aspect aspect--bg-grey aspect--square u-d-block"
-                                                            href="product-detail.php?id=<?= $product['product_id'] ?>">
+                                                            href="product/<?= $product['product_id'] ?>">
                                                             <img class="aspect__img"
                                                                 src="public/images/products/<?= $product['product_image'] ?>"
                                                                 alt="<?= htmlspecialchars($product['product_name']) ?>">
@@ -305,7 +305,7 @@ if (isset($_SESSION['customer_ID'])) {
                                                     <!-- Product Name -->
                                                     <span class="product-o__name">
                                                         <a
-                                                            href="product-detail.php?id=<?= $product['product_id'] ?>"><?= htmlspecialchars($product['product_name']) ?></a>
+                                                            href="product/<?= $product['product_id'] ?>"><?= htmlspecialchars($product['product_name']) ?></a>
                                                     </span>
 
                                                     <!-- Rating -->
@@ -355,7 +355,7 @@ if (isset($_SESSION['customer_ID'])) {
                                                 <div class="product-o product-o--hover-on product-o--radius">
                                                     <div class="product-o__wrap">
                                                         <a class="aspect aspect--bg-grey aspect--square u-d-block"
-                                                            href="product-detail.php?id=<?= $product['product_id'] ?>">
+                                                            href="product/<?= $product['product_id'] ?>">
                                                             <img class="aspect__img"
                                                                 src="public/images/products/<?= $product['product_image'] ?>"
                                                                 alt="<?= htmlspecialchars($product['product_name']) ?>">
@@ -370,7 +370,7 @@ if (isset($_SESSION['customer_ID'])) {
                                                     <!-- Product Name -->
                                                     <span class="product-o__name">
                                                         <a
-                                                            href="product-detail.php?id=<?= $product['product_id'] ?>"><?= htmlspecialchars($product['product_name']) ?></a>
+                                                            href="product/<?= $product['product_id'] ?>"><?= htmlspecialchars($product['product_name']) ?></a>
                                                     </span>
 
                                                     <!-- Rating -->
@@ -419,7 +419,7 @@ if (isset($_SESSION['customer_ID'])) {
                                                 <div class="product-o product-o--hover-on product-o--radius">
                                                     <div class="product-o__wrap">
                                                         <a class="aspect aspect--bg-grey aspect--square u-d-block"
-                                                            href="product-detail.php?id=<?= $product['product_id'] ?>">
+                                                            href="product/<?= $product['product_id'] ?>">
                                                             <img class="aspect__img"
                                                                 src="public/images/products/<?= $product['product_image'] ?>"
                                                                 alt="<?= htmlspecialchars($product['product_name']) ?>">
@@ -434,7 +434,7 @@ if (isset($_SESSION['customer_ID'])) {
                                                     <!-- Product Name -->
                                                     <span class="product-o__name">
                                                         <a
-                                                            href="product-detail.php?id=<?= $product['product_id'] ?>"><?= htmlspecialchars($product['product_name']) ?></a>
+                                                            href="product/<?= $product['product_id'] ?>"><?= htmlspecialchars($product['product_name']) ?></a>
                                                     </span>
 
                                                     <!-- Rating -->
@@ -483,7 +483,7 @@ if (isset($_SESSION['customer_ID'])) {
                                                 <div class="product-o product-o--hover-on product-o--radius">
                                                     <div class="product-o__wrap">
                                                         <a class="aspect aspect--bg-grey aspect--square u-d-block"
-                                                            href="product-detail.php?id=<?= $product['product_id'] ?>">
+                                                            href="product/<?= $product['product_id'] ?>">
                                                             <img class="aspect__img"
                                                                 src="public/images/products/<?= $product['product_image'] ?>"
                                                                 alt="<?= htmlspecialchars($product['product_name']) ?>">
@@ -498,7 +498,7 @@ if (isset($_SESSION['customer_ID'])) {
                                                     <!-- Product Name -->
                                                     <span class="product-o__name">
                                                         <a
-                                                            href="product-detail.php?id=<?= $product['product_id'] ?>"><?= htmlspecialchars($product['product_name']) ?></a>
+                                                            href="product/<?= $product['product_id'] ?>"><?= htmlspecialchars($product['product_name']) ?></a>
                                                     </span>
 
                                                     <!-- Rating -->
@@ -547,7 +547,7 @@ if (isset($_SESSION['customer_ID'])) {
                                                 <div class="product-o product-o--hover-on product-o--radius">
                                                     <div class="product-o__wrap">
                                                         <a class="aspect aspect--bg-grey aspect--square u-d-block"
-                                                            href="product-detail.php?id=<?= $product['product_id'] ?>">
+                                                            href="product/<?= $product['product_id'] ?>">
                                                             <img class="aspect__img"
                                                                 src="public/images/products/<?= $product['product_image'] ?>"
                                                                 alt="<?= htmlspecialchars($product['product_name']) ?>">
@@ -562,7 +562,7 @@ if (isset($_SESSION['customer_ID'])) {
                                                     <!-- Product Name -->
                                                     <span class="product-o__name">
                                                         <a
-                                                            href="product-detail.php?id=<?= $product['product_id'] ?>"><?= htmlspecialchars($product['product_name']) ?></a>
+                                                            href="product/<?= $product['product_id'] ?>"><?= htmlspecialchars($product['product_name']) ?></a>
                                                     </span>
 
                                                     <!-- Rating -->
@@ -627,7 +627,7 @@ if (isset($_SESSION['customer_ID'])) {
                             <div class="col-lg-6 col-md-6 mb-4"> <!-- Added Bootstrap margin utility class -->
                                 <div class="card border-light rounded shadow-lg h-100">
                                     <!-- Using Bootstrap card classes -->
-                                    <a href="product-detail.php?id=<?= $product['product_id'] ?>"
+                                    <a href="product/<?= $product['product_id'] ?>"
                                         class="text-decoration-none">
                                         <img src="public/images/products/<?= $product['product_image'] ?>"
                                             alt="<?= htmlspecialchars($product['product_name']) ?>" class="card-img-top">
@@ -649,10 +649,10 @@ if (isset($_SESSION['customer_ID'])) {
                                         </div>
                                         <div class="product-o__price">
                                             <span
-                                                class="text-danger fw-bold"><?= number_format($product['product_price'], 2) ?>
+                                                class="text-danger fw-bold"><?= number_format($product['discounted_price'], 2) ?>
                                                 JD</span>
                                             <span
-                                                class="text-muted text-decoration-line-through"><?= number_format($product['discounted_price'], 2) ?>
+                                                class="text-muted text-decoration-line-through"><?= number_format($product['product_price'], 2) ?>
                                                 JD</span>
                                             <span class="action-buttons d-flex">
                                                 <a href="cart.php?id=<?= $product['product_id'] ?>"
@@ -743,8 +743,8 @@ if (isset($_SESSION['customer_ID'])) {
 
         <!--====== Main Footer ======-->
         <?php
-    include_once('views/partials/footer.php');
-    ?>
+        include_once 'views/partials/footer.php';
+        ?>
         <!--====== End - Main Footer ======-->
     </div>
     <!--====== End - Main App ======-->

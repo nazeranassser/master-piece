@@ -1,50 +1,6 @@
-<?php
-require '../../controllers/cart-controller.php';
-require '../../config.php';
-// Initialize CartController
-$cartController = new CartController();
-
-// Retrieve cart items and total
-$cartItems = $cartController->getCartItems();
-$cartTotal = $cartController->getCartTotal();
-?>
-
-<!DOCTYPE html>
-<html class="no-js" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="images/favicon.png" rel="shortcut icon">
-    <title>Ludus - Electronics, Apparel, Computers, Books, DVDs & more</title>
-
-    <!--====== Google Font ======-->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
-
-    <!--====== Vendor Css ======-->
-    <link rel="stylesheet" href="css/vendor.css">
-
-    <!--====== Utility-Spacing ======-->
-    <link rel="stylesheet" href="css/utility.css">
-
-    <!--====== App ======-->
-    <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body class="config">
-    <div class="preloader is-active">
-        <div class="preloader__wrap">
-            <img class="preloader__img" src="images/preloader.png" alt="">
-        </div>
-    </div>
-
-    <!--====== Main App ======-->
-    <div id="app">
 
         <!--====== Main Header ======-->
-        <?php include 'views/partials/navbar.php'; ?>
+        <?php include 'views/partials/header.php'; ?>
         <!--====== End - Main Header ======-->
 
         <!--====== Cart Content ======-->
@@ -57,7 +13,7 @@ $cartTotal = $cartController->getCartTotal();
                             <div class="breadcrumb__wrap">
                                 <ul class="breadcrumb__list">
                                     <li class="has-separator">
-                                        <a href="index.php">Home</a>
+                                        <a href="index-view.php">Home</a>
                                     </li>
                                     <li class="is-marked">
                                         <a href="cart.php">Cart</a>
@@ -104,7 +60,7 @@ $cartTotal = $cartController->getCartTotal();
                                                                 </div>
                                                                 <div class="table-p__info">
                                                                     <span class="table-p__name">
-                                                                        <a href="product-detail.php?id=<?php echo $item['product_id']; ?>"><?php echo htmlspecialchars($item['product_name']); ?></a>
+                                                                        <a href="product/<?php echo $item['product_id']; ?>"><?php echo htmlspecialchars($item['product_name']); ?></a>
                                                                     </span>
                                                                     <ul class="table-p__variant-list">
                                                                         <li><span>Size: <?php echo htmlspecialchars($item['size']); ?></span></li>
@@ -146,16 +102,13 @@ $cartTotal = $cartController->getCartTotal();
                             <div class="col-lg-12">
                                 <div class="route-box">
                                     <div class="route-box__g1">
-                                        <a class="route-box__link" href="shop-side-version-2.php">
+                                        <a class="route-box__link" href="/">
                                             <i class="fas fa-long-arrow-alt-left"></i><span>CONTINUE SHOPPING</span>
                                         </a>
                                     </div>
                                     <div class="route-box__g2">
-                                        <a class="route-box__link" href="CartController.php?action=clearCart">
+                                        <a class="route-box__link" href="clearCart">
                                             <i class="fas fa-trash"></i><span>CLEAR CART</span>
-                                        </a>
-                                        <a class="route-box__link" href="cart.php">
-                                            <i class="fas fa-sync"></i><span>UPDATE CART</span>
                                         </a>
                                     </div>
                                 </div>

@@ -6,9 +6,17 @@ use App\Models\Cart;
 class CartsController {
     private $cart = [];
 
+    
     public function __construct() {
         // Load cart from cookies or initialize it
         $this->cart = $this->getCartFromCookies();
+    }
+
+    public function index() {
+        $cartItems = $this->getCartItems();
+        $cartTotal = $this->getCartTotal();
+
+       require 'views/pages/cart.php';
     }
 
     // Get cart items from cookies
@@ -34,8 +42,6 @@ class CartsController {
                 break;
             }
         }
-        echo $productId;
-        die;
 
         // If the product doesn't exist, add it
         if (!$exists) {
@@ -49,7 +55,7 @@ class CartsController {
         $this->saveCartToCookies();
 
         // Redirect back to the index or any specified page
-        header("Location: index-view.php");
+        header("Location: /");
         exit;
     }
 
@@ -65,6 +71,7 @@ class CartsController {
     public function clearCart() {
         $this->cart = [];
         $this->saveCartToCookies();
+         require 'views/pages/cart.php';
     }
 
     // Get cart items
