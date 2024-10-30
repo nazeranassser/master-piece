@@ -102,16 +102,13 @@
                             <div class="col-lg-12">
                                 <div class="route-box">
                                     <div class="route-box__g1">
-                                        <a class="route-box__link" href="shop-side-version-2.php">
+                                        <a class="route-box__link" href="/">
                                             <i class="fas fa-long-arrow-alt-left"></i><span>CONTINUE SHOPPING</span>
                                         </a>
                                     </div>
                                     <div class="route-box__g2">
-                                        <a class="route-box__link" href="CartController.php?action=clearCart">
+                                        <a class="route-box__link" href="clearCart">
                                             <i class="fas fa-trash"></i><span>CLEAR CART</span>
-                                        </a>
-                                        <a class="route-box__link" href="cart.php">
-                                            <i class="fas fa-sync"></i><span>UPDATE CART</span>
                                         </a>
                                     </div>
                                 </div>

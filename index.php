@@ -39,6 +39,8 @@ $router->add('products/{id:\d+}', ['controller' => 'Products', 'action' => 'filt
 $router->add('admin-login', ['controller' => 'Admins', 'action' => 'loginPage']);
 $router->add('login-admin', ['controller' => 'Admins', 'action' => 'login']);
 $router->add('edit-admin/{id:\d+}', ['controller' => 'Admins', 'action' => 'editPage']);
+$router->add('clearCart', ['controller' => 'Carts', 'action' => 'clearCart']);
+
 
 
 
