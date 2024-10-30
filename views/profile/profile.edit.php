@@ -5,20 +5,7 @@
 
 <div id="app">
     <div class="app-content">
-        <div class="u-s-p-y-60">
-            <div class="section__content">
-                <div class="container">
-                    <div class="breadcrumb">
-                        <div class="breadcrumb__wrap">
-                            <ul class="breadcrumb__list">
-                                <li class="has-separator"><a href="index.php">Home</a></li>
-                                <li class="is-marked"><a href="dash-edit-profile.html">My Account</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
 
         <div class="u-s-p-b-60">
             <div class="section__content">
@@ -30,10 +17,10 @@
                                     <div class="dash__pad-1">
                                         <span class="dash__text u-s-m-b-16"><?php echo  'Hello ' . htmlspecialchars($_SESSION['usersName']) ; ?></span>
                                         <ul class="dash__f-list">
-                                            <li><a class="dash-active" href="dashboard.html">Manage My Account</a></li>
-                                            <li><a href="dash-my-profile.php">My Profile</a></li>
-                                            <li><a href="">Address Book</a></li>
-                                            <li><a href="dash-my-order.php">My Orders</a></li>
+                                            <li><a class="dash-active" href="profile-update">Manage My Account</a></li>
+                                            <li><a href="profile-main">My Profile</a></li>
+                                            
+                                            <li><a href="profile-order">My Orders</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -65,6 +52,8 @@
                                                             <input class="input-text input-text--primary-style" name="phone" type="tel" id="reg-phone" 
                                                                 value="<?php echo htmlspecialchars($customer['customer_phone']); ?>" required>
                                                         </div>
+                                                    </div>
+                                                    <div class="gl-inline">
                                                         <div class="u-s-m-b-30">
                                                             <label class="gl-label" for="reg-address1">Address 1</label>
                                                             <input class="input-text input-text--primary-style" name="address1" type="text" id="reg-address1" 
@@ -82,8 +71,9 @@
                                                                     <img src="<?php echo htmlspecialchars($customer['customer_image']); ?>" 
                                                                         alt="Current Profile" style="max-width: 150px;">
                                                                 </div>
+                                                                </div>
                                                             <?php endif; ?>
-                                                            <input type="file" name="customer_image" id="customer-image" accept="image/*" class="form-control">
+                                                            <input type="file" name="image" id="customer-image" accept="image/*" class="form-control">
                                                         </div>
                                                     </div>
                                                     <?php if(!empty($message)): ?>
