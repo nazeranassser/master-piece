@@ -106,12 +106,12 @@
                                                 <div class="col-lg-4 u-s-m-b-30">
                                                     <h2 class="dash__h2 u-s-m-b-8">First Name</h2>
 
-                                                    <span class="dash__text"><?php echo $_SESSION['usersName']; ?></span>
+                                                    <span class="dash__text"><?php echo $customer['customer_name']; ?></span>
                                                 </div>
                                                 <div class="col-lg-4 u-s-m-b-30">
                                                     <h2 class="dash__h2 u-s-m-b-8">E-mail</h2>
 
-                                                    <span class="dash__text"><?php echo $_SESSION['customerEmail']; ?></span>
+                                                    <span class="dash__text"><?php echo $customer['customer_email']; ?></span>
                                                     <div class="dash__link dash__link--secondary">
 
                                                         <a href="#"></a></div>
@@ -161,7 +161,7 @@
                                                         
                                                     <div class="u-s-m-b-16">
 
-                                                        <a class="dash__custom-link btn--e-transparent-brand-b-2" href="dash-edit-profile.php">Edit Profile</a></div>
+                                                        <a class="dash__custom-link btn--e-transparent-brand-b-2" href="profile-edit">Edit Profile</a></div>
                                                     <div>
 
                                                         <a class="dash__custom-link btn--e-brand-b-2" href="#">Change Password</a></div>
