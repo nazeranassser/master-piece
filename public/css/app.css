@@ -6420,3 +6420,36 @@ input::-ms-clear {
 
 
 
+  .order-card {
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.order-details-button {
+    text-align: right;
+    margin-top: 10px;
+}
+
+.order-details-button .dash__link--brand {
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.order-details-button .dash__link--brand {
+  background-color: rgb(248, 225, 212);
+  color: #333; /* تغيير لون النص ليكون متناسقًا مع لون الزر */
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.order-details-button .dash__link--brand:hover {
+  background-color: rgb(238, 210, 200); /* لون أغمق قليلًا عند التمرير */
+  color: #333;
+}

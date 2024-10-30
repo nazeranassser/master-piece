@@ -68,7 +68,7 @@
                                                             <label class="gl-label" for="customer-image">Profile Image</label>
                                                             <?php if(!empty($customer['customer_image'])): ?>
                                                                 <div class="current-image mb-2">
-                                                                    <img src="<?php echo htmlspecialchars($customer['customer_image']); ?>" 
+                                                                    <img src="<?php echo htmlspecialchars($customer['image']); ?>" 
                                                                         alt="Current Profile" style="max-width: 150px;">
                                                                 </div>
                                                                 </div>

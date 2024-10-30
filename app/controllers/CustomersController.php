@@ -5,6 +5,8 @@ use App\Models\Customer;
 
 
 class CustomersController {
+    public $uploadDir = 'images/products/';
+    public $allowedTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
     private $customerModel;
 
     public function __construct() {
@@ -194,6 +196,19 @@ class CustomersController {
               
           }
           public function editPage(){
+            if (isset($_FILES['image']) && in_array($_FILES['image']['type'], $this->allowedTypes)) {
+                $fileName = uniqid() . '' . basename($_FILES['image']['name']);
+                $targetFile = $this->uploadDir . $fileName;
+        
+                if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
+                    $product_image = 'images/products/' . $fileName;
+                } else {
+                    echo "Error uploading image.";
+                    
+                }
+            } else {
+                $product_image = $customer['image'] ?? null;
+            }
             $customer = $this->customerModel->getCustomer($_SESSION['usersId']);
             require "views/profile/profile.edit.php"; // Adjust the path accordingly
         }
@@ -204,7 +219,7 @@ class CustomersController {
             'customer_phone' => $_POST['phone'],
             'customer_address1' => $_POST['address1'],
             'customer_address2' => $_POST['address2'],
-            'customer_image' => $_POST['customer_image'],
+            'customer_image' => $_POST['image'],
             // 'customer_image' => $_POST['customer_image'],
         ];
         if ($this->customerModel->updatecustomer($_SESSION['usersId'], $data)) {
