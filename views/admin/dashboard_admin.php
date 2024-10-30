@@ -37,6 +37,7 @@
                                     <!--====== Dashboard Features ======-->
                                     <?php
                                     include('dashboard_features.php');
+                                    include('dashboard_features_buttom.php');
                                     ?>
                                     <!--====== End - Dashboard Features ======-->
                                 </div>

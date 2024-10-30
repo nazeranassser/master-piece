@@ -43,7 +43,12 @@
                                     <!--====== Dashboard Features ======-->
                                     <?php
                                     include('views/admin/dashboard_features.php');
-                                    ?>
+                                    
+                                    ?><div>
+
+                                    <a class="dash__custom-link btn--e-brand-b-2" href="/coupons-add"><i class="fas fa-plus u-s-m-r-8"></i>
+
+                                        <span>Add New Coupon</span></a></div>
                                     <!--====== End - Dashboard Features ======-->
                                 </div>
                                 <div class="col-lg-9 col-md-12">
@@ -90,11 +95,7 @@
                                             </table>
                                         </div>
                                     </div>
-                                    <div>
-
-                                        <a class="dash__custom-link btn--e-brand-b-2" href="/coupons-add"><i class="fas fa-plus u-s-m-r-8"></i>
-
-                                            <span>Add New Coupon</span></a></div>
+                                    
                                 </div>
                             </div>
                         </div>
