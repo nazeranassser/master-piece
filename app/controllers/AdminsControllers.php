@@ -57,6 +57,7 @@
 namespace App\Controllers;
 use App\Models\Admin;
 use App\Models\Order;
+require 'app/helpers/session_helper.php';
 
 class AdminsController {
     private $adminModel;
@@ -70,48 +71,74 @@ class AdminsController {
     }
 
     public function index() {
-        $admins = $this->adminModel->getAll();
-        $orders = $this->orderModel->showOrders();
-        $total = $this->orderModel->totalSales();
-        require 'views/admin/dashboard_admin.php';
+        if(isset($_SESSION['admin_id'])){
+            $admins = $this->adminModel->getAll();
+            $orders = $this->orderModel->showOrders();
+            $total = $this->orderModel->totalSales();
+            require 'views/admin/dashboard_admin.php';
+        }else{
+            require 'views/pages/404.php';
+        }
+        
     }
 
     public function get() {
-        if ($admins = $this->adminModel->getAll()) {
-            require 'views/admin/admins/dash-admins.php'; // Adjust path as needed
-        } else {
-            echo 'No admins found.';
+        if($_SESSION['is_super']==1){
+            if ($admins = $this->adminModel->getAll()) {
+                require 'views/admin/admins/dash-admins.php'; // Adjust path as needed
+            } else {
+                echo 'No admins found.';
+            }
+        }else{
+            require 'views/pages/404.php';
         }
     }
 
     public function add() {
-        require 'views/admin/admins/dash-admin-add.php'; // Adjust the path accordingly
+        if($_SESSION['is_super']==1){
+        require 'views/admin/admins/dash-admin-add.php';}
+        else{
+            require 'views/pages/404.php';
+        } // Adjust the path accordingly
     }
     public function edit() {
-        require 'views/admin/admins/dash-admin-edit.php'; // Adjust the path accordingly
+        if($_SESSION['is_super']==1){
+            require 'views/admin/admins/dash-admin-edit.php';}
+            else{
+                require 'views/pages/404.php';
+            }
+         // Adjust the path accordingly
+    }
+    public function loginPage() {
+        require 'views/admin/login.php'; // Adjust the path accordingly
     }
 
     public function register() {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // Get the posted data
-            $data = [
-                'admin_name' => $_POST['name'],
-                'admin_email' => $_POST['email'],
-                'admin_password' => password_hash($_POST['password'], PASSWORD_DEFAULT), // Hash the password
-                'date' => date("Y/m/d h:m:s")
-            ];
-
-            // Call the model to add the admin
-            if ($this->adminModel->addNew($data)) {
-                // Redirect or show a success message
-                $this->get();
+        if($_SESSION['is_super']){
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                // Get the posted data
+                $data = [
+                    'admin_name' => $_POST['name'],
+                    'admin_email' => $_POST['email'],
+                    'admin_password' => password_hash($_POST['password'], PASSWORD_DEFAULT), // Hash the password
+                    'created_at' => date("Y/m/d h:m:s")
+                ];
+    
+                // Call the model to add the admin
+                if ($this->adminModel->createAdmin($data)) {
+                    // Redirect or show a success message
+                    $this->get();
+                } else {
+                    echo "Failed to add admin.";
+                }
             } else {
-                echo "Failed to add admin.";
+                // If it's not a POST request, redirect or show an error
+                echo "Invalid request.";
             }
-        } else {
-            // If it's not a POST request, redirect or show an error
-            echo "Invalid request.";
+        }else{
+            redirect("dash");
         }
+        
     }
 
     function update() {
@@ -119,6 +146,7 @@ class AdminsController {
             'admin_id' => $_POST['edit'],
             'admin_name' => $_POST['admin_name'],
             'admin_email' => $_POST['email'],
+            'is_active' => $_POST['is_active'],
             'admin_password' => password_hash($_POST['password'], PASSWORD_DEFAULT), // Hash the password
         ];
         if ($this->adminModel->update($data)) {
@@ -128,5 +156,47 @@ class AdminsController {
             echo "Failed to add admin.";
         }
     }
+
+    public function login(){
+        // Sanitize POST data
+        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+        // Init data
+        $data = [
+            'admin_email' => trim($_POST['adminNameOrEmail']),
+            'admin_password' => trim($_POST['adminPassword'])
+        ];
+
+        if(empty($data['admin_email']) || empty($data['admin_password'])){
+            flash("login", "Please fill out all inputs");
+            redirect("admin-login");
+            exit();
+        }
+
+        // Check for user/email
+        $admin_data = $this->adminModel->findByEmail($data['admin_email']);
+        if($admin_data['is_active']){
+            // User Found
+            if(password_verify($data['admin_password'],$admin_data['admin_password'])){
+                $this->createAdminSession($admin_data);
+            }else{
+                flash("login", "Password Incorrect");
+                redirect("admin-login");
+            }
+        } else {
+            flash("login", "No admin found");
+            redirect("admin-login");
+        }
+    }
+
+
+    public function createAdminSession($user){
+        $_SESSION['admin_id'] = $user['admin_id'];
+        $_SESSION['admin_name'] = $user['admin_name'];
+        $_SESSION['admin_Email'] = $user['admin_email'];
+        $_SESSION['is_super'] = $user['is_super'];
+        header("Location: /dash ");
+    }
+
 }
 

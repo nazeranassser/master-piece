@@ -44,21 +44,18 @@
                                     <div class="dash__box dash__box--bg-white dash__box--shadow u-s-m-b-30">
                                         <div class="dash__pad-1">
 
-                                            <span class="dash__text u-s-m-b-16"><?php echo "Hello"." ".$customer['customer_name']; ?></span>
+                                            <span class="dash__text u-s-m-b-16"><?php echo "Hello"." ".$_SESSION['usersName']; ?></span>
                                             <ul class="dash__f-list">
                                                 <li>
 
                                                     <a href="profile-main.php">Manage My Account</a></li>
                                                 <li>
 
-                                                    <a class="dash-active" href="dash-my-profile.php">My Profile</a></li>
+                                                    <a class="dash-active" href="profile-main">My Profile</a></li>
+                                              
                                                 <li>
 
-                                                    <a href="dash-address-book.html">Address Book</a></li>
-                                                
-                                                <li>
-
-                                                    <a href="dash-my-order.php">My Orders</a></li>
+                                                    <a href="profile-order">My Orders</a></li>
                                              
 
                                             </ul>
@@ -109,12 +106,12 @@
                                                 <div class="col-lg-4 u-s-m-b-30">
                                                     <h2 class="dash__h2 u-s-m-b-8">First Name</h2>
 
-                                                    <span class="dash__text"><?php echo $customer['customer_name']; ?></span>
+                                                    <span class="dash__text"><?php echo $_SESSION['usersName']; ?></span>
                                                 </div>
                                                 <div class="col-lg-4 u-s-m-b-30">
                                                     <h2 class="dash__h2 u-s-m-b-8">E-mail</h2>
 
-                                                    <span class="dash__text"><?php echo $customer['customer_email']; ?></span>
+                                                    <span class="dash__text"><?php echo $_SESSION['customerEmail']; ?></span>
                                                     <div class="dash__link dash__link--secondary">
 
                                                         <a href="#"></a></div>

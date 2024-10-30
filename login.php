@@ -1,13 +1,13 @@
 <?php 
-    include_once('views/partials/header.php');
-    include_once 'app/helpers/session_helper.php';
+    require_once ('views/partials/header.php');
+    require_once 'app/helpers/session_helper.php';
 ?>
 
 <h1 class="header">Please Login</h1>
 
 <?php flash('login') ?>
 
-<form style="display: flex !important; flex-direction: column !important; " method="post" action="login/add">
+<form style="display: flex !important; flex-direction: column !important; " method="post" action="login-add">
     
     <input type="hidden" name="type" value="login">
     

@@ -1,33 +1,32 @@
-
-
 <?php
-
-// Modified Contact.php
 class Contact {
     private $db;
+    private $message_id;
+    private $customer_id;
     private $name;
     private $email;
-    private $subject;
-    private $message;
+    private $message_subject;
+    private $message_text;
     private $created_at;
-    private $user_id;  // Add user_id property
+    private $updated_at;
 
     public function __construct() {
         $this->db = new Database();
         $this->created_at = date('Y-m-d H:i:s');
+        $this->updated_at = date('Y-m-d H:i:s');
     }
 
-    // Modified setData to include user_id
-    public function setData($name, $email, $subject, $message, $user_id) {
+    public function setData($name, $email, $subject, $message, $customer_id) {
         $this->name = $name;
         $this->email = $email;
-        $this->subject = $subject;
-        $this->message = $message;
-        $this->user_id = $user_id;
+        $this->message_subject = $subject;
+        $this->message_text = $message;
+        $this->customer_id = $customer_id;
     }
 
     public function validate() {
-        if (empty($this->name) || empty($this->email) || empty($this->subject) || empty($this->message)) {
+        if (empty($this->name) || empty($this->email) || 
+            empty($this->message_subject) || empty($this->message_text)) {
             return false;
         }
         if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
@@ -36,18 +35,27 @@ class Contact {
         return true;
     }
 
-    // Modified save method to include user_id
     public function save() {
-        $this->db->query('INSERT INTO messages (name, email, subject, message, created_at, user_id) 
-                         VALUES (:name, :email, :subject, :message, :created_at, :user_id)');
-        
+        $this->db->query('INSERT INTO messages (
+            customer_id, 
+            message_subject, 
+            message_text, 
+            created_at, 
+            updated_at
+        ) VALUES (
+            :customer_id, 
+            :message_subject, 
+            :message_text, 
+            :created_at, 
+            :updated_at
+        )');
+
         // Bind values
-        $this->db->bind(':name', $this->name);
-        $this->db->bind(':email', $this->email);
-        $this->db->bind(':subject', $this->subject);
-        $this->db->bind(':message', $this->message);
+        $this->db->bind(':customer_id', $this->customer_id);
+        $this->db->bind(':message_subject', $this->message_subject);
+        $this->db->bind(':message_text', $this->message_text);
         $this->db->bind(':created_at', $this->created_at);
-        $this->db->bind(':user_id', $this->user_id);
+        $this->db->bind(':updated_at', $this->updated_at);
 
         // Execute
         if ($this->db->execute()) {

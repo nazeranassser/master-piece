@@ -9,9 +9,11 @@
                                                 <li>
 
                                                     <a href="products">Products</a></li>
+                                                    <?php 
+                                                    if($_SESSION['is_super']==1){ echo'
                                                 <li>
 
-                                                    <a class="dash-active" href="dash-admins.php">Admins</a></li>
+                                                    <a class="dash-active" href="admins">Admins</a></li>';}?>
                                                 <li>
 
                                                     <a href="dash-coupons.php">Coupons</a></li>

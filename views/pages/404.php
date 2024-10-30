@@ -1,7 +1,6 @@
 <?php 
     // include_once 'views/partials/header.php';
     include_once 'app/helpers/session_helper.php';
-    // var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>
@@ -27,18 +26,16 @@
     <br>
     <br>
     <br>
-<?php flash('login') ?>
-<h1 class="header">Welcome Admin</h1>
-<form method="post" action="login-admin">
-    <input type="hidden" name="type" value="login">
-    
-    <input type="text" name="adminNameOrEmail" placeholder="Username/Email..." required> <!-- Updated name for clarity -->
-    <input type="password" name="adminPassword" placeholder="Password..." required> <!-- Updated name for clarity -->
-    
-    <button type="submit" name="submit">Log In</button>
-</form>
+<?php flash('Page Not Found') ?>
+<h1 class="header">404</h1>
+<?php
+if(isset($_SESSION['admin_id'])){
+    echo '<div class="form-sub-msg"><a href="/dash">Dashboard</a></div>';
+}else{
+    echo '<div class="form-sub-msg"><a href="/">Home</a></div>';
 
-<div class="form-sub-msg"><a href="./reset-password.php">Forgot Password?</a></div>
+}
+?>
 
 <script src="public/js/forms.js"></script>
 

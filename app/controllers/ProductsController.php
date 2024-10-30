@@ -14,10 +14,18 @@ class ProductsController
         $this->testimonialModel = new Testimonial();
     }
 
+    public function index() {
+        $products = $this->productModel->showRow();
+        $categories = $this->categoryModel->get();
+        require 'views/admin/product/dash-products.php';
+    }
+
     public function filter($id) {
-        $categoryFilter = $_GET['categoryFilter'] ?? null;
-        if($categoryFilter){
-            $products = $this->productModel->getProductsByCategoryId($categoryFilter);
+        // $categoryFilter = $_GET['categoryFilter'] ?? null;
+        // echo "Product ID: " . $id;
+        // die();
+        if($id){
+            $products = $this->productModel->getProductsByCategoryId($id);
         }else{
             $products = $this->productModel->showRow();
         }

@@ -14,7 +14,7 @@ $router->add('dash', ['controller' => 'Admins', 'action' => 'index']);// dashboa
 $router->add('admins', ['controller' => 'Admins', 'action' => 'get']);// dash-admins.php
 $router->add('add-admin', ['controller' => 'Admins', 'action' => 'add']);// dash-admin-add.php
 $router->add('edit-admin', ['controller' => 'Admins', 'action' => 'edit']);// dash-admin-edit.php
-$router->add('register', ['controller' => 'Admins', 'action' => 'registerCustomer']);//admins-controllers->register()
+$router->add('register', ['controller' => 'Admins', 'action' => 'register']);//admins-controllers->register()
 $router->add('update_admin', ['controller' => 'Admins', 'action' => 'update']);//admins-controllers->update_admin()
 $router->add('customer/get', ['controller' => 'customer', 'action' => 'get']);
 $router->add('cart/{id:\d+}', ['controller' => 'Carts', 'action' => 'addToCart']);
@@ -33,7 +33,11 @@ $router->add('create-product', ['controller' => 'Products', 'action' => 'addProd
 $router->add('product-category-filter', ['controller' => 'Products', 'action' => 'index']);
 $router->add('admin-login', ['controller' => 'Admins', 'action' => 'index']);
 $router->add('product/{id:\d+}', ['controller' => 'Products', 'action' => 'viewProduct']);
-$router->add('allproducts', ['controller' => 'Products', 'action' => 'showProducts']);//'=> '',
+$router->add('allProducts', ['controller' => 'Products', 'action' => 'showProducts']);  
+$router->add('products/{id:\d+}', ['controller' => 'Products', 'action' => 'filter']);
+$router->add('admin-login', ['controller' => 'Admins', 'action' => 'loginPage']);
+$router->add('login-admin', ['controller' => 'Admins', 'action' => 'login']);
+$router->add('edit-admin/{id:\d+}', ['controller' => 'Admins', 'action' => 'editPage']);
 
 
 
