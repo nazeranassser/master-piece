@@ -73,7 +73,7 @@
                                             <div class="product-price"><?= number_format($product['product_price'], 2); ?>JD
                                             </div>
                                             <div class="action-buttons d-flex">
-                                                <a href="cart.php?id=<?= $product['product_id'] ?>"
+                                                <a href="cart/<?= $product['product_id'] ?>"
                                                     class="btn btn-outline-secondary btn-sm" data-tooltip="tooltip"
                                                     data-placement="top" title="Add to Cart">
                                                     <i class="fas fa-shopping-cart"></i>

@@ -10,6 +10,7 @@ class CreateReviewsTable
             `customer_id` int(11) NOT NULL,
             `review_text` text NOT NULL,
             `review_rating` DECIMAL(2,1) CHECK (review_rating BETWEEN 0 AND 5),
+            `review_image` varchar(255) NOT NULL,
             `created_at` timestamp NULL DEFAULT NULL,
             `updated_at` timestamp NULL DEFAULT NULL,
             foreign key (product_id) references products(product_id),
