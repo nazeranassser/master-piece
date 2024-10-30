@@ -1,4 +1,4 @@
-<?php include('views/partials/header.php');?>
+<?php include('views/partials/header_admin.php');?>
 
         <!--====== End - Main Header ======-->
 
@@ -73,10 +73,9 @@
 
                                                             <!--====== Select Box ======-->
                                                             
-                                                            <label class="gl-label" for="address-country">Type *</label><select class="select-box select-box--primary-style" id="address-country">
-                                                                <option selected value="">Choose Type</option>
-                                                                <option value="admin">Admin</option>
-                                                                <option value="driver">Driver</option>
+                                                            <label class="gl-label" for="address-country">Active *</label><select class="select-box select-box--primary-style" id="address-country">
+                                                                <option selected value='1'>Active</option>
+                                                                <option value='0'>Deactivate</option>
                                                             </select>
                                                             <!--====== End - Select Box ======-->
                                                         </div>
@@ -100,7 +99,7 @@
 
         <!--====== Main Footer ======-->
         <?php
-    include('views/partials/footer.php');
+    include('views/partials/footer_admin.php');
     ?>
     </div>
     <!--====== End - Main App ======-->

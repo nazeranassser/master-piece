@@ -1,4 +1,3 @@
-        <!--====== Main Header ======-->
         <?php include('views/partials/header_admin.php');?>
 
         <!--====== End - Main Header ======-->
@@ -54,7 +53,7 @@
                                         <div class="dash__pad-2">
                                             <h1 class="dash__h1 u-s-m-b-14" style="padding-bottom: 10px;">Edit Admin</h1>
 
-                                            <form class="dash-address-manipulation" method="POST" action="update_admin">
+                                            <form class="dash-address-manipulation" method="POST" action="/update_admin">
                                                 <div class="gl-inline">
                                                     <div class="u-s-m-b-30">
 
@@ -76,7 +75,8 @@
                                                         <div class="u-s-m-b-30">
 
                                                             <!--====== Select Box ======-->
-                                                            
+                                                            <input type='text' value='<?php echo $admin['admin_id']?>' name='edit' style='visibility: hidden;display: none;'>
+
                                                             <label class="gl-label" for="address-country">Is Active *</label>
                                                             <select class="select-box select-box--primary-style" id="address-country" name="is_active">
                                                                 <?php
@@ -92,7 +92,6 @@
                                                             <!--====== End - Select Box ======-->
                                                         </div>
                                                     </div>
-
                                                 <button class="btn btn--e-brand-b-2" type="submit">SAVE</button>
                                             </form>
                                         </div>
@@ -110,7 +109,7 @@
 
 
         <!--====== Main Footer ======-->
-        <?php include('views/partials/footer.php');?>
+        <?php include('views/partials/footer_admin.php');?>
         </div>
     <!--====== End - Main App ======-->
 

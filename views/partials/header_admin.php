@@ -15,13 +15,13 @@
     <!--====== Google Font ======-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
     <!--====== Vendor Css ======-->
-    <link rel="stylesheet" href="public/css/vendor.css">
+    <link rel="stylesheet" href="/public/css/vendor.css">
     <!--====== Utility-Spacing ======-->
-    <link rel="stylesheet" href="public/css/utility.css">
+    <link rel="stylesheet" href="/public/css/utility.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!--====== App ======-->
-    <link rel="stylesheet" href="views/partials/admin.css">
-    <link rel="stylesheet" href="public/css/drop_drag_img.css">
+    <link rel="stylesheet" href="/views/partials/admin.css">
+    <link rel="stylesheet" href="/public/css/drop_drag_img.css">
     <link rel="stylesheet" href="new_css.css">
      <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -436,7 +436,6 @@ p.phone {
 </head>
 <body class="config">
     <br>
-    <br>
     <!-- <div class="preloader is-active">
         <div class="preloader__wrap">
             <img class="preloader__img" src="images/preloader.png" alt=""></div>
@@ -445,6 +444,3 @@ p.phone {
     <div id="app">
 
         <!--====== End - Main Header ======-->
-
-        <br>
-        <br>

@@ -43,6 +43,8 @@ $router->add('clearCart', ['controller' => 'Carts', 'action' => 'clearCart']);
 $router->add('profile-edit', ['controller' => 'Customers', 'action' => 'editPage']);
 $router->add('profile-update', ['controller' => 'Customers', 'action' => 'update']);//admins-controllers->update_admin()
 $router->add('edit-admin/{id:\d+}', ['controller' => 'Admins', 'action' => 'getById']);
+$router->add('coupons', ['controller' => 'Coupons', 'action' => 'get']);
+$router->add('coupons-add', ['controller' => 'Coupons', 'action' => 'addPage']);
 
 
 

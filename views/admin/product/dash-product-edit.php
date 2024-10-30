@@ -53,7 +53,7 @@
                                             <h1 class="dash__h1 u-s-m-b-14">Edit Product</h1>
 
                                             <span class="dash__text u-s-m-b-30"></span>
-                                            <form id="productForm" enctype="multipart/form-data" class="dash-address-manipulation" method='POST' action='product/update'>
+                                            <form id="productForm" enctype="multipart/form-data" class="dash-address-manipulation" method='POST' action='/product/update'>
                                                 <div class="gl-inline">
                                                     <div class="u-s-m-b-30">
                                                         

@@ -1,6 +1,5 @@
 
-        <!--====== Main Header ======-->
-        <?php include('views/partials/header.php');?>
+        <?php include('views/partials/header_admin.php');?>
 
         <!--====== End - Main Header ======-->
 
@@ -60,7 +59,7 @@
                                                     <tr>
                                                         <th>Name</th>
                                                         <th>Email</th>
-                                                        <th>Password</th>
+                                                        <th>Active</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -69,11 +68,19 @@
                                             
                                               
                                                   foreach($admins as $admin) {
+                                                    if($admin['is_super']==1){
+                                                        continue;
+                                                    }
+                                                    if($admin['is_active']==1){
+                                                        $active = 'Active';
+                                                    }else{
+                                                        $active = 'Deactivate';
+                                                    }
                                                     echo "  <tr>
                                                     <form method='POST' action='/edit-admin/".$admin['admin_id']."'>
                                                             <th>".$admin['admin_name']."</th>
                                                             <th>".$admin['admin_email']."</th>
-                                                            <th>".$admin['admin_password']."</th>
+                                                            <th>".$active."</th>
                                                             <th style='display: flex;''>
                                                             <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2' style='margin-right:4px ;'>Edit</button></form>
                                                             <form method='POST' action='/delete-admin/".$admin['admin_id']."'>
@@ -104,7 +111,7 @@
 
 
         <!--====== Main Footer ======-->
-       <?php include('views/partials/footer.php');?>
+       <?php include('views/partials/footer_admin.php');?>
     </div>
     <!--====== End - Main App ======-->
 

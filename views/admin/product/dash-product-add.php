@@ -65,11 +65,7 @@
                                                             <select name='category' class="select-box select-box--primary-style" id="categories">
                                                                 <option selected value="">Choose Category</option>
                                                                 <?php
-                                                                include('show_admin.php');
-                                                                 $categories = new categories();
-                                                                 $category_row = $categories->showRow();
-                                                                 
-                                                                   foreach($category_row as $category) {
+                                                                   foreach($categories as $category) {
                                                                     echo "<option value='".$category['category_ID']."'>".$category['category_name']."</option>";
                                                                    }
                                                                 ?>

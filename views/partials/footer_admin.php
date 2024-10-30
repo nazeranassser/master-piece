@@ -13,12 +13,12 @@
     </script>
     <script src="https://www.google-analytics.com/analytics.js" async defer></script>
     <!--====== Vendor Js ======-->
-    <script src="public/js/vendor.js"></script>
+    <script src="/public/js/vendor.js"></script>
     <!--====== jQuery Shopnav plugin ======-->
-    <script src="public/js/jquery.shopnav.js"></script>
+    <script src="/public/js/jquery.shopnav.js"></script>
     <!--====== App ======-->
-    <script src="public/js/app.js"></script>
-    <script src="public/js/drag_drop_image.js"></script>
+    <script src="/public/js/app.js"></script>
+    <script src="/public/js/drag_drop_image.js"></script>
     <!--====== Noscript ======-->
     <noscript>
         <div class="app-setting">

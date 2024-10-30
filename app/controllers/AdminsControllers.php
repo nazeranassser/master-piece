@@ -57,6 +57,7 @@
 namespace App\Controllers;
 use App\Models\Admin;
 use App\Models\Order;
+use App\Models\Category;
 require 'app/helpers/session_helper.php';
 
 class AdminsController {
@@ -65,6 +66,7 @@ class AdminsController {
     public function __construct() {
         $this->adminModel = new Admin();
         $this->orderModel = new Order();
+        $this->categoryModel = new Category();
         $this->orderModel->showOrdersProcessing();
         $this->orderModel->showOrdersDelivered();
         $this->orderModel->showOrdersCancelled();
@@ -72,6 +74,7 @@ class AdminsController {
 
     public function index() {
         if(isset($_SESSION['admin_id'])){
+            // $catee
             $admins = $this->adminModel->getAll();
             $orders = $this->orderModel->showOrders();
             $total = $this->orderModel->totalSales();
@@ -147,14 +150,14 @@ class AdminsController {
     }
 
     function update() {
+        $id = $_POST['edit'];
         $data = [
-            'admin_id' => $_POST['edit'],
             'admin_name' => $_POST['admin_name'],
             'admin_email' => $_POST['email'],
             'is_active' => $_POST['is_active'],
             'admin_password' => password_hash($_POST['password'], PASSWORD_DEFAULT), // Hash the password
         ];
-        if ($this->adminModel->update($data)) {
+        if ($this->adminModel->update($id ,$data)) {
             // Redirect or show a success message
             $this->get();
         } else {
