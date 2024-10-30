@@ -6,9 +6,17 @@ use App\Models\Cart;
 class CartsController {
     private $cart = [];
 
+    
     public function __construct() {
         // Load cart from cookies or initialize it
         $this->cart = $this->getCartFromCookies();
+    }
+
+    public function index() {
+        $cartItems = $this->getCartItems();
+        $cartTotal = $this->getCartTotal();
+
+       require 'views/pages/cart.php';
     }
 
     // Get cart items from cookies
