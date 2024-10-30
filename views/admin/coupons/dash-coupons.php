@@ -80,7 +80,7 @@
                                                             <th style='display: flex;''>
                                                             <input type='hidden' value='".$coupon['coupon_id']."' name='edit''>
                                                             <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2' style='margin-right:4px ;'>Edit</button></form>
-                                                            <form method='POST' action='show_admin.php'>
+                                                            <form method='POST' action='coupon-delete'>
                                                             <input type='hidden' value='".$coupon['coupon_id']."' name='delete_coupon''>
                                                             <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2'>Delete</button></form></th>
                                                         </tr>";

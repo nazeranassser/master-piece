@@ -32,9 +32,12 @@
     --color-2: #F6A6BB;  /* Secondary color */
     --color-3: #F4BBC9;  /* Tertiary color */
     --color-4: #FAE6E7;  /* Light color */
-    --color-5: #F7EEED;  /* Background color */
+    /* --color-5: #F7EEED;  Background color */
+    --color-5: #FFF8DC;  /* Background color */
 }
-
+body {
+    background-color: #FFFAF3;
+}
 /* Global Styles */
 * {
     padding: 0;
@@ -42,6 +45,34 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+
+.admin_list{
+    padding:10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    
+}
+.admin_list_div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+.dash_img{
+    width: 20px ;
+    height: 20px ;
+    margin-right:14px ;
+    align-items: center;
+    align-content: center;
+}
+/* .admin_list div{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    align-content: center;
+} */
 
 /* navbar section  */
 /* Navbar Section */

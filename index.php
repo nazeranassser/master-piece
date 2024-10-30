@@ -46,6 +46,8 @@ $router->add('edit-admin/{id:\d+}', ['controller' => 'Admins', 'action' => 'getB
 $router->add('coupons', ['controller' => 'Coupons', 'action' => 'get']);
 $router->add('coupons-add', ['controller' => 'Coupons', 'action' => 'addPage']);
 $router->add('new_coupon', ['controller' => 'Coupons', 'action' => 'add']);
+$router->add('coupon-delete', ['controller' => 'Coupons', 'action' => 'delete']);
+$router->add('orders', ['controller' => 'Orders', 'action' => 'get']);
 
 
 

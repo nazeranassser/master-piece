@@ -198,9 +198,6 @@ class CustomersController {
             require "views/profile/profile.edit.php"; // Adjust the path accordingly
         }
     function update() {
-        
-        
-        
         $data = [
             'customer_name' => $_POST['firstname'],
             'customer_email' => $_POST['email'],

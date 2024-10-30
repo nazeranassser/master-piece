@@ -51,26 +51,21 @@
                                             <form class="dash-address-manipulation" method="POST" action="new_coupon">
                                                 <div class="gl-inline">
                                                     <div class="u-s-m-b-30">
-                                                    <!-- <th>Coupon Amount</th>
-                                                        <th>Coupon Active</th>
-                                                        <th>Coupon Expire</th>
-                                                        <th>Action</th> -->
-                                                        <label class="gl-label" for="coupon_amount">Coupon Amount *</label>
-
-                                                        <input style="" class="input-text input-text--primary-style" name="coupon_amount_new" step="0.01" type="number" id="coupon_amount" placeholder="Coupon Amount">
-                                                    </div>
-                                                    <div class="u-s-m-b-30">
                                                         <label class="gl-label" for="coupon_amount">Coupon Name *</label>
+                                                        <input style="" class="input-text input-text--primary-style" name="coupon_name" step="0.01" type="text" id="coupon_name" placeholder="Coupon Name">
 
-                                                        <input style="" class="input-text input-text--primary-style" name="coupon_name_new" step="0.01" type="number" id="coupon_name" placeholder="Coupon Name">
                                                     </div>
-                                                                                                    </div>
-                                                    <div class="gl-inline">
                                                     <div class="u-s-m-b-30">
+                                                        <label class="gl-label" for="coupon_amount">Coupon Amount *</label>
+                                                        <input style="" class="input-text input-text--primary-style" name="coupon_amount" step="0.01" type="number" id="coupon_amount" placeholder="Coupon Amount">
 
+                                                    </div>
+                                                </div>
+                                                <div class="gl-inline">
+                                                    <div class="u-s-m-b-30">
                                                          <label class="gl-label" for="coupon_expire">Coupon Expire *</label>
-                                                         
-                                                         <input class="input-text input-text--primary-style" name="coupon_expire" type="date" id="coupon_expire" placeholder="2025-09-18"></div>
+                                                         <input class="input-text input-text--primary-style" name="coupon_expire" type="date" id="coupon_expire" placeholder="2025-09-18">
+                                                    </div>
 
                                                         <div class="u-s-m-b-30">
 
