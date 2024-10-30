@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 use App\Models\Customer;
-// require 'app/helpers/session_helper.php';
+
 
 
 class CustomersController {
@@ -191,11 +191,29 @@ class CustomersController {
               require "views/profile/profile.order.php";
               
           }
-          public function update(){
-            //   $id=$_SESSION['sutomer_id'];
-               $customer = $this->customerModel->getCustomer($_SESSION['usersId']);
-               require "views/profile/profile.edit.php";
-               
-           }
+          public function editPage(){
+            $customer = $this->customerModel->getCustomer($_SESSION['usersId']);
+            require "views/profile/profile.edit.php"; // Adjust the path accordingly
+        }
+    function update() {
+        
+        
+        
+        $data = [
+            'customer_name' => $_POST['firstname'],
+            'customer_email' => $_POST['email'],
+            'customer_phone' => $_POST['phone'],
+            'customer_address1' => $_POST['address1'],
+            'customer_address2' => $_POST['address2'],
+            'customer_image' => $_POST['customer_image'],
+            // 'customer_image' => $_POST['customer_image'],
+        ];
+        if ($this->customerModel->updatecustomer($_SESSION['usersId'], $data)) {
+            // Redirect or show a success message
+            header("location:/profile-main");
+        } else {
+            echo "Failed to add admin.";
+        }
+    }
+          
 }
-
