@@ -1,6 +1,7 @@
 <?php 
     // include_once 'views/partials/header.php';
     include_once 'app/helpers/session_helper.php';
+    // var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>

@@ -71,10 +71,15 @@ class AdminsController {
     }
 
     public function index() {
-        $admins = $this->adminModel->getAll();
-        $orders = $this->orderModel->showOrders();
-        $total = $this->orderModel->totalSales();
-        require 'views/admin/dashboard_admin.php';
+        if(isset($_SESSION['admin_id'])){
+            $admins = $this->adminModel->getAll();
+            $orders = $this->orderModel->showOrders();
+            $total = $this->orderModel->totalSales();
+            require 'views/admin/dashboard_admin.php';
+        }else{
+            require 'views/pages/404.php';
+        }
+        
     }
 
     public function get() {
@@ -141,6 +146,7 @@ class AdminsController {
             'admin_id' => $_POST['edit'],
             'admin_name' => $_POST['admin_name'],
             'admin_email' => $_POST['email'],
+            'is_active' => $_POST['is_active'],
             'admin_password' => password_hash($_POST['password'], PASSWORD_DEFAULT), // Hash the password
         ];
         if ($this->adminModel->update($data)) {

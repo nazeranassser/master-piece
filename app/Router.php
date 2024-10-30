@@ -77,7 +77,13 @@ class Router {
                 // Check if the method (action) exists and is callable
                 if (is_callable([$controller_object, $action])) {
                     // Pass URL parameters (like `id`) to the action method
-                    call_user_func_array([$controller_object, $action], array_values($this->params));
+                    if(isset($this->params['id'])){
+                        $data[] = $this->params['id'];
+                    }else{
+                        $data[] = $this->params;
+                    }
+                   
+                    call_user_func_array([$controller_object, $action], array_values($data));
                 } else {
                     throw new \Exception("Method $action in controller $controller cannot be called.");
                 }

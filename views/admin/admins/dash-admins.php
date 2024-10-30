@@ -70,15 +70,14 @@
                                               
                                                   foreach($admins as $admin) {
                                                     echo "  <tr>
-                                                    <form method='POST' action='/edit-admin'>
-                                                            <th>".$admin['admin_name']."<input type='hidden' value='".$admin['admin_name']."' name='admin_name' style='visibility: hidden;display: none;'></th>
-                                                            <th>".$admin['admin_email']."<input type='hidden' value='".$admin['admin_email']."' name='admin_email' style='visibility: hidden;display: none;'></th>
-                                                            <th>".$admin['admin_password']."<input type='text' value='".$admin['admin_password']."' name='admin_password' style='visibility: hidden;display: none;'></th>
+                                                    <form method='POST' action='/edit-admin/".$admin['admin_id']."'>
+                                                            <th>".$admin['admin_name']."</th>
+                                                            <th>".$admin['admin_email']."</th>
+                                                            <th>".$admin['admin_password']."</th>
                                                             <th style='display: flex;''>
-                                                            <input type='text' value='".$admin['admin_ID']."' name='edit' style='visibility: hidden;display: none;'>
                                                             <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2' style='margin-right:4px ;'>Edit</button></form>
-                                                            <form method='POST' action='show_admin.php'>
-                                                            <input type='text' value='".$admin['admin_ID']."' name='admin_delete' style='visibility: hidden;display: none;'>
+                                                            <form method='POST' action='/delete-admin/".$admin['admin_id']."'>
+                                                            <input type='text' value='".$admin['admin_id']."' name='admin_delete' style='visibility: hidden;display: none;'>
                                                             <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2'>Delete</button></form></th>
                                                         </tr>";
                                                 }

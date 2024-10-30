@@ -54,8 +54,8 @@
                                                 <h1 class="dash__h1">Products</h1>
                                             </div>
                                             <div class="dash__filter">
-                                                <form method="GET" action="" id="categoryForm">
-                                                    <select class="select-box select-box--primary-style" style="border-radius:6px" name="categoryFilter" id="categoryFilter" onchange="redirectToCategory()">
+                                                <form method="GET" action="/products/" id="categoryForm">
+                                                    <select class="select-box select-box--primary-style" style="border-radius:6px" name="id" id="categoryFilter" onchange="this.form.submit()">
                                                         <option value="">All Categories</option>
                                                         <?php foreach ($categories as $category): ?>
                                                             
@@ -124,17 +124,20 @@
         <!--====== End - App Content ======-->
 
         <script>
-    function redirectToCategory() {
-        const selectElement = document.getElementById("categoryFilter");
-        const selectedCategoryId = selectElement.value;
-        if (selectedCategoryId) {
-            // Redirect to the dynamic category route
-            window.location.href = `products/${selectedCategoryId}`;
-        } else {
-            // Redirect to show all categories if no specific category is selected
-            window.location.href = "products";
-        }
-    }
+    // function redirectToCategory() {
+    //     const selectElement = document.getElementById("categoryFilter");
+    //     const selectedCategoryId = selectElement.value;
+    //     if (selectedCategoryId) {
+    //         // Redirect to the dynamic category route
+    //         window.location.href = `products/${selectedCategoryId}`;
+    //         <?php
+    //         // header("location:`products/${selectedCategoryId}`");
+    //         ?>
+    //     } else {
+    //         // Redirect to show all categories if no specific category is selected
+    //         window.location.href = "products";
+    //     }
+    // }
 </script>
         <!--====== Main Footer ======-->
         <?php include('views/partials/footer_admin.php');?>
