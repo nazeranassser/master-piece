@@ -52,5 +52,27 @@ $url = trim($_SERVER['REQUEST_URI'], '/'); // Trim leading and trailing slashes
 
 // Dispatch the request
 $router->dispatch($url);
+function getAssetPaths($rootDir) {
+    $assetPaths = [];
 
+    // Scan the directory for files and subdirectories
+    $files = scandir($rootDir);
+
+    foreach ($files as $file) {
+        // Ignore current and parent directory links
+        if ($file !== '.' && $file !== '..') {
+            $fullPath = $rootDir . '/' . $file;
+
+            if (is_file($fullPath)) {
+                // Add relative path
+                $assetPaths[] = $file;
+            } elseif (is_dir($fullPath)) {
+                // Recursively get paths from subdirectories
+                $assetPaths = array_merge($assetPaths, getAssetPaths($fullPath));
+            }
+        }
+    }
+
+    return $assetPaths;
+}
 ?>

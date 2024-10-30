@@ -227,7 +227,7 @@ class Product extends Model
               WHERE p.product_id = :productID
               GROUP BY p.product_id";
     
-    $stmt = $this->db->prepare($query);
+    $stmt = $this->conn->prepare($query);
     $stmt->execute([':productID' => $productID]);
     
     return $stmt->fetch(PDO::FETCH_ASSOC);

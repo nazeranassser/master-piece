@@ -45,7 +45,7 @@
                             <?php foreach ($allProducts as $product): ?>
                                 <div class="product-card">
                                     <div class="product-image-wrap">
-                                        <a href="product-detail.php?id=<?= $product['product_id']; ?>">
+                                        <a href="product/<?= $product['product_id']; ?>">
                                             <img src="public/images/categories/<?= $product['product_image']; ?>"
                                                 alt="<?= htmlspecialchars($product['product_name']); ?>">
                                         </a>
@@ -56,7 +56,7 @@
                                         </span>
                                         <h3 class="product-name">
                                             <a
-                                                href="product-detail.php?id=<?= $product['product_id']; ?>"><?= htmlspecialchars($product['product_name']); ?></a>
+                                                href="product/<?= $product['product_id']; ?>"><?= htmlspecialchars($product['product_name']); ?></a>
                                         </h3>
                                         <div class="product-rating">
                                             <?php

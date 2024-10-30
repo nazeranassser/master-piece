@@ -89,10 +89,7 @@ class ProductsController
         include 'views/pages/products-view.php';
       }
 
-      public function viewProduct() {
-        // Get the product ID from the URL
-        $productID = $_GET['id'] ?? null;
-
+      public function viewProduct($productID) {
         if ($productID) {
             $product = $this->productModel->getProductById($productID);
 
