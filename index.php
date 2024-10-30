@@ -38,10 +38,11 @@ $router->add('allProducts', ['controller' => 'Products', 'action' => 'showProduc
 $router->add('products/{id:\d+}', ['controller' => 'Products', 'action' => 'filter']);
 $router->add('admin-login', ['controller' => 'Admins', 'action' => 'loginPage']);
 $router->add('login-admin', ['controller' => 'Admins', 'action' => 'login']);
-$router->add('edit-admin/{id:\d+}', ['controller' => 'Admins', 'action' => 'editPage']);
+// $router->add('edit-admin/{id:\d+}', ['controller' => 'Admins', 'action' => 'editPage']);
 $router->add('clearCart', ['controller' => 'Carts', 'action' => 'clearCart']);
 $router->add('profile-edit', ['controller' => 'Customers', 'action' => 'editPage']);
 $router->add('profile-update', ['controller' => 'Customers', 'action' => 'update']);//admins-controllers->update_admin()
+$router->add('edit-admin/{id:\d+}', ['controller' => 'Admins', 'action' => 'getById']);
 
 
 

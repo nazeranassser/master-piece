@@ -44,9 +44,12 @@ class Model {
     // READ: Fetch all records or a specific record by ID
     public function get($id = null) {
         if ($id) {
-            $this->db->query("SELECT * FROM $this->table WHERE id = :id");
-            $this->db->bind(':id', $id);
-            return $this->db->single();  // Fetch a single record
+            $table_id = rtrim($this->table,'s');
+            $table_id = $table_id."_id";
+            $stmt = $this->db->prepare("SELECT * FROM $this->table WHERE $table_id = :id");
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            return $stmt->fetch();  // Fetch a single record
         } else {
             return $this->db->query("SELECT * FROM $this->table")->fetchAll(PDO::FETCH_ASSOC);  // Fetch all records
         }

@@ -1,5 +1,5 @@
         <!--====== Main Header ======-->
-        <?php include('views/partials/header.php');?>
+        <?php include('views/partials/header_admin.php');?>
 
         <!--====== End - Main Header ======-->
 
@@ -60,33 +60,37 @@
 
                                                         <label class="gl-label" for="address-name">NAME *</label>
 
-                                                        <input class="input-text input-text--primary-style" name="admin_name" type="text" id="address-name" placeholder="First Name" value='<?php echo $_POST['admin_name']?>'></div>
+                                                        <input class="input-text input-text--primary-style" name="admin_name" type="text" id="address-name" placeholder="First Name" value='<?php echo $admin['admin_name']?>'></div>
                                                     <div class="u-s-m-b-30">
 
                                                         <label class="gl-label" for="address-email">Email *</label>
 
-                                                        <input class="input-text input-text--primary-style" name="email" type="email" id="address-email" placeholder="name@example.com" value='<?php echo $_POST['admin_email']?>'></div>
+                                                        <input class="input-text input-text--primary-style" name="email" type="email" id="address-email" placeholder="name@example.com" value='<?php echo $admin['admin_email']?>'></div>
                                                 </div>
                                                 <div class="gl-inline">
                                                     <div class="u-s-m-b-30">
 
                                                         <label class="gl-label" for="address-password">Password *</label>
 
-                                                        <input class="input-text input-text--primary-style" name="password" type="password" id="address-password" value='<?php echo $_POST['admin_password']?>'></div>
+                                                        <input class="input-text input-text--primary-style" name="password" type="password" id="address-password" ></div>
                                                         <div class="u-s-m-b-30">
 
                                                             <!--====== Select Box ======-->
                                                             
-                                                            <label class="gl-label" for="address-country">Type *</label><select class="select-box select-box--primary-style" id="address-country">
-                                                                <option selected value="">Choose Type</option>
-                                                                <option value="1">Active</option>
-                                                                <option value="0">Deactivate</option>
+                                                            <label class="gl-label" for="address-country">Is Active *</label>
+                                                            <select class="select-box select-box--primary-style" id="address-country" name="is_active">
+                                                                <?php
+                                                                   if($admin['is_active'] == 1) {
+                                                                    echo "<option selected value='1'>Active</option>
+                                                                            <option value='0'>Deactivate</option>";
+                                                                   }else{
+                                                                    echo "<option value='1'>Active</option>
+                                                                            <option selected value='0'>Deactivate</option>";
+                                                                   }
+                                                                ?> 
                                                             </select>
                                                             <!--====== End - Select Box ======-->
                                                         </div>
-                                                        <?php
-                                                        echo "<input type='text' value='".$_POST['edit']."' name='edit' style='visibility: hidden;display: none;'>";
-                                                        ?>
                                                     </div>
 
                                                 <button class="btn btn--e-brand-b-2" type="submit">SAVE</button>

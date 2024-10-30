@@ -35,26 +35,41 @@ class ProductsController
 
     
     public function edit() {
-        require 'views/admin/product/dash-product-edit.php';
+        if(isset($_SESSION['admin_id'])){
+        require 'views/admin/product/dash-product-edit.php';}
+        else{
+            header('location:/404');}
     }
 
     public function add() {
-        require 'views/admin/product/dash-product-add.php';
+        if(isset($_SESSION['admin_id'])){
+        require 'views/admin/product/dash-product-add.php';}
+        else{
+            header('location:/404');}
     }
 
     public function create() {
+        if(isset($_SESSION['admin_id'])){
         $products = $this->productModel->addNewProduct($_POST);
-        require 'views/admin/product/dash-product-add.php';
+        require 'views/admin/product/dash-product-add.php';}
+        else{
+            header('location:/404');}
     }
 
     public function update() {
+        if(isset($_SESSION['admin_id'])){
         $products = $this->productModel->updateProduct($_POST);
-        require 'views/admin/product/dash-product-edit.php';
+        require 'views/admin/product/dash-product-edit.php';}
+        else{
+            header('location:/404');}
     }
 
     public function addProduct() {
+        if(isset($_SESSION['admin_id'])){
         $products = $this->productModel->addNewProduct($_POST);
-        header('location:/products');
+        header('location:/products');}
+        else{
+            header('location:/404');}
     }
 
     public function showHomePage()
@@ -71,36 +86,4 @@ class ProductsController
         // Load the view and pass the products data
         require 'views/pages/index-view.php';
     }
-
-    public function showProducts() {
-        // Get filters from GET request
-        $search = $_GET['search'] ?? '';
-        $category = $_GET['category'] ?? '';
-        $sort = $_GET['sort'] ?? '';
-      
-        // Fetch categories for the filter dropdown
-        $categories = $this->productModel->getCategories();
-      
-        // Fetch products based on filters
-        $result = $this->productModel->getProducts($search, $category, $sort);
-        
-        $allProducts = $this->productModel->getAllProducts();
-        // Load view with products and categories data
-        include 'views/pages/products-view.php';
-      }
-
-      public function viewProduct($productID) {
-        if ($productID) {
-            $product = $this->productModel->getProductById($productID);
-
-            if ($product) {
-                include 'views/pages/product-view.php';
-            } else {
-                echo "Product not found.";
-            }
-        } else {
-            echo "Invalid product ID.";
-        }
-    }
-        
 }

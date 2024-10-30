@@ -83,7 +83,7 @@ class AdminsController {
     }
 
     public function get() {
-        if($_SESSION['is_super']==1){
+        if(isset($_SESSION['is_super']) && $_SESSION['is_super']==1){
             if ($admins = $this->adminModel->getAll()) {
                 require 'views/admin/admins/dash-admins.php'; // Adjust path as needed
             } else {
@@ -94,15 +94,20 @@ class AdminsController {
         }
     }
 
+    public function getById($id){
+        $admin = $this->adminModel->findById($id);
+        require 'views/admin/admins/dash-admin-edit.php';
+    }
+
     public function add() {
-        if($_SESSION['is_super']==1){
+        if(isset($_SESSION['is_super']) && $_SESSION['is_super']==1){
         require 'views/admin/admins/dash-admin-add.php';}
         else{
             require 'views/pages/404.php';
         } // Adjust the path accordingly
     }
     public function edit() {
-        if($_SESSION['is_super']==1){
+        if(isset($_SESSION['is_super']) && $_SESSION['is_super']==1){
             require 'views/admin/admins/dash-admin-edit.php';}
             else{
                 require 'views/pages/404.php';
@@ -114,7 +119,7 @@ class AdminsController {
     }
 
     public function register() {
-        if($_SESSION['is_super']){
+        if(isset($_SESSION['is_super'])){
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // Get the posted data
                 $data = [
