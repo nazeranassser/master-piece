@@ -44,7 +44,7 @@
                   </div>
                   <div class="contact-details">
                      <i class="fa fa-phone"></i>
-                     <p>+1-8755856858</p>
+                     <p>+962 788868393</p>
                   </div>
               </div>
         </div>

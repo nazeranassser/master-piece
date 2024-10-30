@@ -3,9 +3,10 @@
     include_once 'app/helpers/session_helper.php';
 ?>
 
-<h1 class="header">Please Login</h1>
+<h1 class="header">Get Ready to Savor!</h1>
 
 <?php flash('login') ?>
+
 
 <form style="display: flex !important; flex-direction: column !important; " method="post" action="login-add">
     

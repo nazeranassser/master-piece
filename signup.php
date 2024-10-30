@@ -132,8 +132,9 @@
     <input type="hidden" name="type" value="register">
     
     <input type="text" name="customerName" placeholder="Full name..." required> <!-- Added name attribute -->
-    <input type="email" name="customerEmail" placeholder="Email..." required>
     <input type="text" name="customerUsername" placeholder="Username..." required> <!-- Changed to customerUsername for clarity -->
+    <input type="email" name="customerEmail" placeholder="Email..." required>
+
 
     <!-- Password fields organized in a separate section -->
     <div class="password-section">

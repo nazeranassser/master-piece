@@ -124,13 +124,15 @@ class CustomersController {
         // Now going to hash password
         $data['customer_password'] = password_hash($data['customer_password'], PASSWORD_DEFAULT);
 
-        // Register User
-        if($this->customerModel->register($data)){
-            header("location: /login");
-        } else {
-            die("Something went wrong");
-        }
-    }
+      // Register User
+          if($this->customerModel->register($data)){
+          flash("register", "Yay! Your account is all set 🎉. Get ready to explore the sweetest treats!");
+          redirect("/login");       
+         header("location: /login");
+          } else {
+                    die("Something went wrong");
+         }
+       }
 
     public function login(){
         // Sanitize POST data
