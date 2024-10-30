@@ -63,4 +63,39 @@ class ProductsController
         // Load the view and pass the products data
         require 'views/pages/index-view.php';
     }
+
+    public function showProducts() {
+        // Get filters from GET request
+        $search = $_GET['search'] ?? '';
+        $category = $_GET['category'] ?? '';
+        $sort = $_GET['sort'] ?? '';
+      
+        // Fetch categories for the filter dropdown
+        $categories = $this->productModel->getCategories();
+      
+        // Fetch products based on filters
+        $result = $this->productModel->getProducts($search, $category, $sort);
+        
+        $allProducts = $this->productModel->getAllProducts();
+        // Load view with products and categories data
+        include 'views/pages/products-view.php';
+      }
+
+      public function viewProduct() {
+        // Get the product ID from the URL
+        $productID = $_GET['id'] ?? null;
+
+        if ($productID) {
+            $product = $this->productModel->getProductById($productID);
+
+            if ($product) {
+                include 'views/pages/product-view.php';
+            } else {
+                echo "Product not found.";
+            }
+        } else {
+            echo "Invalid product ID.";
+        }
+    }
+        
 }

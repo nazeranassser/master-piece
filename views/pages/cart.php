@@ -57,7 +57,7 @@ $cartTotal = $cartController->getCartTotal();
                             <div class="breadcrumb__wrap">
                                 <ul class="breadcrumb__list">
                                     <li class="has-separator">
-                                        <a href="index.php">Home</a>
+                                        <a href="index-view.php">Home</a>
                                     </li>
                                     <li class="is-marked">
                                         <a href="cart.php">Cart</a>
@@ -104,7 +104,7 @@ $cartTotal = $cartController->getCartTotal();
                                                                 </div>
                                                                 <div class="table-p__info">
                                                                     <span class="table-p__name">
-                                                                        <a href="product-detail.php?id=<?php echo $item['product_id']; ?>"><?php echo htmlspecialchars($item['product_name']); ?></a>
+                                                                        <a href="product/<?php echo $item['product_id']; ?>"><?php echo htmlspecialchars($item['product_name']); ?></a>
                                                                     </span>
                                                                     <ul class="table-p__variant-list">
                                                                         <li><span>Size: <?php echo htmlspecialchars($item['size']); ?></span></li>

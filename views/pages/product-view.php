@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+
+    <?php require 'views/partials/header.php'; ?>
+
     <div class="container">
         <?php if ($product): ?>
             <div class="product-detail">
@@ -26,5 +29,7 @@
             <p>Product not found.</p>
         <?php endif; ?>
     </div>
+
+    <?php require 'views/partials/footer.php'; ?>
 </body>
 </html>

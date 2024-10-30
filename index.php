@@ -32,6 +32,8 @@ $router->add('signup-action', ['controller' => 'Customers', 'action' => 'registe
 $router->add('create-product', ['controller' => 'Products', 'action' => 'addProduct']);//admins-controllers->update_admin()
 $router->add('product-category-filter', ['controller' => 'Products', 'action' => 'index']);
 $router->add('admin-login', ['controller' => 'Admins', 'action' => 'index']);
+$router->add('product/{id:\d+}', ['controller' => 'Products', 'action' => 'viewProduct']);
+$router->add('allproducts', ['controller' => 'Products', 'action' => 'showProducts']);//'=> '',
 
 
 
