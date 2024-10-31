@@ -61,6 +61,7 @@ $router->add('wishlist/delete', ['controller' => 'Wishlist', 'action' => 'delete
 $router->add('wishlist/check', ['controller' => 'Wishlist', 'action' => 'check']);
 $router->add('orders-detal/{id:\d+}', ['controller' => 'customers', 'action' => 'viewOrderDetails']);
 
+$router->add('reviews', ['controller' => 'Products', 'action' => 'viewProduct']);
 
 
 
