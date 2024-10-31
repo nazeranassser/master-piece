@@ -72,15 +72,15 @@ class CustomersController {
             'customer_email' => trim($_POST['customerEmail']),
             'customer_name' => trim($_POST['customerName']),
             'customer_password' => trim($_POST['customerPassword']),
-            'pwdRepeat' => trim($_POST['pwdRepeat']),
-            'customer_address' => trim($_POST['customerAddress']),
+            'customer_address1' => trim($_POST['customerAddress']),
             'customer_address2' => trim($_POST['customerAddress2']),
-            'customer_phone' => trim($_POST['customerPhone'])
+            'customer_phone' => trim($_POST['customerPhone']),
+            'customer_image' => trim('images/products/671fb3380fb81_user.png'),
         ];
 
         // Validate inputs
         if(empty($data['customer_email']) || empty($data['customer_name']) || 
-        empty($data['customer_password']) || empty($data['pwdRepeat'])){
+        empty($data['customer_password']) || empty($_POST['pwdRepeat'])){
             flash("register", "Please fill out all inputs");
             redirect("../signup.php");
         }
@@ -103,7 +103,7 @@ class CustomersController {
           !preg_match("/[\W_]/", $data['customer_password'])) {
           flash("register", "Password must be at least 8 characters long, include at least one uppercase letter, one lowercase letter, one number, and one special character");
           redirect("../signup.php");
-           } else if($data['customer_password'] !== $data['pwdRepeat']){
+           } else if($data['customer_password'] != $_POST['pwdRepeat']){
           flash("register", "Passwords don't match");
            redirect("../signup.php");
            }
@@ -173,6 +173,7 @@ class CustomersController {
         $_SESSION['usersId'] = $user['customer_id'];
         $_SESSION['usersName'] = $user['customer_name'];
         $_SESSION['customerEmail'] = $user['customer_email'];
+        $_SESSION['customerImage'] = $user['customer_image'];
         header("Location: / ");
     }
 
@@ -196,30 +197,31 @@ class CustomersController {
               
           }
           public function editPage(){
-            if (isset($_FILES['image']) && in_array($_FILES['image']['type'], $this->allowedTypes)) {
-                $fileName = uniqid() . '' . basename($_FILES['image']['name']);
-                $targetFile = $this->uploadDir . $fileName;
-        
-                if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
-                    $product_image = 'images/products/' . $fileName;
-                } else {
-                    echo "Error uploading image.";
-                    
-                }
-            } else {
-                $product_image = $customer['image'] ?? null;
-            }
             $customer = $this->customerModel->getCustomer($_SESSION['usersId']);
             require "views/profile/profile.edit.php"; // Adjust the path accordingly
         }
     function update() {
+        if (isset($_FILES['image']) && in_array($_FILES['image']['type'], $this->allowedTypes)) {
+            $fileName = uniqid() . '' . basename($_FILES['image']['name']);
+            $targetFile = $this->uploadDir . $fileName;
+    
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
+                $customer_image = 'images/products/' . $fileName;
+            } else {
+                echo "Error uploading image.";
+                
+            }
+        } else {
+            $customer_image = $customer['image'] ?? null;
+        }
+        
         $data = [
             'customer_name' => $_POST['firstname'],
             'customer_email' => $_POST['email'],
             'customer_phone' => $_POST['phone'],
             'customer_address1' => $_POST['address1'],
             'customer_address2' => $_POST['address2'],
-            'customer_image' => $_POST['image'],
+            'customer_image' => $customer_image,
             // 'customer_image' => $_POST['customer_image'],
         ];
         if ($this->customerModel->updatecustomer($_SESSION['usersId'], $data)) {
@@ -259,6 +261,10 @@ class CustomersController {
         // تمرير المتغيرات للview
         require 'views/profile/profile.orderdetal.php';
     }
+    public function about() {
+        require 'views/pages/aboutus.php';
+    }
+
     
     
           

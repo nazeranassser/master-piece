@@ -10,7 +10,7 @@ class Customer extends Model{
 
   
 
-    protected $db;
+    protected $conn;
     public $customer_id;
     public $customer_name;
     public $customer_email;
@@ -22,14 +22,14 @@ class Customer extends Model{
     public $created_at;
     
     public function __construct() {
-        $this->db = Database::getInstance()->getConnection(); // Get the database connection
+        $this->conn = Database::getInstance()->getConnection(); // Get the database connection
         parent::__construct('customers');
     }
 
 
     function showRow() {
         $sql = "SELECT * FROM customers;";
-        $start = $this->db->query($sql);
+        $start = $this->conn->query($sql);
         if ($start) {
             $row = $start->fetchAll(PDO::FETCH_ASSOC);  
             return $row;
@@ -39,7 +39,7 @@ class Customer extends Model{
     }
 
     public function findUserByEmailOrUsername($email){
-        $stmt =$this->db->prepare('SELECT * FROM customers WHERE customer_email = :email');
+        $stmt =$this->conn->prepare('SELECT * FROM customers WHERE customer_email = :email');
         $stmt->bindParam(':email', $email);
         // Execute the statement
         $stmt->execute();
@@ -57,22 +57,23 @@ class Customer extends Model{
 
     //Register User
     public function register($data) {
-        $stmt = $this->db->prepare("INSERT INTO `customers`( `customer_name`, `customer_email`, `customer_password`, `customer_address1`, `customer_address2`, `customer_phone`) VALUES
-            (:name,:email,:password,:firstAddress,:secondAddress,:phoneNumber);");
-        //Bind values
-        $stmt->bindParam(':name', $data['customer_name']);
-        $stmt->bindParam(':email', $data['customer_email']);
-        $stmt->bindParam(':password', $data['customer_password']);
-        $stmt->bindParam(':firstAddress', $data['customer_address']);
-        $stmt->bindParam(':secondAddress', $data['customer_address2']);
-        $stmt->bindParam(':phoneNumber', $data['customer_phone']);
+        // $stmt = $this->conn->prepare("INSERT INTO `customers`( `customer_name`, `customer_email`, `customer_password`, `customer_address1`, `customer_address2`, `customer_phone`) VALUES
+        //     (:name,:email,:password,:firstAddress,:secondAddress,:phoneNumber);");
+        // //Bind values
+        // $stmt->bindParam(':name', $data['customer_name']);
+        // $stmt->bindParam(':email', $data['customer_email']);
+        // $stmt->bindParam(':password', $data['customer_password']);
+        // $stmt->bindParam(':firstAddress', $data['customer_address']);
+        // $stmt->bindParam(':secondAddress', $data['customer_address2']);
+        // $stmt->bindParam(':phoneNumber', $data['customer_phone']);
 
-        //Execute
-        if($stmt->execute()){
-            return true;
-        }else{
-            return false;
-        }
+        // //Execute
+        // if($stmt->execute()){
+        //     return true;
+        // }else{
+        //     return false;
+        // }
+        return $this->create($data);
     }
 
     //Login user
@@ -91,7 +92,7 @@ class Customer extends Model{
     public function getCustomer($id){ 
         try{
             $query = "SELECT * FROM customers WHERE customer_Id=:id";
-            $stmt=$this->db->prepare($query);
+            $stmt=$this->conn->prepare($query);
             $stmt->bindParam(":id",$id);
             $stmt->execute();
             if($stmt->rowcount()>0){
@@ -122,7 +123,7 @@ class Customer extends Model{
                     WHERE o.customer_id = :customer_id
                     GROUP BY o.order_id
                     ORDER BY o.created_at DESC";
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->conn->prepare($sql);
             $stmt->execute(['customer_id' => $customerId]);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
@@ -136,7 +137,7 @@ class Customer extends Model{
                         JOIN products p ON op.product_ID = p.product_ID
                         WHERE o.order_ID = :order_id AND o.customer_ID = :customer_id";
                 
-                $stmt = $this->db->prepare($sql);
+                $stmt = $this->conn->prepare($sql);
                 $stmt->execute([
                     'order_id' => $order_id,
                     'customer_id' => $customer_id
