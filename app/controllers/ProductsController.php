@@ -22,17 +22,20 @@ class ProductsController
         require 'views/admin/product/dash-products.php';
     }
 
-    public function filter($id) {
-        // $categoryFilter = $_GET['categoryFilter'] ?? null;
-        // echo "Product ID: " . $id;
+    public function filter() {
+        $categoryFilter = $_GET['id'] ?? null;
+        // echo "Product ID: " . $categoryFilter;
         // die();
-        if($id){
-            $products = $this->productModel->getProductsByCategoryId($id);
+        if($categoryFilter!='all'){
+            $products = $this->productModel->getProductsByCategoryId($categoryFilter);
+            $categories = $this->categoryModel->get();
+            require 'views/admin/product/dash-products.php';
         }else{
             $products = $this->productModel->showRow();
+            $categories = $this->categoryModel->get();
+            header('location:/products');
         }
-        $categories = $this->categoryModel->get();
-        require 'views/admin/product/dash-products.php';
+       
     }
 
     
@@ -112,7 +115,7 @@ class ProductsController
             $reviews = $this->reviewModel->getAllReviews($productID);
 
             if ($product) {
-                include 'views/pages/product-view.php'; 
+                include 'views/pages/product-view.php';
             } else {
                 echo "Product not found.";
             }

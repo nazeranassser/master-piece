@@ -58,9 +58,7 @@ namespace App\Controllers;
 use App\Models\Admin;
 use App\Models\Order;
 use App\Models\Category;
-use App\Models\Cart;
-
-
+use App\Models\Customer;
 require 'app/helpers/session_helper.php';
 
 class AdminsController {
@@ -70,6 +68,7 @@ class AdminsController {
         $this->adminModel = new Admin();
         $this->orderModel = new Order();
         $this->categoryModel = new Category();
+        $this->customerModel = new Customer();
         $this->orderModel->showOrdersProcessing();
         $this->orderModel->showOrdersDelivered();
         $this->orderModel->showOrdersCancelled();
@@ -81,6 +80,8 @@ class AdminsController {
             $admins = $this->adminModel->getAll();
             $orders = $this->orderModel->showOrders();
             $total = $this->orderModel->totalSales();
+            $totalOrders = $this->orderModel->totalOrders();
+            $totalCustomers = $this->customerModel->totalCustomers();
             require 'views/admin/dashboard_admin.php';
         }else{
             require 'views/pages/404.php';
@@ -210,4 +211,3 @@ class AdminsController {
     }
 
 }
-
