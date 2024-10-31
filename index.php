@@ -48,6 +48,7 @@ $router->add('coupons-add', ['controller' => 'Coupons', 'action' => 'addPage']);
 $router->add('new_coupon', ['controller' => 'Coupons', 'action' => 'add']);
 $router->add('coupon-delete', ['controller' => 'Coupons', 'action' => 'delete']);
 $router->add('orders', ['controller' => 'Orders', 'action' => 'get']);
+$router->add('orders-detal/{id:\d+}', ['controller' => 'customers', 'action' => 'viewOrderDetails']);
 
 
 

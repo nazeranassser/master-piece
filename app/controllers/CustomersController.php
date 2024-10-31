@@ -229,5 +229,37 @@ class CustomersController {
             echo "Failed to add admin.";
         }
     }
+    public function viewOrderDetails($order_id) {
+        if (!isset($_SESSION['usersId'])) {
+            header('Location: /login');
+            exit();
+        }
+        
+        
+        // إضافة طباعة للتأكد من القيم
+        error_log("Fetching order details for order_id: $order_id, customer_id: " . $_SESSION['usersId']);
+        
+        $order_details = $this->customerModel->getOrderDetails($order_id, $_SESSION['usersId']);
+        // dd($order_details);
+        // var_dump($_SESSION['usersId']);
+        // die();
+        if (!$order_details) {
+            header('Location: /profile-order');
+            exit();
+        }
+        
+        // تجهيز البيانات للعرض
+        $order = [
+            'order_ID' => $order_details[1]['order_ID'],
+            'order_date' => $order_details[1]['order_date'],
+            'status' => $order_details[1]['status'],
+            'total_amount' => $order_details[1]['total_amount']
+        ];
+        
+        // تمرير المتغيرات للview
+        require 'views/profile/profile.orderdetal.php';
+    }
+    
+    
           
 }
