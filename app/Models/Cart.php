@@ -1,72 +1,52 @@
 <?php
 namespace App\Models;
+
 use App\Models\Model;
 
-// require_once 'config/Database.php';
 class Cart {
-    private $cartItems = [];
+    private $db;
 
-    // Load the cart from cookies
-    public function loadCart() {
-        if (isset($_COOKIE['cart'])) {
-            $this->cartItems = json_decode($_COOKIE['cart'], true);
-        }
+    public function __construct() {
+        $this->db = new \PDO(DB_DSN, DB_USER, DB_PASS); // Use fully qualified PDO for global namespace
     }
 
-    // Save the cart to cookies
-    public function saveCart() {
-        setcookie('cart', json_encode($this->cartItems), time() + (86400 * 30), "/"); // 30 days
+    public function getProduct($productId) {
+        $stmt = $this->db->prepare("SELECT * FROM products WHERE id = :id");
+        $stmt->execute(['id' => $productId]);
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
-    // Add item to the cart
-    public function addItem($productId, $productName, $productPrice, $quantity) {
-        $existingItemIndex = $this->findItemIndex($productId);
-
-        if ($existingItemIndex !== -1) {
-            // Update quantity if item already exists
-            $this->cartItems[$existingItemIndex]['quantity'] += $quantity;
-        } else {
-            // Add new item to the cart
-            $this->cartItems[] = [
-                'id' => $productId,
-                'name' => $productName,
-                'price' => $productPrice,
-                'quantity' => $quantity
-            ];
-        }
-
-        $this->saveCart(); // Save changes to cookies
+    public function getCustomerInfo($customerId) {
+        $stmt = $this->db->prepare("SELECT * FROM customers WHERE id = :id");
+        $stmt->execute(['id' => $customerId]);
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
-    // Remove item from the cart
-    public function removeItem($productId) {
-        $existingItemIndex = $this->findItemIndex($productId);
+    public function createOrder($customerId, $orderTotal, $cartItems) {
+        $this->db->beginTransaction();
 
-        if ($existingItemIndex !== -1) {
-            unset($this->cartItems[$existingItemIndex]);
-            $this->cartItems = array_values($this->cartItems); // Reindex array
-            $this->saveCart(); // Save changes to cookies
-        }
-    }
+        try {
+            // Insert order into orders table
+            $stmt = $this->db->prepare("INSERT INTO orders (customer_id, total) VALUES (:customer_id, :total)");
+            $stmt->execute(['customer_id' => $customerId, 'total' => $orderTotal]);
+            $orderId = $this->db->lastInsertId();
 
-    // Get all cart items
-    public function getItems() {
-        return $this->cartItems;
-    }
-
-    // Find item index in the cart
-    private function findItemIndex($productId) {
-        foreach ($this->cartItems as $index => $item) {
-            if ($item['id'] === $productId) {
-                return $index;
+            // Insert order items into order_items table
+            foreach ($cartItems as $item) {
+                $stmt = $this->db->prepare("INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (:order_id, :product_id, :quantity, :price)");
+                $stmt->execute([
+                    'order_id' => $orderId,
+                    'product_id' => $item['product_id'],
+                    'quantity' => $item['quantity'],
+                    'price' => $item['price']
+                ]);
             }
-        }
-        return -1; // Item not found
-    }
 
-    // Clear the cart
-    public function clearCart() {
-        $this->cartItems = [];
-        $this->saveCart(); // Save changes to cookies
+            $this->db->commit();
+            return $orderId;
+        } catch (\Exception $e) {
+            $this->db->rollBack();
+            throw $e;
+        }
     }
 }
