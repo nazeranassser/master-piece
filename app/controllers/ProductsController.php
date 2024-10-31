@@ -3,6 +3,7 @@ namespace App\Controllers;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Testimonial;
+use App\Models\Review;
 class ProductsController
 {
     private $productModel;
@@ -12,6 +13,7 @@ class ProductsController
         $this->productModel = new Product();
         $this->categoryModel = new Category();
         $this->testimonialModel = new Testimonial();
+        $this->reviewModel = new Review();
     }
 
     public function index() {
@@ -85,5 +87,37 @@ class ProductsController
         $testimonials = $this->testimonialModel->getAll();
         // Load the view and pass the products data
         require 'views/pages/index-view.php';
+    }
+
+    public function showProducts() {
+        // Get filters from GET request
+        $search = $_GET['search'] ?? '';
+        $category = $_GET['category'] ?? '';
+        $sort = $_GET['sort'] ?? '';
+
+        // Fetch categories for the filter dropdown
+        $categories = $this->productModel->getCategories();
+
+        // Fetch products based on filters
+        $result = $this->productModel->getProducts($search, $category, $sort);
+
+        $allProducts = $this->productModel->getAllProducts();
+        // Load view with products and categories data
+        include 'views/pages/products-view.php';
+      }
+
+      public function viewProduct($productID) {
+        if ($productID) {
+            $product = $this->productModel->getProductById($productID);
+            $reviews = $this->reviewModel->getAllReviews($productID);
+
+            if ($product) {
+                include 'views/pages/product-view.php';
+            } else {
+                echo "Product not found.";
+            }
+        } else {
+            echo "Invalid product ID.";
+        }
     }
 }

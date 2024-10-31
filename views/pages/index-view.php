@@ -153,9 +153,10 @@ if (isset($_SESSION['customer_ID'])) {
                                                     <i class="fas fa-shopping-cart"></i>
                                                 </a>
                                                 <button class="btn btn-outline-secondary btn-sm ms-2" data-tooltip="tooltip"
-                                                    data-placement="top" title="Add to Favorites">
-                                                    <i class="fas fa-heart"></i>
-                                                </button>
+                                                data-placement="top" title="Add to Favorites" onclick="toggleFavorite(this)">
+                                                <i class="fas fa-heart" ></i>
+                                                      </button>
+
                                             </div>
                                         </div>
                                     </div>
@@ -769,6 +770,10 @@ if (isset($_SESSION['customer_ID'])) {
 
     <!--====== App ======-->
     <script src="public/js/app.js"></script>
+
+    <!--====== Add to Favorites ======-->
+
+    <script src="public/js/AddtoFavorites.js"></script>
 
     <!--====== Noscript ======-->
     <noscript>

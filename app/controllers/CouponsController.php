@@ -29,12 +29,12 @@ class CouponsController{
             }
     }
 
-    function add($admin){
+    function add(){
 
         $data = [
-            'coupon_name' => $_POST['coupon_name'],
-            'coupon_amount' => $_POST['coupon_amount_new'],
-            'coupon_expire' => $_POST['coupon_expire_new'],
+            'coupon_value' => $_POST['coupon_name'],
+            'coupon_amount' => $_POST['coupon_amount'],
+            'coupon_expire' => $_POST['coupon_expire'],
             'created_at' => date("Y/m/d h:m:s"),
         ];
         if ($this->couponsModel->create($data)) {
@@ -43,6 +43,28 @@ class CouponsController{
         } else {
             echo "Failed to add admin.";
         }
-      }
+    }
+
+    function updateCoupon(){
+        $id = $_POST['coupon_id'];
+        $data = [
+            'coupon_value' => $_POST['coupon_name'],
+            'coupon_amount' => $_POST['coupon_amount'],
+            'coupon_expire' => $_POST['coupon_expire'],
+            'created_at' => date("Y/m/d h:m:s"),
+        ];
+        if ($this->couponsModel->update($id,$data)) {
+            // Redirect or show a success message
+            header("location:/coupons");
+        } else {
+            echo "Failed to add admin.";
+        }
+    }
+
+    public function delete(){
+        $this->couponsModel->deleteCoupon($_POST['delete_coupon']);
+        header("location:/coupons");
+
+    }
 
 }

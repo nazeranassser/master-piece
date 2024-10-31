@@ -80,10 +80,12 @@ class Model {
 
     // DELETE: Delete a record by ID
     public function delete($id) {
-        $table_id = $this->table."_id";
-        $this->db->query("DELETE FROM $this->table WHERE $table_id = :id");
-        $this->db->bind(':id', $id);
-        return $this->db->execute();
+        var_dump($id);
+        $table_id = rtrim($this->table,'s');
+        $table_id .="_id";
+        $stmt = $this->db->prepare("DELETE FROM $this->table WHERE $table_id = :id");
+        $stmt->bindParam(':id', $id);
+        return $stmt->execute();
     }
 
     // Optional: Search by a specific field

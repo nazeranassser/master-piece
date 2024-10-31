@@ -43,7 +43,12 @@
                                     <!--====== Dashboard Features ======-->
                                     <?php
                                     include('views/admin/dashboard_features.php');
-                                    ?>
+                                    
+                                    ?><div>
+
+                                    <a class="dash__custom-link btn--e-brand-b-2" href="/coupons-add"><i class="fas fa-plus u-s-m-r-8"></i>
+
+                                        <span>Add New Coupon</span></a></div>
                                     <!--====== End - Dashboard Features ======-->
                                 </div>
                                 <div class="col-lg-9 col-md-12">
@@ -80,7 +85,7 @@
                                                             <th style='display: flex;''>
                                                             <input type='hidden' value='".$coupon['coupon_id']."' name='edit''>
                                                             <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2' style='margin-right:4px ;'>Edit</button></form>
-                                                            <form method='POST' action='show_admin.php'>
+                                                            <form method='POST' action='coupon-delete'>
                                                             <input type='hidden' value='".$coupon['coupon_id']."' name='delete_coupon''>
                                                             <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2'>Delete</button></form></th>
                                                         </tr>";
@@ -90,11 +95,7 @@
                                             </table>
                                         </div>
                                     </div>
-                                    <div>
-
-                                        <a class="dash__custom-link btn--e-brand-b-2" href="/coupons-add"><i class="fas fa-plus u-s-m-r-8"></i>
-
-                                            <span>Add New Coupon</span></a></div>
+                                    
                                 </div>
                             </div>
                         </div>

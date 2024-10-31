@@ -92,8 +92,6 @@ class Product extends Model
         echo "Database update failed.";
     }
 }
-
-
   public function __construct()
   {
     $this->conn = Database::getInstance()->getConnection(); // Get the database connection

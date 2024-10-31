@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/public/css/footer.css">
     <link rel="stylesheet" href="/public/css/index.css">
+    <link rel="stylesheet" href="/public/css/product-details.css">
 
     
 

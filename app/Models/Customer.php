@@ -106,21 +106,57 @@ class Customer extends Model{
             }
         }
         public function updatecustomer($id,$data){
-            if (isset($_FILES['image']) && in_array($_FILES['image']['type'], $this->allowedTypes)) {
-                $fileName = uniqid() . '' . basename($_FILES['image']['name']);
-                $targetFile = $this->uploadDir . $fileName;
-        
-                if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
-                    $customer_image = 'images/products/' . $fileName;
-                } else {
-                    echo "Error uploading image.";
-                    return; // Stop execution if image upload fails
-                }
-            } else {
-                $customer_image = $admin['image'] ?? null;
-            }
+            
             return $this->update($id,$data);
             
+        }
+
+        public function getCustomerOrders($customerId) {
+            $sql = "SELECT o.order_id, o.order_total_amount, o.order_total_amount_after, o.order_status, o.created_at,
+                           GROUP_CONCAT(p.product_name SEPARATOR '|') as product_names,
+                           GROUP_CONCAT(p.product_image SEPARATOR '|') as product_images,
+                           GROUP_CONCAT(op.quantity SEPARATOR '|') as quantities
+                    FROM orders o
+                    JOIN order_products op ON o.order_id = op.order_id
+                    JOIN products p ON op.product_id = p.product_id
+                    WHERE o.customer_id = :customer_id
+                    GROUP BY o.order_id
+                    ORDER BY o.created_at DESC";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute(['customer_id' => $customerId]);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+        public function getOrderDetails($order_id, $customer_id) {
+            try {
+                $sql = "SELECT o.order_ID, o.created_at as order_date, o.order_status as status,
+                               o.order_total_amount_after as total_amount,
+                               op.quantity, p.product_name, p.product_image, p.product_price
+                        FROM orders o
+                        JOIN order_products op ON o.order_ID = op.order_ID
+                        JOIN products p ON op.product_ID = p.product_ID
+                        WHERE o.order_ID = :order_id AND o.customer_ID = :customer_id";
+                
+                $stmt = $this->db->prepare($sql);
+                $stmt->execute([
+                    'order_id' => $order_id,
+                    'customer_id' => $customer_id
+                ]);
+                
+                // إضافة طباعة للتأكد من البيانات
+                $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                
+                // للتأكد من البيانات المسترجعة
+                if (empty($results)) {
+                    error_log("No results found for order_id: $order_id and customer_id: $customer_id");
+                    return false;
+                }
+                
+                return $results;
+                
+            } catch (PDOException $e) {
+                error_log("Database Error: " . $e->getMessage());
+                return false;
+            }
         }
   
 
