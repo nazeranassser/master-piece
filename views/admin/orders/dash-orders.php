@@ -90,8 +90,8 @@ include('views/partials/header_admin.php');
                                                             </div>
                                                             <div>
                                                                 <div class='dash__link dash__link--brand'>
-                                                                 <form method='POST' action='dash-manage-order.php'>
-                                                                        <input type='text' value='".$order['order_id']."' name='order_id' style='visibility: hidden;display: none;'>
+                                                                 <form method='GET' action='/orderDetails'>
+                                                                        <input type='text' value='".$order['order_id']."' name='id' style='visibility: hidden;display: none;'>
                                                                         <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2' style='border:0;color:#ff4500'><a>MANAGE</a></button>
                                                                     </form>
                                                                     </div>

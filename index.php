@@ -53,6 +53,7 @@ $router->add('coupons-add', ['controller' => 'Coupons', 'action' => 'addPage']);
 $router->add('new_coupon', ['controller' => 'Coupons', 'action' => 'add']);
 $router->add('coupon-delete', ['controller' => 'Coupons', 'action' => 'delete']);
 $router->add('orders', ['controller' => 'Orders', 'action' => 'get']);
+$router->add('orderDetails', ['controller' => 'Orders', 'action' => 'orderDetails']);
 // Route to show wishlist items
 $router->add('wishlist', ['controller' => 'Wishlist', 'action' => 'show']);
 
@@ -82,6 +83,8 @@ if(isset($url2[1])){
     // die();
 }
 // Dispatch the request
+// var_dump($url);
+// die();
 $router->dispatch($url);
 function getAssetPaths($rootDir) {
     $assetPaths = [];
