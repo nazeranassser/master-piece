@@ -1,9 +1,10 @@
 <?php
 namespace App\Controllers;
 
-use App\Models\CartModel;
+use App\Models\Cart;
 
-class CartsController {
+
+class CartController {
     private $cartModel;
 
     public function __construct() {
@@ -12,24 +13,34 @@ class CartsController {
 
     // Add item to cart and store it in cookies
     public function addToCart($productId, $quantity) {
+        // Initialize the cart from cookies or create a new array
         $cart = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];
-        
-        // Check for duplicate item in cart
+    
+        // Check for duplicate item in the cart
         if (isset($cart[$productId])) {
+            // Update quantity if the product already exists in the cart
             $cart[$productId]['quantity'] += $quantity;
         } else {
+            // Fetch product details using the cart model
             $product = $this->cartModel->getProduct($productId);
-            $cart[$productId] = [
-                'product_id' => $productId,
-                'product_name' => $product['name'],
-                'price' => $product['price'],
-                'quantity' => $quantity
-            ];
+            if ($product) { // Ensure the product exists
+                $cart[$productId] = [
+                    'product_id' => $productId,
+                    'product_name' => $product['name'],
+                    'price' => $product['price'],
+                    'quantity' => $quantity
+                ];
+            }
         }
-
+    
+        // Update the cart cookie with the new cart contents
         setcookie('cart', json_encode($cart), time() + 3600, '/');
-        header("Location: cart.php");
+        
+        // Redirect to the cart page
+        header("Location: /views/pages/cart.php");
+        exit; // Ensure the script stops executing after redirection
     }
+    
 
     public function removeFromCart($productId) {
         $cart = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];

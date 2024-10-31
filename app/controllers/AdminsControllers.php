@@ -58,6 +58,9 @@ namespace App\Controllers;
 use App\Models\Admin;
 use App\Models\Order;
 use App\Models\Category;
+use App\Models\Cart;
+
+
 require 'app/helpers/session_helper.php';
 
 class AdminsController {

@@ -1,6 +1,6 @@
 
         <!--====== Main Header ======-->
-        <?php include 'views/partials/header.php'; ?>
+        <?php include '../../views/partials/header.php'; ?>
         <!--====== End - Main Header ======-->
 
         <!--====== Cart Content ======-->
@@ -104,7 +104,7 @@
         </div>
     </div>
     <footer>
-    <?php include 'views/partials/footer.php'; ?>
+    <?php include '../../views/partials/footer.php'; ?>
     </footer>
 
 <!--====== Vendor Js ======-->

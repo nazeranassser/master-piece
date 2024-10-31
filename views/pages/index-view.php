@@ -147,17 +147,22 @@ if (isset($_SESSION['customer_ID'])) {
                                             <div class="product-price"><?= number_format($product['product_price'], 2); ?>JD
                                             </div>
                                             <div class="action-buttons d-flex">
-                                                <a href="cart/<?= $product['product_id'] ?>"
-                                                    class="btn btn-outline-secondary btn-sm" data-tooltip="tooltip"
-                                                    data-placement="top" title="Add to Cart">
-                                                    <i class="fas fa-shopping-cart"></i>
-                                                </a>
-                                                <button class="btn btn-outline-secondary btn-sm ms-2" data-tooltip="tooltip"
-                                                data-placement="top" title="Add to Favorites" onclick="toggleFavorite(this)">
-                                                <i class="fas fa-heart" ></i>
-                                                      </button>
+    <a href="/cart/<?= $product['product_id'] ?>?quantity=1" 
+       class="btn btn-outline-secondary btn-sm" 
+       data-tooltip="tooltip" 
+       data-placement="top" 
+       title="Add to Cart">
+        <i class="fas fa-shopping-cart"></i>
+    </a>
+    <button class="btn btn-outline-secondary btn-sm ms-2" 
+            data-tooltip="tooltip" 
+            data-placement="top" 
+            title="Add to Favorites" 
+            onclick="toggleFavorite(this)">
+        <i class="fas fa-heart"></i>
+    </button>
+</div>
 
-                                            </div>
                                         </div>
                                     </div>
                                 </div>

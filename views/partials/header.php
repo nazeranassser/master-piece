@@ -41,7 +41,7 @@
                 <span class="icon-badge">2</span>
             </div>
             <div class="icon nav-item" style="animation-delay: 0.7s;">
-               <a href = 'cart'> <i class="fas fa-shopping-bag"></i> </a>
+               <a href = 'views/pages/cart.php'> <i class="fas fa-shopping-bag"></i> </a>
                 <span class="icon-badge">3</span>
             </div>
 
