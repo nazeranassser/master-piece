@@ -4,31 +4,34 @@ namespace App\Controllers;
 use App\Models\Cart;
 
 
-class CartController {
+class CartsController {
     private $cartModel;
 
     public function __construct() {
-        $this->cartModel = new CartModel();
+        $this->cartModel = new Cart();
     }
 
     // Add item to cart and store it in cookies
-    public function addToCart($productId, $quantity) {
+    public function addToCart($productId) {
         // Initialize the cart from cookies or create a new array
         $cart = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];
     
         // Check for duplicate item in the cart
         if (isset($cart[$productId])) {
             // Update quantity if the product already exists in the cart
-            $cart[$productId]['quantity'] += $quantity;
+            $cart[$productId]['quantity'] += 1;
         } else {
             // Fetch product details using the cart model
             $product = $this->cartModel->getProduct($productId);
+            
             if ($product) { // Ensure the product exists
                 $cart[$productId] = [
                     'product_id' => $productId,
-                    'product_name' => $product['name'],
-                    'price' => $product['price'],
-                    'quantity' => $quantity
+                    'product_name' => $product['product_name'],
+                    'price' => $product['product_price'],
+                    'quantity' => 1,
+                    'image_url' => $product['product_image'], // Assuming this is the correct field
+
                 ];
             }
         }

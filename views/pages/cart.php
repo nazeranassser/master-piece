@@ -30,52 +30,46 @@
                                 <div class="table-responsive">
                                     <table class="table-p">
                                         <tbody>
-
-                                            <?php if (!empty($cartItems)): ?>
+                                        <?php $cartItems = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];
+?>
                                                 <!-- Loop through cart items -->
-                                                <?php foreach ($cartItems as $item): ?>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="table-p__box">
-                                                                <div class="table-p__img-wrap">
-                                                                    <img class="u-img-fluid" src="<?php echo $item['image_url']; ?>" alt="">
-                                                                </div>
-                                                                <div class="table-p__info">
-                                                                    <span class="table-p__name">
-                                                                        <a href="product/<?php echo $item['product_id']; ?>"><?php echo htmlspecialchars($item['product_name']); ?></a>
-                                                                    </span>
-                                                                    <ul class="table-p__variant-list">
-                                                                        <li><span>Size: <?php echo htmlspecialchars($item['size']); ?></span></li>
-                                                                        <li><span>Color: <?php echo htmlspecialchars($item['color']); ?></span></li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <span class="table-p__price">$<?php echo number_format($item['price'], 2); ?></span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="table-p__input-counter-wrap">
-                                                                <div class="input-counter">
-                                                                    <span class="input-counter__minus fas fa-minus"></span>
-                                                                    <input class="input-counter__text input-counter--text-primary-style" type="text" value="<?php echo htmlspecialchars($item['quantity']); ?>" min="1" max="1000">
-                                                                    <span class="input-counter__plus fas fa-plus"></span>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="table-p__del-wrap">
-                                                                <a class="far fa-trash-alt table-p__delete-link" href="CartController.php?action=removeFromCart&product_id=<?php echo $item['product_id']; ?>"></a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                            <?php else: ?>
-                                                <tr>
-                                                    <td colspan="4">Your cart is empty!</td>
-                                                </tr>
-                                            <?php endif; ?>
+    <?php foreach ($cartItems as $productId => $item): ?>
+        <tr>
+            <td>
+                <div class="table-p__box">
+                    <div class="table-p__img-wrap">
+                        <img class="u-img-fluid" src="<?php echo htmlspecialchars($item['image_url']); ?>" alt="uigsds">
+                    </div>
+                    <div class="table-p__info">
+                        <span class="table-p__name">
+                            <a href="product/<?php echo htmlspecialchars($item['product_id']); ?>"><?php echo htmlspecialchars($item['product_name']); ?></a>
+                        </span>
+                        
+                    </div>
+                </div>
+            </td>
+            <td>
+                <span class="table-p__price">$<?php echo number_format($item['price'], 2); ?></span>
+            </td>
+            <td>
+                <div class="table-p__input-counter-wrap">
+                    <div class="input-counter">
+                        <span class="input-counter__minus fas fa-minus"></span>
+                        <input class="input-counter__text input-counter--text-primary-style" type="text" value="<?php echo htmlspecialchars($item['quantity']); ?>" min="1" max="$item['quantity']">
+                        <span class="input-counter__plus fas fa-plus"></span>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="table-p__del-wrap">
+                    <a class="far fa-trash-alt table-p__delete-link" href="CartController.php?action=removeFromCart&product_id=<?php echo htmlspecialchars($item['product_id']); ?>"></a>
+                </div>
+            </td>
+        </tr>
+    <?php endforeach; ?>
 
+
+                                                
                                         </tbody>
                                     </table>
                                 </div>
