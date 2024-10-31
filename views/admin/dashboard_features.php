@@ -4,7 +4,7 @@
                                             <span class="dash__text u-s-m-b-16">Hello, John Doe</span>
                                             <ul class="dash__f-list">
                                                 <li>
-                                                <a href="dash">
+                                                <a href="/dash">
                                                     <div class="admin_list">
                                                         <div class="admin_list_div" >
                                                               <img class="dash_img"  src="/images/products/671fb4e759685_dashboard.png" alt="">
@@ -15,7 +15,7 @@
                                                 </a>
                                                 </li>
                                                 <li>
-                                                <a href="products">
+                                                <a href="/products">
                                                     <div class="admin_list">
                                                         <div class="admin_list_div" >
                                                               <img class="dash_img"  src="/public/images/icing.png" alt="">
@@ -28,7 +28,7 @@
                                                 <?php 
                                                     if($_SESSION['is_super']==1){ echo'
                                                         <li>
-                                                        <a href="admins">
+                                                        <a href="/admins">
                                                             <div class="admin_list">
                                                                 <div class="admin_list_div" >
                                                                       <img class="dash_img"  src="/public/images/administrator.png" alt="">
@@ -56,6 +56,28 @@
                                                         <div class="admin_list_div" >
                                                               <img class="dash_img"  src="/public/images/box_2.png" alt="">
                                                               <p>Orders</p>
+                                                        </div>
+                                                        <img style="width:12px" src="/public/images/angle-right.png" alt="">
+                                                    </div>
+                                                </a>
+                                                </li>
+                                                <li>
+                                                <a href="/orders">
+                                                    <div class="admin_list">
+                                                        <div class="admin_list_div" >
+                                                              <img class="dash_img"  src="images/products/671fb3380fb81_user.png" alt="">
+                                                              <p>Customers</p>
+                                                        </div>
+                                                        <img style="width:12px" src="/public/images/angle-right.png" alt="">
+                                                    </div>
+                                                </a>
+                                                </li>
+                                                <li>
+                                                <a href="/orders">
+                                                    <div class="admin_list">
+                                                        <div class="admin_list_div" >
+                                                              <img class="dash_img"  src="images/products/671fb3380fb81_user.png" alt="">
+                                                              <p>Messages</p>
                                                         </div>
                                                         <img style="width:12px" src="/public/images/angle-right.png" alt="">
                                                     </div>

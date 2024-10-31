@@ -44,19 +44,19 @@
                                 <div class="col-lg-9 col-md-12">
                                     <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white u-s-m-b-30">
                                         <div class="dash__pad-2">
-                                            <h1 class="dash__h1 u-s-m-b-14">Dashboard</h1>
+                                            <h1 class="dash__h1 u-s-m-b-10">Dashboard</h1>
 
-                                            <span class="dash__text u-s-m-b-30">From your My Account Dashboard you have the ability to view a snapshot of your recent account activity and update your account information. Select a link below to view or edit information.</span>
+                                         <span class="dash__text u-s-m-b-30">From your My Account Dashboard you have the ability to view a snapshot of your recent account activity and update your account information. Select a link below to view or edit information.</span>
                                             <div class="row">
-                                                <div class="col-lg-4 u-s-m-b-30">
-                                                    <div class="dash__box dash__box--bg-grey dash__box--shadow-2 u-h-100">
+                                                <div class="col-lg-4 u-s-m-b-30"  style="text-align:center;">
+                                                    <div class="dash__box dash__box--bg-grey dash__box--shadow-2 u-h-100" >
                                                         <div class="dash__pad-3">
-                                                            <h2 class="dash__h1 u-s-m-b-8">Total Sales</h2>
+                                                            <h2 class="dash__h1 u-s-m-b-8" style="text-align:center;font-size:30px">Total Sales</h2>
                                                             <div class="dash__link dash__link--secondary u-s-m-b-8">
 
-                                                                <a href="dash-edit-profile.html"><br></a></div>
+                                                                <a href="dash-edit-profile.html"></a></div>
 
-                                                            <h1 class="dash__h1 u-s-m-b-14" style='font-size:30px'><?php
+                                                            <h1 class="dash__h1 u-s-m-b-10" style='font-size:40px;padding-top:24px'><?php
                                                             //  include('show_admin.php');
                                                                                             
                                                             //  $sales = new sales();
@@ -72,32 +72,29 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-4 u-s-m-b-30">
+                                                <div class="col-lg-4 u-s-m-b-30" style="text-align:center;">
                                                     <div class="dash__box dash__box--bg-grey dash__box--shadow-2 u-h-100">
                                                         <div class="dash__pad-3">
-                                                            <h2 class="dash__h2 u-s-m-b-8">ADDRESS BOOK</h2>
-
-                                                            <span class="dash__text-2 u-s-m-b-8">Default Shipping Address</span>
+                                                            <h2 class="dash__h1 u-s-m-b-8"style="text-align:center;font-size:28px">Total Customers</h2>
                                                             <div class="dash__link dash__link--secondary u-s-m-b-8">
-
-                                                                <a href="dash-address-book.html">Edit</a></div>
-
-                                                            <span class="dash__text">4247 Ashford Drive Virginia - VA-20006 - USA</span>
-
-                                                            <span class="dash__text">(+0) 900901904</span>
+                                                            </div>
+                                                            <h1 class="dash__h1 u-s-m-b-10" style='font-size:40px;padding-top:24px'><?php
+                                                             echo $totalCustomers;
+                                                            ?> </h1>
+                                                            <span class="dash__text"></span>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-4 u-s-m-b-30">
+                                                <div class="col-lg-4 u-s-m-b-30" style="text-align:center;">
                                                     <div class="dash__box dash__box--bg-grey dash__box--shadow-2 u-h-100">
                                                         <div class="dash__pad-3">
-                                                            <h2 class="dash__h2 u-s-m-b-8">BILLING ADDRESS</h2>
-
-                                                            <span class="dash__text-2 u-s-m-b-8">Default Billing Address</span>
-
-                                                            <span class="dash__text">4247 Ashford Drive Virginia - VA-20006 - USA</span>
-
-                                                            <span class="dash__text">(+0) 900901904</span>
+                                                            <h2 class="dash__h1 u-s-m-b-8"style="text-align:center;font-size:28px">Messages</h2>
+                                                            <div class="dash__link dash__link--secondary u-s-m-b-8">
+                                                            </div>
+                                                            <h1 class="dash__h1 u-s-m-b-10" style='font-size:40px;padding-top:24px'><?php
+                                                             echo $totalOrders;
+                                                            ?> </h1>
+                                                            <span class="dash__text"></span>
                                                         </div>
                                                     </div>
                                                 </div>

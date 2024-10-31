@@ -1,3 +1,53 @@
+<?php include('views/partials/header.php'); ?>
+<h1>Order Details</h1>
+<p>Order ID: <?php echo htmlspecialchars($order['order_ID']); ?></p>
+<p>Order Date: <?php echo date('Y-m-d H:i:s', strtotime($order['order_date'])); ?></p>
+<p>Status: <?php echo htmlspecialchars($order['status']); ?></p>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Product Image</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php 
+        $grand_total = 0;
+        foreach ($order_details as $item): 
+            $item_total = $item['quantity'] * $item['product_price'];
+            $grand_total += $item_total;
+        ?>
+            <tr>
+                <td>
+                    <img src="<?php echo htmlspecialchars($item['product_image']); ?>" 
+                         alt="<?php echo htmlspecialchars($item['product_name']); ?>" 
+                         width="50">
+                </td>
+                <td><?php echo htmlspecialchars($item['product_name']); ?></td>
+                <td><?php echo htmlspecialchars($item['quantity']); ?></td>
+                <td>$<?php echo number_format($item['product_price'], 2); ?></td>
+                <td>$<?php echo number_format($item_total, 2); ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4" align="right"><strong>Total Amount:</strong></td>
+            <td>$<?php echo number_format($order['total_amount'], 2); ?></td>
+        </tr>
+    </tfoot>
+</table>
+<?php include('views/partials/footer.php'); ?>
+
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+
+
 <?php include('views/partials/header.php') ?> 
 
 <link rel="stylesheet" href="public/css/app.css">

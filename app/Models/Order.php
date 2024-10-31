@@ -30,6 +30,16 @@ class Order extends Model {
         }
     }
 
+    function totalOrders(){
+        $sql =" SELECT COUNT(*) FROM `orders`;";
+        $start = $this->db->query($sql);
+        if ($start) {
+            $row = $start->fetchAll(PDO::FETCH_ASSOC); 
+            $total =$row[0]['COUNT(*)'];
+            return $total;
+        }
+    }
+
     function showOrdersProcessing(){
         $sql =" SELECT COUNT(*) FROM `orders` WHERE order_status = 'processing';";
         $start = $this->db->query($sql);
@@ -80,6 +90,4 @@ class Order extends Model {
             echo "0 results";
        }
     }
-    
-}
-  
+  }
