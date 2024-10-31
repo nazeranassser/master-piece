@@ -1,7 +1,7 @@
 <?php
+namespace App\Controllers;
 
-require_once 'models/Wishlist.php';
-
+use App\Models\Wishlist;
 class WishlistController
 {
     protected $wishlistModel;
@@ -15,50 +15,64 @@ class WishlistController
     public function store()
     {
         $productId = $_POST['product_id'] ?? null;
-
-        if ($productId) {
-            // Check if the product is already in the wishlist to avoid duplicates
-            $existingProduct = $this->wishlistModel->findByProductId($productId);
-
-            if (!$existingProduct) {
-                $this->wishlistModel->create(['product_id' => $productId]);
-                header("Location: /products?message=Product added to wishlist");
-                exit();
-            } else {
-                header("Location: /products?error=Product already in wishlist");
-                exit();
-            }
+        
+        if (!$productId) {
+            header("Location: /products?error=No product ID provided");
+            exit();
+        }
+    
+        // Check if the product is already in the wishlist
+        $existingProduct = $this->wishlistModel->findByProductId($productId);
+        
+        if (!$existingProduct) {
+            $this->wishlistModel->create(['product_id' => $productId]);
+            header("Location: /products?message=Product added to wishlist");
+            exit();
         } else {
-            header("Location: /products?error=Failed to add product to wishlist");
+            header("Location: /products?error=Product already in wishlist");
             exit();
         }
     }
-
 
     // Method to display wishlist items
     public function show()
     {
         $wishlistItems = $this->wishlistModel->getWishlistWithProductDetails();
-        require 'views/wishlist/show.view.php';
+        require 'views/pages/wishlist.php';
     }
 
-
+    // Method to delete from wishlist
     public function delete()
     {
-        // $productId = $_POST['product_id'] ?? null;
+        $id = $_POST['id'] ?? null;
+        
+        if ($id) {
+            $this->wishlistModel->delete($id);  
+            header("Location: /wishlist?message=Product removed from wishlist");
+        } else {
+            header("Location: /wishlist?error=No ID provided for deletion");
+        }
+        exit();
+    }
+    
 
-        // if ($productId) {
-        //     $this->wishlistModel->delete($productId);
-        //     header("Location: /products");
-        //     exit();
-        // }
-
-
-        $wishlistModel = new Wishlist();
-        $id = $_POST['id'];
-        $wishlistModel->delete($id);
-
-        header('Location: /wishlist');
-        exit;
+    // New method to check if a product is in wishlist
+    public function check()
+    {
+        $productId = $_GET['product_id'] ?? null;
+        
+        if ($productId) {
+            $existingProduct = $this->wishlistModel->findByProductId($productId);
+            echo json_encode([
+                'success' => true,
+                'inWishlist' => !empty($existingProduct)
+            ]);
+        } else {
+            echo json_encode([
+                'success' => false,
+                'message' => 'Invalid product ID'
+            ]);
+        }
+        exit();
     }
 }
