@@ -1,30 +1,41 @@
-<?php
-class Wishlist {
-   private $db;
+<?php 
 
-   public function __construct($db) {
-       $this->db = $db;
-   }
+require_once 'Model.php';
 
-   public function addToWishlist($userId, $productId) {
-       $query = 'INSERT INTO wishlist (customer_id, product_id, created_at, updated_at)
-                 VALUES (:user_id, :product_id, NOW(), NOW())
-                 ON DUPLICATE KEY UPDATE updated_at = NOW()';
-       $stmt = $this->db->prepare($query);
-       $stmt->bindParam(':user_id', $userId);
-       $stmt->bindParam(':product_id', $productId);
-       return $stmt->execute();
-   }
+class Wishlist extends Model{
 
-   public function getUserWishlist($userId) {
-       $query = 'SELECT p.product_id, p.product_name, p.product_price, p.product_image, p.product_description 
-                 FROM wishlist w
-                 JOIN products p ON w.product_id = p.product_id
-                 WHERE w.customer_id = :user_id';
-       $stmt = $this->db->prepare($query);
-       $stmt->bindParam(':user_id', $userId);
-       $stmt->execute();
-       return $stmt->fetchAll(PDO::FETCH_ASSOC);
-   }
+    public function __construct(){
+        parent::__construct('wishlist');
+    }
+
+    // Method to get all wishlist items with updated product details
+    public function getWishlistWithProductDetails()
+    {
+        $stmt = $this->pdo->prepare("
+            SELECT wishlists.*, 
+                   product.product_name AS title, 
+                   product.product_description AS description, 
+                   product.product_price AS price, 
+                   product.product_image, 
+                   product.category_id, 
+                   product.product_quantity, 
+                   product.total_review, 
+                   product.product_discount, 
+                   product.created_at, 
+                   product.updated_at 
+            FROM {$this->table} 
+            JOIN product ON wishlist.product_id = product.product_id
+        ");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Check if a product is already in the wishlist
+    public function findByProductId($productId)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE product_id = :product_id");
+        $stmt->bindParam(':product_id', $productId);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
-?>
