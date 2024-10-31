@@ -53,8 +53,20 @@ $router->add('coupons-add', ['controller' => 'Coupons', 'action' => 'addPage']);
 $router->add('new_coupon', ['controller' => 'Coupons', 'action' => 'add']);
 $router->add('coupon-delete', ['controller' => 'Coupons', 'action' => 'delete']);
 $router->add('orders', ['controller' => 'Orders', 'action' => 'get']);
+// Route to show wishlist items
+$router->add('wishlist', ['controller' => 'Wishlist', 'action' => 'show']);
+
+// Route to add item to wishlist
+$router->add('wishlist/store', ['controller' => 'Wishlist', 'action' => 'store']);
+
+// Route to remove item from wishlist
+$router->add('wishlist/delete', ['controller' => 'Wishlist', 'action' => 'delete']);
+
+// Route to check if product is in wishlist (optional, for AJAX checking)
+$router->add('wishlist/check', ['controller' => 'Wishlist', 'action' => 'check']);
 $router->add('orders-detal/{id:\d+}', ['controller' => 'customers', 'action' => 'viewOrderDetails']);
 
+$router->add('reviews', ['controller' => 'Products', 'action' => 'viewProduct']);
 
 
 

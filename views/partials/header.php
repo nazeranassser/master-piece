@@ -36,7 +36,7 @@
 
         <div class="icons">
             <div class="icon nav-item" style="animation-delay: 0.6s;">
-               <a href="views/pages/wishlist.php">
+               <a href="wishlist">
                 <i class="fas fa-heart"></i>
                 <span class="icon-badge">2</span>
             </div>

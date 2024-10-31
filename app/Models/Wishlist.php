@@ -1,39 +1,49 @@
 <?php 
-
-require_once 'Model.php';
+namespace App\Models;
+use App\Models\Model;
+use PDO; // Use the global PDO class
+use PDOException;
 
 class Wishlist extends Model{
 
     public function __construct(){
-        parent::__construct('wishlist');
+        parent::__construct('wishlists');
     }
+
+    // public function add($data){
+    //     $query = 
+    //     $stmt = $this->db->prepare($query);
+
+    // }
 
     // Method to get all wishlist items with updated product details
     public function getWishlistWithProductDetails()
     {
-        $stmt = $this->pdo->prepare("
+        $stmt = $this->db->prepare("
             SELECT wishlists.*, 
-                   product.product_name AS title, 
-                   product.product_description AS description, 
-                   product.product_price AS price, 
-                   product.product_image, 
-                   product.category_id, 
-                   product.product_quantity, 
-                   product.total_review, 
-                   product.product_discount, 
-                   product.created_at, 
-                   product.updated_at 
+                   products.product_name AS title, 
+                   products.product_description AS description, 
+                   products.product_price AS price, 
+                   products.product_image, 
+                   products.category_id, 
+                   products.product_quantity, 
+                   products.total_review, 
+                   products.product_discount, 
+                   products.created_at, 
+                   products.updated_at 
             FROM {$this->table} 
-            JOIN product ON wishlist.product_id = product.product_id
+            JOIN products ON wishlists.product_id = products.product_id
         ");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    
+
     // Check if a product is already in the wishlist
     public function findByProductId($productId)
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE product_id = :product_id");
+        $stmt = $this->db->prepare("SELECT * FROM {$this->table} WHERE product_id = :product_id");
         $stmt->bindParam(':product_id', $productId);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);

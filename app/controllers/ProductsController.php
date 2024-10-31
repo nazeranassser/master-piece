@@ -112,7 +112,7 @@ class ProductsController
             $reviews = $this->reviewModel->getAllReviews($productID);
 
             if ($product) {
-                include 'views/pages/product-view.php';
+                include 'views/pages/product-view.php'; 
             } else {
                 echo "Product not found.";
             }
