@@ -279,3 +279,32 @@ h3, h4 {
     color: #999;
     margin-top: 5px;
 }
+
+
+/* Star Rating Styling */
+.star-rating {
+    display: flex;
+    direction: rtl; /* Reverse order for easier selection */
+    gap: 15px;
+    margin: auto;
+}
+
+.star-rating input[type="radio"] {
+    display: none; /* Hide the radio buttons */
+}
+
+.star-rating .star {
+    font-size: 24px; /* Star size */
+    color: #ccc; /* Default star color */
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.star-rating input[type="radio"]:checked ~ .star {
+    color: #ffcc00; /* Color for selected stars */
+}
+
+.star-rating .star:hover,
+.star-rating .star:hover ~ .star {
+    color: #ffcc00; /* Highlight stars on hover */
+}

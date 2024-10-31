@@ -1,4 +1,8 @@
-<?php require 'views/partials/header.php'; ?>
+<?php require 'views/partials/header.php';
+
+$customer_id = isset($_SESSION['usersId']) ? $_SESSION['usersId'] : null;
+
+?>
 <div class="u-s-p-t-90">
     <div class="container">
         <div class="row">
@@ -63,7 +67,7 @@
         <h3>Customer Reviews</h3>
 
         <!-- Form for submitting a review -->
-        <form class="review-form" action="submit_review.php" method="POST" enctype="multipart/form-data">
+        <form class="review-form" id="reviewForm" action="/submitReview" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
 
             <div class="u-s-m-b-15">
@@ -73,14 +77,18 @@
 
             <div class="u-s-m-b-15">
                 <label for="review-rating">Rating:</label>
-                <select id="review-rating" name="rating" required>
-                    <option value="">Select Rating</option>
-                    <option value="1">1 Star</option>
-                    <option value="2">2 Stars</option>
-                    <option value="3">3 Stars</option>
-                    <option value="4">4 Stars</option>
-                    <option value="5">5 Stars</option>
-                </select>
+                <div class="star-rating">
+                    <input type="radio" id="star5" name="rating" value="5" required />
+                    <label for="star5" class="star">&#9733;</label>
+                    <input type="radio" id="star4" name="rating" value="4" required />
+                    <label for="star4" class="star">&#9733;</label>
+                    <input type="radio" id="star3" name="rating" value="3" required />
+                    <label for="star3" class="star">&#9733;</label>
+                    <input type="radio" id="star2" name="rating" value="2" required />
+                    <label for="star2" class="star">&#9733;</label>
+                    <input type="radio" id="star1" name="rating" value="1" required />
+                    <label for="star1" class="star">&#9733;</label>
+                </div>
             </div>
 
             <div class="u-s-m-b-15">
@@ -93,6 +101,7 @@
             </div>
         </form>
 
+
         <h4>Past Reviews</h4>
         <div class="reviews-list">
             <?php
@@ -103,8 +112,16 @@
                 }
                 echo '<div class="customer-name">' . htmlspecialchars($review['customer_name']) . '</div>';
                 echo '<div class="review-text">' . htmlspecialchars($review['review_text']) . '</div>';
-                echo '<div class="review-rating">Rating: ' . htmlspecialchars($review['review_rating']) . ' Stars</div>';
-                echo '<div class="review-date">' . date('F j, Y', strtotime($review['created_at'])) . '</div>';
+                echo '<div class="review-rating">Rating: ';
+                for ($i = 0; $i < $review['review_rating']; $i++) {
+                    echo '&#9733;'; // Star symbol
+                }
+                for ($i = $review['review_rating']; $i < 5; $i++) {
+                    echo '&#9734;'; // Empty star symbol
+                }
+                echo '</div>';
+
+                echo '</div>';
                 echo '</div>';
             }
             ?>
@@ -140,6 +157,62 @@
             });
         });
     </script>
+    <!-- JavaScript to handle login check on form submission -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  document.getElementById('reviewForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+
+    fetch('/submitReview', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            Swal.fire({
+                icon: 'success',
+                title: 'Review Submitted!',
+                text: data.message,
+                confirmButtonText: 'OK'
+            }).then(() => {
+                window.location.reload(); // Reload the page or redirect as needed
+            });
+        } else if (data.status === 'not_logged_in') {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Not Logged In',
+                text: data.message,
+                confirmButtonText: 'Log In'
+            }).then(() => {
+                window.location.href = '/login'; // Redirect to the login page
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: data.message,
+                confirmButtonText: 'OK'
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'An unexpected error occurred. Please try again later.',
+            confirmButtonText: 'OK'
+        });
+    });
+});
+
+
+</script>
+
+
+
     </body>
 
     </html>

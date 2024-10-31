@@ -33,5 +33,16 @@ class Review extends Model
 
     }
 
+    public function insertReview($product_id, $customer_id, $product_review, $product_rating , $review_image) {
+
+        $stmt = $this->db->prepare("INSERT INTO reviews (product_id, customer_id, review_text, review_rating , review_image) VALUES (:product_id, :customer_id, :review_text, :review_rating, :review_image)");
+        $stmt->bindParam(':product_id', $product_id);
+        $stmt->bindParam(':review_rating', $product_rating);    
+        $stmt->bindParam(':review_text', $product_review);
+        $stmt->bindParam(':customer_id', $customer_id);
+        $stmt->bindParam(':review_image', $review_image);
+        return $stmt->execute();
+    }
+
 }
 

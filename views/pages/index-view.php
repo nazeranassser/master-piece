@@ -58,7 +58,7 @@ if (isset($_SESSION['customer_ID'])) {
 </head>
 
 <body class="config">
-        <div class="preloader is-active">
+    <div class="preloader is-active">
         <div class="preloader__wrap">
 
             <img class="preloader__img" src="../images/preloader.png" alt="">
@@ -147,21 +147,17 @@ if (isset($_SESSION['customer_ID'])) {
                                             <div class="product-price"><?= number_format($product['product_price'], 2); ?>JD
                                             </div>
                                             <div class="action-buttons d-flex">
-    <a href="cart/<?= $product['product_id'] ?>" 
-       class="btn btn-outline-secondary btn-sm" 
-       data-tooltip="tooltip" 
-       data-placement="top" 
-       title="Add to Cart">
-        <i class="fas fa-shopping-cart"></i>
-    </a>
-    <button class="btn btn-outline-secondary btn-sm ms-2" 
-            data-tooltip="tooltip" 
-            data-placement="top" 
-            title="Add to Favorites" 
-            onclick="toggleFavorite(this)">
-        <i class="fas fa-heart"></i>
-    </button>
-</div>
+                                                <a href="cart/<?= $product['product_id'] ?>"
+                                                    class="btn btn-outline-secondary btn-sm" data-tooltip="tooltip"
+                                                    data-placement="top" title="Add to Cart">
+                                                    <i class="fas fa-shopping-cart"></i>
+                                                </a>
+                                                <button class="btn btn-outline-secondary btn-sm ms-2" data-tooltip="tooltip"
+                                                    data-placement="top" title="Add to Favorites"
+                                                    onclick="toggleFavorite(this)">
+                                                    <i class="fas fa-heart"></i>
+                                                </button>
+                                            </div>
 
                                         </div>
                                     </div>
@@ -633,8 +629,7 @@ if (isset($_SESSION['customer_ID'])) {
                             <div class="col-lg-6 col-md-6 mb-4"> <!-- Added Bootstrap margin utility class -->
                                 <div class="card border-light rounded shadow-lg h-100">
                                     <!-- Using Bootstrap card classes -->
-                                    <a href="product/<?= $product['product_id'] ?>"
-                                        class="text-decoration-none">
+                                    <a href="product/<?= $product['product_id'] ?>" class="text-decoration-none">
                                         <img src="public/images/products/<?= $product['product_image'] ?>"
                                             alt="<?= htmlspecialchars($product['product_name']) ?>" class="card-img-top">
                                     </a>
@@ -884,32 +879,32 @@ if (isset($_SESSION['customer_ID'])) {
             });
         });
     </script>
-<script>
-// Sample product data (you may fetch this from your server instead)
-const products = [
-    { name: "Chocolate Cake", id: 1 },
-    { name: "Vanilla Cake", id: 2 },
-    { name: "Red Velvet Cake", id: 3 },
-    { name: "Carrot Cake", id: 4 },
-    // Add more products as needed
-];
+    <script>
+        // Sample product data (you may fetch this from your server instead)
+        const products = [
+            { name: "Chocolate Cake", id: 1 },
+            { name: "Vanilla Cake", id: 2 },
+            { name: "Red Velvet Cake", id: 3 },
+            { name: "Carrot Cake", id: 4 },
+            // Add more products as needed
+        ];
 
-// Function to handle search
-function handleSearch(event) {
-    event.preventDefault(); // Prevent the form from submitting
-    const query = document.getElementById('search-input').value.toLowerCase();
-    
-    // Find the first matching product
-    const product = products.find(product => product.name.toLowerCase().includes(query));
+        // Function to handle search
+        function handleSearch(event) {
+            event.preventDefault(); // Prevent the form from submitting
+            const query = document.getElementById('search-input').value.toLowerCase();
 
-    if (product) {
-        // Redirect to the product details page
-        window.location.href = `product-details.php?id=${product.id}`;
-    } else {
-        alert("No products found. Please try a different search.");
-    }
-}
-</script>
+            // Find the first matching product
+            const product = products.find(product => product.name.toLowerCase().includes(query));
+
+            if (product) {
+                // Redirect to the product details page
+                window.location.href = `product-details.php?id=${product.id}`;
+            } else {
+                alert("No products found. Please try a different search.");
+            }
+        }
+    </script>
 
 </body>
 

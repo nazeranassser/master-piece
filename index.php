@@ -70,6 +70,7 @@ $router->add('orders-detal/{id:\d+}', ['controller' => 'customers', 'action' => 
 $router->add('reviews', ['controller' => 'Products', 'action' => 'viewProduct']);
 
 $router->add('about-us', ['controller' => 'customers', 'action' => 'about']);
+$router->add('submitReview', ['controller' => 'Reviews', 'action' => 'submitReview']);
 
 
 
