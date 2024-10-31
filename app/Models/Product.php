@@ -21,6 +21,13 @@ class Product extends Model
   public $uploadDir = 'images/products/';
   public $allowedTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
 
+  public function __construct() {
+    parent::__construct('products');
+    $this->conn = Database::getInstance()->getConnection(); // Get the database connection
+
+    
+   }
+
   public function getAll(){
     return $this->get();
   }
@@ -92,42 +99,10 @@ class Product extends Model
         echo "Database update failed.";
     }
 }
-  public function __construct()
-  {
-    $this->conn = Database::getInstance()->getConnection(); // Get the database connection
-  }
+
   function addNewProduct($admin)
   {
-    if (isset($_FILES['image']) && in_array($_FILES['image']['type'], $this->allowedTypes)) {
-
-      $fileName = uniqid() . '_' . basename($_FILES['image']['name']);
-      $targetFile = $this->uploadDir . $fileName;
-
-      if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
-        $product_image = 'images/products/' . $fileName;
-        $productName = $_POST['name'];
-        $productDesc = $_POST['description'];
-        $productPrice = $_POST['price'];
-        $productQty = $_POST['quantity'];
-        $categoryid = $_POST['category'];
-        // var_dump($targetFile);
-
-
-        // الاتصال بقاعدة البيانات
-        $pdo = new PDO('mysql:host=localhost;dbname=cake_project', 'root', '');
-        $sql = "INSERT INTO products (product_name, product_description, product_price, product_quantity, category_id, product_image) 
-                  VALUES ('$productName', '$productDesc', '$productPrice', '$productQty', '$categoryid', '$product_image')";
-        $stmt = $pdo->prepare($sql);
-        return $pdo->query($sql);
-        // $stmt->execute([$productName, $productDesc, $productPrice, $productQty, $categoryid, $targetFile]);
-
-        // header("Location: dash-products.php");
-      } else {
-        echo "حدث خطأ أثناء تحميل الصورة.";
-      }
-    } else {
-      echo "نوع الملف غير مدعوم.";
-    }
+    $this->create($admin);
   }
 
   public function getLatestProducts($limit = 4)
