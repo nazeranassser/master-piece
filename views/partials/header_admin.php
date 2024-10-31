@@ -38,6 +38,10 @@
 body {
     background-color: #FFFAF3;
 }
+
+.container-xxl{
+    max-width: 1500px;
+}
 /* Global Styles */
 * {
     padding: 0;

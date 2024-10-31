@@ -59,13 +59,13 @@
                                                 <h1 class="dash__h1">Products</h1>
                                             </div>
                                             <div class="dash__filter">
-                                                <form method="GET" action="/products/" id="categoryForm">
+                                                <form method="GET" action="/products" id="categoryForm">
                                                     <select class="select-box select-box--primary-style" style="border-radius:6px" name="id" id="categoryFilter" onchange="this.form.submit()">
-                                                        <option value="">All Categories</option>
+                                                        <option value="all">All Categories</option>
                                                         <?php foreach ($categories as $category): ?>
                                                             
                                                             <option value="<?= $category['category_id'] ?>" 
-                                                                <?= isset($_GET['categoryFilter']) && $_GET['categoryFilter'] == $category['category_id'] ? 'selected' : '' ?>>
+                                                                <?= isset($_GET['id']) && $_GET['id'] == $category['category_id'] ? 'selected' : '' ?>>
                                                                 <?= $category['category_name']; ?>
                                                             </option>
                                                         <?php endforeach; ?>
