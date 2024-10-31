@@ -88,10 +88,10 @@
                     </div>
                 </div>
                 <div class="order-details-button">
-                    <a href="/order-details?id=<?php echo htmlspecialchars($order['order_id']); ?>" class="dash__link dash__link--brand">
-                        View Order Details
-                    </a>
-                </div>
+    <a href="orders-detal/<?php echo $order["order_id"] ?>"  class="dash__link dash__link--brand">
+        View Order Details
+    </a>
+</div>
             </div>
         <?php endforeach; ?>
     <?php endif; ?>

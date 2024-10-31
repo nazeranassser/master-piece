@@ -59,6 +59,7 @@ $router->add('wishlist/delete', ['controller' => 'Wishlist', 'action' => 'delete
 
 // Route to check if product is in wishlist (optional, for AJAX checking)
 $router->add('wishlist/check', ['controller' => 'Wishlist', 'action' => 'check']);
+$router->add('orders-detal/{id:\d+}', ['controller' => 'customers', 'action' => 'viewOrderDetails']);
 
 
 
