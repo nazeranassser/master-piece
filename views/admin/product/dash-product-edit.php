@@ -44,7 +44,7 @@
                                     <!--====== Dashboard Features ======-->
                                     <?php
                                         include('views/admin/dashboard_features.php');
-                                        var_dump($product);
+                                        // var_dump($product);
                                     ?>
                                     <!--====== End - Dashboard Features ======-->
                                 </div>
@@ -86,7 +86,7 @@
                                                     </div>
                                                 <div>
                                                 <label class="gl-label" for="product_description-">Product Description *</label>
-                                                <textarea class='input-text--primary-style' style='width: 100%; ' id="product_description" name="product_description" rows="4" required><?php echo $product['product_description'];?></textarea>
+                                                <textarea class='input-text--primary-style' style='width: 100%; padding:10px' id="product_description" name="product_description" rows="4" required><?php echo $product['product_description'];?></textarea>
                                                 </div>
                                                 <div class="gl-inline">
                                                     <div class="u-s-m-b-30">
