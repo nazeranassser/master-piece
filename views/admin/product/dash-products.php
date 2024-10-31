@@ -46,6 +46,11 @@
                                     include('views/admin/dashboard_features.php');
                                     ?>
                                     <!--====== End - Dashboard Features ======-->
+                                    <div>
+
+                                        <a class="dash__custom-link btn--e-brand-b-2" href="product-add"><i class="fas fa-plus u-s-m-r-8"></i>
+
+                                            <span>Add New Product</span></a></div>
                                 </div>
                                 <div class="col-lg-9 col-md-12">
                                     <div class="dash__box dash__box--shadow dash__box--bg-white dash__box--radius u-s-m-b-30">
@@ -107,12 +112,9 @@
                                             </table>
                                         </div>
                                     </div>
-                                    <div>
-
-                                        <a class="dash__custom-link btn--e-brand-b-2" href="product-add"><i class="fas fa-plus u-s-m-r-8"></i>
-
-                                            <span>Add New Product</span></a></div>
+                                    
                                 </div>
+                                
                             </div>
                         </div>
                     </div>

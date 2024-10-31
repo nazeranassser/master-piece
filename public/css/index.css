@@ -73,9 +73,10 @@ html, body {
 
 /* Flex Container for Product Cards */
 .section__content {
-    display: flex; /* Flex container */
+    /* display: flex; Flex container */
     justify-content: center; /* Center content */
     margin-bottom: 50px; /* Bottom margin */
+    
 }
 
 .product-grid {

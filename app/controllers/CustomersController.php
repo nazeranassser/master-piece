@@ -5,6 +5,8 @@ use App\Models\Customer;
 
 
 class CustomersController {
+    public $uploadDir = 'images/products/';
+    public $allowedTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
     private $customerModel;
 
     public function __construct() {
@@ -194,20 +196,30 @@ class CustomersController {
               
           }
           public function editPage(){
+            if (isset($_FILES['image']) && in_array($_FILES['image']['type'], $this->allowedTypes)) {
+                $fileName = uniqid() . '' . basename($_FILES['image']['name']);
+                $targetFile = $this->uploadDir . $fileName;
+        
+                if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
+                    $product_image = 'images/products/' . $fileName;
+                } else {
+                    echo "Error uploading image.";
+                    
+                }
+            } else {
+                $product_image = $customer['image'] ?? null;
+            }
             $customer = $this->customerModel->getCustomer($_SESSION['usersId']);
             require "views/profile/profile.edit.php"; // Adjust the path accordingly
         }
     function update() {
-        
-        
-        
         $data = [
             'customer_name' => $_POST['firstname'],
             'customer_email' => $_POST['email'],
             'customer_phone' => $_POST['phone'],
             'customer_address1' => $_POST['address1'],
             'customer_address2' => $_POST['address2'],
-            'customer_image' => $_POST['customer_image'],
+            'customer_image' => $_POST['image'],
             // 'customer_image' => $_POST['customer_image'],
         ];
         if ($this->customerModel->updatecustomer($_SESSION['usersId'], $data)) {
@@ -217,5 +229,37 @@ class CustomersController {
             echo "Failed to add admin.";
         }
     }
+    public function viewOrderDetails($order_id) {
+        if (!isset($_SESSION['usersId'])) {
+            header('Location: /login');
+            exit();
+        }
+        
+        
+        // إضافة طباعة للتأكد من القيم
+        error_log("Fetching order details for order_id: $order_id, customer_id: " . $_SESSION['usersId']);
+        
+        $order_details = $this->customerModel->getOrderDetails($order_id, $_SESSION['usersId']);
+        // dd($order_details);
+        // var_dump($_SESSION['usersId']);
+        // die();
+        if (!$order_details) {
+            header('Location: /profile-order');
+            exit();
+        }
+        
+        // تجهيز البيانات للعرض
+        $order = [
+            'order_ID' => $order_details[1]['order_ID'],
+            'order_date' => $order_details[1]['order_date'],
+            'status' => $order_details[1]['status'],
+            'total_amount' => $order_details[1]['total_amount']
+        ];
+        
+        // تمرير المتغيرات للview
+        require 'views/profile/profile.orderdetal.php';
+    }
+    
+    
           
 }

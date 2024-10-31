@@ -25,5 +25,9 @@ class Coupons extends Model{
     public function createCoupon($data){
         return $this->create($data);
     }
+
+    public function deleteCoupon($id){
+        return $this->delete($id);
+    }
 }
 

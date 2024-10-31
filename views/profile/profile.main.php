@@ -7,26 +7,7 @@
             
 
             <!--====== Section 1 ======-->
-            <div class="u-s-p-y-60">
-
-                <!--====== Section Content ======-->
-                <div class="section__content ">
-                    <div class="container">
-                        <div class="breadcrumb">
-                            <div class="breadcrumb__wrap">
-                                <ul class="breadcrumb__list">
-                                    <li class="has-separator">
-
-                                        <a href="index.html">Home</a></li>
-                                    <li class="is-marked">
-
-                                        <a href="dash-my-profile.html">My Account</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
             <!--====== End - Section 1 ======-->
 
 
@@ -48,10 +29,10 @@
                                             <ul class="dash__f-list">
                                                 <li>
 
-                                                    <a href="profile-main.php">Manage My Account</a></li>
+                                                    <a href="profile-edit">Manage My Account</a></li>
                                                 <li>
 
-                                                    <a class="dash-active" href="profile-main">My Profile</a></li>
+                                                    <a class="profile-main" href="profile-main">My Profile</a></li>
                                               
                                                 <li>
 
@@ -145,7 +126,7 @@
                                                 <div class="col-lg-4 u-s-m-b-30">
                                                     <h2 class="dash__h2 u-s-m-b-8">image</h2>
 
-                                                    <span class="dash__text"><?php echo $customer['customer_image'] ?></span>
+                                                   <img src="<?php echo $customer['customer_image'] ?>" alt="" style="border-radius: 60px;width:60px;"> 
                                                     <div class="dash__link dash__link--secondary">
 
                                                         <a href="#"></a></div>
