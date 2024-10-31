@@ -24,7 +24,7 @@ $router->add('update_admin', ['controller' => 'Admins', 'action' => 'update']);/
 $router->add('customer/get', ['controller' => 'customer', 'action' => 'get']);
 $router->add('cart', ['controller' => 'Carts', 'action' => 'index']);
 $router->add('cart/{id:\d+}', ['controller' => 'Carts', 'action' => 'addToCart']);
-$router->add('update_product', ['controller' => 'Products', 'action' => 'edit']);//admins-controllers->update_admin()
+$router->add('update_product/{id:\d+}', ['controller' => 'Products', 'action' => 'edit']);//admins-controllers->update_admin()
 // $router->add('products', ['controller' => 'Products', 'action' => 'index']);//admins-controllers->update_admin()
 $router->add('product/update', ['controller' => 'Products', 'action' => 'update']);//ProductsControllers->update()
 $router->add('product-add', ['controller' => 'Products', 'action' => 'add']);//admins-controllers->update_admin()

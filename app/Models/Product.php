@@ -47,57 +47,59 @@ class Product extends Model
     }
   }
 
-  function updateProduct($admin)
+  function updateProduct($id,$admin)
 {
+  return $this->update($id,$admin);
+
     // $dbInstance = Database::getInstance();
     // $conn = $dbInstance->getConnection();
 
-    if (isset($_FILES['image']) && in_array($_FILES['image']['type'], $this->allowedTypes)) {
-        $fileName = uniqid() . '_' . basename($_FILES['image']['name']);
-        $targetFile = $this->uploadDir . $fileName;
+    // if (isset($_FILES['image']) && in_array($_FILES['image']['type'], $this->allowedTypes)) {
+    //     $fileName = uniqid() . '_' . basename($_FILES['image']['name']);
+    //     $targetFile = $this->uploadDir . $fileName;
 
-        if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
-            $product_image = 'images/products/' . $fileName;
-        } else {
-            echo "Error uploading image.";
-            return; // Stop execution if image upload fails
-        }
-    } else {
-        $product_image = $admin['image'] ?? null;
-    }
+    //     if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
+    //         $product_image = 'images/products/' . $fileName;
+    //     } else {
+    //         echo "Error uploading image.";
+    //         return; // Stop execution if image upload fails
+    //     }
+    // } else {
+    //     $product_image = $admin['image'] ?? null;
+    // }
 
-    $id = $admin['product_edit'] ?? null;
-    $name = $admin['product_name'] ?? '';
-    $category = $admin['category'] ?? '';
-    $description = $admin['description'] ?? '';
-    $product_price = $admin['price'] ?? 0;
-    $product_quantity = $admin['quantity'] ?? 0;
+    // $id = $admin['product_edit'] ?? null;
+    // $name = $admin['product_name'] ?? '';
+    // $category = $admin['category'] ?? '';
+    // $description = $admin['description'] ?? '';
+    // $product_price = $admin['price'] ?? 0;
+    // $product_quantity = $admin['quantity'] ?? 0;
 
-    $sql = "UPDATE products 
-            SET product_name = :name, 
-                category_id = :category, 
-                product_description = :description, 
-                product_price = :price, 
-                product_quantity = :quantity, 
-                product_image = :image 
-            WHERE product_id = :id";
+    // $sql = "UPDATE products 
+    //         SET product_name = :name, 
+    //             category_id = :category, 
+    //             product_description = :description, 
+    //             product_price = :price, 
+    //             product_quantity = :quantity, 
+    //             product_image = :image 
+    //         WHERE product_id = :id";
 
-    $stmt = $this->conn->prepare($sql);
+    // $stmt = $this->conn->prepare($sql);
 
-    $stmt->bindParam(':name', $name);
-    $stmt->bindParam(':category', $category);
-    $stmt->bindParam(':description', $description);
-    $stmt->bindParam(':price', $product_price);
-    $stmt->bindParam(':quantity', $product_quantity);
-    $stmt->bindParam(':image', $product_image);
-    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    // $stmt->bindParam(':name', $name);
+    // $stmt->bindParam(':category', $category);
+    // $stmt->bindParam(':description', $description);
+    // $stmt->bindParam(':price', $product_price);
+    // $stmt->bindParam(':quantity', $product_quantity);
+    // $stmt->bindParam(':image', $product_image);
+    // $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
-    if ($stmt->execute()) {
-        header("Location: /products");
-        exit(); // Exit after header redirect
-    } else {
-        echo "Database update failed.";
-    }
+    // if ($stmt->execute()) {
+    //     header("Location: /products");
+    //     exit(); // Exit after header redirect
+    // } else {
+    //     echo "Database update failed.";
+    // }
 }
 
   function addNewProduct($admin)

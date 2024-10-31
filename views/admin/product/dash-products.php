@@ -90,21 +90,18 @@
                                                   foreach($products as $product){
                                                     // var_dump($product);
                                                     echo "  <tr>
+                                                    
                                                          <form method='POST' action='update_product'>
-                                                            <th><div  class='description__img-wrap'>
-                                                            <img class='u-img-fluid' style='border-radius: 10000px;width: 90px;height: 90px;' src='".$product['product_image']."' alt=''></div></th>
-                                                            <th>".$product['product_name']."<input type='hidden' value='".$product['product_name']."' name='product_Name''></th>
+                                                            <th><a href='/update_product/".$product['product_id']."'><div  class='description__img-wrap'>
+                                                            <img class='u-img-fluid' style='border-radius: 10000px;width: 90px;height: 90px;' src='".$product['product_image']."' alt=''></div></a></th>
+                                                            <th>".$product['product_name']."<input type='hidden' value='".$product['product_name']."' name='product_name''></th>
                                                             <th>".$product['product_price']."<input type='hidden' value='".$product['product_price']."' name='product_price''></th>
                                                             <th>".$product['product_quantity']."<input type='hidden' value='".$product['product_quantity']."' name='product_quantity''></th>
-                                                            <th style='display: flex;''>
-                                                            <input type='hidden' value='".$product['product_id']."' name='edit''>
-                                                            <input type='hidden' value='".$product['product_image']."' name='product_image''>
-                                                            <input type='hidden' value='".$product['category_id']."' name='category'>
-                                                            <input type='hidden' value='".$product['product_description']."' name='product_description'>
-                                                            <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2' style='margin-right:4px ;'>Edit</button></form>
+                                                            <th><div style='display: flex; align-items: center;'>
+                                                            <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2' style='margin-right:4px;'>Edit</button></form>
                                                             <form method='POST' action=''>
                                                             <input type='hidden' value='".$product['product_id']."' name='delete_product''>
-                                                            <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2'>Delete</button></form></th>
+                                                            <button type='submit' class='address-book-edit btn btn--e-brand-b-2'>Delete</button></form></div></th>
                                                         </tr>";
                                                 }
                                                 ?>
