@@ -1,5 +1,10 @@
 <?php
 require  __DIR__ .'/app/controllers/AdminsControllers.php';
+// require  __DIR__ .'/app/controllers/CartsControllers.php';
+// require  __DIR__ .'/app/controllers/CustomersControllers.php';
+// require  __DIR__ .'/app/controllers/ProductsControllers.php';
+// require  __DIR__ .'/app/controllers/CouponsControllers.php';
+// require  __DIR__ .'/app/controllers/OrdersControllers.php';
 
 require 'vendor/autoload.php';
 // require_once __DIR__ . '/../';
@@ -19,10 +24,10 @@ $router->add('update_admin', ['controller' => 'Admins', 'action' => 'update']);/
 $router->add('customer/get', ['controller' => 'customer', 'action' => 'get']);
 $router->add('cart', ['controller' => 'Carts', 'action' => 'index']);
 $router->add('cart/{id:\d+}', ['controller' => 'Carts', 'action' => 'addToCart']);
-$router->add('update_product', ['controller' => 'Products', 'action' => 'edit']);//admins-controllers->update_admin()
-$router->add('products', ['controller' => 'Products', 'action' => 'index']);//admins-controllers->update_admin()
+$router->add('update_product/{id:\d+}', ['controller' => 'Products', 'action' => 'edit']);//admins-controllers->update_admin()
+// $router->add('products', ['controller' => 'Products', 'action' => 'index']);//admins-controllers->update_admin()
 $router->add('product/update', ['controller' => 'Products', 'action' => 'update']);//ProductsControllers->update()
-$router->add('product/add', ['controller' => 'Products', 'action' => 'add']);//admins-controllers->update_admin()
+$router->add('product-add', ['controller' => 'Products', 'action' => 'add']);//admins-controllers->update_admin()
 $router->add('login-add', ['controller' => 'Customers', 'action' => 'login']);
 $router->add('login', ['controller' => 'Customers', 'action' => 'loginPage']);
 $router->add('signup', ['controller' => 'Customers', 'action' => 'signupPage']);
@@ -35,7 +40,7 @@ $router->add('product-category-filter', ['controller' => 'Products', 'action' =>
 $router->add('admin-login', ['controller' => 'Admins', 'action' => 'index']);
 $router->add('product/{id:\d+}', ['controller' => 'Products', 'action' => 'viewProduct']);
 $router->add('allProducts', ['controller' => 'Products', 'action' => 'showProducts']);  
-$router->add('products/{id:\d+}', ['controller' => 'Products', 'action' => 'filter']);
+$router->add('products', ['controller' => 'Products', 'action' => 'filter']);
 $router->add('admin-login', ['controller' => 'Admins', 'action' => 'loginPage']);
 $router->add('login-admin', ['controller' => 'Admins', 'action' => 'login']);
 // $router->add('edit-admin/{id:\d+}', ['controller' => 'Admins', 'action' => 'editPage']);
@@ -48,6 +53,7 @@ $router->add('coupons-add', ['controller' => 'Coupons', 'action' => 'addPage']);
 $router->add('new_coupon', ['controller' => 'Coupons', 'action' => 'add']);
 $router->add('coupon-delete', ['controller' => 'Coupons', 'action' => 'delete']);
 $router->add('orders', ['controller' => 'Orders', 'action' => 'get']);
+$router->add('orderDetails', ['controller' => 'Orders', 'action' => 'orderDetails']);
 // Route to show wishlist items
 $router->add('wishlist', ['controller' => 'Wishlist', 'action' => 'show']);
 
@@ -63,14 +69,23 @@ $router->add('orders-detal/{id:\d+}', ['controller' => 'customers', 'action' => 
 
 $router->add('reviews', ['controller' => 'Products', 'action' => 'viewProduct']);
 
+$router->add('about-us', ['controller' => 'customers', 'action' => 'about']);
+$router->add('submitReview', ['controller' => 'Reviews', 'action' => 'submitReview']);
 
 
-
-//  Router::get()
-
-$url = trim($_SERVER['REQUEST_URI'], '/'); // Trim leading and trailing slashes
 
 // Dispatch the request
+$url = trim($_SERVER['REQUEST_URI'], '/'); // Trim leading and trailing slashes
+$url2 = explode('=',$_SERVER['REQUEST_URI']);
+if(isset($url2[1])){
+    $url3 = explode('?',$_SERVER['REQUEST_URI']);
+    $url = trim($url3[0], '/'); 
+    // var_dump($url3);
+    // die();
+}
+// Dispatch the request
+// var_dump($url);
+// die();
 $router->dispatch($url);
 function getAssetPaths($rootDir) {
     $assetPaths = [];
@@ -95,4 +110,5 @@ function getAssetPaths($rootDir) {
 
     return $assetPaths;
 }
+
 ?>

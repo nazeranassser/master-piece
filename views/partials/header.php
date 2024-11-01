@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/public/css/footer.css">
     <link rel="stylesheet" href="/public/css/index.css">
     <link rel="stylesheet" href="/public/css/product-details.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     
 
@@ -29,14 +30,14 @@
 
         <div class="nav-links">
             <a href="/" class="nav-item" style="animation-delay: 0.2s;">Home</a>
-            <a href="#" class="nav-item" style="animation-delay: 0.3s;">About Us</a>
+            <a href="about-us" class="nav-item" style="animation-delay: 0.3s;">About Us</a>
             <a href="/allProducts" class="nav-item" style="animation-delay: 0.4s;">Products</a>
             <a href="/contactform.php" class="nav-item" style="animation-delay: 0.5s;">Contact</a>
         </div>
 
         <div class="icons">
             <div class="icon nav-item" style="animation-delay: 0.6s;">
-               <a href="wishlist">
+               <a href="views/pages/wishlist.php">
                 <i class="fas fa-heart"></i>
                 <span class="icon-badge">2</span>
             </div>
@@ -57,14 +58,11 @@
             <!-- إضافة الترحيب واسم المستخدم والصورة هنا -->
             <?php if (isset($_SESSION['usersId'])): ?>
                 <div class="user-welcome nav-item" style="animation-delay: 1.0s;">
-                    <a href="profile-main"><span>Welcome, <?php echo explode(" ", $_SESSION['usersName'])[0]; ?></span></a>
+                    <a href="profile-main"><span>Welcome, <?php echo $_SESSION['usersName']; ?></span></a>
                     <?php 
                     // عرض الصورة
-                    if (isset($user['customer_image'])) {
-                        echo '<img src="uploads/' . htmlspecialchars($user['customer_image']) . '" alt="' . htmlspecialchars($user['usersName']) . '" />';
-                    } else {
-                        echo '<img src="public/uploads/default-avatar.png" alt="Default Avatar" />';
-                    }
+                    
+                        echo '<img src="' .  $_SESSION['customerImage'] . '"  />';
                     ?>
                 </div>
             <?php endif; ?>

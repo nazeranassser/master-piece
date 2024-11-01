@@ -1,4 +1,7 @@
-<?php include('views/partials/header.php') ?> 
+<?php include('views/partials/header.php');
+
+
+ ?> 
 
 <link rel="stylesheet" href="public/css/app.css">
 
@@ -32,7 +35,7 @@
                                                     <a href="profile-edit">Manage My Account</a></li>
                                                 <li>
 
-                                                    <a class="profile-main" href="profile-main">My Profile</a></li>
+                                                    <a class="dash-active" href="profile-main">My Profile</a></li>
                                               
                                                 <li>
 
