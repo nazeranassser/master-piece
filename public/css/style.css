@@ -461,4 +461,68 @@
     }
    /*    navbar end */
   /* Password Requirements Styling */
+
+  
+/* Center and style the checkout button */
+.checkout-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background: var(--accent-orange);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  margin-bottom: 20px; /* المسافة من الأسفل */
+}
+
+.checkout-btn:hover {
+  background-color: var(--accent-pink);
+  transform: translateY(-2px);
+}
+
+
+/* Style for the quantity input area */
+.table-p__input-counter-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.input-counter__minus,
+.input-counter__plus {
+  color: var(--accent-orange);
+  font-size: 1.2rem;
+  padding: 5px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.input-counter__text {
+  width: 50px;
+  text-align: center;
+  border: 1px solid var(--accent-orange);
+  color: var(--text-color);
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.input-counter__text:focus {
+  outline: none;
+  border-color: var(--accent-pink);
+}
+
+/* Hover effect on input buttons */
+.input-counter__minus:hover,
+.input-counter__plus:hover {
+  color: var(--accent-pink);
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
   

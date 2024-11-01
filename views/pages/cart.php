@@ -30,12 +30,12 @@
 
 <!--====== Cart Content ======-->
 <div id="app">
-    <div class="app-content">
+    
         <!--====== Section 1 ======-->
         <!--====== End - Section 1 ======-->
 
         <!--====== Section 2 ======-->
-        <div class="u-s-p-b-60">
+        
             <div class="section__intro u-s-m-b-60">
                 <div class="container">
                     <div class="row">
@@ -78,14 +78,19 @@
                                                 <span class="table-p__price">$<?php echo number_format($item['price'], 2); ?></span>
                                             </td>
                                             <td>
-                                                <div class="table-p__input-counter-wrap">
-                                                    <div class="input-counter">
-                                                        <span class="input-counter__minus fas fa-minus"></span>
-                                                        <input class="input-counter__text input-counter--text-primary-style" type="text" value="<?php echo htmlspecialchars($item['quantity']); ?>" min="1" max="<?php echo htmlspecialchars($item['quantity']); ?>">
-                                                        <span class="input-counter__plus fas fa-plus"></span>
-                                                    </div>
-                                                </div>
-                                            </td>
+    <div class="table-p__input-counter-wrap">
+        <!-- Quantity Counter -->
+        <div class="input-counter">
+            <span class="input-counter__minus fas fa-minus"></span>
+            <input class="input-counter__text input-counter--text-primary-style" type="text" 
+                   value="<?php echo htmlspecialchars($item['quantity']); ?>" min="1" 
+                   max="<?php echo htmlspecialchars($item['quantity']); ?>">
+            <span class="input-counter__plus fas fa-plus"></span>
+        </div>
+    </div>
+</td>
+
+                                            
                                             <td>
                                                 <div class="table-p__del-wrap">
                                                     <a class="far fa-trash-alt table-p__delete-link" href="CartController.php?action=removeFromCart&product_id=<?php echo htmlspecialchars($item['product_id']); ?>"></a>
@@ -120,21 +125,18 @@
             </div>
         <!--checkout button -->
 
-            <div class="row">
-
-<div class="col-lg-4 col-md-6 u-s-m-b-30">
-    <div class="f-cart__pad-box">
+                            
+                                   
+                                       
+                                    <div class="button-container">
+    <button class="checkout-btn">Checkout</button>
+</div>                               
+                                        
+                        
+                            
+                        
+                    
         
-        <div>
-
-            <button class="btn btn--e-brand-b-2" type="submit"> CHECKOUT</button></div>
-    </div>
-</div>
-</div>
-
-
-        </div>
-        <!-- End Cart Section -->
     </div>
 </div>
 
