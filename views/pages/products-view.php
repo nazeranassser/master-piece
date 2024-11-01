@@ -32,24 +32,24 @@
 
     <div class="section__content">
                     <div class="container">
-                        <div class="product-grid">
+                        <div class="product-grid-new">
                             <?php foreach ($products as $product): ?>
-                                <div class="product-card">
-                                    <div class="product-image-wrap">
+                                <div class="product-card-custom">
+                                    <div class="product-image-wrapper">
                                         <a href="product/<?= $product['product_id']; ?>">
                                             <img src="public/images/categories/<?= $product['product_image']; ?>"
                                                 alt="<?= htmlspecialchars($product['product_name']); ?>">
                                         </a>
                                     </div>
-                                    <div class="product-details">
-                                        <span class="product-category">
+                                    <div class="product-info">
+                                        <span class="product-title">
                                             <?= htmlspecialchars($product['category_name']); ?>
                                         </span>
-                                        <h3 class="product-name">
+                                        <h3 class="product-name-custom">
                                             <a
                                                 href="product/<?= $product['product_id']; ?>"><?= htmlspecialchars($product['product_name']); ?></a>
                                         </h3>
-                                        <div class="product-rating">
+                                        <div class="product-rating-custom">
                                             <?php
                                             $rating = $product['total_review'];
                                             $fullStars = floor($rating);
@@ -58,12 +58,12 @@
                                                 echo $i < $fullStars ? '<i class="fas fa-star"></i>' : ($halfStar && $i == $fullStars ? '<i class="fas fa-star-half-alt"></i>' : '<i class="far fa-star"></i>');
                                             }
                                             ?>
-                                            <span class="product-review">(<?= number_format($rating, 1); ?>)</span>
+                                            <span class="product-review-count">(<?= number_format($rating, 1); ?>)</span>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between">
-                                            <div class="product-price"><?= number_format($product['product_price'], 2); ?>JD
+                                            <div class="product-price-custom"><?= number_format($product['product_price'], 2); ?>JD
                                             </div>
-                                            <div class="action-buttons d-flex">
+                                            <div class="action-btn-group d-flex">
                                                 <a href="cart/<?= $product['product_id'] ?>"
                                                     class="btn btn-outline-secondary btn-sm" data-tooltip="tooltip"
                                                     data-placement="top" title="Add to Cart">
