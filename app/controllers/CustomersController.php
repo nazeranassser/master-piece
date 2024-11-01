@@ -223,18 +223,19 @@ class CustomersController {
             'customer_image' => $customer_image,
             // 'customer_image' => $_POST['customer_image'],
         ];
-        if ($this->customerModel->updatecustomer($_SESSION['usersId'], $data)) {
+        if ($this->customerModel->updateCustomer($_SESSION['usersId'], $data)) {
             // Redirect or show a success message
             header("location:/profile-main");
         } else {
             echo "Failed to add admin.";
         }
     }
+
     public function viewOrderDetails($order_id) {
         if (!isset($_SESSION['usersId'])) {
             header('Location: /login');
             exit();
-        }
+            }
         
         
         // إضافة طباعة للتأكد من القيم
