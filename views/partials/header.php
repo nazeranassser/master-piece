@@ -108,12 +108,13 @@ nav {
                 <img style="width:30px; background-color:#fff; border-radius:200%; padding:2px" src="<?php if(!isset($_SESSION['customerImage'])){ echo 'images/user.png'; }else {echo  $_SESSION['customerImage'];} ?>" alt="">
             </a>
         </div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <img src="/images/dots.png" alt="Menu" style="width: 24px; cursor: pointer;">
+        </div>
     </div>
 
     <!-- Menu Toggle Icon for Mobile, aligned to the right -->
-    <div class="menu-toggle" onclick="toggleMenu()">
-        <img src="/images/dots.png" alt="Menu" style="width: 24px; cursor: pointer;">
-    </div>
+    
 </nav>
 
 <script>
