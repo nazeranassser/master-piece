@@ -9,43 +9,54 @@ html, body {
 
 /* Style for the hero section */
 #hero-section {
-    position: relative; /* Allows absolute positioning of the hero content */
-    display: flex; /* Use flexbox for layout */
-    align-items: center; /* Center content vertically */
-}
-
-#hero-img {
-    width: 100%; /* Full width for the image */
-    height: auto; /* Maintain aspect ratio */
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    background-image: url('/public/images/products/herooooo.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
 }
 
 .hero-content {
-    position: absolute; /* Position it over the image */
-    right: 20px; /* Adjust this value for horizontal spacing */
-    text-align: left; /* Align text to the right */
-    color: #3E2723;; /* Change text color to white for visibility */
-    padding: 20px; /* Optional padding */
-    justify-content: left;
+    position: relative; /* Position relative to contain child elements */
+    background: rgba(0, 0, 0, 0.5); /* Darker background for contrast */
+    padding: 30px; /* Padding around content */
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3); /* Inset shadow for depth */
+    text-align: center; /* Center text within the content */
+    color: #fbe7cb; /* Text color for visibility */
 }
 
-#hero-text2 {
+#hero-text {
+    font-size: 48px; /* Increase font size */
+    font-weight: bold; /* Bold text */
+    margin-bottom: 10px; /* Space below heading */
+}
 
-    margin-right: 120px;
-
+.hero-welcome {
+    font-size: 20px; /* Slightly larger font for the paragraph */
+    margin-bottom: 20px; /* Space below paragraph */
+    color: #fbe7cb;
 }
 
 .cta-button {
-    background-color: #D2691E; ; /* Button background color */
-    color: #fff; /* Button text color */
-    border: none; /* Remove border */
-    padding: 10px 20px; /* Add padding */
-    cursor: pointer; /* Change cursor on hover */
-    margin-right: 150px;
+    padding: 12px 24px; /* Adjust button padding */
+    font-size: 18px; /* Increase button font size */
+    background-color: #fbe7cb; /* Button color */
+    color: #000; /* Button text color */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded button corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Transition for hover effect */
 }
 
 .cta-button:hover {
-    background-color: #5D4037; /* Darker shade on hover */
+    background-color: #fdd194; /* Change color on hover */
 }
+
+
 
 
 /* new arrival styling */
@@ -55,14 +66,13 @@ html, body {
 }
 
 .section__intro {
-    margin-bottom: 50px; /* Margin for the intro section */
     text-align: center; /* Center align the intro section */
+    margin-bottom: -40px;
 }
 
 .section__heading {
     color: #3E2723; /* Heading color */
     font-size: 2.5rem; /* Font size for heading */
-    margin-bottom: 12px; /* Margin below heading */
     margin-top: 80px;
 }
 
@@ -75,7 +85,6 @@ html, body {
 .section__content {
     /* display: flex; Flex container */
     justify-content: center; /* Center content */
-    margin-bottom: 50px; /* Bottom margin */
     
 }
 
@@ -155,8 +164,8 @@ html, body {
     margin-bottom: 5px; /* Margin below product name */
 }
 
-.product-rating {
-    color: #FFA000; /* Color for stars */
+.product-rating .fa-star {
+    color: #FFA000 ; /* Color for stars */
 }
 
 .product-review {
@@ -229,7 +238,7 @@ html, body {
 
 .filter__btn {
     padding: 10px 20px; /* Padding around the button */
-    background-color: #FFFAF3; /* Your preferred color */
+    background-color: #333 !important; /* Your preferred color */
     border: none; /* No border */
     border-radius: 5px; /* Rounded corners */
     color: #000; /* Text color */
@@ -239,69 +248,86 @@ html, body {
 
 .filter__btn:hover {
     background-color: #f9dfbb; /* Darker shade on hover */
+    color: #D2691E; /* Text color on hover */
 }
 
 /* Product grid */
 .filter__grid-wrapper {
+    display: flex; /* Flexbox for product grid */
+    justify-content: center; /* Center the product grid */
+    flex-wrap: wrap; /* Wrap the products */
+    gap: 30px; /* Spacing between products */
+    width: 100%;
     margin-top: 30px; /* Spacing above the product grid */
 }
 
-.product-o {
-    background-color: #fff; /* White background for products */
-    border: 1px solid #eaeaea; /* Light border */
+.new-product-card {
+    background-color: #fff; /* White background for product card */
+    border: 1px solid #e0e0e0; /* Light border */
     border-radius: 5px; /* Rounded corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    overflow: hidden; /* Ensure content stays within bounds */
-    transition: transform 0.2s; /* Smooth scale on hover */
-    height: 300px;
+    overflow: hidden; /* Prevent overflow */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s ease; /* Smooth transition on hover */
+    padding: 10px;
 }
 
-.product-o:hover {
-    transform: scale(1.02); /* Slightly scale up on hover */
+a{
+    color: inherit;
 }
 
-.product-o__wrap {
-    position: relative; /* Positioning for action buttons */
+.new-product-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
 }
 
-.product-o__rating {
-    color: #FFA000; /* Color for stars */
+.new-product-wrap img {
+    width: 100%; /* Ensure image takes full width */
+    height: auto; /* Maintain aspect ratio */
 }
 
-.product-o__action-wrap {
-    position: absolute; /* Position buttons over the image */
-    top: 90px; /* Positioning */
-    right: 10px; /* Positioning */
-}
-
-.product-o__category {
+.new-product-category {
     display: block; /* Block display for category */
-    font-size: 0.9rem; /* Smaller font */
-    color: #3E2723; /* Your preferred color */
-    margin-bottom: 5px; /* Spacing below category */
+    font-size: 14px; /* Smaller font for category */
+    color: #888; /* Gray color for category */
+    margin-top: 8px; /* Space above category */
 }
 
-.product-o__name {
+.new-product-name {
     display: block; /* Block display for product name */
-    font-size: 1.1rem; /* Slightly larger */
-    font-weight: normal;
-    color: #333; /* Darker text */
-    margin-bottom: 5px; /* Spacing below name */
+    font-size: 20px; /* Font size for product name */
+    color: #333 !important; /* Dark color for product name */
+    margin: 8px 0; /* Space above and below product name */
 }
 
-.product-o__price {
-    font-size: 1.2rem; /* Larger font for price */
-    font-weight: normal;
-    color: #3E2723; /* Your preferred color */
+.new-product-rating {
+    margin: 5px 0; /* Space above and below the rating */
 }
 
-.fa-star{
-color: #FFA000;
+.new-product-price {
+    font-size: 16px; /* Font size for price */
+    font-weight: bold; /* Bold price */
+    color: #3E2723; /* Price color */
 }
 
-.fa-star-half-alt{
-color: #FFA000;
-}   
+.new-action-buttons {
+    margin-top: 10px; /* Space above action buttons */
+}
+
+.new-product-rating .fas.fa-star {
+    color: #FFA000; /* Gold color for full stars */
+}
+
+.new-product-rating .fas.fa-star-half-alt {
+    color: #FFA000; /* Gold color for half stars */
+}
+
+.new-product-rating .far.fa-star {
+    color: #FFA000; /* Light gray color for empty stars */
+}
+.new-action-buttons .btn{
+    background-color: #fff;
+}
+
+
 
 /* deal of the day */
 

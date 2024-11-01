@@ -135,11 +135,7 @@ class ProductsController
 
         // Fetch categories for the filter dropdown
         $categories = $this->productModel->getCategories();
-
-        // Fetch products based on filters
-        $result = $this->productModel->getProducts($search, $category, $sort);
-
-        $allProducts = $this->productModel->getAllProducts();
+        $products = $this->productModel->getFilteredProducts($search, $category, $sort);
         // Load view with products and categories data
         include 'views/pages/products-view.php';
       }
