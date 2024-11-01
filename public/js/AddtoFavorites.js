@@ -128,10 +128,19 @@ function handleWishlistToggle(button) {
         }
     })
     .catch(error => {
-        // Revert UI change on error
+        // إعادة تغيير واجهة المستخدم في حالة حدوث خطأ
         toggleHeartIcon(icon);
-        showMessage('Error updating wishlist. Please try again.', 'error');
-        console.error('Error:', error);
+        
+        // عرض رسالة الخطأ للمستخدم
+        showMessage('Please login to manage your wishlist', 'error');
+        
+        // تسجيل الخطأ في وحدة التحكم لأغراض تصحيح الأخطاء
+        console.error('خطأ:', error);
+        
+        // تحويل المستخدم إلى صفحة تسجيل الدخول بعد تأخير
+        setTimeout(() => {
+            window.location.href = '/login';
+        }, 2000); // تأخير لمدة 3 ثوانٍ (3000 مللي ثانية)
     });
 }
 
