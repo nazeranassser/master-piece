@@ -22,7 +22,7 @@
     <!--====== App ======-->
     <link rel="stylesheet" href="/views/partials/admin.css">
     <link rel="stylesheet" href="/public/css/drop_drag_img.css">
-    <link rel="stylesheet" href="new_css.css">
+    <link rel="stylesheet" href="/new_css.css">
      <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
