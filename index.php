@@ -84,6 +84,8 @@ $router->add('signup-action', ['controller' => 'Customers', 'action' => 'registe
 $router->add('about-us', ['controller' => 'customers', 'action' => 'about']);
 $router->add('orders-detal/{id:\d+}', ['controller' => 'customers', 'action' => 'viewOrderDetails']);
 $router->add('customer-details/{id:\d+}', ['controller' => 'customers', 'action' => 'customerDetails']);//admins-controllers->update_admin()
+$router->add('orders-detail/{id:\d+}', ['controller' => 'customers', 'action' => 'viewOrderDetails']);
+
 
 
 

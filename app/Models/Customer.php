@@ -146,5 +146,37 @@ class Customer extends Model{
             $stmt->execute(['customer_id' => $customerId]);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
+        public function getOrderDetails($order_id, $customer_id) {
+            try {
+                $sql = "SELECT o.order_ID, o.created_at as order_date, o.order_status as status,
+                               o.order_total_amount_after as total_amount,
+                               op.quantity, p.product_name, p.product_image, p.product_price
+                        FROM orders o
+                        JOIN order_products op ON o.order_ID = op.order_ID
+                        JOIN products p ON op.product_ID = p.product_ID
+                        WHERE o.order_ID = :order_id AND o.customer_ID = :customer_id";
+                
+                $stmt = $this->db->prepare($sql);
+                $stmt->execute([
+                    'order_id' => $order_id,
+                    'customer_id' => $customer_id
+                ]);
+                
+                // إضافة طباعة للتأكد من البيانات
+                $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                
+                // للتأكد من البيانات المسترجعة
+                if (empty($results)) {
+                    error_log("No results found for order_id: $order_id and customer_id: $customer_id");
+                    return false;
+                }
+                
+                return $results;
+                
+            } catch (PDOException $e) {
+                error_log("Database Error: " . $e->getMessage());
+                return false;
+            }
+        }
 
 }

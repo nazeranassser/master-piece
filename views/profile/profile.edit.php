@@ -17,7 +17,7 @@
                                     <div class="dash__pad-1">
                                         <span class="dash__text u-s-m-b-16"><?php echo  'Hello ' . htmlspecialchars($_SESSION['usersName']) ; ?></span>
                                         <ul class="dash__f-list">
-                                            <li><a class="dash-active" href="profile-update">Manage My Account</a></li>
+                                            <li><a class="dash-active" href="">Manage My Account</a></li>
                                             <li><a href="profile-main">My Profile</a></li>
                                             
                                             <li><a href="profile-order">My Orders</a></li>
@@ -66,7 +66,7 @@
                                                         </div>
                                                         <div class="u-s-m-b-30">
                                                             <label class="gl-label" for="customer-image">Profile Image</label>
-                                                            <?php if(!empty($customer['customer_image'])): ?>
+                                                            <?php if(!empty($customer['image'])): ?>
                                                                 <div class="current-image mb-2">
                                                                     <img src="<?php echo htmlspecialchars($customer['image']); ?>" 
                                                                         alt="Current Profile" style="max-width: 150px;">

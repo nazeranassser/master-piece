@@ -190,8 +190,8 @@ class CustomersController {
            
        }
        public function getById1(){
-           //   $id=$_SESSION['sutomer_id'];
-              $customer = $this->customerModel->getCustomer($_SESSION['usersId']);
+        $customer = $this->customerModel->getCustomer($_SESSION['usersId']);
+        $orders = $this->customerModel->getCustomerOrders($_SESSION['usersId']);
               require "views/profile/profile.order.php";
               
           }
