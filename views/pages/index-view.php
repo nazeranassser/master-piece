@@ -30,6 +30,9 @@ if (isset($_SESSION['customer_ID'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoJgGHa0roUOFzT1iNQ36PE8G5OeMySkAzYFCAFK5L9jAc" crossorigin="anonymous">
 
+
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/style.css">
@@ -152,13 +155,12 @@ if (isset($_SESSION['customer_ID'])) {
                                                     data-placement="top" title="Add to Cart">
                                                     <i class="fas fa-shopping-cart"></i>
                                                 </a>
-                                                <a href="wishlist"> <button class="btn btn-outline-secondary btn-sm ms-2"
-                                                        data-tooltip="tooltip" data-placement="top" title="Add to Favorites"
-                                                        data-wishlist-button
-                                                        data-product-id="<?php echo $product['product_id']; ?>">
-                                                        <!-- Changed from $product['id'] -->
-                                                        <i class="fas fa-heart"></i>
-                                                    </button></a>
+                <button class="btn btn-outline-secondary btn-sm wishlist-btn"
+                                      data-wishlist-button
+                                     data-product-id="<?php echo $product['product_id']; ?>">
+                                     <i class="fas fa-heart" id="heart-icon-<?php echo $product['product_id']; ?>"></i>
+                                         </button>
+
 
                                             </div>
                                         </div>

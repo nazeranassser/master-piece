@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use App\Models\Wishlist;
+
 class WishlistController
 {
     protected $wishlistModel;
@@ -9,60 +10,105 @@ class WishlistController
     public function __construct()
     {
         $this->wishlistModel = new Wishlist();
+        // Check if user is logged in for all wishlist actions
+        $this->checkAuth();
     }
 
-    // Method to add a product to the wishlist
+    private function checkAuth()
+    {
+        if (!isset($_SESSION['usersId'])) {
+            header('Location: /login?error=Please login to manage your wishlist');
+            exit();
+        }
+    }
+
     public function store()
     {
         $productId = $_POST['product_id'] ?? null;
+        $userId = $_SESSION['usersId'] ?? null;
+        
+        if (!$userId) {
+            echo json_encode([
+                'success' => false,
+                'message' => 'Please login to manage your wishlist'
+            ]);
+            exit();
+        }
         
         if (!$productId) {
-            header("Location: /products?error=No product ID provided");
+            echo json_encode([
+                'success' => false,
+                'message' => 'No product ID provided'
+            ]);
             exit();
         }
-    
-        // Check if the product is already in the wishlist
-        $existingProduct = $this->wishlistModel->findByProductId($productId);
+
+        // Check if product already exists in wishlist
+        $existingProduct = $this->wishlistModel->findByProductIdAndUserId($productId, $userId);
         
         if (!$existingProduct) {
-            $this->wishlistModel->create(['product_id' => $productId]);
-            header("Location: /products?message=Product added to wishlist");
-            exit();
+            $result = $this->wishlistModel->create([
+                'product_id' => $productId,
+                'customer_id' => $userId
+            ]);
+            
+            echo json_encode([
+                'success' => true,
+                'message' => 'Product added to wishlist'
+            ]);
         } else {
-            header("Location: /products?error=Product already in wishlist");
-            exit();
-        }
-    }
-
-    // Method to display wishlist items
-    public function show()
-    {
-        $wishlistItems = $this->wishlistModel->getWishlistWithProductDetails();
-        require 'views/pages/wishlist.php';
-    }
-
-    // Method to delete from wishlist
-    public function delete()
-    {
-        $id = $_POST['id'] ?? null;
-        
-        if ($id) {
-            $this->wishlistModel->delete($id);  
-            header("Location: /wishlist?message=Product removed from wishlist");
-        } else {
-            header("Location: /wishlist?error=No ID provided for deletion");
+            echo json_encode([
+                'success' => false,
+                'message' => 'Product already in wishlist'
+            ]);
         }
         exit();
     }
-    
 
-    // New method to check if a product is in wishlist
+    public function delete()
+{
+    $productId = $_POST['id'] ?? null; // Changed from 'product_id' to 'id'
+    $userId = $_SESSION['usersId'] ?? null;
+    
+    if (!$userId) {
+        echo json_encode([
+            'success' => false,
+            'message' => 'Please login to manage your wishlist'
+        ]);
+        exit();
+    }
+
+    if (!$productId) {
+        echo json_encode([
+            'success' => false,
+            'message' => 'No product ID provided'
+        ]);
+        exit();
+    }
+
+    $result = $this->wishlistModel->deleteUserProduct($productId, $userId);
+    
+    echo json_encode([
+        'success' => $result,
+        'message' => $result ? 'Product removed from wishlist' : 'Failed to remove product'
+    ]);
+    exit();
+}
+
+    public function show()
+    {
+        $userId = $_SESSION['usersId'];
+        $wishlistItems = $this->wishlistModel->getWishlistWithProductDetails($userId);
+        require 'views/pages/wishlist.php';
+    }
+
     public function check()
     {
         $productId = $_GET['product_id'] ?? null;
+        $userId = $_SESSION['usersId'];
         
         if ($productId) {
-            $existingProduct = $this->wishlistModel->findByProductId($productId);
+            $existingProduct = $this->wishlistModel->findByProductIdAndUserId($productId, $userId);
             echo json_encode([
                 'success' => true,
                 'inWishlist' => !empty($existingProduct)
