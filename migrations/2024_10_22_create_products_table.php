@@ -14,7 +14,7 @@ class CreateProductsTable{
             `category_id` int(11) NOT NULL,
             `product_quantity` int(11) NOT NULL,
             `total_review` int(11) NOT NULL,
-            `product_discount` int(11) NOT NULL,
+            `product_discount` float(11) NOT NULL,
             `created_at` timestamp NULL DEFAULT NULL,
             `updated_at` timestamp NULL DEFAULT NULL,
             foreign key (category_id) references categories(category_id)
