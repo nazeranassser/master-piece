@@ -1,4 +1,4 @@
-<?php require 'views/partials/header.php'; ?>
+<?php require '../../views/partials/header.php'; ?>
 
 <main class="container my-5">
     <h1 class="text-center mb-5">Wishlist</h1>
@@ -55,7 +55,7 @@
 
 
 ?>
-<?php require 'views/partials/footer.php'; ?>
+<?php require '../../views/partials/footer.php'; ?>
 
 <!-- Inline styles for modal and animations -->
 <style>
