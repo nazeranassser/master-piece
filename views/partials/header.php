@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/public/css/footer.css">
     <link rel="stylesheet" href="/public/css/index.css">
     <link rel="stylesheet" href="/public/css/product-details.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     
 

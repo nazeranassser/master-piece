@@ -93,6 +93,11 @@ $router->add('new_coupon', ['controller' => 'Coupons', 'action' => 'add']);
 $router->add('coupon-delete', ['controller' => 'Coupons', 'action' => 'delete']);
 
 
+/* -----------------------------------Reviews Router---------------------------------- */
+
+$router->add('submitReview', ['controller' => 'Reviews', 'action' => 'submitReview']);
+
+
 
 // Dispatch the request
 $url = trim($_SERVER['REQUEST_URI'], '/'); // Trim leading and trailing slashes
