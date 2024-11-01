@@ -16,8 +16,8 @@ function initWishlistButtons() {
         });
     });
 }
+// Updated toggleFavorite function
 function toggleFavorite(button) {
-    // First check if user is logged in
     fetch('/check-auth', {
         method: 'GET',
         headers: {
@@ -36,17 +36,9 @@ function toggleFavorite(button) {
         const isCurrentlyFavorited = icon.classList.contains("text-danger");
         const productCard = button.closest('.card');
 
-        // Optimistically update UI
-        if (isCurrentlyFavorited) {
-            icon.classList.remove("text-danger");
-            icon.classList.add("text-secondary");
-        } else {
-            icon.classList.remove("text-secondary");
-            icon.classList.add("text-danger");
-        }
-
+        // Don't update UI optimistically - wait for server response
         const formData = new FormData();
-        formData.append('id', productId); // Changed from 'product_id' to 'id'
+        formData.append('product_id', productId); // Changed back to 'product_id' to match controller
 
         const endpoint = isCurrentlyFavorited ? '/wishlist/delete' : '/wishlist/store';
 
@@ -54,44 +46,28 @@ function toggleFavorite(button) {
             method: 'POST',
             body: formData
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Network response was not ok: ${response.status}`);
-            }
-            return response.json(); // Changed from text() to json()
-        })
+        .then(response => response.json())
         .then(data => {
             if (data.success) {
+                // Only update UI after successful server response
                 if (isCurrentlyFavorited) {
+                    icon.classList.remove("text-danger");
+                    icon.classList.add("text-secondary");
                     if (productCard && window.location.pathname === '/wishlist') {
                         productCard.remove();
                     }
                     console.log('Product removed from wishlist');
                 } else {
+                    icon.classList.remove("text-secondary");
+                    icon.classList.add("text-danger");
                     console.log('Product added to wishlist');
                 }
             } else {
-                // Revert UI on error
-                if (isCurrentlyFavorited) {
-                    icon.classList.add("text-danger");
-                    icon.classList.remove("text-secondary");
-                } else {
-                    icon.classList.remove("text-danger");
-                    icon.classList.add("text-secondary");
-                }
                 console.error('Error:', data.message);
                 alert(data.message);
             }
         })
         .catch(error => {
-            // Revert UI on error
-            if (isCurrentlyFavorited) {
-                icon.classList.add("text-danger");
-                icon.classList.remove("text-secondary");
-            } else {
-                icon.classList.remove("text-danger");
-                icon.classList.add("text-secondary");
-            }
             console.error('Error:', error);
             alert(`Failed to update wishlist: ${error.message}`);
         });

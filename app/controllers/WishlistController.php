@@ -65,9 +65,40 @@ class WishlistController
         exit();
     }
 
-    public function delete()
+//     public function delete()
+// {
+//     $productId = $_POST['id'] ?? null; // Changed from 'product_id' to 'id'
+//     $userId = $_SESSION['usersId'] ?? null;
+    
+//     if (!$userId) {
+//         echo json_encode([
+//             'success' => false,
+//             'message' => 'Please login to manage your wishlist'
+//         ]);
+//         exit();
+//     }
+
+//     if (!$productId) {
+//         echo json_encode([
+//             'success' => false,
+//             'message' => 'Product already in wishlist'
+
+//         ]);
+//         exit();
+//     }
+
+//     $result = $this->wishlistModel->deleteUserProduct($productId, $userId);
+//     header('Location: /wishlist');
+
+//     // echo json_encode([
+//     //     'success' => $result,
+//     //     'message' => $result ? '' : ''
+//     // ]);
+//     // exit();
+// }
+public function delete()
 {
-    $productId = $_POST['id'] ?? null; // Changed from 'product_id' to 'id'
+    $productId = $_POST['product_id'] ?? null; // Changed back to 'product_id'
     $userId = $_SESSION['usersId'] ?? null;
     
     if (!$userId) {
@@ -90,7 +121,7 @@ class WishlistController
     
     echo json_encode([
         'success' => $result,
-        'message' => $result ? 'Product removed from wishlist' : 'Failed to remove product'
+        'message' => $result ? 'Product removed from wishlist' : 'Failed to remove product from wishlist'
     ]);
     exit();
 }
