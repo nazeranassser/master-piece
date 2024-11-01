@@ -3,22 +3,21 @@ namespace App\Models;
 
 use App\Models\Model;
 
-class Cart {
-    private $db;
+class Cart extends Model {
 
     public function __construct() {
-        $this->db = new \PDO(DB_DSN, DB_USER, DB_PASS); // Use fully qualified PDO for global namespace
+        $this->db = Database::getInstance()->getConnection();
     }
 
     public function getProduct($productId) {
-        $stmt = $this->db->prepare("SELECT * FROM products WHERE id = :id");
-        $stmt->execute(['id' => $productId]);
+        $stmt = $this->db->prepare("SELECT * FROM products WHERE product_id = :productId");
+        $stmt->execute(['productId' => $productId]);
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
     public function getCustomerInfo($customerId) {
-        $stmt = $this->db->prepare("SELECT * FROM customers WHERE id = :id");
-        $stmt->execute(['id' => $customerId]);
+        $stmt = $this->db->prepare("SELECT * FROM customers WHERE customer_id = :customerId");
+        $stmt->execute(['customerId' => $customerId]);
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 

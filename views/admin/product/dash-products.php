@@ -59,13 +59,13 @@
                                                 <h1 class="dash__h1">Products</h1>
                                             </div>
                                             <div class="dash__filter">
-                                                <form method="GET" action="/products/" id="categoryForm">
+                                                <form method="GET" action="/products" id="categoryForm">
                                                     <select class="select-box select-box--primary-style" style="border-radius:6px" name="id" id="categoryFilter" onchange="this.form.submit()">
-                                                        <option value="">All Categories</option>
+                                                        <option value="all">All Categories</option>
                                                         <?php foreach ($categories as $category): ?>
                                                             
                                                             <option value="<?= $category['category_id'] ?>" 
-                                                                <?= isset($_GET['categoryFilter']) && $_GET['categoryFilter'] == $category['category_id'] ? 'selected' : '' ?>>
+                                                                <?= isset($_GET['id']) && $_GET['id'] == $category['category_id'] ? 'selected' : '' ?>>
                                                                 <?= $category['category_name']; ?>
                                                             </option>
                                                         <?php endforeach; ?>
@@ -90,21 +90,18 @@
                                                   foreach($products as $product){
                                                     // var_dump($product);
                                                     echo "  <tr>
+                                                    
                                                          <form method='POST' action='update_product'>
-                                                            <th><div  class='description__img-wrap'>
-                                                            <img class='u-img-fluid' style='border-radius: 10000px;width: 90px;height: 90px;' src='".$product['product_image']."' alt=''></div></th>
-                                                            <th>".$product['product_name']."<input type='hidden' value='".$product['product_name']."' name='product_Name''></th>
+                                                            <th><a href='/update_product/".$product['product_id']."'><div  class='description__img-wrap'>
+                                                            <img class='u-img-fluid' style='border-radius: 10000px;width: 90px;height: 90px;' src='".$product['product_image']."' alt=''></div></a></th>
+                                                            <th>".$product['product_name']."<input type='hidden' value='".$product['product_name']."' name='product_name''></th>
                                                             <th>".$product['product_price']."<input type='hidden' value='".$product['product_price']."' name='product_price''></th>
                                                             <th>".$product['product_quantity']."<input type='hidden' value='".$product['product_quantity']."' name='product_quantity''></th>
-                                                            <th style='display: flex;''>
-                                                            <input type='hidden' value='".$product['product_id']."' name='edit''>
-                                                            <input type='hidden' value='".$product['product_image']."' name='product_image''>
-                                                            <input type='hidden' value='".$product['category_id']."' name='category'>
-                                                            <input type='hidden' value='".$product['product_description']."' name='product_description'>
-                                                            <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2' style='margin-right:4px ;'>Edit</button></form>
+                                                            <th><div style='display: flex; align-items: center;'>
+                                                            <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2' style='margin-right:4px;'>Edit</button></form>
                                                             <form method='POST' action=''>
                                                             <input type='hidden' value='".$product['product_id']."' name='delete_product''>
-                                                            <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2'>Delete</button></form></th>
+                                                            <button type='submit' class='address-book-edit btn btn--e-brand-b-2'>Delete</button></form></div></th>
                                                         </tr>";
                                                 }
                                                 ?>

@@ -54,19 +54,18 @@
                                                 <div class="gl-inline">
                                                     <div class="u-s-m-b-30">
                                                         <label class="gl-label" for="product-name">Product Name *</label>
-                                                        <input class="input-text input-text--primary-style" type="text" name='name' id="product-name" placeholder="Product Name">
-                                                        <input class="input-text input-text--primary-style" type="hidden" name='add_new_product' id="" placeholder="">
+                                                        <input class="input-text input-text--primary-style" type="text" name='product_name' id="product-name" placeholder="Product Name" required>
                                                     </div>
                                                         <div class="u-s-m-b-30">
 
                                                             <!--====== Select Box ======-->
                                                             
                                                             <label class="gl-label" for="categories">Categories *</label>
-                                                            <select name='category' class="select-box select-box--primary-style" id="categories">
-                                                                <option selected value="">Choose Category</option>
+                                                            <select name='category_id' class="select-box select-box--primary-style" id="categories" required>
+                                                                <option value="">Choose Category</option>
                                                                 <?php
                                                                    foreach($categories as $category) {
-                                                                    echo "<option value='".$category['category_ID']."'>".$category['category_name']."</option>";
+                                                                    echo "<option value='".$category['category_id']."'>".$category['category_name']."</option>";
                                                                    }
                                                                 ?>
                                                                 <!-- <a href='dash-orders.php'><option>Add Category</option></a> -->
@@ -76,25 +75,25 @@
                                                     </div>
                                                 <div>
                                                 <label class="gl-label" for="product_description-">Product Description *</label>
-                                                <textarea class='input-text--primary-style' style='width: 100%; ' id="product_description" name="description" rows="4"></textarea>
+                                                <textarea class='input-text--primary-style' style='width: 100%;padding:10px; ' id="product_description" name="product_description" rows="4" required></textarea>
                                                 </div>
                                                 <div class="gl-inline">
                                                     <div class="u-s-m-b-30">
 
                                                         <label class="gl-label" for="price">Price *</label>
 
-                                                        <input class="input-text input-text--primary-style" name='price' step="0.01" type="number" id="price"></div>
+                                                        <input class="input-text input-text--primary-style" name='product_price' step="0.01" type="number" id="price" required></div>
                                                     <div class="u-s-m-b-30">
 
                                                         <label class="gl-label" for="quantity">Quantity *</label>
 
-                                                        <input class="input-text input-text--primary-style" name='quantity' type="number" id="quantity" placeholder="House Name and Street"></div>
+                                                        <input class="input-text input-text--primary-style" name='product_quantity' type="number" id="quantity" placeholder="House Name and Street" required></div>
                                                 </div>
                                                 <div class="gl-inline" style='display: flex;justify-content:center; padding-left:10px;padding-bottom:10px ;'>
                                                 <div class="upload-container">
                                                     <div id="drop-area" class="drop-area">
                                                         <p>Drag & Drop your images here or <span id="browse">Browse</span></p>
-                                                        <input type="file" id="fileElem" name="image" accept="image/*" style="display:none">
+                                                        <input type="file" id="fileElem" name="image" accept="image/*" style="display:none" required>
                                         
                                                     </div>
                                             

@@ -56,19 +56,19 @@
                                                         <label class="gl-label" for="address-name">NAME *</label>
 
                                                         <input name="add_admin" type="hidden">
-                                                        <input style="" class="input-text input-text--primary-style" name="name" type="text" id="address-name" placeholder="First Name"></div>
+                                                        <input style="" class="input-text input-text--primary-style" name="name" type="text" id="address-name" placeholder="First Name" required></div>
                                                     <div class="u-s-m-b-30">
 
                                                         <label class="gl-label" for="address-email">Email *</label>
 
-                                                        <input class="input-text input-text--primary-style" name="email" type="email" id="address-email" placeholder="name@example.com"></div>
+                                                        <input class="input-text input-text--primary-style" name="email" type="email" id="address-email" placeholder="name@example.com" required></div>
                                                 </div>
                                                 <div class="gl-inline">
                                                     <div class="u-s-m-b-30">
 
                                                         <label class="gl-label" for="address-password">Password *</label>
 
-                                                        <input class="input-text input-text--primary-style" name="password" type="password" id="address-password"></div>
+                                                        <input class="input-text input-text--primary-style" name="password" type="password" id="address-password" required></div>
                                                         <div class="u-s-m-b-30">
 
                                                             <!--====== Select Box ======-->
