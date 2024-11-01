@@ -66,7 +66,7 @@ class CustomersController {
         
         // Sanitize POST data
         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
+       
         // Init data
         $data = [
             'customer_email' => trim($_POST['customerEmail']),
@@ -77,7 +77,6 @@ class CustomersController {
             'customer_phone' => trim($_POST['customerPhone']),
             'customer_image' => trim('images/products/671fb3380fb81_user.png'),
         ];
-
         // Validate inputs
         if(empty($data['customer_email']) || empty($data['customer_name']) || 
         empty($data['customer_password']) || empty($_POST['pwdRepeat'])){

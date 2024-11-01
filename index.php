@@ -111,6 +111,9 @@ if(isset($url2[1])){
 // Dispatch the request
 // var_dump($url);
 // die();
+// $url4 = getAssetPaths($url);
+// var_dump($url4);
+// die();
 $router->dispatch($url);
 function getAssetPaths($rootDir) {
     $assetPaths = [];

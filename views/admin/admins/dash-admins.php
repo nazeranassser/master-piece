@@ -78,19 +78,26 @@
                                                     }
                                                     if($admin['is_active']==1){
                                                         $active = 'Active';
+                                                        $value = 0;
+                                                        $style = "style='background-color:green; border:0'";
                                                     }else{
                                                         $active = 'Deactivate';
+                                                        $value = 1;
+                                                        $style = '';
                                                     }
                                                     echo "  <tr>
                                                     <form method='POST' action='/edit-admin/".$admin['admin_id']."'>
                                                             <th>".$admin['admin_name']."</th>
                                                             <th>".$admin['admin_email']."</th>
-                                                            <th>".$active."</th>
+                                                            <th>
+                                                            <form method='POST' action='/update_admin'>
+                                                            <input type='text' value='".$value."' name='customer_address1' style='visibility: hidden;display: none;'>
+                                                            <button  class='address-book-edit btn btn--e-brand-b-2'". $style." >".$active."</button></form></th>
                                                             <th style='display: flex;''>
                                                             <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2' style='margin-right:4px ;'>Edit</button></form>
                                                             <form method='POST' action='/delete-admin/".$admin['admin_id']."'>
                                                             <input type='text' value='".$admin['admin_id']."' name='admin_delete' style='visibility: hidden;display: none;'>
-                                                            <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2'>Delete</button></form></th>
+                                                            <button type='submit' class='address-book-edit btn btn--e-brand-b-2'>Delete</button></form></th>
                                                         </tr>";
                                                 }
                                                 ?>
