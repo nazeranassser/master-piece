@@ -47,6 +47,53 @@ class Product extends Model
     }
   }
 
+  public function getFilteredProducts($search, $category, $sort) {
+    $query = "SELECT p.*, c.category_name FROM products p 
+              JOIN categories c ON p.category_id = c.category_id 
+              WHERE 1=1"; // 1=1 is a common way to start a dynamic WHERE clause
+    $params = [];
+
+    // Search filter
+    if (!empty($search)) {
+        $query .= " AND p.product_name LIKE :search";
+        $params[':search'] = '%' . $search . '%';
+    }
+
+    // Category filter
+    if (!empty($category)) {
+        $query .= " AND c.category_name = :category";
+        $params[':category'] = $category;
+    }
+
+    // Sorting
+    if ($sort == 'price_asc') {
+        $query .= " ORDER BY p.product_price ASC";
+    } elseif ($sort == 'price_desc') {
+        $query .= " ORDER BY p.product_price DESC";
+    } elseif ($sort == 'rating') {
+        $query .= " ORDER BY p.total_review DESC";
+    }
+
+    // Prepare and execute the query
+    $stmt = $this->db->prepare($query);
+    $stmt->execute($params);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC); // Return an array of products
+}
+
+/**
+ * Fetch all categories from the database.
+ */
+public function getCategoriesFilter() {
+    $query = "SELECT c.category_name, COUNT(p.product_id) AS product_count
+              FROM categories c
+              LEFT JOIN products p ON c.category_id = p.category_id
+              GROUP BY c.category_name";
+
+    $stmt = $this->db->prepare($query);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC); // Return an array of categories
+}
+
   function updateProduct($id,$admin)
 {
   return $this->update($id,$admin);

@@ -3,46 +3,37 @@
     <div class="container"> 
         <!-- Search Filters -->
         <div class="filters">
-            <form method="GET" action="index.php?action=showProducts">
-                <input type="text" name="search" 
-                       placeholder="Search for a product..." 
-                       value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">
-                
-                <select name="category">
-                    <option value="">All Categories</option>
-                    <?php while($category = $categories->fetch(PDO::FETCH_ASSOC)): ?>
-                        <option value="<?php echo htmlspecialchars($category['category_name']); ?>"
-                                <?php echo (isset($_GET['category']) && $_GET['category'] == $category['category_name']) ? 'selected' : ''; ?>>
-                            <?php echo htmlspecialchars($category['category_name']); ?>
-                            (<?php echo $category['product_count']; ?>)
-                        </option>
-                    <?php endwhile; ?>
-                </select>
+    <form method="GET" action="">
+        <input type="text" name="search" placeholder="Search for a product..." value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">
+        
+        <select name="category">
+            <option value="">All Categories</option>
+            <?php foreach ($categories as $category): ?>
+                <option value="<?php echo htmlspecialchars($category['category_name']); ?>"
+                        <?php echo (isset($_GET['category']) && $_GET['category'] == $category['category_name']) ? 'selected' : ''; ?>>
+                    <?php echo htmlspecialchars($category['category_name']); ?>
+                    (<?php echo $category['product_count']; ?>)
+                </option>
+            <?php endforeach; ?>
+        </select>
 
-                <select name="sort">
-                    <option value="">Sort By</option>
-                    <option value="price_asc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'price_asc') ? 'selected' : ''; ?>>
-                        Price: Low to High
-                    </option>
-                    <option value="price_desc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'price_desc') ? 'selected' : ''; ?>>
-                        Price: High to Low
-                    </option>
-                    <option value="rating" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'rating') ? 'selected' : ''; ?>>
-                        Rating
-                    </option>
-                </select>
+        <select name="sort">
+            <option value="">Sort By</option>
+            <option value="price_asc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'price_asc') ? 'selected' : ''; ?>>Price: Low to High</option>
+            <option value="price_desc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'price_desc') ? 'selected' : ''; ?>>Price: High to Low</option>
+            <option value="rating" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'rating') ? 'selected' : ''; ?>>Rating</option>
+        </select>
 
-                <button type="submit" class="btn">Apply Filters</button>
-            </form>
-        </div>
-    
+        <button type="submit" class="btn">Apply Filters</button>
+    </form>
+</div>
     <!-- Loop through all products -->
     <div class="u-s-p-b-60">
 
     <div class="section__content">
                     <div class="container">
                         <div class="product-grid">
-                            <?php foreach ($allProducts as $product): ?>
+                            <?php foreach ($products as $product): ?>
                                 <div class="product-card">
                                     <div class="product-image-wrap">
                                         <a href="product/<?= $product['product_id']; ?>">

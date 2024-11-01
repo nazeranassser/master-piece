@@ -83,22 +83,16 @@ if (isset($_SESSION['customer_ID'])) {
 
             <!--====== start - hero section ======-->
             <div id="hero-section">
-                <img id="hero-img" src="public/images/products/herooooo.jpg" alt="Delicious Cakes" style="width: 100%;">
-
                 <div class="hero-content">
                     <h1 id="hero-text">Welcome to Our Cake Shop!</h1>
                     <p class="hero-welcome">Indulge in the sweetest treats, crafted with love and the finest ingredients
                         just for you.</p>
-                    <div class="search-bar">
-                        <form id="search-form" onsubmit="handleSearch(event)">
-                            <input type="text" id="search-input" placeholder="Search for cakes..."
-                                aria-label="Search for cakes" required>
-                            <button type="submit" class="search-button">Search</button>
-                        </form>
-                    </div>
-                    <button class="cta-button">Order Your Favorite Cake</button>
+                    <a href="allProducts">
+                        <button class="cta-button">Order Your Favorite Cake</button>
+                    </a>
                 </div>
             </div>
+
 
             <!--====== End - hero section ======-->
 
@@ -229,29 +223,29 @@ if (isset($_SESSION['customer_ID'])) {
                                         <!-- Display All Products -->
                                         <?php foreach ($allProducts as $product): ?>
                                             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item all">
-                                                <div class="product-o product-o--hover-on product-o--radius">
-                                                    <div class="product-o__wrap">
-                                                        <a class="aspect aspect--bg-grey aspect--square u-d-block"
+                                                <div class="new-product-card"> <!-- Updated class name -->
+                                                    <div class="new-product-wrap"> <!-- Updated class name -->
+                                                        <a class="new-aspect new-aspect--bg-grey new-aspect--square u-d-block"
                                                             href="product/<?= $product['product_id'] ?>">
-                                                            <img class="aspect__img"
+                                                            <img class="new-aspect__img"
                                                                 src="public/images/products/<?= $product['product_image'] ?>"
                                                                 alt="<?= htmlspecialchars($product['product_name']) ?>">
                                                         </a>
                                                     </div>
 
                                                     <!-- Category -->
-                                                    <span class="product-o__category">
+                                                    <span class="new-product-category"> <!-- Updated class name -->
                                                         <?= htmlspecialchars($product['category_name']) ?>
                                                     </span>
 
                                                     <!-- Product Name -->
-                                                    <span class="product-o__name">
+                                                    <span class="new-product-name"> <!-- Updated class name -->
                                                         <a
                                                             href="product/<?= $product['product_id'] ?>"><?= htmlspecialchars($product['product_name']) ?></a>
                                                     </span>
 
                                                     <!-- Rating -->
-                                                    <div class="product-o__rating">
+                                                    <div class="new-product-rating"> <!-- Updated class name -->
                                                         <?php
                                                         $rating = $product['total_review'];
                                                         $fullStars = floor($rating);
@@ -261,17 +255,17 @@ if (isset($_SESSION['customer_ID'])) {
                                                         }
                                                         ?>
                                                         <span
-                                                            class="product-review">(<?= number_format($rating, 1); ?>)</span>
+                                                            class="new-product-review">(<?= number_format($rating, 1); ?>)</span>
                                                     </div>
 
                                                     <!-- Price and Action Buttons -->
                                                     <div class="d-flex align-items-center justify-content-between">
                                                         <span
-                                                            class="product-o__price"><?= number_format($product['product_price'], 2); ?>
+                                                            class="new-product-price"><?= number_format($product['product_price'], 2); ?>
                                                             JD</span>
 
                                                         <!-- Cart and Favorite Icons -->
-                                                        <div class="action-buttons d-flex">
+                                                        <div class="new-action-buttons d-flex"> <!-- Updated class name -->
                                                             <a href="cart.php?id=<?= $product['product_id'] ?>"
                                                                 class="btn btn-outline-secondary btn-sm"
                                                                 data-tooltip="tooltip" data-placement="top"
@@ -289,33 +283,33 @@ if (isset($_SESSION['customer_ID'])) {
                                             </div>
                                         <?php endforeach; ?>
 
+
                                         <!-- Display Top Seller Products -->
                                         <?php foreach ($topSellers as $product): ?>
-                                            <div
-                                                class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item top-seller">
-                                                <div class="product-o product-o--hover-on product-o--radius">
-                                                    <div class="product-o__wrap">
-                                                        <a class="aspect aspect--bg-grey aspect--square u-d-block"
+                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item top-seller">
+                                                <div class="new-product-card"> <!-- Updated class name -->
+                                                    <div class="new-product-wrap"> <!-- Updated class name -->
+                                                        <a class="new-aspect new-aspect--bg-grey new-aspect--square u-d-block"
                                                             href="product/<?= $product['product_id'] ?>">
-                                                            <img class="aspect__img"
+                                                            <img class="new-aspect__img"
                                                                 src="public/images/products/<?= $product['product_image'] ?>"
                                                                 alt="<?= htmlspecialchars($product['product_name']) ?>">
                                                         </a>
                                                     </div>
 
                                                     <!-- Category -->
-                                                    <span class="product-o__category">
+                                                    <span class="new-product-category"> <!-- Updated class name -->
                                                         <?= htmlspecialchars($product['category_name']) ?>
                                                     </span>
 
                                                     <!-- Product Name -->
-                                                    <span class="product-o__name">
+                                                    <span class="new-product-name"> <!-- Updated class name -->
                                                         <a
                                                             href="product/<?= $product['product_id'] ?>"><?= htmlspecialchars($product['product_name']) ?></a>
                                                     </span>
 
                                                     <!-- Rating -->
-                                                    <div class="product-o__rating">
+                                                    <div class="new-product-rating"> <!-- Updated class name -->
                                                         <?php
                                                         $rating = $product['total_review'];
                                                         $fullStars = floor($rating);
@@ -325,17 +319,17 @@ if (isset($_SESSION['customer_ID'])) {
                                                         }
                                                         ?>
                                                         <span
-                                                            class="product-review">(<?= number_format($rating, 1); ?>)</span>
+                                                            class="new-product-review">(<?= number_format($rating, 1); ?>)</span>
                                                     </div>
 
                                                     <!-- Price and Action Buttons -->
                                                     <div class="d-flex align-items-center justify-content-between">
                                                         <span
-                                                            class="product-o__price"><?= number_format($product['product_price'], 2); ?>
+                                                            class="new-product-price"><?= number_format($product['product_price'], 2); ?>
                                                             JD</span>
 
                                                         <!-- Cart and Favorite Icons -->
-                                                        <div class="action-buttons d-flex">
+                                                        <div class="new-action-buttons d-flex"> <!-- Updated class name -->
                                                             <a href="cart.php?id=<?= $product['product_id'] ?>"
                                                                 class="btn btn-outline-secondary btn-sm"
                                                                 data-tooltip="tooltip" data-placement="top"
@@ -356,31 +350,30 @@ if (isset($_SESSION['customer_ID'])) {
                                         <!-- Similarly, display other categories -->
                                         <!-- OUR CAKE -->
                                         <?php foreach ($ourCake as $product): ?>
-                                            <div
-                                                class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item our-cake">
-                                                <div class="product-o product-o--hover-on product-o--radius">
-                                                    <div class="product-o__wrap">
-                                                        <a class="aspect aspect--bg-grey aspect--square u-d-block"
+                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item our-cake">
+                                                <div class="new-product-card"> <!-- Updated class name -->
+                                                    <div class="new-product-wrap"> <!-- Updated class name -->
+                                                        <a class="new-aspect new-aspect--bg-grey new-aspect--square u-d-block"
                                                             href="product/<?= $product['product_id'] ?>">
-                                                            <img class="aspect__img"
+                                                            <img class="new-aspect__img"
                                                                 src="public/images/products/<?= $product['product_image'] ?>"
                                                                 alt="<?= htmlspecialchars($product['product_name']) ?>">
                                                         </a>
                                                     </div>
 
                                                     <!-- Category -->
-                                                    <span class="product-o__category">
+                                                    <span class="new-product-category"> <!-- Updated class name -->
                                                         <?= htmlspecialchars($product['category_name']) ?>
                                                     </span>
 
                                                     <!-- Product Name -->
-                                                    <span class="product-o__name">
+                                                    <span class="new-product-name"> <!-- Updated class name -->
                                                         <a
                                                             href="product/<?= $product['product_id'] ?>"><?= htmlspecialchars($product['product_name']) ?></a>
                                                     </span>
 
                                                     <!-- Rating -->
-                                                    <div class="product-o__rating">
+                                                    <div class="new-product-rating"> <!-- Updated class name -->
                                                         <?php
                                                         $rating = $product['total_review'];
                                                         $fullStars = floor($rating);
@@ -390,18 +383,18 @@ if (isset($_SESSION['customer_ID'])) {
                                                         }
                                                         ?>
                                                         <span
-                                                            class="product-review">(<?= number_format($rating, 1); ?>)</span>
+                                                            class="new-product-review">(<?= number_format($rating, 1); ?>)</span>
                                                     </div>
 
                                                     <!-- Price and Action Buttons -->
                                                     <div class="d-flex align-items-center justify-content-between">
                                                         <span
-                                                            class="product-o__price"><?= number_format($product['product_price'], 2); ?>
+                                                            class="new-product-price"><?= number_format($product['product_price'], 2); ?>
                                                             JD</span>
 
                                                         <!-- Cart and Favorite Icons -->
-                                                        <div class="action-buttons d-flex">
-                                                            <a href="/cart/<?php echo $product['product_id']; ?>"
+                                                        <div class="new-action-buttons d-flex"> <!-- Updated class name -->
+                                                            <a href="cart.php?id=<?= $product['product_id'] ?>"
                                                                 class="btn btn-outline-secondary btn-sm"
                                                                 data-tooltip="tooltip" data-placement="top"
                                                                 title="Add to Cart">
@@ -420,31 +413,30 @@ if (isset($_SESSION['customer_ID'])) {
 
                                         <!-- SUGAR FREE -->
                                         <?php foreach ($sugarFree as $product): ?>
-                                            <div
-                                                class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item sugar-free">
-                                                <div class="product-o product-o--hover-on product-o--radius">
-                                                    <div class="product-o__wrap">
-                                                        <a class="aspect aspect--bg-grey aspect--square u-d-block"
+                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item sugar-free">
+                                                <div class="new-product-card"> <!-- Updated class name -->
+                                                    <div class="new-product-wrap"> <!-- Updated class name -->
+                                                        <a class="new-aspect new-aspect--bg-grey new-aspect--square u-d-block"
                                                             href="product/<?= $product['product_id'] ?>">
-                                                            <img class="aspect__img"
+                                                            <img class="new-aspect__img"
                                                                 src="public/images/products/<?= $product['product_image'] ?>"
                                                                 alt="<?= htmlspecialchars($product['product_name']) ?>">
                                                         </a>
                                                     </div>
 
                                                     <!-- Category -->
-                                                    <span class="product-o__category">
+                                                    <span class="new-product-category"> <!-- Updated class name -->
                                                         <?= htmlspecialchars($product['category_name']) ?>
                                                     </span>
 
                                                     <!-- Product Name -->
-                                                    <span class="product-o__name">
+                                                    <span class="new-product-name"> <!-- Updated class name -->
                                                         <a
                                                             href="product/<?= $product['product_id'] ?>"><?= htmlspecialchars($product['product_name']) ?></a>
                                                     </span>
 
                                                     <!-- Rating -->
-                                                    <div class="product-o__rating">
+                                                    <div class="new-product-rating"> <!-- Updated class name -->
                                                         <?php
                                                         $rating = $product['total_review'];
                                                         $fullStars = floor($rating);
@@ -454,18 +446,18 @@ if (isset($_SESSION['customer_ID'])) {
                                                         }
                                                         ?>
                                                         <span
-                                                            class="product-review">(<?= number_format($rating, 1); ?>)</span>
+                                                            class="new-product-review">(<?= number_format($rating, 1); ?>)</span>
                                                     </div>
 
                                                     <!-- Price and Action Buttons -->
                                                     <div class="d-flex align-items-center justify-content-between">
                                                         <span
-                                                            class="product-o__price"><?= number_format($product['product_price'], 2); ?>
+                                                            class="new-product-price"><?= number_format($product['product_price'], 2); ?>
                                                             JD</span>
 
                                                         <!-- Cart and Favorite Icons -->
-                                                        <div class="action-buttons d-flex">
-                                                            <a href="/cart/<?php echo $product['product_id']; ?>"
+                                                        <div class="new-action-buttons d-flex"> <!-- Updated class name -->
+                                                            <a href="cart.php?id=<?= $product['product_id'] ?>"
                                                                 class="btn btn-outline-secondary btn-sm"
                                                                 data-tooltip="tooltip" data-placement="top"
                                                                 title="Add to Cart">
@@ -484,31 +476,30 @@ if (isset($_SESSION['customer_ID'])) {
 
                                         <!-- GLUTEN FREE -->
                                         <?php foreach ($glutenFree as $product): ?>
-                                            <div
-                                                class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item gluten-free">
-                                                <div class="product-o product-o--hover-on product-o--radius">
-                                                    <div class="product-o__wrap">
-                                                        <a class="aspect aspect--bg-grey aspect--square u-d-block"
+                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item gluten-free">
+                                                <div class="new-product-card"> <!-- Updated class name -->
+                                                    <div class="new-product-wrap"> <!-- Updated class name -->
+                                                        <a class="new-aspect new-aspect--bg-grey new-aspect--square u-d-block"
                                                             href="product/<?= $product['product_id'] ?>">
-                                                            <img class="aspect__img"
+                                                            <img class="new-aspect__img"
                                                                 src="public/images/products/<?= $product['product_image'] ?>"
                                                                 alt="<?= htmlspecialchars($product['product_name']) ?>">
                                                         </a>
                                                     </div>
 
                                                     <!-- Category -->
-                                                    <span class="product-o__category">
+                                                    <span class="new-product-category"> <!-- Updated class name -->
                                                         <?= htmlspecialchars($product['category_name']) ?>
                                                     </span>
 
                                                     <!-- Product Name -->
-                                                    <span class="product-o__name">
+                                                    <span class="new-product-name"> <!-- Updated class name -->
                                                         <a
                                                             href="product/<?= $product['product_id'] ?>"><?= htmlspecialchars($product['product_name']) ?></a>
                                                     </span>
 
                                                     <!-- Rating -->
-                                                    <div class="product-o__rating">
+                                                    <div class="new-product-rating"> <!-- Updated class name -->
                                                         <?php
                                                         $rating = $product['total_review'];
                                                         $fullStars = floor($rating);
@@ -518,18 +509,18 @@ if (isset($_SESSION['customer_ID'])) {
                                                         }
                                                         ?>
                                                         <span
-                                                            class="product-review">(<?= number_format($rating, 1); ?>)</span>
+                                                            class="new-product-review">(<?= number_format($rating, 1); ?>)</span>
                                                     </div>
 
                                                     <!-- Price and Action Buttons -->
                                                     <div class="d-flex align-items-center justify-content-between">
                                                         <span
-                                                            class="product-o__price"><?= number_format($product['product_price'], 2); ?>
+                                                            class="new-product-price"><?= number_format($product['product_price'], 2); ?>
                                                             JD</span>
 
                                                         <!-- Cart and Favorite Icons -->
-                                                        <div class="action-buttons d-flex">
-                                                            <a href="/cart/<?php echo $product['product_id']; ?>"
+                                                        <div class="new-action-buttons d-flex"> <!-- Updated class name -->
+                                                            <a href="cart.php?id=<?= $product['product_id'] ?>"
                                                                 class="btn btn-outline-secondary btn-sm"
                                                                 data-tooltip="tooltip" data-placement="top"
                                                                 title="Add to Cart">
@@ -548,31 +539,30 @@ if (isset($_SESSION['customer_ID'])) {
 
                                         <!-- SPECIAL OCCASIONS -->
                                         <?php foreach ($specialOccasions as $product): ?>
-                                            <div
-                                                class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item special-occasions">
-                                                <div class="product-o product-o--hover-on product-o--radius">
-                                                    <div class="product-o__wrap">
-                                                        <a class="aspect aspect--bg-grey aspect--square u-d-block"
+                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item spacial-occasions">
+                                                <div class="new-product-card"> <!-- Updated class name -->
+                                                    <div class="new-product-wrap"> <!-- Updated class name -->
+                                                        <a class="new-aspect new-aspect--bg-grey new-aspect--square u-d-block"
                                                             href="product/<?= $product['product_id'] ?>">
-                                                            <img class="aspect__img"
+                                                            <img class="new-aspect__img"
                                                                 src="public/images/products/<?= $product['product_image'] ?>"
                                                                 alt="<?= htmlspecialchars($product['product_name']) ?>">
                                                         </a>
                                                     </div>
 
                                                     <!-- Category -->
-                                                    <span class="product-o__category">
+                                                    <span class="new-product-category"> <!-- Updated class name -->
                                                         <?= htmlspecialchars($product['category_name']) ?>
                                                     </span>
 
                                                     <!-- Product Name -->
-                                                    <span class="product-o__name">
+                                                    <span class="new-product-name"> <!-- Updated class name -->
                                                         <a
                                                             href="product/<?= $product['product_id'] ?>"><?= htmlspecialchars($product['product_name']) ?></a>
                                                     </span>
 
                                                     <!-- Rating -->
-                                                    <div class="product-o__rating">
+                                                    <div class="new-product-rating"> <!-- Updated class name -->
                                                         <?php
                                                         $rating = $product['total_review'];
                                                         $fullStars = floor($rating);
@@ -582,18 +572,18 @@ if (isset($_SESSION['customer_ID'])) {
                                                         }
                                                         ?>
                                                         <span
-                                                            class="product-review">(<?= number_format($rating, 1); ?>)</span>
+                                                            class="new-product-review">(<?= number_format($rating, 1); ?>)</span>
                                                     </div>
 
                                                     <!-- Price and Action Buttons -->
                                                     <div class="d-flex align-items-center justify-content-between">
                                                         <span
-                                                            class="product-o__price"><?= number_format($product['product_price'], 2); ?>
+                                                            class="new-product-price"><?= number_format($product['product_price'], 2); ?>
                                                             JD</span>
 
                                                         <!-- Cart and Favorite Icons -->
-                                                        <div class="action-buttons d-flex">
-                                                            <a href="/cart/<?php echo $product['product_id']; ?>"
+                                                        <div class="new-action-buttons d-flex"> <!-- Updated class name -->
+                                                            <a href="cart.php?id=<?= $product['product_id'] ?>"
                                                                 class="btn btn-outline-secondary btn-sm"
                                                                 data-tooltip="tooltip" data-placement="top"
                                                                 title="Add to Cart">
