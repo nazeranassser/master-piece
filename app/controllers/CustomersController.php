@@ -252,10 +252,10 @@ class CustomersController {
         
         // تجهيز البيانات للعرض
         $order = [
-            'order_ID' => $order_details[1]['order_ID'],
-            'order_date' => $order_details[1]['order_date'],
-            'status' => $order_details[1]['status'],
-            'total_amount' => $order_details[1]['total_amount']
+            'order_ID' => $order_details[0]['order_ID'],
+            'order_date' => $order_details[0]['order_date'],
+            'status' => $order_details[0]['status'],
+            'total_amount' => $order_details[0]['total_amount']
         ];
         
         // تمرير المتغيرات للview
