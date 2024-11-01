@@ -91,12 +91,12 @@
                                                     // var_dump($product);
                                                     echo "  <tr>
                                                     
-                                                         <form method='POST' action='update_product'>
+                                                         <form method='POST' action='/update_product/".$product['product_id']."'>
                                                             <th><a href='/update_product/".$product['product_id']."'><div  class='description__img-wrap'>
                                                             <img class='u-img-fluid' style='border-radius: 10000px;width: 90px;height: 90px;' src='".$product['product_image']."' alt=''></div></a></th>
-                                                            <th>".$product['product_name']."<input type='hidden' value='".$product['product_name']."' name='product_name''></th>
-                                                            <th>".$product['product_price']."<input type='hidden' value='".$product['product_price']."' name='product_price''></th>
-                                                            <th>".$product['product_quantity']."<input type='hidden' value='".$product['product_quantity']."' name='product_quantity''></th>
+                                                            <th>".$product['product_name']."</th>
+                                                            <th>".$product['product_price']."</th>
+                                                            <th>".$product['product_quantity']."</th>
                                                             <th><div style='display: flex; align-items: center;'>
                                                             <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2' style='margin-right:4px;'>Edit</button></form>
                                                             <form method='POST' action=''>

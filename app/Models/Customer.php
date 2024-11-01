@@ -63,7 +63,7 @@ class Customer extends Model{
         $stmt->bindParam(':name', $data['customer_name']);
         $stmt->bindParam(':email', $data['customer_email']);
         $stmt->bindParam(':password', $data['customer_password']);
-        $stmt->bindParam(':firstAddress', $data['customer_address']);
+        $stmt->bindParam(':firstAddress', $data['customer_address1']);
         $stmt->bindParam(':secondAddress', $data['customer_address2']);
         $stmt->bindParam(':phoneNumber', $data['customer_phone']);
 
