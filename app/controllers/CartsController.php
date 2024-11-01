@@ -53,7 +53,7 @@ class CartsController {
         setcookie('cart', json_encode($cart), time() + 3600, '/');
         
         // Redirect to the cart page
-        header("Location: /views/pages/cart.php");
+        require("views/pages/cart.php");
         exit; // Ensure the script stops executing after redirection
     }
     

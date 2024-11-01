@@ -21,12 +21,15 @@
                 <div class="section__content">
                     <div class="dash">
                         <div class="container">
+                            
                             <div class="row">
+                                
                                 <div class="col-lg-3 col-md-12">
 
                                     <!--====== Dashboard Features ======-->
                                     <div class="dash__box dash__box--bg-white dash__box--shadow u-s-m-b-30">
                                         <div class="dash__pad-1">
+                                            
 
                                             <span class="dash__text u-s-m-b-16"><?php echo "Hello"." ".$_SESSION['usersName']; ?></span>
                                             <ul class="dash__f-list">
@@ -45,6 +48,7 @@
                                             </ul>
                                         </div>
                                     </div>
+                                    
                                     <div class="dash__box dash__box--bg-white dash__box--shadow dash__box--w">
                                         <div class="dash__pad-1">
                                             <ul class="dash__w-list">
@@ -78,9 +82,12 @@
                                             </ul>
                                         </div>
                                     </div>
+                                    
                                     <!--====== End - Dashboard Features ======-->
                                 </div>
+                                
                                 <div class="col-lg-9 col-md-12">
+                                    
                                     <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white u-s-m-b-30">
                                         <div class="dash__pad-2">
                                             <h1 class="dash__h1 u-s-m-b-14">My Profile</h1>
@@ -152,6 +159,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <a href="/sign-out" class="auth-btn logout nav-item" style="animation-delay: 0.8s;">Logout</a>
+
                                     </div>
                                 </div>
                             </div>

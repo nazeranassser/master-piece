@@ -16,56 +16,47 @@
     <link rel="stylesheet" href="/public/css/product-details.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    
+    <?php $cartItems = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];?>
 
 </head>
 <body>
     <nav>
         <div class="logo-section">
             <a href="#" class="logo nav-item" style="animation-delay: 0.1s;">
-                <img src="public/images/logo.png" class="mylog" style="margin-right: 10px;">
+                <img src="/images/3-removebg-preview.png" style="margin-right: 10px; width:40px">
                 Revoly Cake
             </a>
         </div>
 
         <div class="nav-links">
             <a href="/" class="nav-item" style="animation-delay: 0.2s;">Home</a>
-            <a href="about-us" class="nav-item" style="animation-delay: 0.3s;">About Us</a>
+            <a href="/about-us" class="nav-item" style="animation-delay: 0.3s;">About Us</a>
             <a href="/allProducts" class="nav-item" style="animation-delay: 0.4s;">Products</a>
             <a href="/contactform.php" class="nav-item" style="animation-delay: 0.5s;">Contact</a>
         </div>
 
         <div class="icons">
             <div class="icon nav-item" style="animation-delay: 0.6s;">
-               <a href="views/pages/wishlist.php">
-                <i class="fas fa-heart"></i>
-                <span class="icon-badge">2</span>
+               <a style="display: flex;flex-direction: column;justify-content: center;align-items: center;" href="/wishlist">
+                <!-- <i class="fas fa-heart"></i> -->
+                <img style="width:24px" src="/images/products/wishlist.png" alt="">
+                <span class="icon-badge">2</span></a>
             </div>
             <div class="icon nav-item" style="animation-delay: 0.7s;">
-               <a href = 'cart'> <i class="fas fa-shopping-bag"></i> </a>
-                <span class="icon-badge">3</span>
+               <a style="display: flex;flex-direction: column;justify-content: center;align-items: center;" href = '/cart/<?=$_SESSION['usersId']?>'> 
+               <img style="width:24px" src="/images/products/grocery-store.png" alt="">
+                <span class="icon-badge"><?php echo count($cartItems); ?></span></a>
             </div>
+            <div class="icon nav-item" style="animation-delay: 0.7s;">
+               <a style="display: flex;flex-direction: column;justify-content: center;align-items: center;" href="<?= isset($_SESSION['usersId'])?'/profile-main':'/login'?>">
+                <img style="width:30px;background-color:#fff;border-radius:200%;padding:2px" src="<?php if(!isset($_SESSION['customerImage'])){ echo 'images/user.png'; }else {echo  $_SESSION['customerImage'];} ?>" alt="">
 
-            <div class="auth-buttons">
-                <?php if(!isset($_SESSION['usersId'])) : ?>
-                    <a href="login" class="auth-btn login nav-item" style="animation-delay: 0.8s;">Login</a>
-                    <a href="signup" class="auth-btn signup nav-item" style="animation-delay: 0.9s;">Sign Up</a>
-                <?php else: ?>
-                    <a href="/sign-out" class="auth-btn logout nav-item" style="animation-delay: 0.8s;">Logout</a>
-                <?php endif; ?>
+               <!-- <img style="width:24px" src="/images/products/grocery-store.png" alt=""> -->
+
+                <!-- <i class="fas fa-shopping-bag"></i>  -->
+               </a>
             </div>
-
-            <!-- إضافة الترحيب واسم المستخدم والصورة هنا -->
-            <?php if (isset($_SESSION['usersId'])): ?>
-                <div class="user-welcome nav-item" style="animation-delay: 1.0s;">
-                    <a href="profile-main"><span>Welcome, <?php echo $_SESSION['usersName']; ?></span></a>
-                    <?php 
-                    // عرض الصورة
-                    
-                        echo '<img src="' .  $_SESSION['customerImage'] . '"  />';
-                    ?>
-                </div>
-            <?php endif; ?>
+          
         </div>
     </nav>
 </body>
