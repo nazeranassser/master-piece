@@ -79,7 +79,7 @@
                                                     if($admin['is_active']==1){
                                                         $active = 'Active';
                                                         $value = 0;
-                                                        $style = "style='background-color:green; border:0'";
+                                                        $style = "style='background-color:green; border:0;width:100px'";
                                                     }else{
                                                         $active = 'Deactivate';
                                                         $value = 1;

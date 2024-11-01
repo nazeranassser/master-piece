@@ -131,5 +131,20 @@ class Customer extends Model{
                 echo "0 results";
            }
         }
+        public function getCustomerOrders($customerId) {
+            $sql = "SELECT o.order_id, o.order_total_amount, o.order_total_amount_after, o.order_status, o.created_at,
+                           GROUP_CONCAT(p.product_name SEPARATOR '|') as product_names,
+                           GROUP_CONCAT(p.product_image SEPARATOR '|') as product_images,
+                           GROUP_CONCAT(op.quantity SEPARATOR '|') as quantities
+                    FROM orders o
+                    JOIN order_products op ON o.order_id = op.order_id
+                    JOIN products p ON op.product_id = p.product_id
+                    WHERE o.customer_id = :customer_id
+                    GROUP BY o.order_id
+                    ORDER BY o.created_at DESC";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute(['customer_id' => $customerId]);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
 
 }
