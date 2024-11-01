@@ -92,4 +92,12 @@ class Order extends Model {
             echo "0 results";
        }
     }
+
+    function updateStatus($id ,$status){
+        // var_dump($id);
+        // echo '<br>';
+        // var_dump($status);
+        // die();
+        return $this->update($id,$status);
+    }
   }

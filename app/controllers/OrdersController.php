@@ -61,6 +61,16 @@ class OrdersController {
             echo "Invalid request.";
         }
     }
+
+    function orderStatus(){
+        $order_id = $_GET['id'];
+        $status = $_GET['status'];
+        $orderStatus = [
+            'order_status' => $status ];
+        $this->ordersModel->updateStatus($order_id,$orderStatus);
+            header('location:/orderDetails?id='.$order_id );
+        
+    }
     
 }
 

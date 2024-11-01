@@ -43,7 +43,7 @@ include('views/partials/header_admin.php');
 
                                     <!--====== Dashboard Features ======-->
                                     <?php
-                                    // include('dashboard_features.php');
+                                    include('views/admin/dashboard_features.php');
                                     ?>
                                     <!--====== End - Dashboard Features ======-->
                                 </div>
@@ -74,9 +74,26 @@ include('views/partials/header_admin.php');
                                                 </div>
                                                 <div class="dash-l-r">
                                                     <div class="manage-o__text u-c-secondary">Delivered on 26 Oct 2016</div>
-                                                    <div class="manage-o__icon"><i class="fas fa-truck u-s-m-r-5"></i>
+                                                    <div class="manage-o__icon" style="display:flex;align-items:center;"><i class="fas fa-truck u-s-m-r-5" style="padding:10px"></i>
 
-                                                        <span class="manage-o__text">Standard</span></div>
+                                                    <form method="GET" action="/order-status" id="categoryForm">
+                                                    <input type='text' value='<?= $orders[0]['order_id'] ?>' name='id' style='visibility: hidden;display: none;'>
+                                                    <select class="select-box select-box--primary-style" style="border-radius:6px ;<?= 'cancelled' == $orders[0]['order_status'] ? 'background-color:red;' : '' ?>" name="status" id="categoryFilter" onchange="this.form.submit()">
+                                                        <option value="cancelled" <?= 'cancelled' == $orders[0]['order_status'] ? 'selected' : 'style="background-color:red;"' ?>>Cancelled</option>
+                                                            <option value='processing' 
+                                                                <?= 'processing' == $orders[0]['order_status'] ? 'selected' : '' ?>>
+                                                                Processing
+                                                            </option>
+                                                            <option value='shipped' 
+                                                                <?= 'shipped' == $orders[0]['order_status'] ? 'selected' : '' ?>>
+                                                                Shipped
+                                                            </option>
+                                                            <option value='delivered' 
+                                                                <?= 'delivered' == $orders[0]['order_status'] ? 'selected' : '' ?>>
+                                                                Delivered
+                                                            </option>
+                                                    </select>
+                                                </form></div>
                                                 </div>
                                                 <div class="manage-o__timeline">
                                                     <?php
@@ -131,7 +148,8 @@ include('views/partials/header_admin.php');
                                                 </div>
                                                 <?php
                                                     foreach($orders as $items) {
-                                                    
+                                                    // var_dump($items);
+                                                //     die();
                                                     echo "  <div class='manage-o__description' style='padding-top:20px'>
                                                     <div class='description__container'>
                                                         <div class='description__img-wrap'>
@@ -151,7 +169,8 @@ include('views/partials/header_admin.php');
 
                                                                 <span class='manage-o__text-2 u-c-secondary'>$".$items['quantity']*$items['product_price']."</span></span></div>
                                                     </div>
-                                                </div>";}
+                                                </div>";
+                                            }
                                                 ?>
                                                 <!--  -->
                                             </div>

@@ -41,6 +41,7 @@ $router->add('cart/{id:\d+}', ['controller' => 'Carts', 'action' => 'addToCart']
 
 $router->add('orders', ['controller' => 'Orders', 'action' => 'get']);
 $router->add('orderDetails', ['controller' => 'Orders', 'action' => 'orderDetails']);
+$router->add('order-status', ['controller' => 'Orders', 'action' => 'orderStatus']);
 
 
 /* -----------------------------------Wishlist Router---------------------------------- */
