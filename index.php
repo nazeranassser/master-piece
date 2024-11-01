@@ -71,7 +71,7 @@ $router->add('edit-admin/{id:\d+}', ['controller' => 'Admins', 'action' => 'getB
 
 /* -----------------------------------Customers Router---------------------------------- */
 
-$router->add('customer/get', ['controller' => 'customer', 'action' => 'get']);
+$router->add('customer/get', ['controller' => 'customers', 'action' => 'get']);
 $router->add('profile-edit', ['controller' => 'Customers', 'action' => 'editPage']);
 $router->add('profile-update', ['controller' => 'Customers', 'action' => 'update']);//admins-controllers->update_admin()
 $router->add('login-add', ['controller' => 'Customers', 'action' => 'login']);
@@ -83,6 +83,7 @@ $router->add('profile-order', ['controller' => 'Customers', 'action' => 'getById
 $router->add('signup-action', ['controller' => 'Customers', 'action' => 'register']);
 $router->add('about-us', ['controller' => 'customers', 'action' => 'about']);
 $router->add('orders-detal/{id:\d+}', ['controller' => 'customers', 'action' => 'viewOrderDetails']);
+$router->add('customer-details/{id:\d+}', ['controller' => 'customers', 'action' => 'customerDetails']);//admins-controllers->update_admin()
 
 
 

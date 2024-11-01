@@ -1,4 +1,4 @@
-<?php include('views/partials/navbar.php');?>
+<?php include('views/partials/header_admin.php');?>
 
         <!--====== End - Main Header ======-->
 
@@ -68,16 +68,15 @@
                                               
                                                   foreach($customers as $customer) {
                                                     echo "  <tr>
-                                                    <form method='POST' action='dash-admin-edit.php'>
-                                                            <th>".$customer['customer_name']."<input type='hidden' value='".$customer['customer_name']."' name='customer_name' style='visibility: hidden;display: none;'></th>
-                                                            <th>".$customer['customer_email']."<input type='hidden' value='".$customer['customer_email']."' name='customer_email' style='visibility: hidden;display: none;'></th>
-                                                            <th>".$customer['customer_address1']."<input type='text' value='".$customer['customer_address1']."' name='customer_address1' style='visibility: hidden;display: none;'></th>
+                                                    <form method='POST' action='/customer-details/".$customer['customer_id']."'>
+                                                            <th>".$customer['customer_name']."</th>
+                                                            <th>".$customer['customer_email']."</th>
+                                                            <th>".$customer['customer_address1']."</th>
                                                             <th style='display: flex;''>
-                                                            <input type='text' value='".$customer['customer_ID']."' name='edit' style='visibility: hidden;display: none;'>
-                                                            <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2' style='margin-right:4px ;'>Edit</button></form>
+                                                            <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2' style='margin-right:4px ;'>Details</button></form>
                                                             <form method='POST' action='show_admin.php'>
-                                                            <input type='text' value='".$customer['customer_ID']."' name='customer_delete' style='visibility: hidden;display: none;'>
-                                                            <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2'>Delete</button></form></th>
+                                                            <input type='text' value='".$customer['customer_id']."' name='customer_delete' style='visibility: hidden;display: none;'>
+                                                            <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2'>Block</button></form></th>
                                                         </tr>";
                                                 }
                                                 ?>
@@ -103,8 +102,8 @@
 
 
         <!--====== Main Footer ======-->
-       <?php include('views/partials/footer.php');?>
-    </div>
+        <?php include('views/partials/footer_admin.php');?>
+        </div>
     <!--====== End - Main App ======-->
 
 

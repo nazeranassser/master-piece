@@ -265,7 +265,7 @@ class CustomersController {
         require 'views/pages/aboutus.php';
     }
 
-    
-    
-          
+    function customerDetails($id){
+        echo $id;
+    }
 }
