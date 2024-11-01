@@ -154,16 +154,8 @@ function handleWishlistToggle(button) {
     .catch(error => {
         // Revert UI change on error
         toggleHeartIcon(icon);
-        
-        // Show message to inform the user they need to log in
-        showMessage('Please login to manage your wishlist.', 'error');
-        
+        showMessage('Error updating wishlist. Please try again.', 'error');
         console.error('Error:', error);
-        
-        // Redirect to login page after a short delay
-        setTimeout(() => {
-            window.location.href = '/login';
-        }, 1500); // 1.5-second delay before redirecting
     });
 }
 
@@ -215,4 +207,4 @@ function showMessage(message, type) {
     toast.addEventListener('hidden.bs.toast', () => {
         toast.remove();
     });
-}  
+}              
