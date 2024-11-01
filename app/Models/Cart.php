@@ -18,7 +18,7 @@ class Cart extends Model {
     public function getCustomerInfo($customerId) {
         $stmt = $this->db->prepare("SELECT * FROM customers WHERE customer_id = :customerId");
         $stmt->execute(['customerId' => $customerId]);
-        return $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $stmt->fetch(\PDO::FETCH_ASSOC); 
     }
 
     public function createOrder($customerId, $orderTotal, $cartItems) {

@@ -38,13 +38,6 @@ $customer_id = isset($_SESSION['usersId']) ? $_SESSION['usersId'] : null;
                             <span
                                 class="pd-detail__preview-desc"><?php echo htmlspecialchars($product['product_description']); ?></span>
                         </div>
-                        <div class="u-s-m-b-15">
-                            <div class="input-counter">
-                                <span class="input-counter__minus fas fa-minus"></span>
-                                <input class="input-counter__text" type="text" value="1" data-min="1"
-                                    data-max="<?php echo $product['product_quantity']; ?>">
-                                <span class="input-counter__plus fas fa-plus"></span>
-                            </div>
 
                             <div class="u-s-m-b-15">
                                 <a href="/cart/<?= $product['product_id'] ?>">

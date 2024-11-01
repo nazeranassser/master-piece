@@ -3,12 +3,16 @@ namespace App\Controllers;
 
 use App\Models\Cart;
 
+use App\Models\Product;
+
 
 class CartsController {
     private $cartModel;
+    private $productModel;
 
     public function __construct() {
         $this->cartModel = new Cart();
+        $this->productModel = new Product();
     }
 
     // Add item to cart and store it in cookies
@@ -16,22 +20,31 @@ class CartsController {
         // Initialize the cart from cookies or create a new array
         $cart = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];
     
-        // Check for duplicate item in the cart
-        if (isset($cart[$productId])) {
-            // Update quantity if the product already exists in the cart
-            $cart[$productId]['quantity'] += 1;
-        } else {
-            // Fetch product details using the cart model
-            $product = $this->cartModel->getProduct($productId);
-            
-            if ($product) { // Ensure the product exists
+        // Fetch product details using the cart model
+        $product = $this->cartModel->getProduct($productId);
+    
+        if ($product) { // Ensure the product exists
+            $stockQuantity = $product['product_quantity']; // Available stock in the database
+    
+            // Check if the product is already in the cart
+            if (isset($cart[$productId])) {
+                // Check if adding 1 more would exceed the available stock
+                if ($cart[$productId]['quantity'] < $stockQuantity) {
+                    $cart[$productId]['quantity'] += 1; // Increment quantity
+                } else {
+                    // Handle the situation where adding more exceeds the stock
+                    // You can add a message or notification here if needed
+                    echo "<script>alert('Cannot add more. Stock limit reached.');</script>";
+                }
+            } else {
+                // Add new product to the cart if it doesn't exist yet, with a default quantity of 1
                 $cart[$productId] = [
-                    'product_id' => $productId,
+                    'product_id' => $product['product_id'],
                     'product_name' => $product['product_name'],
                     'price' => $product['product_price'],
-                    'quantity' => 1,
-                    'image_url' => $product['product_image'], // Assuming this is the correct field
-
+                    'quantity' => 1, // Start with 1 if newly added
+                    'stock_quantity' => $stockQuantity, // Include stock info for client-side checks
+                    'image_url' => $product['product_image'] // Assuming this is the correct field
                 ];
             }
         }
@@ -43,6 +56,7 @@ class CartsController {
         header("Location: /views/pages/cart.php");
         exit; // Ensure the script stops executing after redirection
     }
+    
     
 
     public function removeFromCart($productId) {
