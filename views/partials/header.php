@@ -17,10 +17,65 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <?php $cartItems = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];?>
+    <style>
+/* Main navigation styling */
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensures even spacing between elements */
+    padding: 10px 20px;
+}
 
+.logo-section {
+}
+
+/* Center navigation links on larger screens */
+.nav-links {
+    display: flex;
+    gap: 40px;
+    flex: 1;
+    justify-content: center;
+}
+
+.icons {
+    display: flex;
+    gap: 30px;
+}
+
+.menu-toggle {
+    display: none; /* Hide menu toggle icon by default */
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    /* Hide nav links by default on small screens */
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        /* width: 100%; */
+        background-color: white;
+        padding: 10px 0;
+        z-index: 1000;
+    }
+
+    /* Show menu toggle icon on small screens */
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Show nav links when active */
+    .nav-links.active {
+        display: flex;
+    }
+}
+
+    </style>
 </head>
 <body>
-    <nav>
+<nav>
         <div class="logo-section">
             <a href="#" class="logo nav-item" style="animation-delay: 0.1s;">
                 <img src="/images/3-removebg-preview.png" style="margin-right: 10px; width:40px">
@@ -28,36 +83,46 @@
             </a>
         </div>
 
-        <div class="nav-links">
-            <a href="/" class="nav-item" style="animation-delay: 0.2s;">Home</a>
-            <a href="/about-us" class="nav-item" style="animation-delay: 0.3s;">About Us</a>
-            <a href="/allProducts" class="nav-item" style="animation-delay: 0.4s;">Products</a>
-            <a href="/contactform.php" class="nav-item" style="animation-delay: 0.5s;">Contact</a>
-        </div>
+    <div class="nav-links" id="nav-links">
+        <a href="/" class="nav-item" style="animation-delay: 0.2s;">Home</a>
+        <a href="/about-us" class="nav-item" style="animation-delay: 0.3s;">About Us</a>
+        <a href="/allProducts" class="nav-item" style="animation-delay: 0.4s;">Products</a>
+        <a href="/contactform.php" class="nav-item" style="animation-delay: 0.5s;">Contact</a>
+    </div>
 
-        <div class="icons">
-            <div class="icon nav-item" style="animation-delay: 0.6s;">
-               <a style="display: flex;flex-direction: column;justify-content: center;align-items: center;" href="/wishlist">
-                <!-- <i class="fas fa-heart"></i> -->
+    <div class="icons">
+        <div class="icon nav-item" style="animation-delay: 0.6s;">
+            <a href="/wishlist" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
                 <img style="width:24px" src="/images/products/wishlist.png" alt="">
-                <span class="icon-badge">2</span></a>
-            </div>
-            <div class="icon nav-item" style="animation-delay: 0.7s;">
-               <a style="display: flex;flex-direction: column;justify-content: center;align-items: center;" href = '/cart/<?=$_SESSION['usersId']?>'> 
-               <img style="width:24px" src="/images/products/grocery-store.png" alt="">
-                <span class="icon-badge"><?php echo count($cartItems); ?></span></a>
-            </div>
-            <div class="icon nav-item" style="animation-delay: 0.7s;">
-               <a style="display: flex;flex-direction: column;justify-content: center;align-items: center;" href="<?= isset($_SESSION['usersId'])?'/profile-main':'/login'?>">
-                <img style="width:30px;background-color:#fff;border-radius:200%;padding:2px" src="<?php if(!isset($_SESSION['customerImage'])){ echo 'images/user.png'; }else {echo  $_SESSION['customerImage'];} ?>" alt="">
-
-               <!-- <img style="width:24px" src="/images/products/grocery-store.png" alt=""> -->
-
-                <!-- <i class="fas fa-shopping-bag"></i>  -->
-               </a>
-            </div>
-          
+                <span class="icon-badge">2</span>
+            </a>
         </div>
-    </nav>
+        <div class="icon nav-item" style="animation-delay: 0.7s;">
+            <a href='/cart/<?=$_SESSION['usersId']?>' style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <img style="width:24px" src="/images/products/grocery-store.png" alt="">
+                <span class="icon-badge"><?php echo count($cartItems); ?></span>
+            </a>
+        </div>
+        <div class="icon nav-item" style="animation-delay: 0.7s;">
+            <a href="<?= isset($_SESSION['usersId'])?'/profile-main':'/login'?>" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <img style="width:30px; background-color:#fff; border-radius:200%; padding:2px" src="<?php if(!isset($_SESSION['customerImage'])){ echo 'images/user.png'; }else {echo  $_SESSION['customerImage'];} ?>" alt="">
+            </a>
+        </div>
+    </div>
+
+    <!-- Menu Toggle Icon for Mobile, aligned to the right -->
+    <div class="menu-toggle" onclick="toggleMenu()">
+        <img src="/images/dots.png" alt="Menu" style="width: 24px; cursor: pointer;">
+    </div>
+</nav>
+
+<script>
+function toggleMenu() {
+    const navLinks = document.getElementById('nav-links');
+    navLinks.classList.toggle('active');
+}
+
+
+</script>
 </body>
 </html>
