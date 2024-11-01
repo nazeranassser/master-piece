@@ -30,9 +30,6 @@ if (isset($_SESSION['customer_ID'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoJgGHa0roUOFzT1iNQ36PE8G5OeMySkAzYFCAFK5L9jAc" crossorigin="anonymous">
 
-
-
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/style.css">
@@ -102,69 +99,70 @@ if (isset($_SESSION['customer_ID'])) {
 
 
             <!--====== start - new arrivals ======-->
-            <div class="u-s-p-b-60">
-                <div class="section__intro u-s-m-b-46">
-                    <div class="container d-flex flex-column align-items-center">
-                        <h1 class="section__heading u-c-secondary u-s-m-b-12">NEW ARRIVALS</h1>
-                        <span class="section__span u-c-silver text-center">DISCOVER OUR LATEST PRODUCTS</span>
-                    </div>
-                </div>
+            <div class="new-arrivals-section">
+    <div class="section-intro">
+        <div class="container d-flex flex-column align-items-center">
+            <h1 class="section-title">NEW ARRIVALS</h1>
+            <span class="section-subtitle">DISCOVER OUR LATEST PRODUCTS</span>
+        </div>
+    </div>
 
-                <div class="section__content">
-                    <div class="container">
-                        <div class="product-grid">
-                            <?php foreach ($products as $product): ?>
-                                <div class="product-card">
-                                    <div class="product-image-wrap">
-                                        <a href="product/<?= $product['product_id']; ?>">
-                                            <img src="public/images/categories/<?= $product['product_image']; ?>"
-                                                alt="<?= htmlspecialchars($product['product_name']); ?>">
-                                        </a>
-                                    </div>
-                                    <div class="product-details">
-                                        <span class="product-category">
-                                            <?= htmlspecialchars($product['category_name']); ?>
-                                        </span>
-                                        <h3 class="product-name">
-                                            <a
-                                                href="product/<?= $product['product_id']; ?>"><?= htmlspecialchars($product['product_name']); ?></a>
-                                        </h3>
-                                        <div class="product-rating">
-                                            <?php
-                                            $rating = $product['total_review'];
-                                            $fullStars = floor($rating);
-                                            $halfStar = ($rating - $fullStars) >= 0.5;
-                                            for ($i = 0; $i < 5; $i++) {
-                                                echo $i < $fullStars ? '<i class="fas fa-star"></i>' : ($halfStar && $i == $fullStars ? '<i class="fas fa-star-half-alt"></i>' : '<i class="far fa-star"></i>');
-                                            }
-                                            ?>
-                                            <span class="product-review">(<?= number_format($rating, 1); ?>)</span>
-                                        </div>
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div class="product-price"><?= number_format($product['product_price'], 2); ?>JD
-                                            </div>
-                                            <div class="action-buttons d-flex">
-                                                <a href="cart/<?= $product['product_id'] ?>"
-                                                    class="btn btn-outline-secondary btn-sm" data-tooltip="tooltip"
-                                                    data-placement="top" title="Add to Cart">
-                                                    <i class="fas fa-shopping-cart"></i>
-                                                </a>
-                                                <a href="wishlist"> <button class="btn btn-outline-secondary btn-sm ms-2"
-                                                        data-tooltip="tooltip" data-placement="top" title="Add to Favorites"
-                                                        data-wishlist-button
-                                                        data-product-id="<?php echo $product['product_id']; ?>">
-                                                        <!-- Changed from $product['id'] -->
-                                                        <i class="fas fa-heart"></i>
-                                                    </button></a>
-
-                                        </div>
-                                    </div>
+    <div class="product-container">
+        <div class="container">
+            <div class="product-grid-new">
+                <?php foreach ($products as $product): ?>
+                    <div class="product-card-custom">
+                        <div class="product-image-wrapper">
+                            <a href="product/<?= $product['product_id']; ?>">
+                                <img src="public/images/categories/<?= $product['product_image']; ?>"
+                                     alt="<?= htmlspecialchars($product['product_name']); ?>">
+                            </a>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-title">
+                                <?= htmlspecialchars($product['category_name']); ?>
+                            </span>
+                            <h3 class="product-name-custom">
+                                <a href="product/<?= $product['product_id']; ?>">
+                                    <?= htmlspecialchars($product['product_name']); ?>
+                                </a>
+                            </h3>
+                            <div class="product-rating-custom">
+                                <?php
+                                $rating = $product['total_review'];
+                                $fullStars = floor($rating);
+                                $halfStar = ($rating - $fullStars) >= 0.5;
+                                for ($i = 0; $i < 5; $i++) {
+                                    echo $i < $fullStars ? '<i class="fas fa-star"></i>' :
+                                         ($halfStar && $i == $fullStars ? '<i class="fas fa-star-half-alt"></i>' : '<i class="far fa-star"></i>');
+                                }
+                                ?>
+                                <span class="product-review-count">(<?= number_format($rating, 1); ?>)</span>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="product-price-custom">
+                                    <?= number_format($product['product_price'], 2); ?>JD
                                 </div>
-                            <?php endforeach; ?>
+                                <div class="action-btn-group d-flex">
+                                    <a href="cart/<?= $product['product_id'] ?>" class="btn btn-outline-secondary btn-sm"
+                                       data-tooltip="tooltip" data-placement="top" title="Add to Cart">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </a>
+                                    <button class="btn btn-outline-secondary btn-sm ms-2"
+                                            data-tooltip="tooltip" data-placement="top" title="Add to Favorites"
+                                            data-wishlist-button data-product-id="<?= $product['product_id']; ?>">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                <?php endforeach; ?>
             </div>
+        </div>
+    </div>
+</div>
+
             <!--====== End - new arrivals ======-->
 
 
@@ -177,8 +175,8 @@ if (isset($_SESSION['customer_ID'])) {
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="section__text-wrap">
-                                    <h1 class="section__heading u-c-secondary u-s-m-b-12">OUR PRODUCTS</h1>
-                                    <span class="section__span u-c-silver">CHOOSE CATEGORY</span>
+                                    <h1 class="section-title u-c-secondary u-s-m-b-12">OUR PRODUCTS</h1>
+                                    <span class="section-subtitle u-c-silver">CHOOSE CATEGORY</span>
                                 </div>
                             </div>
                         </div>
@@ -266,7 +264,7 @@ if (isset($_SESSION['customer_ID'])) {
 
                                                         <!-- Cart and Favorite Icons -->
                                                         <div class="new-action-buttons d-flex"> <!-- Updated class name -->
-                                                            <a href="cart.php?id=<?= $product['product_id'] ?>"
+                                                            <a href="cart/<?= $product['product_id'] ?>"
                                                                 class="btn btn-outline-secondary btn-sm"
                                                                 data-tooltip="tooltip" data-placement="top"
                                                                 title="Add to Cart">
@@ -330,7 +328,7 @@ if (isset($_SESSION['customer_ID'])) {
 
                                                         <!-- Cart and Favorite Icons -->
                                                         <div class="new-action-buttons d-flex"> <!-- Updated class name -->
-                                                            <a href="cart.php?id=<?= $product['product_id'] ?>"
+                                                            <a href="cart/<?= $product['product_id'] ?>"
                                                                 class="btn btn-outline-secondary btn-sm"
                                                                 data-tooltip="tooltip" data-placement="top"
                                                                 title="Add to Cart">
@@ -394,7 +392,7 @@ if (isset($_SESSION['customer_ID'])) {
 
                                                         <!-- Cart and Favorite Icons -->
                                                         <div class="new-action-buttons d-flex"> <!-- Updated class name -->
-                                                            <a href="cart.php?id=<?= $product['product_id'] ?>"
+                                                            <a href="cart/<?= $product['product_id'] ?>"
                                                                 class="btn btn-outline-secondary btn-sm"
                                                                 data-tooltip="tooltip" data-placement="top"
                                                                 title="Add to Cart">
@@ -457,7 +455,7 @@ if (isset($_SESSION['customer_ID'])) {
 
                                                         <!-- Cart and Favorite Icons -->
                                                         <div class="new-action-buttons d-flex"> <!-- Updated class name -->
-                                                            <a href="cart.php?id=<?= $product['product_id'] ?>"
+                                                            <a href="cart/<?= $product['product_id'] ?>"
                                                                 class="btn btn-outline-secondary btn-sm"
                                                                 data-tooltip="tooltip" data-placement="top"
                                                                 title="Add to Cart">
@@ -520,7 +518,7 @@ if (isset($_SESSION['customer_ID'])) {
 
                                                         <!-- Cart and Favorite Icons -->
                                                         <div class="new-action-buttons d-flex"> <!-- Updated class name -->
-                                                            <a href="cart.php?id=<?= $product['product_id'] ?>"
+                                                            <a href="cart/<?= $product['product_id'] ?>"
                                                                 class="btn btn-outline-secondary btn-sm"
                                                                 data-tooltip="tooltip" data-placement="top"
                                                                 title="Add to Cart">
@@ -583,7 +581,7 @@ if (isset($_SESSION['customer_ID'])) {
 
                                                         <!-- Cart and Favorite Icons -->
                                                         <div class="new-action-buttons d-flex"> <!-- Updated class name -->
-                                                            <a href="cart.php?id=<?= $product['product_id'] ?>"
+                                                            <a href="cart/<?= $product['product_id'] ?>"
                                                                 class="btn btn-outline-secondary btn-sm"
                                                                 data-tooltip="tooltip" data-placement="top"
                                                                 title="Add to Cart">
@@ -631,7 +629,7 @@ if (isset($_SESSION['customer_ID'])) {
                                         <span
                                             class="badge bg-secondary mb-2"><?= htmlspecialchars($product['category_name']) ?></span>
                                         <h2 class="card-title"><?= htmlspecialchars($product['product_name']) ?></h2>
-                                        <div class="product-rating">
+                                        <div class="new-product-rating">
                                             <?php
                                             $rating = $product['total_review'];
                                             $fullStars = floor($rating);
@@ -649,8 +647,8 @@ if (isset($_SESSION['customer_ID'])) {
                                             <span
                                                 class="text-muted text-decoration-line-through"><?= number_format($product['product_price'], 2) ?>
                                                 JD</span>
-                                            <span class="action-buttons d-flex">
-                                                <a href="cart.php?id=<?= $product['product_id'] ?>"
+                                            <span class="new-action-buttons d-flex">
+                                                <a href="cart/<?= $product['product_id'] ?>"
                                                     class="btn btn-outline-secondary btn-sm" data-tooltip="tooltip"
                                                     data-placement="top" title="Add to Cart">
                                                     <i class="fas fa-shopping-cart"></i>
