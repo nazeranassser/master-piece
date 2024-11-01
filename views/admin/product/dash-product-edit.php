@@ -99,6 +99,11 @@
                                                         <label class="gl-label" for="quantity">Quantity *</label>
 
                                                         <input class="input-text input-text--primary-style" name='product_quantity' type="number" id="product_quantity" placeholder="" value='<?php echo $product['product_quantity'];?>' required></div>
+                                                    <div class="u-s-m-b-30">
+
+                                                        <label class="gl-label" for="quantity">خصم *</label>
+
+                                                        <input class="input-text input-text--primary-style" name='product_quantity' type="number" id="product_quantity" placeholder="" value='<?php echo $product['product_quantity'];?>' required></div>
                                                 </div>
                                                 <div class="gl-inline" style='display: flex;justify-content:center; padding-left:10px;padding-bottom:10px ;'>
                                                 <div class="upload-container">

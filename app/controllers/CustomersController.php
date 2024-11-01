@@ -66,7 +66,7 @@ class CustomersController {
         
         // Sanitize POST data
         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
+       
         // Init data
         $data = [
             'customer_email' => trim($_POST['customerEmail']),
@@ -77,7 +77,6 @@ class CustomersController {
             'customer_phone' => trim($_POST['customerPhone']),
             'customer_image' => trim('images/products/671fb3380fb81_user.png'),
         ];
-
         // Validate inputs
         if(empty($data['customer_email']) || empty($data['customer_name']) || 
         empty($data['customer_password']) || empty($_POST['pwdRepeat'])){
@@ -224,18 +223,19 @@ class CustomersController {
             'customer_image' => $customer_image,
             // 'customer_image' => $_POST['customer_image'],
         ];
-        if ($this->customerModel->updatecustomer($_SESSION['usersId'], $data)) {
+        if ($this->customerModel->updateCustomer($_SESSION['usersId'], $data)) {
             // Redirect or show a success message
             header("location:/profile-main");
         } else {
             echo "Failed to add admin.";
         }
     }
+
     public function viewOrderDetails($order_id) {
         if (!isset($_SESSION['usersId'])) {
             header('Location: /login');
             exit();
-        }
+            }
         
         
         // إضافة طباعة للتأكد من القيم

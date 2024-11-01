@@ -106,20 +106,7 @@ class Customer extends Model{
             }
         }
 
-        public function updatecustomer($id,$data){
-            if (isset($_FILES['image']) && in_array($_FILES['image']['type'], $this->allowedTypes)) {
-                $fileName = uniqid() . '' . basename($_FILES['image']['name']);
-                $targetFile = $this->uploadDir . $fileName;
-        
-                if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
-                    $customer_image = 'images/products/' . $fileName;
-                } else {
-                    echo "Error uploading image.";
-                    return; // Stop execution if image upload fails
-                }
-            } else {
-                $customer_image = $admin['image'] ?? null;
-            }
+        public function updateCustomer($id,$data){
             return $this->update($id,$data);
             
         }
