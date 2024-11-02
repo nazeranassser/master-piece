@@ -19,11 +19,6 @@
                             <h5 id="wishlistProductTitle" class="card-title" style="color: black !important; "><?php echo htmlspecialchars($item['title']); ?></h5>                            <p class="card-text text-muted"><?php echo htmlspecialchars($item['description']); ?></p>
                             <p class="card-text"><strong>Price:</strong> $<?php echo htmlspecialchars($item['price']); ?></p>
                             <p class="card-text"><strong>Quantity Available:</strong> <?php echo htmlspecialchars($item['product_quantity']); ?></p>
-
-                            <!-- Button to trigger delete modal -->
-                           <a href="/wishlist/delete/<?php echo $item['product_id'];?>"> <button type="button" class="btn btn-danger mt-2">
-                                <i class="fas fa-trash-alt"></i> Remove from Wishlist
-                            </button></a>
                         </div>
                     </div>
                 </div>

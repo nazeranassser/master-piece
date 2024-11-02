@@ -160,7 +160,7 @@ public function getCategoriesFilter() {
     // $conn = $dbInstance->getConnection();
 
     $sql = "
-            SELECT p.product_id, p.product_name, p.product_price, p.product_image, p.total_review, c.category_name, c.category_id 
+            SELECT p.product_id, p.product_name, p.product_price, p.product_image, p.total_review, c.category_name, c.category_id ,product_discount
             FROM products p
             INNER JOIN categories c ON p.category_id = c.category_id
             ORDER BY p.product_id DESC
@@ -327,6 +327,6 @@ public function updateProductReview($productId) {
 
 public function deleteProduct($id){
   return $this->delete($id);
-}
+} 
  
 }

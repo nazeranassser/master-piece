@@ -2,17 +2,14 @@
 namespace App\Controllers;
 
 use App\Models\Wishlist;
-use App\Models\Product;
 
 class WishlistController
 {
     protected $wishlistModel;
-    protected $productModel;
 
     public function __construct()
     {
         $this->wishlistModel = new Wishlist();
-        $this->productModel = new Product();
         // Check if user is logged in for all wishlist actions
         $this->checkAuth();
     }
@@ -99,10 +96,18 @@ class WishlistController
 //     // ]);
 //     // exit();
 // }
-public function delete($productId)
+public function delete()
 {
+    $productId = $_POST['product_id'] ?? null; // Changed back to 'product_id'
     $userId = $_SESSION['usersId'] ?? null;
-    $productId = $this->productModel->getProductWishlist($productId, $userId);
+    
+    if (!$userId) {
+        echo json_encode([
+            'success' => false,
+            'message' => 'Please login to manage your wishlist'
+        ]);
+        exit();
+    }
 
     if (!$productId) {
         echo json_encode([
@@ -111,8 +116,13 @@ public function delete($productId)
         ]);
         exit();
     }
+
     $result = $this->wishlistModel->deleteUserProduct($productId, $userId);
-    header('Location: /wishlist');
+    
+    echo json_encode([
+        'success' => $result,
+        'message' => $result ? 'Product removed from wishlist' : 'Failed to remove product from wishlist'
+    ]);
     exit();
 }
 
