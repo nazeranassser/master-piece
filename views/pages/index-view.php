@@ -274,10 +274,10 @@ if (isset($_SESSION['customer_ID'])) {
                                                                 <i class="fas fa-shopping-cart"></i>
                                                             </a>
                                                             <button class="btn btn-outline-secondary btn-sm ms-2"
-                                                            data-tooltip="tooltip" data-placement="top"
-                                                            
-                                                            title="Add to Favorites-1">
-                                                            data-wishlist-button
+                                                 data-tooltip="tooltip"
+                                                  data-placement="top"
+                                                 title="Add to Favorites"
+                                                  data-wishlist-button
                                                   data-product-id="<?php echo $product['product_id']; ?>">
                                                   <i class="fas fa-heart"></i>
                                     </button>
