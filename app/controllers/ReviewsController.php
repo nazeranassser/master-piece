@@ -18,10 +18,8 @@ class ReviewsController
     }
 
     public function submitReview() {
-        var_dump($_POST);
-        die();
-        session_start();
-        if (!isset($_SESSION['userId'])) {
+        
+        if (!isset($_SESSION['usersId'])) {
             $_SESSION['message'] = [
                 'type' => 'warning',
                 'text' => 'You need to log in before reviewing.',
@@ -31,7 +29,7 @@ class ReviewsController
             exit();
         }
 
-        $userId = $_SESSION['userId'];
+        $userId = $_SESSION['usersId'];
         $productId = $_POST['product_id'];
 
         // Check if the user purchased the product
@@ -57,7 +55,7 @@ class ReviewsController
             move_uploaded_file($reviewImage['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . $uploadPath . $uploadedImageName);
         }
 
-        $isInserted = $this->reviewModel->addReview($userId, $productId, $reviewText, $rating, $uploadedImageName);
+        $isInserted = $this->reviewModel->addReview( $productId,$userId, $reviewText, $rating, $uploadedImageName);
         
         if ($isInserted) {
             // Update the total review rating and count in the same controller method

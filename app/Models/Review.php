@@ -33,26 +33,31 @@ class Review extends Model
 
     }
 
-    public function addReview($customerId, $productId, $reviewText, $rating, $reviewImage) {
-        $stmt = $this->db->prepare("INSERT INTO reviews (customer_id, product_id, review_text, review_rating, review_image) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param($customerId, $productId, $reviewText, $rating, $reviewImage);
+    public function addReview( $productId,$customerId, $reviewText, $rating, $reviewImage) {
+        $query= "INSERT INTO reviews ( product_id,customer_id, review_text, review_rating, review_image) VALUES (:productId, :customerId, :reviewText, :rating, :reviewImage)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':productId', $productId);
+        $stmt->bindParam(':customerId', $customerId);
+        $stmt->bindParam(':reviewText', $reviewText);
+        $stmt->bindParam(':rating', $rating);
+        $stmt->bindParam(':reviewImage', $reviewImage);
         return $stmt->execute(); // Return true or false based on execution
     }
 
     public function calculateAverageRating($productId) {
-        $stmt = $this->db->prepare("SELECT AVG(review_rating) AS average_rating FROM reviews WHERE product_id = ?");
-        $stmt->bind_param( $productId);
+        $query ="SELECT AVG(review_rating) AS average_rating FROM reviews WHERE product_id = $productId";
+        $stmt = $this->db->prepare($query);
         $stmt->execute();
-        $result = $stmt->get_result()->fetch_assoc();
-        
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);        
         return $result['average_rating']; // Returns the average rating, or null if no reviews
     }
 
     public function updateProductReview($productId, $newAverageRating) {
         // Update the total_review column with the new average rating
-        $updateStmt = $this->db->prepare("UPDATE products SET total_review = ? WHERE product_id = ?");
-        $updateStmt->bind_param( $newAverageRating, $productId);
+        $query = "UPDATE products SET total_review = $newAverageRating WHERE product_id = $productId";
+        $updateStmt = $this->db->prepare($query);
         $updateStmt->execute();
+        
     }
 
     

@@ -590,9 +590,11 @@ if (isset($_SESSION['customer_ID'])) {
                                         <?php endforeach; ?>
 
                                         <!-- SPECIAL OCCASIONS -->
-                                        <?php foreach ($specialOccasions as $product): ?>
+                                        <?php foreach ($specialOccasions as $product): 
+                                            ?>
+                                            
                                             <div
-                                                class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item spacial-occasions">
+                                                class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item special-occasions">
                                                 <div class="new-product-card"> <!-- Updated class name -->
                                                     <div class="new-product-wrap"> <!-- Updated class name -->
                                                         <a class="new-aspect new-aspect--bg-grey new-aspect--square u-d-block"
