@@ -1,5 +1,7 @@
 <!--====== Main Header ======-->
 <?php include 'views/partials/header.php';
+// var_dump($_SESSION);
+// die();
 ?>
 <!--====== End - Main Header ======-->
 
@@ -57,6 +59,9 @@
                                 <td><?php echo htmlspecialchars($item['quantity']); ?></td>
                                 <td>
                                     <?php
+                                    // echo "00000000000000000000000000";
+                                    // var_dump($discounted_price);
+                                    // die();
                                         if ($item['discount'] > 0):?>
                                         <span class="original-price"><s style="color: red;"><?= number_format($item['price'], 2); ?>
                                                 JD</s></span>
@@ -71,7 +76,7 @@
                     </tbody>
                 </table>
                 <p class="order-total"><strong>Subtotal:</strong> <?php echo number_format($orderTotal, 2); ?>JD</p>
-                <p class="order-total"><strong>Shipping:</strong> 4.00JD</p>
+                <p class="order-total"><strong>Shipping:</strong> 2.00JD</p>
                 <p class="order-total"><strong>Total:</strong> <?php echo number_format($total, 2); ?>JD</p>
             <?php else: ?>
                 <p class="empty-cart-message">Your cart is empty.</p>
@@ -81,8 +86,9 @@
 
     <!-- Payment Information Section -->
     <h2 class="section-title">PAYMENT INFORMATION</h2>
-    <form action="placeOrder" method="post" class="payment-form">
+    <form action="placeOrder" method="POST" class="payment-form">
         <div class="radio-box">
+            <?php $_SESSION['discount'] = $discounted_price;?>
             <input type="radio" id="cash-on-delivery" name="payment_method" value="cod" checked>
             <label for="cash-on-delivery">Cash on Delivery</label>
         </div>

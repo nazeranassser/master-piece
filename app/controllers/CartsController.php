@@ -104,9 +104,11 @@ class CartsController
         $cartItems = [];
 
         foreach ($cart as $item) {
+            
             // Retrieve the product details, including the discount, from the database
             $productDetails = $this->cartModel->getProduct($item['product_id']);
             var_dump($productDetails);
+            die();
             // Calculate the discounted price if there is a discount
             if ($productDetails['product_discount'] > 0) {
                 $finalPrice = $productDetails['product_price'] - ($productDetails['product_price'] * $productDetails['product_discount']);
@@ -115,16 +117,19 @@ class CartsController
             }
             // Update the order total with the discounted price
             $orderTotal += $finalPrice * $item['quantity'];
-            $total = $orderTotal + 4;
-            $discounted_price = $finalPrice * $item['quantity'];
+            $total = $orderTotal + 2;
+            $discounted_price = $finalPrice * $productDetails['discount'];
             // Store the cart item with updated price details
             $cartItems[] = [
                 'product_name' => $productDetails['product_name'],
                 'quantity' => $item['quantity'],
                 'price' => $productDetails['product_price'],
+                'discount' => $productDetails['discount']
             ];
         }
-
+        // echo "<br><br><br><br><br><br> Thi => ";
+        // var_dump($cartItems);
+        // die();
         require 'views/pages/checkout.php';
     }
 
@@ -145,16 +150,25 @@ class CartsController
 
 
         foreach ($cart as $item) {
-            $orderTotal += ($item['price'] * $item['quantity']) + 4;
+            
+            $orderTotal += ($item['price'] * $item['quantity']);
+            var_dump($orderTotal);
         }
-        if ($_SESSION['discount']) {
+        $orderTotal += 2;
+       
+        if (isset($_SESSION['discount']) && $_SESSION['discount']>0) {
+            var_dump($_SESSION['discount']);
+            // die();
             $orderTotalAfter = $orderTotal - $_SESSION['discount'];
         } else {
             $orderTotalAfter = $orderTotal;
         }
-
+            var_dump($orderTotalAfter);
+            die();
         $orderId = $this->cartModel->createOrder($customerId, $orderTotal, $cart, $orderTotalAfter);
-
+        unset($_SESSION['discount']);
+        //  var_dump($_SESSION);
+        // die();
         setcookie('cart', '', time() - 3600, '/');
 
         header("Location: /checkout");

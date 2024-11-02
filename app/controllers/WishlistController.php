@@ -130,6 +130,7 @@ public function delete()
     {
         $userId = $_SESSION['usersId'];
         $wishlistItems = $this->wishlistModel->getWishlistWithProductDetails($userId);
+        $_SESSION['wishlistItems']= count($wishlistItems);
         require 'views/pages/wishlist.php';
     }
 

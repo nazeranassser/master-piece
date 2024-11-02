@@ -106,6 +106,28 @@ class ProductsController
 
     public function addProduct() {
     
+        if (isset($_FILES['image']) && in_array($_FILES['image']['type'], $this->allowedTypes)) {
+
+            $fileName = uniqid() . '_' . basename($_FILES['image']['name']);
+            $targetFile = $this->uploadDir . $fileName;
+      
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
+              $product_image = 'images/products/' . $fileName;
+            } else {
+              echo "حدث خطأ أثناء تحميل الصورة.";
+            }
+          } else {
+            $product_image = $_POST['image'];
+          }
+          $data = [
+            'product_name' => $_POST['product_name'],
+            'product_description' => $_POST['product_description'],
+            'product_price' => $_POST['product_price'],
+            'product_quantity' => $_POST['product_quantity'],
+            // 'product_discount' => $_POST['product_discount'],
+            'category_id' => $_POST['category_id'],
+            'product_image' => $product_image, // Hash the password
+        ];
         if(isset($_SESSION['admin_id'])){
             // var_dump($_POST);
             
