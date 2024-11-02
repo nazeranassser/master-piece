@@ -1,7 +1,10 @@
 <?php include('views/partials/header.php'); ?>
 <link rel="stylesheet" href="public/css/app.css">
+<link rel="stylesheet" href="../../public/css/order.css">
+<style>
+   
 
-
+</style>
 <div class="app-content">
     <div class="u-s-p-b-60">
         <div class="section__content">
@@ -39,54 +42,26 @@
                                             $product_images = explode('|', $order['product_images']);
                                             $quantities = explode('|', $order['quantities']);
                                         ?>
-                                            <div class="dash-l-r u-s-m-b-30 order-card">
-                                                <div class="manage-o__header u-s-m-b-20">
-                                                    <div>
-                                                        <div class="manage-o__text-2 u-c-secondary">Order #<?php echo htmlspecialchars($order['order_id']); ?></div>
-                                                        <div class="manage-o__text u-c-silver">Placed on <?php echo htmlspecialchars(date('F j, Y', strtotime($order['created_at']))); ?></div>
-                                                    </div>
+                                            <div class="order-card">
+                                                <div class="order-header">
+                                                    <h4>Order #<?php echo htmlspecialchars($order['order_id']); ?></h4>
+                                                    <p>Placed on <?php echo htmlspecialchars(date('F j, Y', strtotime($order['created_at']))); ?></p>
                                                 </div>
 
-                                                <div class="manage-o__description">
-                                                    <div class="description__container">
-                                                        <div class="description__img-wrap">
-                                                            <?php if (!empty($product_images[0])): ?>
-                                                                <img class="u-img-fluid" src="<?php echo htmlspecialchars($product_images[0]); ?>" alt="Product">
-                                                            <?php endif; ?>
-                                                        </div>
-                                                        <div class="description-title">
-                                                            <?php echo htmlspecialchars($product_names[0]); ?>
-                                                            <?php if (count($product_names) > 1): ?>
-                                                                <span class="manage-o__text-2 u-c-silver">
-                                                                    + <?php echo count($product_names) - 1; ?> more items
-                                                                </span>
-                                                            <?php endif; ?>
-                                                        </div>
+                                                <div class="order-content">
+                                                    <div class="product-summary">
+                                                        <img src="<?php echo htmlspecialchars($product_images[0]); ?>" alt="Product Image">
+                                                        <p><?php echo htmlspecialchars($product_names[0]); ?></p>
+                                                        <?php if (count($product_names) > 1): ?>
+                                                            <span>+ <?php echo count($product_names) - 1; ?> more items</span>
+                                                        <?php endif; ?>
                                                     </div>
-                                                    <div class="description__info-wrap">
-                                                        <div>
-                                                            <span class="manage-o__badge badge--<?php echo strtolower(htmlspecialchars($order['order_status'])); ?>">
-                                                                <?php echo htmlspecialchars($order['order_status']); ?>
-                                                            </span>
-                                                        </div>
-                                                        <div>
-                                                            <span class="manage-o__text-2 u-c-silver">Quantity: 
-                                                                <span class="manage-o__text-2 u-c-secondary">
-                                                                    <?php echo array_sum($quantities); ?>
-                                                                </span>
-                                                            </span>
-                                                        </div>
-                                                        <div>
-                                                            <span class="manage-o__text-2 u-c-silver">Total:
-                                                                <span class="manage-o__text-2 u-c-secondary">
-                                                                    $<?php echo number_format($order['order_total_amount_after'], 2); ?>
-                                                                </span>
-                                                            </span>
-                                                        </div>
+                                                    <div class="order-info">
+                                                        <p>Status: <strong><?php echo htmlspecialchars($order['order_status']); ?></strong></p>
+                                                        <p>Quantity: <?php echo array_sum($quantities); ?></p>
+                                                        <p>Total: $<?php echo number_format($order['order_total_amount_after'], 2); ?></p>
                                                     </div>
-                                                </div>
-                                                <div class="order-details-button">
-                                                    <a href="orders-detail/<?php echo $order['order_id']; ?>" class="dash__link dash__link--brand">View Order Details</a>
+                                                    <a href="orders-detail/<?php echo $order['order_id']; ?>" class="view-details-btn" style="color:rgb(210, 105, 30)">View Details</a>
                                                 </div>
                                             </div>
                                         <?php endforeach; ?>
