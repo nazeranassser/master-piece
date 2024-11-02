@@ -4,9 +4,11 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Testimonial;
 use App\Models\Review;
+use App\Models\OrderProduct;
 class ProductsController
 {
     private $productModel;
+    private $orderProductModel;
     public $uploadDir = 'images/products/';
     public $allowedTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
     public function __construct()
@@ -14,6 +16,7 @@ class ProductsController
         $this->productModel = new Product();
         $this->categoryModel = new Category();
         $this->testimonialModel = new Testimonial();
+        $this->orderProductModel = new OrderProduct();
         $this->reviewModel = new Review();
     }
 
@@ -142,9 +145,19 @@ class ProductsController
       }
 
       public function viewProduct($productID) {
+        // var_dump($_SESSION);
+        // die();
         if ($productID) {
             $product = $this->productModel->getProductById($productID);
             $reviews = $this->reviewModel->getAllReviews($productID);
+            if(isset($_SESSION['usersId'])){
+                $id = $_SESSION['usersId'];
+                // var_dump($id );
+                // die();
+                $check = $this->orderProductModel->checkPurchase($_SESSION['usersId'], $productID);
+            }else{
+                $check = false;
+            }
 
             if ($product) {
                 include 'views/pages/product-view.php';

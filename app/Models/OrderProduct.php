@@ -25,7 +25,7 @@ class OrderProduct extends Model
         $sql = "SELECT * FROM order_products AS op
                 INNER JOIN orders AS o ON op.order_id = o.order_id
                 WHERE o.customer_id = :customer_id AND op.product_id = :product_id";
-        $stmt = $this->db->prepare($sql);
+        $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':customer_id', $customer_id, PDO::PARAM_INT);
         $stmt->bindParam(':product_id', $product_id, PDO::PARAM_INT);
         $stmt->execute();

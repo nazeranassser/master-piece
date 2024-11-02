@@ -3483,7 +3483,7 @@ custom-colors, box-mode, custom-header, custom-menu, custom-logo, featured-image
     color: #000000; }
   
   .dash__table-wrap {
-    height: 300px;
+    height: 100%;
     overflow: auto; }
   
   .dash__table {
