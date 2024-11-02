@@ -2605,7 +2605,7 @@ input::-ms-clear {
       display: block;
       width: 70px;
       position: absolute;
-      border: solid #ff4500; }
+      border: solid rgb(210, 105, 30); }
     .about .about__p-wrap:before {
       top: -10px;
       left: -8px;
