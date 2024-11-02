@@ -296,6 +296,15 @@ a {
   margin-top: 10px;
 }
 
+.product-rating-custom i {
+  color: #ffa000; /* Color for full stars */
+}
+
+.product-rating-custom .half-star {
+  color: #ffa000; /* Color for half stars */
+}
+
+
 .new-product-rating .fa-star,
 .new-product-rating .fa-star-half-alt {
   color: #ffa000;

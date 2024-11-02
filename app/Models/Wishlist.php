@@ -37,7 +37,7 @@ class Wishlist extends Model
     {
         try {
             $stmt = $this->db->prepare("
-                DELETE FROM {$this->table} 
+                DELETE FROM wishlists 
                 WHERE product_id = :product_id 
                 AND customer_id = :customer_id
             ");

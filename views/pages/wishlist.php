@@ -9,9 +9,10 @@
             <?php foreach ($wishlistItems as $item) : ?>
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm border-0">
+
                         <!-- Display product image if available -->
                         <?php if (!empty($item['product_image'])) : ?>
-                            <img src="<?php echo htmlspecialchars($item['product_image']); ?>" class="card-img-top rounded" alt="Product Image" style="max-height: 200px; object-fit: cover;">
+                            <img src="public/images/products/<?php echo htmlspecialchars($item['product_image']); ?>" class="card-img-top rounded" alt="Product Image" style="max-height: 200px; object-fit: cover;">
                         <?php endif; ?>
                         
                         <div class="card-body">
@@ -20,9 +21,9 @@
                             <p class="card-text"><strong>Quantity Available:</strong> <?php echo htmlspecialchars($item['product_quantity']); ?></p>
 
                             <!-- Button to trigger delete modal -->
-                            <button type="button" class="btn btn-danger mt-2" onclick="confirmDelete(<?php echo $item['product_id']; ?>)">
+                           <a href="/wishlist/delete/<?php echo $item['product_id'];?>"> <button type="button" class="btn btn-danger mt-2">
                                 <i class="fas fa-trash-alt"></i> Remove from Wishlist
-                            </button>
+                            </button></a>
                         </div>
                     </div>
                 </div>
@@ -37,7 +38,7 @@
 
 
 <!-- Modal for delete confirmation -->
-<div id="deleteModal" class="modal" style="display: none;">
+<!-- <div id="deleteModal" class="modal" style="display: none;">
     <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
         <div class="modal-body text-center">
@@ -50,7 +51,7 @@
             </form>
         </div>
     </div>
-</div>
+</div> -->
 <?php
 
 
@@ -99,7 +100,7 @@
 </style>
 
 <!-- Inline JavaScript for modal functionality -->
-<script>
+<!-- <script>
     // Open modal with product ID
     function confirmDelete(productId) {
         document.getElementById('deleteProductId').value = productId;
@@ -118,4 +119,4 @@
             closeModal();
         }
     };
-</script>
+</script> -->

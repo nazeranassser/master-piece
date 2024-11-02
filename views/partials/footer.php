@@ -19,7 +19,6 @@
               <div class="col" id="services">
                  <h3>Services</h3>
                  <div class="links">
-                 <a href="#">Custom Cake Design</a>
                  <a href="#">Cake Delivery</a>
                  <a href="#">Online Cake Ordering</a>
                  <a href="#">Party Consultation</a>
@@ -29,9 +28,9 @@
               <div class="col" id="useful-links">
                  <h3>Links</h3>
                  <div class="links">
-                    <a href="#">Home</a>
-                    <a href="#">About Us</a>
-                    <a href="#">Products</a>
+                    <a href="/">Home</a>
+                    <a href="about-us">About Us</a>
+                    <a href="allProducts">Products</a>
                     <a href="contactform.php">Contact</a>
                  </div>
               </div>
