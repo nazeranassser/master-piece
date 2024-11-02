@@ -274,10 +274,13 @@ if (isset($_SESSION['customer_ID'])) {
                                                                 <i class="fas fa-shopping-cart"></i>
                                                             </a>
                                                             <button class="btn btn-outline-secondary btn-sm ms-2"
-                                                                data-tooltip="tooltip" data-placement="top"
-                                                                title="Add to Favorites">
-                                                                <i class="fas fa-heart"></i>
-                                                            </button>
+                                                            data-tooltip="tooltip" data-placement="top"
+                                                            
+                                                            title="Add to Favorites-1">
+                                                            data-wishlist-button
+                                                  data-product-id="<?php echo $product['product_id']; ?>">
+                                                  <i class="fas fa-heart"></i>
+                                    </button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -656,10 +659,14 @@ if (isset($_SESSION['customer_ID'])) {
                                                     data-placement="top" title="Add to Cart">
                                                     <i class="fas fa-shopping-cart"></i>
                                                 </a>
-                                                <button class="btn btn-outline-secondary btn-sm ms-2" data-tooltip="tooltip"
-                                                    data-placement="top" title="Add to Favorites">
-                                                    <i class="fas fa-heart"></i>
-                                                </button>
+                                                <button class="btn btn-outline-secondary btn-sm ms-2" 
+                                                data-tooltip="tooltip"
+                                                 data-placement="top" 
+                                                 data-wishlist-button
+                                                data-product-id="<?php echo $product['product_id']; ?>"
+                                                 title="Add to Favorites">
+                                                 <i class="fas fa-heart"></i>
+                                                 </button>
                                             </span>
                                         </div>
                                     </div>
