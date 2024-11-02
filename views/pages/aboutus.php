@@ -73,7 +73,7 @@
                                     </div>
                                     <div class="team-member__info">
                                         <span class="team-member__name">Issa Sroor</span>
-                                        <span class="team-member__job-title">Manager</span>
+                                        <span class="team-member__job-title">Developer</span>
                                     </div>
                                 </div>
                             </div>
@@ -142,7 +142,7 @@
                                     </div>
                                     <div class="team-member__info">
                                         <span class="team-member__name">shehab alsanuury</span>
-                                        <span class="team-member__job-title">Marketing Specialist</span>
+                                        <span class="team-member__job-title">Scruam Master</span>:
                                     </div>
                                 </div>
                             </div>
@@ -169,7 +169,7 @@
                                     </div>
                                     <div class="team-member__info">
                                         <span class="team-member__name">nazera mraish</span>
-                                        <span class="team-member__job-title">Designer</span>
+                                        <span class="team-member__job-title">Developer</span>
                                     </div>
                                 </div>
                             </div>
