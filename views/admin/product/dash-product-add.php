@@ -50,7 +50,7 @@
                                             <h1 class="dash__h1 u-s-m-b-14">Add new Product</h1>
 
                                             <span class="dash__text u-s-m-b-30"></span>
-                                            <form id="productForm" enctype="multipart/form-data" class="dash-address-manipulation" method='POST'  action='create-product'>
+                                            <form id="productForm" class="dash-address-manipulation" method='POST'  action='/create-product'>
                                                 <div class="gl-inline">
                                                     <div class="u-s-m-b-30">
                                                         <label class="gl-label" for="product-name">Product Name *</label>
@@ -89,23 +89,23 @@
 
                                                         <input class="input-text input-text--primary-style" name='product_quantity' type="number" id="quantity" placeholder="House Name and Street" required></div>
                                                 </div>
-                                                <div class="gl-inline" style='display: flex;justify-content:center; padding-left:10px;padding-bottom:10px ;'>
-                                                <div class="upload-container">
-                                                    <div id="drop-area" class="drop-area">
-                                                        <p>Drag & Drop your images here or <span id="browse">Browse</span></p>
-                                                        <input type="file" id="fileElem" name="image" accept="image/*" style="display:none" required>
-                                        
-                                                    </div>
-                                            
-                                                    <!-- Preview and confirmation buttons -->
-                                                    <div id="preview-container" class="preview-container">
-                                                        <img id="preview-image" alt="Image Preview">
-                                                        <div>
-                                                            <a class="btn-cancel btn btn--e-brand-b-2" id="cancel-btn">Delete Image</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                </div>
+                                                     <div class="gl-inline" style='display: flex;justify-content:center; padding-left:10px;padding-bottom:10px ;'>
+                                                     <div class="upload-container">
+                                                         <div id="drop-area" class="drop-area">
+                                                             <p>Drag & Drop your images here or <span id="browse">Browse</span></p>
+                                                             <input type="file" id="fileElem" name="image" accept="image/*" style="display:none" required>
+                                             
+                                                         </div>
+                                                 
+                                                         <!-- Preview and confirmation buttons -->
+                                                         <div id="preview-container" class="preview-container">
+                                                             <img id="preview-image" alt="Image Preview">
+                                                             <div>
+                                                                 <a class="btn-cancel btn btn--e-brand-b-2" id="cancel-btn">Delete Image</a>
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                     </div>
                                                 <button class="btn btn--e-brand-b-2" type="submit">SAVE</button>
                                             </form>
                                         </div>
