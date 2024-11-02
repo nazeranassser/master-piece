@@ -60,7 +60,7 @@ $customer_id = isset($_SESSION['usersId']) ? $_SESSION['usersId'] : null;
     <h3>Customer Reviews</h3>
 
     <!-- Form for submitting a review -->
-    <form class="review-form" id="reviewForm" action="" onsubmit="return false" method="POST" enctype="multipart/form-data">
+    <form class="review-form" id="reviewForm" action="" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
         <input type="hidden" id="check" name="check" value="<?php echo $check; ?>">
 
@@ -150,6 +150,18 @@ $customer_id = isset($_SESSION['usersId']) ? $_SESSION['usersId'] : null;
                 <input type="hidden" name="id" id="deleteProductId">
                 <button type="button" class="btn btn-secondary mr-2" onclick="closeModal()">Cancel</button>
                 <button type="submit" class="btn btn-danger">Login</button>
+            </form>
+        </div>
+    </div>
+    </div>
+    <div id="errorModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-body text-center">
+            <i class="fas fa-exclamation-triangle fa-3x text-warning mb-3"></i>
+            <h5 id="error_Text">Error</h5>
+            <form id="deleteForm" action="/login" method="POST">
+                <input type="hidden" name="id" id="deleteProductId">
+                <button type="button" class="btn btn-secondary mr-2" onclick="closeModal()">Ok</button>
             </form>
         </div>
     </div>
@@ -261,19 +273,28 @@ $customer_id = isset($_SESSION['usersId']) ? $_SESSION['usersId'] : null;
 
         if(productId != null){
             
-             var f = document.getElementById('check').value;
+            var f = document.getElementById('check').value;
             if(f == false){
                 document.getElementById('deleteProductId').value = productId;
                 document.getElementById('buyModal').style.display = 'flex';
-                document.getElementById("reviewForm").addEventListener("submit", function(event) {
-                event.preventDefault(); // Prevents the form from submitting
-                console.log("Form submission prevented.");
-});
                 // document.getElementById('the_Text').innerText = 'You need to buy the product to review it.';
             }else{
                 // alert("2");
-                document.getElementById("reviewForm").action = "/dash";
-                document.getElementById("reviewForm").submit();
+                if(document.getElementById("review-text").value){
+                    if(document.getElementById("star1").checked || document.getElementById("star2").checked || document.getElementById("star3").checked|| document.getElementById("star4").checked||document.getElementById("star5").checked){
+                        document.getElementById("reviewForm").action = "/submitReview";
+                        document.getElementById("reviewForm").submit();
+                    }else{
+                        document.getElementById('deleteProductId').value = productId;
+                        document.getElementById('errorModal').style.display = 'flex';
+                        document.getElementById('error_Text').innerText = 'You need to rating.';
+                    }
+                }else{
+                    document.getElementById('deleteProductId').value = productId;
+                    document.getElementById('errorModal').style.display = 'flex';
+                    document.getElementById('error_Text').innerText = 'You need to fill the review.';
+                }
+                
             }
         }else{
             document.getElementById('loginModal').style.display = 'flex';
@@ -287,6 +308,7 @@ $customer_id = isset($_SESSION['usersId']) ? $_SESSION['usersId'] : null;
     function closeModal() {
         document.getElementById('loginModal').style.display = 'none';
         document.getElementById('buyModal').style.display = 'none';
+        document.getElementById('errorModal').style.display = 'none';
     }
 
     // Close modal when clicking outside of modal-content

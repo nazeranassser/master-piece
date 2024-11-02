@@ -18,6 +18,8 @@ class ReviewsController
     }
 
     public function submitReview() {
+        var_dump($_POST);
+        die();
         session_start();
         if (!isset($_SESSION['userId'])) {
             $_SESSION['message'] = [
