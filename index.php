@@ -78,13 +78,14 @@ $router->add('admins', ['controller' => 'Admins', 'action' => 'filter']);
 
 /* -----------------------------------Customers Router---------------------------------- */
 
-$router->add('customer/get', ['controller' => 'customers', 'action' => 'get']);
+$router->add('admin/customers', ['controller' => 'customers', 'action' => 'get']);
 $router->add('profile-edit', ['controller' => 'Customers', 'action' => 'editPage']);
 $router->add('profile-update', ['controller' => 'Customers', 'action' => 'update']);//admins-controllers->update_admin()
 $router->add('login-add', ['controller' => 'Customers', 'action' => 'login']);
 $router->add('login', ['controller' => 'Customers', 'action' => 'loginPage']);
 $router->add('signup', ['controller' => 'Customers', 'action' => 'signupPage']);
 $router->add('sign-out', ['controller' => 'Customers', 'action' => 'logout']);
+$router->add('customer/delete/{id:\d+}', ['controller' => 'Customers', 'action' => 'delete']);
 $router->add('profile-main', ['controller' => 'Customers', 'action' => 'getById']);
 $router->add('profile-order', ['controller' => 'Customers', 'action' => 'getById1']);
 $router->add('signup-action', ['controller' => 'Customers', 'action' => 'register']);

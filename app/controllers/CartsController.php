@@ -17,6 +17,11 @@ class CartsController
         $this->productModel = new Product();
     }
 
+
+    public function index(){
+        require 'views/pages/cart.php';
+    }
+
     public function clearCart()
     {
         setcookie('cart', '', time() - 3600, '/');

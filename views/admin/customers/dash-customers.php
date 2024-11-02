@@ -74,7 +74,7 @@
                                                             <th>".$customer['customer_address1']."</th>
                                                             <th style='display: flex;''>
                                                             <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2' style='margin-right:4px ;'>Details</button></form>
-                                                            <form method='POST' action='show_admin.php'>
+                                                            <form method='POST' action='customer/delete/".$customer['customer_id']."'>
                                                             <input type='text' value='".$customer['customer_id']."' name='customer_delete' style='visibility: hidden;display: none;'>
                                                             <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2'>Block</button></form></th>
                                                         </tr>";
@@ -86,9 +86,7 @@
                                     </div>
                                     <div>
 
-                                        <a class="dash__custom-link btn--e-brand-b-2" href="/add-admin"><i class="fas fa-plus u-s-m-r-8"></i>
-
-                                            <span>Add New Admin</span></a></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

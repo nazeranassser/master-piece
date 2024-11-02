@@ -76,6 +76,8 @@ class Order extends Model {
       $start = $this->db->query($sql);
       if ($start) {
           $row = $start->fetchAll(PDO::FETCH_ASSOC); 
+          // var_dump($id);
+        // die();
           return $row;
       }else {
           echo "0 results";

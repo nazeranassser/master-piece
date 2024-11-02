@@ -62,7 +62,7 @@
                                                 </a>
                                                 </li>
                                                 <li>
-                                                <a href="/orders">
+                                                <a href="/admin/customers">
                                                     <div class="admin_list">
                                                         <div class="admin_list_div" >
                                                               <img class="dash_img"  src="/images/products/671fb3380fb81_user.png" alt="">
@@ -76,7 +76,7 @@
                                                 <a href="/orders">
                                                     <div class="admin_list">
                                                         <div class="admin_list_div" >
-                                                              <img class="dash_img"  src="/images/products/671fb3380fb81_user.png" alt="">
+                                                              <img class="dash_img"  src="/images/email.png" alt="">
                                                               <p>Messages</p>
                                                         </div>
                                                         <img style="width:12px" src="/public/images/angle-right.png" alt="">
