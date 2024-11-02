@@ -48,7 +48,7 @@
                                         <div class="dash__pad-2">
                                             <h1 class="dash__h1 u-s-m-b-14" style="padding-bottom: 10px;">Edit Coupon</h1>
 
-                                            <form class="dash-address-manipulation" method="POST" action="">
+                                            <form class="dash-address-manipulation" method="POST" action="/coupons/update/<?php echo $coupon['coupon_id']?>">
                                                 <div class="gl-inline">
                                                     <div class="u-s-m-b-30">
                                                         <label class="gl-label" for="coupon_amount">Coupon Name *</label>
@@ -75,11 +75,11 @@
                                                             <label class="gl-label" for="address-country">Coupon Active *</label><select class="select-box select-box--primary-style" id="address-country">
                                                             <option value="1" 
                                                                 <?= isset($_GET['active']) && $_GET['active'] == 1 ? 'selected' : '' ?>>
-                                                                Active Admins
+                                                                Active
                                                             </option>
                                                             <option value="false" 
                                                                 <?= isset($_GET['active']) && $_GET['active'] == 'false' ? 'selected' : '' ?>>
-                                                                Deactivate Admins
+                                                                Deactivate
                                                             </option>
                                                             </select>
                                                             <!--====== End - Select Box ======-->

@@ -27,6 +27,8 @@ $router->add('product/{id:\d+}', ['controller' => 'Products', 'action' => 'viewP
 $router->add('allProducts', ['controller' => 'Products', 'action' => 'showProducts']);  
 $router->add('products', ['controller' => 'Products', 'action' => 'filter']);
 $router->add('reviews', ['controller' => 'Products', 'action' => 'viewProduct']);
+$router->add('products/delete/{id:\d+}', ['controller' => 'Products', 'action' => 'delete']);
+// $router->add('products/update/{id:\d+}', ['controller' => 'Products', 'action' => 'update']);
 // $router->add('products', ['controller' => 'Products', 'action' => 'index']);//admins-controllers->update_admin()
 
 
@@ -66,9 +68,9 @@ $router->add('add-admin', ['controller' => 'Admins', 'action' => 'add']);// dash
 $router->add('edit-admin', ['controller' => 'Admins', 'action' => 'edit']);// dash-admin-edit.php
 $router->add('register', ['controller' => 'Admins', 'action' => 'register']);//admins-controllers->register()
 $router->add('update_admin', ['controller' => 'Admins', 'action' => 'update']);//admins-controllers->update_admin()
-$router->add('admin-login', ['controller' => 'Admins', 'action' => 'index']);
-$router->add('admin-login', ['controller' => 'Admins', 'action' => 'loginPage']);
-$router->add('login-admin', ['controller' => 'Admins', 'action' => 'login']);
+$router->add('admin/login', ['controller' => 'Admins', 'action' => 'index']);
+$router->add('admin/login', ['controller' => 'Admins', 'action' => 'loginPage']);
+$router->add('login/admin', ['controller' => 'Admins', 'action' => 'login']);
 $router->add('edit-admin/{id:\d+}', ['controller' => 'Admins', 'action' => 'getById']);
 $router->add('delete-admin/{id:\d+}', ['controller' => 'Admins', 'action' => 'delete']);
 $router->add('admins', ['controller' => 'Admins', 'action' => 'filter']);
@@ -101,6 +103,7 @@ $router->add('coupons-add', ['controller' => 'Coupons', 'action' => 'addPage']);
 $router->add('new_coupon', ['controller' => 'Coupons', 'action' => 'add']);
 $router->add('coupon-delete', ['controller' => 'Coupons', 'action' => 'delete']);
 $router->add('coupon-edit/{id:\d+}', ['controller' => 'Coupons', 'action' => 'editPage']);
+$router->add('coupons/update/{id:\d+}', ['controller' => 'Coupons', 'action' => 'updateCoupon']);
 
 
 /* -----------------------------------Reviews Router---------------------------------- */

@@ -90,6 +90,7 @@ class ProductsController
             'product_description' => $_POST['product_description'],
             'product_price' => $_POST['product_price'],
             'product_quantity' => $_POST['product_quantity'],
+            'product_discount' => $_POST['product_discount'],
             'category_id' => $_POST['category_id'],
             'product_image' => $product_image, // Hash the password
         ];
@@ -153,5 +154,19 @@ class ProductsController
         } else {
             echo "Invalid product ID.";
         }
+    }
+
+    // public function delete($id){
+       
+    //     $data = [
+    //         'deleted' => '1',
+    //     ];
+    //     $this->productModel->update($id,$data);
+    //     header('location:/products');
+    // }
+    public function delete($id){
+       
+        $this->productModel->deleteProduct($id);
+        header('location:/products');
     }
 }

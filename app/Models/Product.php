@@ -94,9 +94,9 @@ public function getCategoriesFilter() {
     return $stmt->fetchAll(PDO::FETCH_ASSOC); // Return an array of categories
 }
 
-  function updateProduct($id,$admin)
+  function updateProduct($id,$product)
 {
-  return $this->update($id,$admin);
+  return $this->update($id,$product);
 
     // $dbInstance = Database::getInstance();
     // $conn = $dbInstance->getConnection();
@@ -312,4 +312,8 @@ public function getProducts($search = '', $category = '', $sort = '') {
   return $stmt;
 }
 
+public function deleteProduct($id){
+  return $this->delete($id);
+}
+ 
 }

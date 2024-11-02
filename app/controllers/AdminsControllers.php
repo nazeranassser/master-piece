@@ -206,23 +206,24 @@ class AdminsController {
 
         if(empty($data['admin_email']) || empty($data['admin_password'])){
             flash("login", "Please fill out all inputs");
-            redirect("admin-login");
+            redirect("/admin/login");
             exit();
         }
 
         // Check for user/email
-        $admin_data = $this->adminModel->findByEmail($data['admin_email']);
+        $admin_data_all = $this->adminModel->findByEmail($data['admin_email']);
+        $admin_data = $admin_data_all[0];
         if($admin_data['is_active']){
             // User Found
             if(password_verify($data['admin_password'],$admin_data['admin_password'])){
                 $this->createAdminSession($admin_data);
             }else{
                 flash("login", "Password Incorrect");
-                redirect("admin-login");
+                redirect("/admin/login");
             }
         } else {
             flash("login", "No admin found");
-            redirect("admin-login");
+            redirect("/admin/login");
         }
     }
 

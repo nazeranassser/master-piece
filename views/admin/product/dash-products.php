@@ -99,7 +99,7 @@
                                                             <th>".$product['product_quantity']."</th>
                                                             <th><div style='display: flex; align-items: center;'>
                                                             <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2' style='margin-right:4px;'>Edit</button></form>
-                                                            <form method='POST' action=''>
+                                                            <form method='POST' action='/products/delete/".$product['product_id']."'>
                                                             <input type='hidden' value='".$product['product_id']."' name='delete_product''>
                                                             <button type='submit' class='address-book-edit btn btn--e-brand-b-2'>Delete</button></form></div></th>
                                                         </tr>";

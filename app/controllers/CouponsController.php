@@ -60,7 +60,7 @@ class CouponsController{
             'coupon_value' => $_POST['coupon_name'],
             'coupon_amount' => $_POST['coupon_amount'],
             'coupon_expire' => $_POST['coupon_expire'],
-            'created_at' => date("Y/m/d h:m:s"),
+            // 'created_at' => date("Y/m/d h:m:s"),
         ];
         if ($this->couponsModel->update($id,$data)) {
             // Redirect or show a success message
