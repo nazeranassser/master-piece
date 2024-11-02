@@ -80,8 +80,17 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <span class="cart-table__price">$<?php echo number_format($item['price'], 2); ?></span>
-                                    </td>
+                                    <?php if ($item['discount'] > 0): ?>
+                                                    <?php
+                                                    $discountedPrice = $item['price'] - ($item['price'] * ($item['discount']));
+                                                    ?>
+                                                    <span class="original-price"><s style="color: red;"><?= number_format($item['price'], 2); ?>
+                                                            JD</s></span>
+                                                    <span class="discounted-price"><?= number_format($discountedPrice, 2); ?>
+                                                        JD</span>
+                                                <?php else: ?>
+                                                    <?= number_format($item['price'], 2); ?> JD
+                                                <?php endif; ?>                                    </td>
                                     <td>
                                         <div class="cart-table__input-counter-wrap">
                                             <!-- Quantity Counter -->

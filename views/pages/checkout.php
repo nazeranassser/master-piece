@@ -1,93 +1,86 @@
 <!--====== Main Header ======-->
-<?php include 'views/partials/header.php'; 
+<?php include 'views/partials/header.php';
 ?>
 <!--====== End - Main Header ======-->
 
 <!--====== Checkout Content ======-->
-    <!-- Delivery Information -->
-    <h1 class="section-title">DELIVERY INFORMATION</h1>
-<div class="delivery-info">
-    <p><strong>First Name:</strong> <?php echo htmlspecialchars($deliveryInfo['customer_name']); ?></p>
-    <p><strong>Email:</strong> <?php echo htmlspecialchars($deliveryInfo['customer_email']); ?></p>
-    <p><strong>Phone:</strong> <?php echo htmlspecialchars($deliveryInfo['customer_phone']); ?></p>
-    
-    <!-- Address Selection -->
-    <?php if (!empty($deliveryInfo['customer_address2'])): ?>
-        <div class="address-selection">
-            <label><strong style="color:red;">Choose one of your addresses:</strong></label><br>
-            <label>
-                <input type="radio" name="selected_address" value="<?php echo htmlspecialchars($deliveryInfo['customer_address1']); ?>" checked>
-                <strong>Address 1:</strong> <?php echo htmlspecialchars($deliveryInfo['customer_address1']); ?>
-            </label>
-            <br>
-            <label>
-                <input type="radio" name="selected_address" value="<?php echo htmlspecialchars($deliveryInfo['customer_address2']); ?>">
-                <strong>Address 2:</strong> <?php echo htmlspecialchars($deliveryInfo['customer_address2']); ?>
-            </label>
+<!-- Delivery Information -->
+<div class="container">
+    <h1 class="section-title">DELIVERY INFORMATION & ORDER SUMMARY</h1>
+
+    <!-- Flex Container for Delivery Info and Order Summary -->
+    <div class="d-flex justify-content-between delivery-order-container">
+        <!-- Delivery Info Section -->
+        <div class="delivery-info flex-item">
+            <h2>DELIVERY INFORMATION</h2>
+            <p><strong>First Name:</strong> <?php echo htmlspecialchars($deliveryInfo['customer_name']); ?></p>
+            <p><strong>Email:</strong> <?php echo htmlspecialchars($deliveryInfo['customer_email']); ?></p>
+            <p><strong>Phone:</strong> <?php echo htmlspecialchars($deliveryInfo['customer_phone']); ?></p>
+
+            <?php if (!empty($deliveryInfo['customer_address2'])): ?>
+                <div class="address-selection">
+                    <label><strong style="color:red;">Choose one of your addresses:</strong></label><br>
+                    <label>
+                        <input type="radio" name="selected_address"
+                            value="<?php echo htmlspecialchars($deliveryInfo['customer_address1']); ?>" checked>
+                        <strong>Address 1:</strong> <?php echo htmlspecialchars($deliveryInfo['customer_address1']); ?>
+                    </label><br>
+                    <label>
+                        <input type="radio" name="selected_address"
+                            value="<?php echo htmlspecialchars($deliveryInfo['customer_address2']); ?>">
+                        <strong>Address 2:</strong> <?php echo htmlspecialchars($deliveryInfo['customer_address2']); ?>
+                    </label>
+                </div>
+            <?php else: ?>
+                <p><strong>Address:</strong> <?php echo htmlspecialchars($deliveryInfo['customer_address1']); ?></p>
+            <?php endif; ?>
         </div>
-    <?php else: ?>
-        <p><strong>Address:</strong> <?php echo htmlspecialchars($deliveryInfo['customer_address1']); ?></p>
-    <?php endif; ?>
-</div>
 
+        <!-- Order Summary Section -->
+        <div class="order-summary flex-item">
+            <h2>ORDER SUMMARY</h2>
+            <?php if (!empty($cartItems)): ?>
+                <table class="order-summary-table">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                        ?>
+                        <?php foreach ($cartItems as $item): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($item['product_name']); ?></td>
+                                <td><?php echo htmlspecialchars($item['quantity']); ?></td>
+                                <td>
+                                    <?php
+                                        if ($item['discount'] > 0):?>
+                                        <span class="original-price"><s style="color: red;"><?= number_format($item['price'], 2); ?>
+                                                JD</s></span>
+                                        <span class="discounted-price"><?= number_format($discounted_price, 2); ?> JD</span>
+                                    <?php else: ?>
+                                        <?= number_format($item['price'], 2); ?> JD
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
 
-<h1 class="section-title">ORDER SUMMARY</h1>
-<div class="order-summary">
-    <?php if (!empty($cartItems)): ?>
-        <table class="order-summary-table">
-            <thead>
-                <tr>
-                    <th>Product Name</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($cartItems as $item): ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($item['product_name']); ?></td>
-                        <td><?php echo htmlspecialchars($item['quantity']); ?></td>
-                        <td>$<?php echo number_format($item['price'], 2); ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-        <p class="order-total"><strong>Subtotal:</strong> $<?php echo number_format($orderTotal, 2); ?></p>
-        <p class="order-total"><strong>Shipping:</strong> $4.00</p>
-        <p class="order-total"><strong>Total:</strong> $<?php 
-            $total = $orderTotal + 4.00; 
-            if (isset($_SESSION['discount'])) {
-                $total -= $_SESSION['discount'];
-                echo number_format($total, 2);
-            } else {
-                echo number_format($total, 2); 
-            }
-        ?></p>
+                    </tbody>
+                </table>
+                <p class="order-total"><strong>Subtotal:</strong> <?php echo number_format($orderTotal, 2); ?>JD</p>
+                <p class="order-total"><strong>Shipping:</strong> 4.00JD</p>
+                <p class="order-total"><strong>Total:</strong> <?php echo number_format($total, 2); ?>JD</p>
+            <?php else: ?>
+                <p class="empty-cart-message">Your cart is empty.</p>
+            <?php endif; ?>
+        </div>
+    </div>
 
-        <!-- Coupon Input and Display -->
-        <?php if (isset($_SESSION['discount'])): ?>
-            <p class="applied-coupon"><strong>Applied Coupon:</strong> <?php echo htmlspecialchars($_SESSION['coupon_code']); ?> 
-                <form action="/removeCoupon" method="post" style="display:inline;">
-                    <button type="submit">Remove Coupon</button>
-                </form>
-            </p>
-        <?php else: ?>
-            <form action="/applyCoupon" method="post">
-                <input type="text" name="coupon_code" placeholder="Enter coupon code" required>
-                <button type="submit">Apply Coupon</button>
-                <?php if (isset($_SESSION['coupon_error'])): ?>
-                    <p class="error-message"><?php echo $_SESSION['coupon_error']; unset($_SESSION['coupon_error']); ?></p>
-                <?php endif; ?>
-            </form>
-        <?php endif; ?>
-
-    <?php else: ?>
-        <p class="empty-cart-message">Your cart is empty.</p>
-    <?php endif; ?>
-</div>
-
-
-    <h1 class="section-title">PAYMENT INFORMATION</h1>
+    <!-- Payment Information Section -->
+    <h2 class="section-title">PAYMENT INFORMATION</h2>
     <form action="placeOrder" method="post" class="payment-form">
         <div class="radio-box">
             <input type="radio" id="cash-on-delivery" name="payment_method" value="cod" checked>
@@ -95,186 +88,184 @@
         </div>
         <button type="submit" class="submit-button">PLACE ORDER</button>
     </form>
-
 </div>
+
 <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f4f4f4;
+    }
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background-color: #fffaf3;
-    color: #333;
-}
-.coupon-section {
-    margin-top: 20px; /* Spacing above the coupon section */
-}
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-.coupon-section label {
-    font-size: 16px; /* Font size for the label */
-    color: #333; /* Label color */
-}
+    .section-title {
+        font-size: 24px;
+        margin-bottom: 15px;
+        color: #333;
+        text-align: center;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 10px;
+    }
 
-.coupon-section input[type="text"] {
-    padding: 10px; /* Padding for the input */
-    border: 1px solid #ccc; /* Border color */
-    border-radius: 5px; /* Rounded corners */
-    margin-right: 10px; /* Space between input and button */
-}
+    .delivery-order-container {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
 
-.coupon-section button {
-    padding: 10px 15px; /* Padding for the button */
-    background-color: #ff4500; /* Button background color */
-    color: white; /* Button text color */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
-}
+    .flex-item {
+        flex: 1;
+        padding: 15px;
+        background-color: #fafafa;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
 
-.coupon-section button:hover {
-    background-color: #e03b00; /* Darker shade on hover */
-}
+    .delivery-info p,
+    .order-summary p {
+        margin: 5px 0;
+    }
 
-.section-title {
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: #ff4500;
-}
+    .order-summary-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 15px;
+    }
 
-.delivery-info,
-.order-summary,
-.payment-form {
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
+    .order-summary-table th,
+    .order-summary-table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
 
-.delivery-info p,
-.order-summary p {
-    margin: 8px 0;
-    font-size: 16px;
-}
+    .order-summary-table th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
 
-.order-summary-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 15px;
-}
+    .original-price {
+        color: red;
+    }
 
-.order-summary-table th,
-.order-summary-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
+    .discounted-price {
+        color: green;
+        font-weight: bold;
+    }
 
-.order-summary-table th {
-    background-color: #f0f0f0;
-    font-weight: bold;
-}
+    .order-total {
+        font-size: 16px;
+        margin: 5px 0;
+    }
 
-.order-total {
-    font-size: 16px;
-    margin: 5px 0;
-}
+    .empty-cart-message {
+        color: #888;
+        font-style: italic;
+        text-align: center;
+    }
 
-.empty-cart-message {
-    font-size: 16px;
-    color: #777;
-}
+    .applied-coupon {
+        margin-top: 10px;
+        font-weight: bold;
+    }
 
-.radio-box {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-.address-selection {
-    margin-bottom: 15px;
-}
+    .payment-form {
+        margin-top: 30px;
+        padding: 15px;
+        background-color: #fafafa;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
 
-.address-selection label {
-    display: block;
-    margin: 8px 0;
-    font-size: 16px;
-    color: #333; /* Adjust color as needed */
-}
+    .radio-box {
+        margin-bottom: 10px;
+    }
 
-.address-selection input[type="radio"] {
-    margin-right: 8px;
-}
+    .submit-button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #1f1f7a;
+        /* Custom color from your preference */
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
 
+    .submit-button:hover {
+        background-color: #333;
+    }
 
-.radio-box label {
-    margin-left: 8px;
-    font-size: 16px;
-}
-
-.submit-button {
-    background-color: #ff4500;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.submit-button:hover {
-    background-color: #e03e00;
-}
-
+    .error-message {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+    }
 </style>
 <script>
-document.getElementById('apply-coupon').addEventListener('click', function() {
-    const couponCode = document.getElementById('coupon-code').value;
-    if (couponCode) {
-        fetch('check_coupon.php?code=' + encodeURIComponent(couponCode))
-            .then(response => response.json())
-            .then(data => {
-                if (data.valid) {
-                    // Update the total price
-                    const discountAmount = data.discount; // Get discount from the response
-                    const totalElement = document.getElementById('total-price');
-                    const currentTotal = parseFloat(totalElement.innerText.replace('$', ''));
-                    const newTotal = currentTotal - discountAmount;
+    document.getElementById('apply-coupon').addEventListener('click', function () {
+        const couponCode = document.getElementById('coupon-code').value;
+        if (couponCode) {
+            fetch('check_coupon.php?code=' + encodeURIComponent(couponCode))
+                .then(response => response.json())
+                .then(data => {
+                    if (data.valid) {
+                        // Update the total price
+                        const discountAmount = data.discount; // Get discount from the response
+                        const totalElement = document.getElementById('total-price');
+                        const currentTotal = parseFloat(totalElement.innerText.replace('$', ''));
+                        const newTotal = currentTotal - discountAmount;
 
-                    // Update total display
-                    totalElement.innerText = '$' + newTotal.toFixed(2);
+                        // Update total display
+                        totalElement.innerText = '$' + newTotal.toFixed(2);
 
-                    // Change button to remove coupon
-                    this.innerText = 'Remove Coupon';
-                    this.setAttribute('id', 'remove-coupon');
+                        // Change button to remove coupon
+                        this.innerText = 'Remove Coupon';
+                        this.setAttribute('id', 'remove-coupon');
 
-                    // Clear the coupon input field
-                    document.getElementById('coupon-code').value = '';
-                } else {
-                    alert('Invalid coupon code.');
-                }
-            })
-            .catch(error => console.error('Error:', error));
-    } else {
-        alert('Please enter a coupon code.');
-    }
-});
+                        // Clear the coupon input field
+                        document.getElementById('coupon-code').value = '';
+                    } else {
+                        alert('Invalid coupon code.');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        } else {
+            alert('Please enter a coupon code.');
+        }
+    });
 
-// Event listener for remove coupon button
-document.addEventListener('click', function(event) {
-    if (event.target.id === 'remove-coupon') {
-        // Reset the total price to original
-        const totalElement = document.getElementById('total-price');
-        const originalTotal = <?php echo json_encode(number_format($orderTotal + 4.00, 2)); ?>; // Store original total
-        totalElement.innerText = originalTotal;
+    // Event listener for remove coupon button
+    document.addEventListener('click', function (event) {
+        if (event.target.id === 'remove-coupon') {
+            // Reset the total price to original
+            const totalElement = document.getElementById('total-price');
+            const originalTotal = <?php echo json_encode(number_format($orderTotal + 4.00, 2)); ?>; // Store original total
+            totalElement.innerText = originalTotal;
 
-        // Change button back to apply
-        event.target.innerText = 'Apply';
-        event.target.setAttribute('id', 'apply-coupon');
+            // Change button back to apply
+            event.target.innerText = 'Apply';
+            event.target.setAttribute('id', 'apply-coupon');
 
-        // Clear the coupon input field
-        document.getElementById('coupon-code').value = '';
-    }
-});
+            // Clear the coupon input field
+            document.getElementById('coupon-code').value = '';
+        }
+    });
 </script>
 
 <footer>

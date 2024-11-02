@@ -17,16 +17,17 @@ class CartsController
         $this->productModel = new Product();
     }
 
+    public function index()
+    {
+        $cart = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];
 
-    public function index(){
         require 'views/pages/cart.php';
     }
-
     public function clearCart()
     {
         setcookie('cart', '', time() - 3600, '/');
 
-        header("Location: /cart/" . $_SESSION['usersId']);
+        header("Location: /cart/");
     }
 
     // Add item to cart and store it in cookies
@@ -57,9 +58,11 @@ class CartsController
                     'product_id' => $product['product_id'],
                     'product_name' => $product['product_name'],
                     'price' => $product['product_price'],
+                    'discount' => $product['product_discount'],
                     'quantity' => 1, // Start with 1 if newly added
                     'stock_quantity' => $stockQuantity, // Include stock info for client-side checks
                     'image_url' => $product['product_image'] // Assuming this is the correct field
+
                 ];
             }
         }
@@ -68,7 +71,7 @@ class CartsController
         setcookie('cart', json_encode($cart), time() + 3600, '/');
 
         // Redirect to the cart page
-        require("views/pages/cart.php");
+        header("Location: /cart/");
         exit; // Ensure the script stops executing after redirection
     }
 
@@ -83,7 +86,7 @@ class CartsController
             setcookie('cart', json_encode($cart), time() + 3600, '/');
         }
 
-        header("Location: /cart/" . $_SESSION['usersId']);
+        header("Location: /cart/");
     }
 
     public function checkout()
@@ -97,10 +100,29 @@ class CartsController
         $customerId = $_SESSION['usersId'];
         $deliveryInfo = $this->cartModel->getCustomerInfo($customerId);
 
-        // Calculate total
         $orderTotal = 0;
+        $cartItems = [];
+
         foreach ($cart as $item) {
-            $orderTotal += $item['price'] * $item['quantity'];
+            // Retrieve the product details, including the discount, from the database
+            $productDetails = $this->cartModel->getProduct($item['product_id']);
+            var_dump($productDetails);
+            // Calculate the discounted price if there is a discount
+            if ($productDetails['product_discount'] > 0) {
+                $finalPrice = $productDetails['product_price'] - ($productDetails['product_price'] * $productDetails['product_discount']);
+            } else {
+                $finalPrice = $productDetails['product_price'];
+            }
+            // Update the order total with the discounted price
+            $orderTotal += $finalPrice * $item['quantity'];
+            $total = $orderTotal + 4;
+            $discounted_price = $finalPrice * $item['quantity'];
+            // Store the cart item with updated price details
+            $cartItems[] = [
+                'product_name' => $productDetails['product_name'],
+                'quantity' => $item['quantity'],
+                'price' => $productDetails['product_price'],
+            ];
         }
 
         require 'views/pages/checkout.php';
@@ -119,7 +141,7 @@ class CartsController
         $orderTotalAfter = 0;
         // $couponId = isset($_SESSION['coupon_id']) ? $_SESSION['coupon_id'] : null;
 
-        
+
 
 
         foreach ($cart as $item) {
@@ -127,8 +149,7 @@ class CartsController
         }
         if ($_SESSION['discount']) {
             $orderTotalAfter = $orderTotal - $_SESSION['discount'];
-        }
-        else{
+        } else {
             $orderTotalAfter = $orderTotal;
         }
 

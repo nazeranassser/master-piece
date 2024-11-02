@@ -51,9 +51,6 @@ $customer_id = isset($_SESSION['usersId']) ? $_SESSION['usersId'] : null;
                                 <a href="/cart/<?= $product['product_id'] ?>">
                                     <button class="btn btn--e-brand-b-2" type="submit">Add to Cart</button>
                                 </a>
-                                <a href="/favorite/<?= $product['product_id'] ?>">
-                                    <button class="btn btn--e-brand-b-2" type="submit">Add to Favorite</button>
-                                </a>
                             </div>
 
                         </div>

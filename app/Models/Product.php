@@ -312,7 +312,7 @@ public function getProducts($search = '', $category = '', $sort = '') {
   return $stmt;
 }
 public function updateProductReview($productId) {
-  $stmt = $this->pdo->prepare("SELECT SUM(review_rating) AS totalRating, COUNT(*) AS reviewCount 
+  $stmt = $this->db->prepare("SELECT SUM(review_rating) AS totalRating, COUNT(*) AS reviewCount 
                                FROM reviews WHERE product_id = ?");
   $stmt->execute([$productId]);
   $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -320,7 +320,7 @@ public function updateProductReview($productId) {
   if ($result['reviewCount'] > 0) {
       $averageRating = $result['totalRating'] / $result['reviewCount'];
 
-      $updateStmt = $this->pdo->prepare("UPDATE products SET total_review = ? WHERE product_ID = ?");
+      $updateStmt = $this->db->prepare("UPDATE products SET total_review = ? WHERE product_ID = ?");
       $updateStmt->execute([round($averageRating, 2), $productId]);
   }
 }
@@ -328,5 +328,21 @@ public function updateProductReview($productId) {
 public function deleteProduct($id){
   return $this->delete($id);
 } 
- 
+
+public function findById($id) {
+  {
+    try {
+        $query = $this->db->prepare("SELECT * FROM products WHERE product_id = :product_id");
+        $query->bindParam(':product_id', $productId, PDO::PARAM_INT);
+        $query->execute();
+
+        // Fetch product details as an associative array
+        return $query->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        // Handle error if needed (logging or error message)
+        return false;
+    }
+}
+}
+
 }
