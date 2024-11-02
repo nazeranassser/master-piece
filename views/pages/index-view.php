@@ -6,14 +6,6 @@
 // Initialize $user as null
 $user = null;
 
-// Check if user is logged in
-if (isset($_SESSION['customer_ID'])) {
-    // Get user data
-    $sql = "SELECT * FROM customers WHERE customer_ID = :id";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute(['id' => $_SESSION['customer_ID']]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-}
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="en">

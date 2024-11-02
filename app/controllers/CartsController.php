@@ -17,11 +17,17 @@ class CartsController
         $this->productModel = new Product();
     }
 
+    public function index()
+    {
+        $cart = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];
+
+        require 'views/pages/cart.php';
+    }
     public function clearCart()
     {
         setcookie('cart', '', time() - 3600, '/');
 
-        header("Location: /cart/" . $_SESSION['usersId']);
+        header("Location: /cart/" );
     }
 
     // Add item to cart and store it in cookies
@@ -63,7 +69,7 @@ class CartsController
         setcookie('cart', json_encode($cart), time() + 3600, '/');
 
         // Redirect to the cart page
-        require("views/pages/cart.php");
+        header("Location: /cart/" );
         exit; // Ensure the script stops executing after redirection
     }
 
@@ -78,7 +84,7 @@ class CartsController
             setcookie('cart', json_encode($cart), time() + 3600, '/');
         }
 
-        header("Location: /cart/" . $_SESSION['usersId']);
+        header("Location: /cart/" );
     }
 
     public function checkout()
