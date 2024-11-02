@@ -113,14 +113,14 @@ nav {
             </a>
         </div>
         <div class="icon nav-item" style="animation-delay: 0.7s;">
-        <a href='/cart/' style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <a href='/cart' style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
         <img style="width:24px" src="/images/products/grocery-store.png" alt="">
                 <span class="icon-badge"><?php echo count($cartItems); ?></span>
             </a>
         </div>
         <div class="icon nav-item" style="animation-delay: 0.7s;">
             <a href="<?= isset($_SESSION['usersId'])?'/profile-main':'/login'?>" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                <img style="width:30px; background-color:#fff; border-radius:200%; padding:2px" src="<?php if(!isset($_SESSION['customerImage'])){ echo '/images/user.png'; }else {echo  $_SESSION['customerImage'];} ?>" alt="">
+                <img style="width:30px; background-color:#fff; border-radius:200%; padding:2px" src="/<?php if(!isset($_SESSION['customerImage'])){ echo '/images/user.png'; }else {echo  $_SESSION['customerImage'];} ?>" alt="">
             </a>
         </div>
         <div class="menu-toggle" onclick="toggleMenu()">
