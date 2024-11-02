@@ -23,12 +23,12 @@
                             <div class="about">
                                 <div class="about__container">
                                     <div class="about__info">
-                                        <h2 class="about__h2">Welcome Revoly Cake</h2>
+                                        <h2 class="about__h2">Welcome to Cake Delight!</h2>
                                         <div class="about__p-wrap">
-                                            <p class="about__p">Revoly Cake is your destination for exquisite, freshly baked cakes for every occasion. Each cake is crafted with the finest ingredients, ensuring a perfect taste and beautiful design that brings a smile to your face. Celebrate your special moments with our delicious, unique cake creations!</p>
+                                            <p class="about__p">Cake Delight is your destination for exquisite, freshly baked cakes for every occasion. Each cake is crafted with the finest ingredients, ensuring a perfect taste and beautiful design that brings a smile to your face. Celebrate your special moments with our delicious, unique cake creations!</p>
                                         </div>
 
-                                        <a class="about__link btn--e-secondary" href="/" target="_blank">Shop Now</a>
+                                        <a class="about__link btn--e-secondary" href="index.html" target="_blank">Shop Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -54,6 +54,8 @@
                     <div class="container">
                         <div class="row">
                             <!-- Team Members Grid -->
+                            <!-- Existing Members -->
+                            <!-- Issa Member -->
                             <div class="col-lg-3 col-md-4 col-sm-6 u-s-m-b-30">
                                 <div class="team-member u-h-100">
                                     <div class="team-member__wrap">
@@ -94,7 +96,7 @@
                                     </div>
                                     <div class="team-member__info">
                                         <span class="team-member__name">Loay Alrwedat</span>
-                                        <span class="team-member__job-title">UI Designer</span>
+                                        <span class="team-member__job-title">Product Owner</span>
                                     </div>
                                 </div>
                             </div>
@@ -144,15 +146,35 @@
                                     </div>
                                 </div>
                             </div>
-                            
+                        </div>
+
+                        <!-- Additional Row for New Images -->
+                        <div class="row" style="justify-content: center;">
+                            <!-- Your Additional Team Members Here -->
+                            <!-- Example Member -->
+                            <div class="col-lg-3 col-md-4 col-sm-6 u-s-m-b-30">
+                                <div class="team-member u-h-100">
+                                    <div class="team-member__wrap">
+                                        <div class="aspect aspect--bg-grey-fb aspect--square">
+                                            <img class="aspect__img team-member__img" src="../../images/our/no.png" alt="Your Name">
+                                        </div>
+                                        <div class="team-member__social-wrap">
+                                            <ul class="team-member__social-list">
+                                                <li><a class="s-tw--bgcolor-hover" href="#"><i class="fab fa-twitter"></i></a></li>
+                                                <li><a class="s-fb--bgcolor-hover" href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                                <li><a class="s-insta--bgcolor-hover" href="#"><i class="fab fa-instagram"></i></a></li>
+                                                <li><a class="s-linked--bgcolor-hover" href="#"><i class="fab fa-linkedin"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="team-member__info">
+                                        <span class="team-member__name">nazera mraish</span>
+                                        <span class="team-member__job-title">Designer</span>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
-            
-        </div>
-        
-    </div>
-</div>
-
-<?php include('views/partials/footer.php') ?> 
