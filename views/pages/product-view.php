@@ -30,9 +30,17 @@ $customer_id = isset($_SESSION['usersId']) ? $_SESSION['usersId'] : null;
                         </div>
                         <div>
                             <div class="pd-detail__inline">
-                                <span
-                                    class="pd-detail__price">$<?php echo number_format($product['product_price'], 2); ?></span>
-                            </div>
+                            <?php if ($product['product_discount'] > 0): ?>
+                                                    <?php
+                                                    $discountedPrice = $product['product_price'] - ($product['product_price'] * ($product['product_discount']));
+                                                    ?>
+                                                    <span class="original-price"><s style="color: red;"><?= number_format($product['product_price'], 2); ?>
+                                                            JD</s></span>
+                                                    <span class="discounted-price"><?= number_format($discountedPrice, 2); ?>
+                                                        JD</span>
+                                                <?php else: ?>
+                                                    <?= number_format($product['product_price'], 2); ?> JD
+                                                <?php endif; ?>
                         </div>
                         <div class="u-s-m-b-15">
                             <span

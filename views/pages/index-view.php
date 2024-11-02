@@ -100,71 +100,77 @@ if (isset($_SESSION['customer_ID'])) {
 
             <!--====== start - new arrivals ======-->
             <div class="new-arrivals-section">
-    <div class="section-intro">
-        <div class="container d-flex flex-column align-items-center">
-            <h1 class="section-title">NEW ARRIVALS</h1>
-            <span class="section-subtitle">DISCOVER OUR LATEST PRODUCTS</span>
-        </div>
-    </div>
+                <div class="section-intro">
+                    <div class="container d-flex flex-column align-items-center">
+                        <h1 class="section-title">NEW ARRIVALS</h1>
+                        <span class="section-subtitle">DISCOVER OUR LATEST PRODUCTS</span>
+                    </div>
+                </div>
 
-    <div class="product-container">
-        <div class="container">
-            <div class="product-grid-new">
-                <?php foreach ($products as $product): ?>
-                    <div class="product-card-custom">
-                        <div class="product-image-wrapper">
-                            <a href="product/<?= $product['product_id']; ?>">
-                                <img src="public/images/categories/<?= $product['product_image']; ?>"
-                                     alt="<?= htmlspecialchars($product['product_name']); ?>">
-                            </a>
-                        </div>
-                        <div class="product-info">
-                            <span class="product-title">
-                                <?= htmlspecialchars($product['category_name']); ?>
-                            </span>
-                            <h3 class="product-name-custom">
-                                <a href="product/<?= $product['product_id']; ?>">
-                                    <?= htmlspecialchars($product['product_name']); ?>
-                                </a>
-                            </h3>
-                            <div class="product-rating-custom">
-                                <?php
-                                $rating = $product['total_review'];
-                                $fullStars = floor($rating);
-                                $halfStar = ($rating - $fullStars) >= 0.5;
-                                for ($i = 0; $i < 5; $i++) {
-                                    echo $i < $fullStars ? '<i class="fas fa-star"></i>' :
-                                         ($halfStar && $i == $fullStars ? '<i class="fas fa-star-half-alt"></i>' : '<i class="far fa-star"></i>');
-                                }
-                                ?>
-                                <span class="product-review-count">(<?= number_format($rating, 1); ?>)</span>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="product-price-custom">
-                                    <?= number_format($product['product_price'], 2); ?>JD
+                <div class="product-container">
+                    <div class="container">
+                        <div class="product-grid-new">
+                            <?php foreach ($products as $product): ?>
+                                <div class="product-card-custom">
+                                    <div class="product-image-wrapper">
+                                        <a href="product/<?= $product['product_id']; ?>">
+                                            <img src="public/images/categories/<?= $product['product_image']; ?>"
+                                                alt="<?= htmlspecialchars($product['product_name']); ?>">
+                                        </a>
+                                    </div>
+                                    <div class="product-info">
+                                        <span class="product-title">
+                                            <?= htmlspecialchars($product['category_name']); ?>
+                                        </span>
+                                        <h3 class="product-name-custom">
+                                            <a href="product/<?= $product['product_id']; ?>">
+                                                <?= htmlspecialchars($product['product_name']); ?>
+                                            </a>
+                                        </h3>
+                                        <div class="product-rating-custom">
+                                            <?php
+                                            $rating = $product['total_review'];
+                                            $fullStars = floor($rating);
+                                            $halfStar = ($rating - $fullStars) >= 0.5;
+                                            for ($i = 0; $i < 5; $i++) {
+                                                echo $i < $fullStars ? '<i class="fas fa-star"></i>' :
+                                                    ($halfStar && $i == $fullStars ? '<i class="fas fa-star-half-alt"></i>' : '<i class="far fa-star"></i>');
+                                            }
+                                            ?>
+                                            <span class="product-review-count">(<?= number_format($rating, 1); ?>)</span>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                                <?php if ($product['product_discount'] > 0): ?>
+                                                    <?php
+                                                    $discountedPrice = $product['product_price'] - ($product['product_price'] * ($product['product_discount']));
+                                                    ?>
+                                                    <span class="original-price"><s style="color: red;"><?= number_format($product['product_price'], 2); ?>
+                                                            JD</s></span>
+                                                    <span class="discounted-price"><?= number_format($discountedPrice, 2); ?>
+                                                        JD</span>
+                                                <?php else: ?>
+                                                    <?= number_format($product['product_price'], 2); ?> JD
+                                                <?php endif; ?>
+                                            <div class="action-btn-group d-flex">
+                                                <a href="cart/<?= $product['product_id'] ?>"
+                                                    class="btn btn-outline-secondary btn-sm" data-tooltip="tooltip"
+                                                    data-placement="top" title="Add to Cart">
+                                                    <i class="fas fa-shopping-cart"></i>
+                                                </a>
+                                                <button class="btn btn-outline-secondary btn-sm ms-2" data-tooltip="tooltip"
+                                                    data-placement="top" title="Add to Favorites" data-wishlist-button
+                                                    data-product-id="<?php echo $product['product_id']; ?>">
+                                                    <i class="fas fa-heart"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="action-btn-group d-flex">
-                                    <a href="cart/<?= $product['product_id'] ?>" class="btn btn-outline-secondary btn-sm"
-                                       data-tooltip="tooltip" data-placement="top" title="Add to Cart">
-                                        <i class="fas fa-shopping-cart"></i>
-                                    </a>
-                                    <button class="btn btn-outline-secondary btn-sm ms-2"
-                                                 data-tooltip="tooltip"
-                                                  data-placement="top"
-                                                 title="Add to Favorites"
-                                                  data-wishlist-button
-                                                  data-product-id="<?php echo $product['product_id']; ?>">
-                                                  <i class="fas fa-heart"></i>
-                                    </button>
-                                </div>
-                            </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
-                <?php endforeach; ?>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
 
             <!--====== End - new arrivals ======-->
 
@@ -261,9 +267,17 @@ if (isset($_SESSION['customer_ID'])) {
 
                                                     <!-- Price and Action Buttons -->
                                                     <div class="d-flex align-items-center justify-content-between">
-                                                        <span
-                                                            class="new-product-price"><?= number_format($product['product_price'], 2); ?>
-                                                            JD</span>
+                                                    <?php if ($product['product_discount'] > 0): ?>
+                                                    <?php
+                                                    $discountedPrice = $product['product_price'] - ($product['product_price'] * ($product['product_discount']));
+                                                    ?>
+                                                    <span class="original-price"><s style="color: red;"><?= number_format($product['product_price'], 2); ?>
+                                                            JD</s></span>
+                                                    <span class="discounted-price"><?= number_format($discountedPrice, 2); ?>
+                                                        JD</span>
+                                                <?php else: ?>
+                                                    <?= number_format($product['product_price'], 2); ?> JD
+                                                <?php endif; ?>
 
                                                         <!-- Cart and Favorite Icons -->
                                                         <div class="new-action-buttons d-flex"> <!-- Updated class name -->
@@ -274,13 +288,11 @@ if (isset($_SESSION['customer_ID'])) {
                                                                 <i class="fas fa-shopping-cart"></i>
                                                             </a>
                                                             <button class="btn btn-outline-secondary btn-sm ms-2"
-                                                 data-tooltip="tooltip"
-                                                  data-placement="top"
-                                                 title="Add to Favorites"
-                                                  data-wishlist-button
-                                                  data-product-id="<?php echo $product['product_id']; ?>">
-                                                  <i class="fas fa-heart"></i>
-                                    </button>
+                                                                data-tooltip="tooltip" data-placement="top"
+                                                                title="Add to Favorites" data-wishlist-button
+                                                                data-product-id="<?php echo $product['product_id']; ?>">
+                                                                <i class="fas fa-heart"></i>
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -290,7 +302,8 @@ if (isset($_SESSION['customer_ID'])) {
 
                                         <!-- Display Top Seller Products -->
                                         <?php foreach ($topSellers as $product): ?>
-                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item top-seller">
+                                            <div
+                                                class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item top-seller">
                                                 <div class="new-product-card"> <!-- Updated class name -->
                                                     <div class="new-product-wrap"> <!-- Updated class name -->
                                                         <a class="new-aspect new-aspect--bg-grey new-aspect--square u-d-block"
@@ -328,9 +341,17 @@ if (isset($_SESSION['customer_ID'])) {
 
                                                     <!-- Price and Action Buttons -->
                                                     <div class="d-flex align-items-center justify-content-between">
-                                                        <span
-                                                            class="new-product-price"><?= number_format($product['product_price'], 2); ?>
-                                                            JD</span>
+                                                    <?php if ($product['product_discount'] > 0): ?>
+                                                    <?php
+                                                    $discountedPrice = $product['product_price'] - ($product['product_price'] * ($product['product_discount']));
+                                                    ?>
+                                                    <span class="original-price"><s style="color: red;"><?= number_format($product['product_price'], 2); ?>
+                                                            JD</s></span>
+                                                    <span class="discounted-price"><?= number_format($discountedPrice, 2); ?>
+                                                        JD</span>
+                                                <?php else: ?>
+                                                    <?= number_format($product['product_price'], 2); ?> JD
+                                                <?php endif; ?>
 
                                                         <!-- Cart and Favorite Icons -->
                                                         <div class="new-action-buttons d-flex"> <!-- Updated class name -->
@@ -354,7 +375,8 @@ if (isset($_SESSION['customer_ID'])) {
                                         <!-- Similarly, display other categories -->
                                         <!-- OUR CAKE -->
                                         <?php foreach ($ourCake as $product): ?>
-                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item our-cake">
+                                            <div
+                                                class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item our-cake">
                                                 <div class="new-product-card"> <!-- Updated class name -->
                                                     <div class="new-product-wrap"> <!-- Updated class name -->
                                                         <a class="new-aspect new-aspect--bg-grey new-aspect--square u-d-block"
@@ -392,9 +414,17 @@ if (isset($_SESSION['customer_ID'])) {
 
                                                     <!-- Price and Action Buttons -->
                                                     <div class="d-flex align-items-center justify-content-between">
-                                                        <span
-                                                            class="new-product-price"><?= number_format($product['product_price'], 2); ?>
-                                                            JD</span>
+                                                    <?php if ($product['product_discount'] > 0): ?>
+                                                    <?php
+                                                    $discountedPrice = $product['product_price'] - ($product['product_price'] * ($product['product_discount']));
+                                                    ?>
+                                                    <span class="original-price"><s style="color: red;"><?= number_format($product['product_price'], 2); ?>
+                                                            JD</s></span>
+                                                    <span class="discounted-price"><?= number_format($discountedPrice, 2); ?>
+                                                        JD</span>
+                                                <?php else: ?>
+                                                    <?= number_format($product['product_price'], 2); ?> JD
+                                                <?php endif; ?>
 
                                                         <!-- Cart and Favorite Icons -->
                                                         <div class="new-action-buttons d-flex"> <!-- Updated class name -->
@@ -417,7 +447,8 @@ if (isset($_SESSION['customer_ID'])) {
 
                                         <!-- SUGAR FREE -->
                                         <?php foreach ($sugarFree as $product): ?>
-                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item sugar-free">
+                                            <div
+                                                class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item sugar-free">
                                                 <div class="new-product-card"> <!-- Updated class name -->
                                                     <div class="new-product-wrap"> <!-- Updated class name -->
                                                         <a class="new-aspect new-aspect--bg-grey new-aspect--square u-d-block"
@@ -455,9 +486,17 @@ if (isset($_SESSION['customer_ID'])) {
 
                                                     <!-- Price and Action Buttons -->
                                                     <div class="d-flex align-items-center justify-content-between">
-                                                        <span
-                                                            class="new-product-price"><?= number_format($product['product_price'], 2); ?>
-                                                            JD</span>
+                                                    <?php if ($product['product_discount'] > 0): ?>
+                                                    <?php
+                                                    $discountedPrice = $product['product_price'] - ($product['product_price'] * ($product['product_discount']));
+                                                    ?>
+                                                    <span class="original-price"><s style="color: red;"><?= number_format($product['product_price'], 2); ?>
+                                                            JD</s></span>
+                                                    <span class="discounted-price"><?= number_format($discountedPrice, 2); ?>
+                                                        JD</span>
+                                                <?php else: ?>
+                                                    <?= number_format($product['product_price'], 2); ?> JD
+                                                <?php endif; ?>
 
                                                         <!-- Cart and Favorite Icons -->
                                                         <div class="new-action-buttons d-flex"> <!-- Updated class name -->
@@ -480,7 +519,8 @@ if (isset($_SESSION['customer_ID'])) {
 
                                         <!-- GLUTEN FREE -->
                                         <?php foreach ($glutenFree as $product): ?>
-                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item gluten-free">
+                                            <div
+                                                class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item gluten-free">
                                                 <div class="new-product-card"> <!-- Updated class name -->
                                                     <div class="new-product-wrap"> <!-- Updated class name -->
                                                         <a class="new-aspect new-aspect--bg-grey new-aspect--square u-d-block"
@@ -518,9 +558,17 @@ if (isset($_SESSION['customer_ID'])) {
 
                                                     <!-- Price and Action Buttons -->
                                                     <div class="d-flex align-items-center justify-content-between">
-                                                        <span
-                                                            class="new-product-price"><?= number_format($product['product_price'], 2); ?>
-                                                            JD</span>
+                                                    <?php if ($product['product_discount'] > 0): ?>
+                                                    <?php
+                                                    $discountedPrice = $product['product_price'] - ($product['product_price'] * ($product['product_discount']));
+                                                    ?>
+                                                    <span class="original-price"><s style="color: red;"><?= number_format($product['product_price'], 2); ?>
+                                                            JD</s></span>
+                                                    <span class="discounted-price"><?= number_format($discountedPrice, 2); ?>
+                                                        JD</span>
+                                                <?php else: ?>
+                                                    <?= number_format($product['product_price'], 2); ?> JD
+                                                <?php endif; ?>
 
                                                         <!-- Cart and Favorite Icons -->
                                                         <div class="new-action-buttons d-flex"> <!-- Updated class name -->
@@ -543,7 +591,8 @@ if (isset($_SESSION['customer_ID'])) {
 
                                         <!-- SPECIAL OCCASIONS -->
                                         <?php foreach ($specialOccasions as $product): ?>
-                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item spacial-occasions">
+                                            <div
+                                                class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item spacial-occasions">
                                                 <div class="new-product-card"> <!-- Updated class name -->
                                                     <div class="new-product-wrap"> <!-- Updated class name -->
                                                         <a class="new-aspect new-aspect--bg-grey new-aspect--square u-d-block"
@@ -581,9 +630,17 @@ if (isset($_SESSION['customer_ID'])) {
 
                                                     <!-- Price and Action Buttons -->
                                                     <div class="d-flex align-items-center justify-content-between">
-                                                        <span
-                                                            class="new-product-price"><?= number_format($product['product_price'], 2); ?>
-                                                            JD</span>
+                                                    <?php if ($product['product_discount'] > 0): ?>
+                                                    <?php
+                                                    $discountedPrice = $product['product_price'] - ($product['product_price'] * ($product['product_discount']));
+                                                    ?>
+                                                    <span class="original-price"><s style="color: red;"><?= number_format($product['product_price'], 2); ?>
+                                                            JD</s></span>
+                                                    <span class="discounted-price"><?= number_format($discountedPrice, 2); ?>
+                                                        JD</span>
+                                                <?php else: ?>
+                                                    <?= number_format($product['product_price'], 2); ?> JD
+                                                <?php endif; ?>
 
                                                         <!-- Cart and Favorite Icons -->
                                                         <div class="new-action-buttons d-flex"> <!-- Updated class name -->
@@ -659,14 +716,12 @@ if (isset($_SESSION['customer_ID'])) {
                                                     data-placement="top" title="Add to Cart">
                                                     <i class="fas fa-shopping-cart"></i>
                                                 </a>
-                                                <button class="btn btn-outline-secondary btn-sm ms-2" 
-                                                data-tooltip="tooltip"
-                                                 data-placement="top" 
-                                                 data-wishlist-button
-                                                data-product-id="<?php echo $product['product_id']; ?>"
-                                                 title="Add to Favorites">
-                                                 <i class="fas fa-heart"></i>
-                                                 </button>
+                                                <button class="btn btn-outline-secondary btn-sm ms-2" data-tooltip="tooltip"
+                                                    data-placement="top" data-wishlist-button
+                                                    data-product-id="<?php echo $product['product_id']; ?>"
+                                                    title="Add to Favorites">
+                                                    <i class="fas fa-heart"></i>
+                                                </button>
                                             </span>
                                         </div>
                                     </div>

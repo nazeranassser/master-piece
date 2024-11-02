@@ -61,8 +61,17 @@
                                             <span class="product-review-count">(<?= number_format($rating, 1); ?>)</span>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between">
-                                            <div class="product-price-custom"><?= number_format($product['product_price'], 2); ?>JD
-                                            </div>
+                                        <?php if ($product['product_discount'] > 0): ?>
+                                                    <?php
+                                                    $discountedPrice = $product['product_price'] - ($product['product_price'] * ($product['product_discount']));
+                                                    ?>
+                                                    <span class="original-price"><s style="color: red;"><?= number_format($product['product_price'], 2); ?>
+                                                            JD</s></span>
+                                                    <span class="discounted-price"><?= number_format($discountedPrice, 2); ?>
+                                                        JD</span>
+                                                <?php else: ?>
+                                                    <?= number_format($product['product_price'], 2); ?> JD
+                                                <?php endif; ?>
                                             <div class="action-btn-group d-flex">
                                                 <a href="cart/<?= $product['product_id'] ?>"
                                                     class="btn btn-outline-secondary btn-sm" data-tooltip="tooltip"
