@@ -69,10 +69,14 @@
                                                     data-placement="top" title="Add to Cart">
                                                     <i class="fas fa-shopping-cart"></i>
                                                 </a>
-                                                <button class="btn btn-outline-secondary btn-sm ms-2" data-tooltip="tooltip"
-                                                    data-placement="top" title="Add to Favorites">
-                                                    <i class="fas fa-heart"></i>
-                                                </button>
+                                                <button class="btn btn-outline-secondary btn-sm ms-2"
+                                                 data-tooltip="tooltip"
+                                                  data-placement="top"
+                                                 title="Add to Favorites"
+                                                  data-wishlist-button
+                                                  data-product-id="<?php echo $product['product_id']; ?>">
+                                                  <i class="fas fa-heart"></i>
+                                    </button>
                                             </div>
                                         </div>
                                     </div>
@@ -88,6 +92,9 @@
 
     <?php require 'views/partials/footer.php'; ?>
 
-    
+    <!--====== Add to Favorites ======-->
+
+    <script src="public/js/AddtoFavorites.js"></script>
+
 </body>
 </html>
