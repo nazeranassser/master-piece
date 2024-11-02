@@ -88,6 +88,7 @@ class ProductsController
           } else {
             $product_image = $_POST['image'];
           }
+          
           $data = [
             'product_name' => $_POST['product_name'],
             'product_description' => $_POST['product_description'],
@@ -116,9 +117,11 @@ class ProductsController
             } else {
               echo "حدث خطأ أثناء تحميل الصورة.";
             }
-          } else {
+        } else {
             $product_image = $_POST['image'];
           }
+          var_dump($product_image);
+          die();
           $data = [
             'product_name' => $_POST['product_name'],
             'product_description' => $_POST['product_description'],
@@ -135,6 +138,8 @@ class ProductsController
         header('location:/products');
         // else{
         //     header('location:/404');
+        }else {
+            header('location:/404');
         }
     }
 

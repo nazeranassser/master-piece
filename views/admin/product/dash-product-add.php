@@ -1,5 +1,7 @@
 <!--====== Main Header ======-->
-<?php include('views/partials/header_admin.php');?>
+<?php include('views/partials/header_admin.php');
+var_dump($_SESSION);
+?>
 
         <!--====== App Content ======-->
         <div class="app-content">
@@ -50,7 +52,7 @@
                                             <h1 class="dash__h1 u-s-m-b-14">Add new Product</h1>
 
                                             <span class="dash__text u-s-m-b-30"></span>
-                                            <form id="productForm" class="dash-address-manipulation" method='POST'  action='/create-product'>
+                                            <form class="dash-address-manipulation" method='POST' action='/create-product'>
                                                 <div class="gl-inline">
                                                     <div class="u-s-m-b-30">
                                                         <label class="gl-label" for="product-name">Product Name *</label>
@@ -93,7 +95,7 @@
                                                      <div class="upload-container">
                                                          <div id="drop-area" class="drop-area">
                                                              <p>Drag & Drop your images here or <span id="browse">Browse</span></p>
-                                                             <input type="file" id="fileElem" name="image" accept="image/*" style="display:none" required>
+                                                             <input type="file" id="fileElem" name="image" accept="image/*" style="display:none">
                                              
                                                          </div>
                                                  

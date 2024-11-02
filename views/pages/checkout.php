@@ -52,20 +52,25 @@
                     </thead>
                     <tbody>
                         <?php 
+                        // var_dump($cartItems2);
+                        // die();
                         ?>
-                        <?php foreach ($cartItems as $item): ?>
+                        <?php foreach ($cartItems2 as $item): ?>
                             <tr>
                                 <td><?php echo htmlspecialchars($item['product_name']); ?></td>
                                 <td><?php echo htmlspecialchars($item['quantity']); ?></td>
                                 <td>
                                     <?php
+                                    if($item['discount']){
+                                        $_SESSION['discount'] = $item['discount'];
+                                    }
                                     // echo "00000000000000000000000000";
                                     // var_dump($discounted_price);
                                     // die();
                                         if ($item['discount'] > 0):?>
                                         <span class="original-price"><s style="color: red;"><?= number_format($item['price'], 2); ?>
                                                 JD</s></span>
-                                        <span class="discounted-price"><?= number_format($discounted_price, 2); ?> JD</span>
+                                        <span class="discounted-price"><?=  number_format($item['discounted_price'], 2); ?> JD</span>
                                     <?php else: ?>
                                         <?= number_format($item['price'], 2); ?> JD
                                     <?php endif; ?>
@@ -88,7 +93,6 @@
     <h2 class="section-title">PAYMENT INFORMATION</h2>
     <form action="placeOrder" method="POST" class="payment-form">
         <div class="radio-box">
-            <?php $_SESSION['discount'] = $discounted_price;?>
             <input type="radio" id="cash-on-delivery" name="payment_method" value="cod" checked>
             <label for="cash-on-delivery">Cash on Delivery</label>
         </div>
