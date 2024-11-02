@@ -107,7 +107,7 @@ nav {
             </a>
         </div>
         <div class="icon nav-item" style="animation-delay: 0.7s;">
-        <a href='/cart/<?=$_SESSION['usersId']?>' style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <a href='/cart/' style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
         <img style="width:24px" src="/images/products/grocery-store.png" alt="">
                 <span class="icon-badge"><?php echo count($cartItems); ?></span>
             </a>
