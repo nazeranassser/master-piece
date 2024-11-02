@@ -6,26 +6,36 @@ use App\Models\Cart;
 use App\Models\Product;
 
 
-class CartsController {
+class CartsController
+{
     private $cartModel;
     private $productModel;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->cartModel = new Cart();
         $this->productModel = new Product();
     }
 
+    public function clearCart()
+    {
+        setcookie('cart', '', time() - 3600, '/');
+
+        header("Location: /cart/" . $_SESSION['usersId']);
+    }
+
     // Add item to cart and store it in cookies
-    public function addToCart($productId) {
+    public function addToCart($productId)
+    {
         // Initialize the cart from cookies or create a new array
         $cart = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];
-    
+
         // Fetch product details using the cart model
         $product = $this->cartModel->getProduct($productId);
-    
+
         if ($product) { // Ensure the product exists
             $stockQuantity = $product['product_quantity']; // Available stock in the database
-    
+
             // Check if the product is already in the cart
             if (isset($cart[$productId])) {
                 // Check if adding 1 more would exceed the available stock
@@ -48,36 +58,38 @@ class CartsController {
                 ];
             }
         }
-    
+
         // Update the cart cookie with the new cart contents
         setcookie('cart', json_encode($cart), time() + 3600, '/');
-        
+
         // Redirect to the cart page
         require("views/pages/cart.php");
         exit; // Ensure the script stops executing after redirection
     }
-    
-    
 
-    public function removeFromCart($productId) {
+
+
+    public function removeFromCart($productId)
+    {
         $cart = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];
-        
+
         if (isset($cart[$productId])) {
             unset($cart[$productId]);
             setcookie('cart', json_encode($cart), time() + 3600, '/');
         }
 
-        header("Location: cart.php");
+        header("Location: /cart/" . $_SESSION['usersId']);
     }
 
-    public function checkout() {
-        if (!isset($_SESSION['customer_id'])) {
+    public function checkout()
+    {
+        if (!isset($_SESSION['usersId'])) {
             header("Location: login.php");
             exit;
         }
 
         $cart = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];
-        $customerId = $_SESSION['customer_id'];
+        $customerId = $_SESSION['usersId'];
         $deliveryInfo = $this->cartModel->getCustomerInfo($customerId);
 
         // Calculate total
@@ -86,27 +98,39 @@ class CartsController {
             $orderTotal += $item['price'] * $item['quantity'];
         }
 
-        require 'views/checkout.php';
+        require 'views/pages/checkout.php';
     }
 
-    public function placeOrder() {
-        if (!isset($_SESSION['customer_id'])) {
+    public function placeOrder()
+    {
+        if (!isset($_SESSION['usersId'])) {
             header("Location: login.php");
             exit;
         }
 
         $cart = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];
-        $customerId = $_SESSION['customer_id'];
+        $customerId = $_SESSION['usersId'];
         $orderTotal = 0;
+        $orderTotalAfter = 0;
+        // $couponId = isset($_SESSION['coupon_id']) ? $_SESSION['coupon_id'] : null;
+
+        
+
 
         foreach ($cart as $item) {
-            $orderTotal += $item['price'] * $item['quantity'];
+            $orderTotal += ($item['price'] * $item['quantity']) + 4;
+        }
+        if ($_SESSION['discount']) {
+            $orderTotalAfter = $orderTotal - $_SESSION['discount'];
+        }
+        else{
+            $orderTotalAfter = $orderTotal;
         }
 
-        $orderId = $this->cartModel->createOrder($customerId, $orderTotal, $cart);
-        
+        $orderId = $this->cartModel->createOrder($customerId, $orderTotal, $cart, $orderTotalAfter);
+
         setcookie('cart', '', time() - 3600, '/');
-        
-        header("Location: order_confirmation.php?order_id=" . $orderId);
+
+        header("Location: /checkout");
     }
 }

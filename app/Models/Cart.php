@@ -21,18 +21,18 @@ class Cart extends Model {
         return $stmt->fetch(\PDO::FETCH_ASSOC); 
     }
 
-    public function createOrder($customerId, $orderTotal, $cartItems) {
+    public function createOrder($customerId, $orderTotal, $cartItems, $orderTotalAfter) {
         $this->db->beginTransaction();
 
         try {
             // Insert order into orders table
-            $stmt = $this->db->prepare("INSERT INTO orders (customer_id, total) VALUES (:customer_id, :total)");
-            $stmt->execute(['customer_id' => $customerId, 'total' => $orderTotal]);
+            $stmt = $this->db->prepare("INSERT INTO orders (customer_id, order_total_amount, order_total_amount_after) VALUES (:customer_id, :total , :total_after)");
+            $stmt->execute(['customer_id' => $customerId, 'total' => $orderTotal , 'total_after' => $orderTotalAfter]);
             $orderId = $this->db->lastInsertId();
 
             // Insert order items into order_items table
             foreach ($cartItems as $item) {
-                $stmt = $this->db->prepare("INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (:order_id, :product_id, :quantity, :price)");
+                $stmt = $this->db->prepare("INSERT INTO order_products (order_id, product_id, quantity, price) VALUES (:order_id, :product_id, :quantity, :price)");
                 $stmt->execute([
                     'order_id' => $orderId,
                     'product_id' => $item['product_id'],

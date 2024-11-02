@@ -29,5 +29,10 @@ class Coupons extends Model{
     public function deleteCoupon($id){
         return $this->delete($id);
     }
+    public function validateCoupon($code) {
+        $stmt = $this->db->prepare("SELECT coupon_id , coupon_amount FROM coupons WHERE coupon_value = :code");
+        $stmt->execute(['code' => $code]);
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
 }
 

@@ -67,4 +67,35 @@ class CouponsController{
 
     }
 
+    public function applyCoupon() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['coupon_code'])) {
+            $couponCode = trim($_POST['coupon_code']);
+            $coupon = $this->couponsModel->validateCoupon($couponCode);
+            
+            if ($coupon) {
+                // Coupon is valid
+                $discountAmount = $coupon['coupon_amount'];
+                $couponId = $coupon['coupon_id'];
+                $_SESSION['discount'] = $discountAmount; // Store discount in session
+                $_SESSION['coupon_code'] = $couponCode;
+                $_SESSION['coupon_id'] = $couponId;
+                // Redirect back to the cart or order page
+                header("Location: /checkout"); // Adjust path as needed
+                exit;
+            } else {
+                // Invalid coupon logic
+                $_SESSION['coupon_error'] = "Invalid coupon code.";
+                header("Location: /checkout"); // Adjust path as needed
+                exit;
+            }
+        }
+    }
+
+    public function removeCoupon() {
+        unset($_SESSION['discount']);
+        unset($_SESSION['coupon_code']); // Remove the coupon code
+        header("Location: /checkout"); // Adjust path as needed
+        exit;
+    }
+
 }

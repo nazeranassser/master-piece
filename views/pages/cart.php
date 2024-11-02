@@ -99,7 +99,7 @@
                                     <td>
                                         <div class="cart-table__del-wrap">
                                             <a class="far fa-trash-alt cart-table__delete-link"
-                                                href="CartController.php?action=removeFromCart&product_id=<?php echo htmlspecialchars($item['product_id']); ?>"></a>
+                                                href="/removeFromCart/<?php echo htmlspecialchars($item['product_id']); ?>"></a>
                                         </div>
                                     </td>
                                 </tr>
@@ -118,7 +118,7 @@
                         </a>
                     </div>
                     <div class="route-box__g2">
-                        <a class="route-box__link" href="clearCart">
+                        <a class="route-box__link" href="/clearCart">
                             <i class="fas fa-trash"></i>
                             <span>CLEAR CART</span>
                         </a>
@@ -131,7 +131,7 @@
 </div>
 <!-- Checkout button -->
 <div class="checkout-button-container">
-    <button class="checkout-button">Checkout</button>
+  <a href="/checkout">  <button class="checkout-button">Checkout</button></a>
 </div>
 
 

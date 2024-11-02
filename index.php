@@ -35,7 +35,11 @@ $router->add('reviews', ['controller' => 'Products', 'action' => 'viewProduct'])
 $router->add('clearCart', ['controller' => 'Carts', 'action' => 'clearCart']);
 $router->add('cart', ['controller' => 'Carts', 'action' => 'index']);
 $router->add('cart/{id:\d+}', ['controller' => 'Carts', 'action' => 'addToCart']);
-
+$router->add('removeFromCart/{id:\d+}', ['controller' => 'Carts', 'action' => 'removeFromCart']);
+$router->add('checkout', ['controller' => 'Carts', 'action' => 'checkout']);
+$router->add('applyCoupon', ['controller' => 'Coupons', 'action' => 'applyCoupon']);
+$router->add('removeCoupon', ['controller' => 'Coupons', 'action' => 'removeCoupon']);
+$router->add('placeOrder', ['controller' => 'Carts', 'action' => 'placeOrder']);
 
 /* -----------------------------------Orders Router---------------------------------- */
 
