@@ -132,8 +132,7 @@
 <form method="post" action="signup-action">
     <input type="hidden" name="type" value="register">
     
-    <input type="text" name="customerName" placeholder="Full name..." required> <!-- Added name attribute -->
-    <input type="text" name="customerUsername" placeholder="Username..." required> <!-- Changed to customerUsername for clarity -->
+    <input type="text" name="customerName" placeholder="Your name..." required> <!-- Added name attribute -->
     <input type="email" name="customerEmail" placeholder="Email..." required>
 
 
