@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="../../public/css/order.css">
 
 
-    <div class="order1">
+    <div class="order1" style=" padding-bottom: 90px;padding-top: 90px">
     <div class="order-container">
         <h1>Order Details</h1>
         <div class="order-info">
