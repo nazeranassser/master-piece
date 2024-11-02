@@ -2,71 +2,90 @@
 namespace App\Controllers;
 use App\Models\Review;
 use App\Models\OrderProduct;
+use App\Models\Product;
 
 class ReviewsController
 {
 
     private $reviewModel;
     private $orderProductModel;
+    private $productModel;
     public function __construct()
     {
         $this->reviewModel = new Review();
+        $this->orderProductModel = new OrderProduct();
+        $this->productModel = new Product();
     }
 
-    public function submitReview()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            session_start(); // Ensure the session is started
-            header('Content-Type: application/json'); // Set header for JSON response
-    
-            if (!isset($_SESSION['usersId'])) {
-                // User is not logged in
-                echo json_encode(['status' => 'error', 'message' => 'You need to log in before submitting a review.']);
-                exit;
-            }
-    
-            $product_id = $_POST['product_id'];
-            $customer_id = $_SESSION['usersId']; // Assuming the customer ID is stored in the session
-    
-            // Check if the user has purchased the product
-            $hasPurchased = $this->orderProductModel->checkPurchase($customer_id, $product_id);
-            if (!$hasPurchased) {
-                echo json_encode(['status' => 'error', 'message' => 'You need to purchase this product before submitting a review.']);
-                exit;
-            }
-    
-            // Sanitize inputs
-            $review_text = htmlspecialchars($_POST['review_text']);
-            $review_rating = $_POST['rating'];
-            $review_image = null;
-    
-            // Handle image upload if provided
-            if (isset($_FILES['review_image']) && $_FILES['review_image']['error'] === UPLOAD_ERR_OK) {
-                $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/public/images/reviews/';
-    
-                // Check if the directory exists, if not, create it
-                if (!is_dir($uploadDir)) {
-                    mkdir($uploadDir, 0755, true);
-                }
-    
-                $review_image = basename($_FILES['review_image']['name']);
-                $targetFile = $uploadDir . $review_image;
-    
-                if (!move_uploaded_file($_FILES['review_image']['tmp_name'], $targetFile)) {
-                    echo json_encode(['status' => 'error', 'message' => 'Failed to move uploaded file.']);
-                    exit;
-                }
-            }
-    
-            // Call the model method to insert the review
-            if ($this->reviewModel->insertReview($product_id, $customer_id, $review_text, $review_rating, $review_image)) {
-                echo json_encode(['status' => 'success', 'message' => 'Your review has been successfully submitted.']);
-            } else {
-                echo json_encode(['status' => 'error', 'message' => 'There was an error submitting your review. Please try again.']);
-            }
-            exit;
+    public function submitReview() {
+        session_start();
+        if (!isset($_SESSION['userId'])) {
+            $_SESSION['message'] = [
+                'type' => 'warning',
+                'text' => 'You need to log in before reviewing.',
+                'redirect' => '/login.php'
+            ];
+            header("Location: /product/" . $_POST['product_id']);
+            exit();
+        }
+
+        $userId = $_SESSION['userId'];
+        $productId = $_POST['product_id'];
+
+        // Check if the user purchased the product
+        if (!$this->orderProductModel->checkPurchase($userId, $productId)) {
+            $_SESSION['message'] = [
+                'type' => 'error',
+                'text' => 'You need to buy the product to review it.'
+            ];
+            header("Location: /product/" . $productId);
+            exit();
+        }
+
+        // Proceed with inserting the review
+        $reviewText = htmlspecialchars($_POST['review_text']);
+        $rating = (float)$_POST['rating'];  // Make sure to treat rating as a float
+        $reviewImage = $_FILES['review_image'];
+
+        $uploadPath = '/public/images/reviews/';
+        $uploadedImageName = '';
+
+        if ($reviewImage['size'] > 0) {
+            $uploadedImageName = time() . '_' . basename($reviewImage['name']);
+            move_uploaded_file($reviewImage['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . $uploadPath . $uploadedImageName);
+        }
+
+        $isInserted = $this->reviewModel->addReview($userId, $productId, $reviewText, $rating, $uploadedImageName);
+        
+        if ($isInserted) {
+            // Update the total review rating and count in the same controller method
+            $this->updateTotalReview($productId);
+            $_SESSION['message'] = [
+                'type' => 'success',
+                'text' => 'Your review has been submitted.'
+            ];
+        } else {
+            $_SESSION['message'] = [
+                'type' => 'error',
+                'text' => 'There was an issue submitting your review. Please try again.'
+            ];
+        }
+
+        header("Location: /product/" . $productId);
+        exit();
+    }
+
+    private function updateTotalReview($productId) {
+        
+        // Calculate the new average review rating
+        $averageRating = $this->reviewModel->calculateAverageRating($productId);
+
+        // Update the product's total review with the new average rating
+        if ($averageRating !== null) {
+            $this->reviewModel->updateProductReview($productId, $averageRating);
         }
     }
+   
     
 
 }

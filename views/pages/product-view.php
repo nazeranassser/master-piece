@@ -57,48 +57,48 @@ $customer_id = isset($_SESSION['usersId']) ? $_SESSION['usersId'] : null;
         </div>
     </div>
     <div class="u-s-m-t-30">
-        <h3>Customer Reviews</h3>
+    <h3>Customer Reviews</h3>
 
-        <!-- Form for submitting a review -->
-        <form class="review-form" id="reviewForm" action="/submitReview" method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
+    <!-- Form for submitting a review -->
+    <form class="review-form" id="reviewForm" action="/submitReview" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
 
-            <div class="u-s-m-b-15">
-                <label for="review-text">Your Review:</label>
-                <textarea id="review-text" name="review_text" required></textarea>
+        <div class="u-s-m-b-15">
+            <label for="review-text">Your Review:</label>
+            <textarea id="review-text" name="review_text" required></textarea>
+        </div>
+
+        <div class="u-s-m-b-15">
+            <label for="review-rating">Rating:</label>
+            <div class="star-rating">
+                <input type="radio" id="star5" name="rating" value="5" required />
+                <label for="star5" class="star">&#9733;</label>
+                <input type="radio" id="star4" name="rating" value="4" required />
+                <label for="star4" class="star">&#9733;</label>
+                <input type="radio" id="star3" name="rating" value="3" required />
+                <label for="star3" class="star">&#9733;</label>
+                <input type="radio" id="star2" name="rating" value="2" required />
+                <label for="star2" class="star">&#9733;</label>
+                <input type="radio" id="star1" name="rating" value="1" required />
+                <label for="star1" class="star">&#9733;</label>
             </div>
+        </div>
 
-            <div class="u-s-m-b-15">
-                <label for="review-rating">Rating:</label>
-                <div class="star-rating">
-                    <input type="radio" id="star5" name="rating" value="5" required />
-                    <label for="star5" class="star">&#9733;</label>
-                    <input type="radio" id="star4" name="rating" value="4" required />
-                    <label for="star4" class="star">&#9733;</label>
-                    <input type="radio" id="star3" name="rating" value="3" required />
-                    <label for="star3" class="star">&#9733;</label>
-                    <input type="radio" id="star2" name="rating" value="2" required />
-                    <label for="star2" class="star">&#9733;</label>
-                    <input type="radio" id="star1" name="rating" value="1" required />
-                    <label for="star1" class="star">&#9733;</label>
-                </div>
-            </div>
+        <div class="u-s-m-b-15">
+            <label for="review-image">Upload Image:</label>
+            <input type="file" id="review-image" name="review_image" accept="image/*">
+        </div>
 
-            <div class="u-s-m-b-15">
-                <label for="review-image">Upload Image:</label>
-                <input type="file" id="review-image" name="review_image" accept="image/*">
-            </div>
-
-            <div class="u-s-m-b-15">
-                <button type="submit" class="btn btn--e-brand-b-2">Submit Review</button>
-            </div>
-        </form>
-
+        <div class="u-s-m-b-15">
+            <button type="submit" class="btn btn--e-brand-b-2">Submit Review</button>
+        </div>
+    </form>
+</div>
 
         <h4>Past Reviews</h4>
         <div class="reviews-list">
             <?php
-            foreach ($reviews as $review) {
+            foreach ($reviews as $review) { 
                 echo '<div class="review-item">';
                 if ($review['review_image']) {
                     echo '<img src="/public/images/reviews/' . htmlspecialchars($review['review_image']) . '" alt="Review Image" class="review-image">';
@@ -153,57 +153,32 @@ $customer_id = isset($_SESSION['usersId']) ? $_SESSION['usersId'] : null;
     <!-- JavaScript to handle login check on form submission -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-  document.getElementById('reviewForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const formData = new FormData(this);
+    document.addEventListener('DOMContentLoaded', function () {
+        // Check if there's a session message
+        const sessionMessage = <?php echo json_encode($_SESSION['message'] ?? null); ?>;
 
-    fetch('/submitReview', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === 'success') {
-            Swal.fire({
-                icon: 'success',
-                title: 'Review Submitted!',
-                text: data.message,
-                confirmButtonText: 'OK'
-            }).then(() => {
-                window.location.reload(); // Reload the page or redirect as needed
-            });
-        } else if (data.status === 'not_logged_in') {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Not Logged In',
-                text: data.message,
-                confirmButtonText: 'Log In'
-            }).then(() => {
-                window.location.href = '/login'; // Redirect to the login page
-            });
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: data.message,
-                confirmButtonText: 'OK'
-            });
+        if (sessionMessage) {
+            const { type, text, redirect } = sessionMessage;
+
+            // Show SweetAlert based on the type of message
+            if (type === 'success') {
+                swal("Success!", text, "success").then(() => {
+                    if (redirect) {
+                        window.location.href = redirect;
+                    }
+                });
+            } else if (type === 'error' || type === 'warning') {
+                swal("Error!", text, "error").then(() => {
+                    if (redirect) {
+                        window.location.href = redirect;
+                    }
+                });
+            }
+            // Clear session message after displaying
+            <?php unset($_SESSION['message']); ?>
         }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'An unexpected error occurred. Please try again later.',
-            confirmButtonText: 'OK'
-        });
     });
-});
-
-
 </script>
-
 
 
     </body>

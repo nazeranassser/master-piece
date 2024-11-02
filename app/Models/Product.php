@@ -311,5 +311,18 @@ public function getProducts($search = '', $category = '', $sort = '') {
 
   return $stmt;
 }
+public function updateProductReview($productId) {
+  $stmt = $this->pdo->prepare("SELECT SUM(review_rating) AS totalRating, COUNT(*) AS reviewCount 
+                               FROM reviews WHERE product_id = ?");
+  $stmt->execute([$productId]);
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+  if ($result['reviewCount'] > 0) {
+      $averageRating = $result['totalRating'] / $result['reviewCount'];
+
+      $updateStmt = $this->pdo->prepare("UPDATE products SET total_review = ? WHERE product_ID = ?");
+      $updateStmt->execute([round($averageRating, 2), $productId]);
+  }
+}
 
 }
