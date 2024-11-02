@@ -1,7 +1,8 @@
 <?php 
-    include_once('views/partials/header.php');
+    include 'app/helpers/session_helper.php';
 
-    include_once 'app/helpers/session_helper.php';
+    include('views/partials/header.php');
+
 ?>
 
 <!DOCTYPE html>
@@ -123,7 +124,7 @@
     </style>
 </head>
 <body>
-
+<br>
 <h1 class="header">Please Signup</h1>
 
 <?php flash('register') ?>
@@ -154,7 +155,7 @@
 
     <button type="submit" name="submit">Sign Up</button>
 </form>
-
+<br>
 <script src="public/js/passwordStrength.js"></script>
 <script src="public/js/signupanimation.js"></script>
 

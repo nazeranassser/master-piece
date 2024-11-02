@@ -82,7 +82,7 @@ nav {
 <nav>
         <div class="logo-section">
             <a href="#" class="logo nav-item" style="animation-delay: 0.1s;">
-                <img src="/images/3-removebg-preview.png" style="margin-right: 10px; width:40px">
+                <!-- <img src="/images/3-removebg-preview.png" style="margin-right: 10px; width:40px"> -->
                 Revoly Cake
             </a>
         </div>
