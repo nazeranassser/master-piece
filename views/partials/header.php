@@ -96,6 +96,11 @@ nav {
 
     <div class="icons">
         <div class="icon nav-item" style="animation-delay: 0.6s;">
+            <a href="/allProducts" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <img style="width:24px" src="/public/images/magnifying-glass-2.png" alt="">
+            </a>
+        </div>
+        <div class="icon nav-item" style="animation-delay: 0.6s;">
             <a href="/wishlist" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
                 <img style="width:24px" src="/images/products/wishlist.png" alt="">
                 <span class="icon-badge">2</span>

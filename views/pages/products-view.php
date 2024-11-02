@@ -4,9 +4,9 @@
         <!-- Search Filters -->
         <div class="filters">
     <form method="GET" action="">
-        <input type="text" name="search" placeholder="Search for a product..." value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">
-        
-        <select name="category">
+        <input type="text" style="width:100%" name="search" placeholder="Search for a product..." value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">
+        <div style="width:100%">
+        <select style="width:50%" name="category">
             <option value="">All Categories</option>
             <?php foreach ($categories as $category): ?>
                 <option value="<?php echo htmlspecialchars($category['category_name']); ?>"
@@ -17,13 +17,13 @@
             <?php endforeach; ?>
         </select>
 
-        <select name="sort">
+        <select style="width:49%" name="sort">
             <option value="">Sort By</option>
             <option value="price_asc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'price_asc') ? 'selected' : ''; ?>>Price: Low to High</option>
             <option value="price_desc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'price_desc') ? 'selected' : ''; ?>>Price: High to Low</option>
             <option value="rating" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'rating') ? 'selected' : ''; ?>>Rating</option>
         </select>
-
+            </div>
         <button type="submit" class="btn">Apply Filters</button>
     </form>
 </div>
