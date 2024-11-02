@@ -103,7 +103,7 @@
 
                                                         <label class="gl-label" for="product_discount">Discount *</label>
 
-                                                        <input class="input-text input-text--primary-style" name='product_discount' type="number" id="product_discount" placeholder="" value='<?php echo $product['product_discount'];?>' required></div>
+                                                        <input class="input-text input-text--primary-style" name='product_discount' step="0.01" type="number" id="product_discount" placeholder="" value='<?php echo $product['product_discount'];?>' required></div>
                                                 </div>
                                                 <div class="gl-inline" style='display: flex;justify-content:center; padding-left:10px;padding-bottom:10px ;'>
                                                 <div class="upload-container">

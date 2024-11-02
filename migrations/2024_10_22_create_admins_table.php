@@ -8,7 +8,7 @@ class CreateAdminsTable {
     `admin_name` varchar(255) NOT NULL,
     `admin_email` varchar(255) NOT NULL,
     `admin_password` varchar(255) NOT NULL,
-    `is_active` BOOLEAN NOT NULL DEFAULT 0,
+    `is_active` BOOLEAN NOT NULL DEFAULT 1,
     `is_super` BOOLEAN NOT NULL DEFAULT 0,
     `created_at` timestamp NULL DEFAULT NULL,
     `updated_at` timestamp NULL DEFAULT NULL,
