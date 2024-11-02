@@ -230,6 +230,17 @@ class CustomersController {
             echo "Failed to add admin.";
         }
     }
+    function delete($id) {
+        $data = [
+            'is_active' => $_POST['is_active'],
+        ];
+        if ($this->customerModel->updateCustomer($id, $data)) {
+            // Redirect or show a success message
+            header("location:/admin/customers");
+        } else {
+            echo "Failed to add admin.";
+        }
+    }
 
     public function viewOrderDetails($order_id) {
         if (!isset($_SESSION['usersId'])) {

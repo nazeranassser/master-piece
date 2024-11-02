@@ -67,6 +67,13 @@
                                             
                                               
                                                   foreach($customers as $customer) {
+                                                    if($customer['is_active']==1){
+                                                        $block = "<input type='text' value='0' name='is_active' style='visibility: hidden;display: none;'>
+                                                            <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2'>Block</button>";
+                                                    }else{
+                                                        $block = "<input type='text' value='1' name='is_active' style='visibility: hidden;display: none;'>
+                                                            <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2'>Unblock</button>";
+                                                    }
                                                     echo "  <tr>
                                                     <form method='POST' action='/customer-details/".$customer['customer_id']."'>
                                                             <th>".$customer['customer_name']."</th>
@@ -74,9 +81,8 @@
                                                             <th>".$customer['customer_address1']."</th>
                                                             <th style='display: flex;''>
                                                             <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2' style='margin-right:4px ;'>Details</button></form>
-                                                            <form method='POST' action='customer/delete/".$customer['customer_id']."'>
-                                                            <input type='text' value='".$customer['customer_id']."' name='customer_delete' style='visibility: hidden;display: none;'>
-                                                            <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2'>Block</button></form></th>
+                                                            <form method='POST' action='/customer/delete/".$customer['customer_id']."'>".$block."
+                                                            </form></th>
                                                         </tr>";
                                                 }
                                                 ?>
