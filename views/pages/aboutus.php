@@ -63,7 +63,7 @@
                                     <div class="team-member__wrap">
                                         <div class="aspect aspect--bg-grey-fb aspect--square">
                                         
-                                            <img class="aspect__img team-member__img" src="../.." alt=""></div>
+                                            <img class="aspect__img team-member__img" src="../../images/our/issa.jpg" alt=""></div>
                                         <div class="team-member__social-wrap">
                                             <ul class="team-member__social-list">
                                                 <li>
@@ -83,7 +83,7 @@
                                     </div>
                                     <div class="team-member__info">
 
-                                        <span class="team-member__name">Ahnan Bashri</span>
+                                        <span class="team-member__name">issa sroor</span>
 
                                         <span class="team-member__job-title">Manager</span></div>
                                 </div>
@@ -93,7 +93,7 @@
                                     <div class="team-member__wrap">
                                         <div class="aspect aspect--bg-grey-fb aspect--square">
 
-                                            <img class="aspect__img team-member__img" src="images/about/member-2.jpg" alt=""></div>
+                                            <img class="aspect__img team-member__img" src="../../images/our/loay.jpg" alt=""></div>
                                         <div class="team-member__social-wrap">
                                             <ul class="team-member__social-list">
                                                 <li>
@@ -113,7 +113,7 @@
                                     </div>
                                     <div class="team-member__info">
 
-                                        <span class="team-member__name">Joseph Min</span>
+                                        <span class="team-member__name">loay alrwedat</span>
 
                                         <span class="team-member__job-title">UI, Designer</span></div>
                                 </div>
@@ -123,7 +123,7 @@
                                     <div class="team-member__wrap">
                                         <div class="aspect aspect--bg-grey-fb aspect--square">
 
-                                            <img class="aspect__img team-member__img" src="images/about/member-3.jpg" alt=""></div>
+                                            <img class="aspect__img team-member__img" src="../../images/our/salem.png" alt=""></div>
                                         <div class="team-member__social-wrap">
                                             <ul class="team-member__social-list">
                                                 <li>
@@ -140,7 +140,6 @@
                                                     <a class="s-linked--bgcolor-hover" href="#"><i class="fab fa-linkedin"></i></a></li>
                                             </ul>
                                         </div>
-                <img src="C:\wamp64\www\cakeProject\public\images\categories\gf1.jpg" alt="">
 
                                     </div>
                                     <div class="team-member__info">
@@ -155,7 +154,7 @@
                                     <div class="team-member__wrap">
                                         <div class="aspect aspect--bg-grey-fb aspect--square">
 
-                                            <img class="aspect__img team-member__img" src="images/about/member-4.jpg" alt=""></div>
+                                            <img class="aspect__img team-member__img" src="../../images/our/shehab.jpg" alt=""></div>
                                         <div class="team-member__social-wrap">
                                             <ul class="team-member__social-list">
                                                 <li>
@@ -172,12 +171,13 @@
                                                     <a class="s-linked--bgcolor-hover" href="#"><i class="fab fa-linkedin"></i></a></li>
                                             </ul>
                                         </div>
+
                                     </div>
                                     <div class="team-member__info">
 
-                                        <span class="team-member__name">Klronr Jim</span>
+                                        <span class="team-member__name">Mike Pipe</span>
 
-                                        <span class="team-member__job-title">Team Leader</span></div>
+                                        <span class="team-member__job-title">App, Architect</span></div>
                                 </div>
                             </div>
                         </div>

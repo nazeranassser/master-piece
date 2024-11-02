@@ -268,4 +268,7 @@ class CustomersController {
     function customerDetails($id){
         echo $id;
     }
+    function respass(){
+        require 'views/profile/profile.respass.php';
+    }
 }

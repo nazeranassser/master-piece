@@ -125,7 +125,6 @@ nav {
     <!-- Menu Toggle Icon for Mobile, aligned to the right -->
     
 </nav>
-<?= var_dump($_SESSION); ?>
 
 <script>
 function toggleMenu() {
