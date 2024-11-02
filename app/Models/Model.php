@@ -93,7 +93,7 @@ class Model {
         $stmt = $this->db->prepare("SELECT * FROM $this->table WHERE $column = :value");
         $stmt->bindParam(':value', $value);
         $stmt->execute();
-        return $stmt->fetch();
+        return $stmt->fetchAll();
     }
     
 }

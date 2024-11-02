@@ -20,6 +20,10 @@ class Admin extends Model{
         return $this->get($id);
     }
 
+    public function findByFilter($active) {
+        return $this->findBy('is_active',$active);
+    }
+
     public function findByEmail($email) {
         return $this->findBy('admin_email',$email);
     }

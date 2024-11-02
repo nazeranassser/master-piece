@@ -67,17 +67,16 @@
                                                          <input class="input-text input-text--primary-style" name="coupon_expire" type="date" id="coupon_expire" placeholder="2025-09-18">
                                                     </div>
 
-                                                        <div class="u-s-m-b-30">
-
+                                                    <div class="u-s-m-b-30">
                                                             <!--====== Select Box ======-->
-                                                            
-                                                            <label class="gl-label" for="address-country">Coupon Active *</label><select class="select-box select-box--primary-style" id="address-country">
-                                                                <option selected value="1">Active</option>
-                                                                <option value="0">DeActivate</option>
-                                                            </select>
+                                                        <label class="gl-label" for="address-country">Coupon Active *</label>
+                                                        <select class="select-box select-box--primary-style" id="address-country">
+                                                            <option selected value="1">Active</option>
+                                                            <option value="0">DeActivate</option>
+                                                        </select>
                                                             <!--====== End - Select Box ======-->
-                                                        </div>
                                                     </div>
+                                                </div>
 
                                                 <button class="btn btn--e-brand-b-2" type="submit">SAVE</button>
                                             </form>

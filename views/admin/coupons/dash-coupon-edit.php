@@ -1,11 +1,6 @@
 <?php include('views/partials/header_admin.php');?>
 
         <!--====== Main Header ======-->
-       <?php
-       include('navbar.php');
-       ?>
-        <!--====== End - Main Header ======-->
-
 
         <!--====== App Content ======-->
         <div class="app-content">
@@ -45,7 +40,7 @@
 
                                     <!--====== Dashboard Features ======-->
                                    <?php
-                                   include('dashboard_features.php');?>
+                                    include('views/admin/dashboard_features.php');?>
                                     <!--====== End - Dashboard Features ======-->
                                 </div>
                                 <div class="col-lg-9 col-md-12">
@@ -56,27 +51,40 @@
                                             <form class="dash-address-manipulation" method="POST" action="">
                                                 <div class="gl-inline">
                                                     <div class="u-s-m-b-30">
-                                                        <label class="gl-label" for="coupon_amount">Coupon Amount *</label>
-
-                                                        <input style="" class="input-text input-text--primary-style" name="coupon_amount" step="0.01" type="number" id="coupon_amount" placeholder="Coupon Amount" value="<?php echo $_POST['coupon_amount']?>"></div>
+                                                        <label class="gl-label" for="coupon_amount">Coupon Name *</label>
+                                                        <input style="" class="input-text input-text--primary-style" name="coupon_name" step="0.01" type="text" id="coupon_name" placeholder="Coupon Name" value="<?php echo $coupon['coupon_value']?>">
+                                                    </div>
                                                     <div class="u-s-m-b-30">
+                                                        <label class="gl-label" for="coupon_amount">Coupon Amount *</label>
+                                                        <input style="" class="input-text input-text--primary-style" name="coupon_amount" step="0.01" type="number" id="coupon_amount" placeholder="Coupon Amount" value="<?php echo $coupon['coupon_amount']?>">
+                                                    </div>
 
-                                                        <label class="gl-label" for="coupon_expire">Coupon Expire *</label>
-
-                                                        <input class="input-text input-text--primary-style" name="coupon_expire" type="date" id="coupon_expire" placeholder="2025-09-18" value="<?php echo $_POST['coupon_expire']?>"></div>
-                                                        <input class="input-text input-text--primary-style" name="coupon_id" type="hidden" id="coupon_ID" placeholder="2025-09-18" value="<?php echo $_POST['edit']?>">
                                                 </div>
-                                                <div class="gl-inline">
+                                                    <div class="gl-inline">
+                                                        <div class="u-s-m-b-30">
+
+                                                            <label class="gl-label" for="coupon_expire">Coupon Expire *</label>
+                                                            
+                                                            <input class="input-text input-text--primary-style" name="coupon_expire" type="date" id="coupon_expire" placeholder="2025-09-18" value="<?php echo $coupon['coupon_expire']?>">
+                                                            <input class="input-text input-text--primary-style" name="coupon_id" type="hidden" id="coupon_ID" placeholder="2025-09-18" value="<?php echo $coupon['coupon_id']?>">
+                                                        </div>
                                                         <div class="u-s-m-b-30">
 
                                                             <!--====== Select Box ======-->
                                                             
                                                             <label class="gl-label" for="address-country">Coupon Active *</label><select class="select-box select-box--primary-style" id="address-country">
-                                                                <option selected value="1">Active</option>
-                                                                <option value="0">DeActivate</option>
+                                                            <option value="1" 
+                                                                <?= isset($_GET['active']) && $_GET['active'] == 1 ? 'selected' : '' ?>>
+                                                                Active Admins
+                                                            </option>
+                                                            <option value="false" 
+                                                                <?= isset($_GET['active']) && $_GET['active'] == 'false' ? 'selected' : '' ?>>
+                                                                Deactivate Admins
+                                                            </option>
                                                             </select>
                                                             <!--====== End - Select Box ======-->
                                                         </div>
+                                                        
                                                     </div>
 
                                                 <button class="btn btn--e-brand-b-2" type="submit">SAVE</button>

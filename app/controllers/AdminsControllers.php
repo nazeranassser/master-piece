@@ -106,6 +106,17 @@ class AdminsController {
         require 'views/admin/admins/dash-admin-edit.php';
     }
 
+    public function delete($id){
+        // echo $id;
+        // var_dump($_GET);
+        // die();
+        $data = [
+            'is_active' => $_GET['admin_status'],
+        ];
+        $this->adminModel->update($id,$data);
+        header('location:/admins');
+    }
+
     public function add() {
         if(isset($_SESSION['is_super']) && $_SESSION['is_super']==1){
         require 'views/admin/admins/dash-admin-add.php';}
@@ -167,6 +178,20 @@ class AdminsController {
         } else {
             echo "Failed to add admin.";
         }
+    }
+
+    public function filter() {
+        $activeFilter = $_GET['active'] ?? null;
+        echo "Product ID: " . $activeFilter;
+        // die();
+        if($activeFilter && $activeFilter!='all'){
+            $admins = $this->adminModel->findByFilter($activeFilter);
+            require 'views/admin/admins/dash-admins.php';
+        }else{
+            $admins = $this->adminModel->getAll();
+            require 'views/admin/admins/dash-admins.php';
+        }
+       
     }
 
     public function login(){

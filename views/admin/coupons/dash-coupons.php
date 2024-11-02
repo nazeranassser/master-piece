@@ -76,7 +76,7 @@
                                                 
                                                   foreach($coupons as $coupon){
                                                     echo "  <tr>
-                                                         <form method='POST' action='dash-coupon-edit.php'>
+                                                         <form method='POST' action='coupon-edit/".$coupon['coupon_id']."'>
                                                             <input type='hidden' value='".$coupon['coupon_id']."' name='coupon_ID''>
                                                             <th>".$coupon['coupon_value']."<input type='hidden' value='".$coupon['coupon_value']."' name='coupon_ID''></th>
                                                             <th>".$coupon['coupon_amount']." JD<input type='hidden' value='".$coupon['coupon_amount']."' name='coupon_amount''></th>

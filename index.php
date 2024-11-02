@@ -61,7 +61,7 @@ $router->add('wishlist/check', ['controller' => 'Wishlist', 'action' => 'check']
 
 /* -----------------------------------Admins Router---------------------------------- */
 $router->add('dash', ['controller' => 'Admins', 'action' => 'index']);// dashboard-admin.php "/"
-$router->add('admins', ['controller' => 'Admins', 'action' => 'get']);// dash-admins.php
+// $router->add('admins', ['controller' => 'Admins', 'action' => 'get']);// dash-admins.php
 $router->add('add-admin', ['controller' => 'Admins', 'action' => 'add']);// dash-admin-add.php
 $router->add('edit-admin', ['controller' => 'Admins', 'action' => 'edit']);// dash-admin-edit.php
 $router->add('register', ['controller' => 'Admins', 'action' => 'register']);//admins-controllers->register()
@@ -70,7 +70,8 @@ $router->add('admin-login', ['controller' => 'Admins', 'action' => 'index']);
 $router->add('admin-login', ['controller' => 'Admins', 'action' => 'loginPage']);
 $router->add('login-admin', ['controller' => 'Admins', 'action' => 'login']);
 $router->add('edit-admin/{id:\d+}', ['controller' => 'Admins', 'action' => 'getById']);
-// $router->add('edit-admin/{id:\d+}', ['controller' => 'Admins', 'action' => 'editPage']);
+$router->add('delete-admin/{id:\d+}', ['controller' => 'Admins', 'action' => 'delete']);
+$router->add('admins', ['controller' => 'Admins', 'action' => 'filter']);
 
 
 /* -----------------------------------Customers Router---------------------------------- */
@@ -99,6 +100,7 @@ $router->add('coupons', ['controller' => 'Coupons', 'action' => 'get']);
 $router->add('coupons-add', ['controller' => 'Coupons', 'action' => 'addPage']);
 $router->add('new_coupon', ['controller' => 'Coupons', 'action' => 'add']);
 $router->add('coupon-delete', ['controller' => 'Coupons', 'action' => 'delete']);
+$router->add('coupon-edit/{id:\d+}', ['controller' => 'Coupons', 'action' => 'editPage']);
 
 
 /* -----------------------------------Reviews Router---------------------------------- */

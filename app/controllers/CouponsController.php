@@ -29,6 +29,15 @@ class CouponsController{
             }
     }
 
+    public function editPage($id){
+        if(isset($_SESSION['admin_id'])){
+            $coupon = $this->couponsModel->findById($id);
+            require 'views/admin/coupons/dash-coupon-edit.php';}
+            else{
+                require 'views/pages/404.php';
+            }
+    }
+
     function add(){
 
         $data = [
