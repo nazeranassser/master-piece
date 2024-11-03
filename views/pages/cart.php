@@ -140,7 +140,7 @@
 </div>
 <!-- Checkout button -->
 <div class="checkout-button-container">
-  <a href="/checkout">  <button class="checkout-button">Checkout</button></a>
+  <a href="/checkout"><button class="checkout-button">Checkout</button></a>
 </div>
 
 

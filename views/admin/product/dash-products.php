@@ -18,10 +18,10 @@
                                 <ul class="breadcrumb__list">
                                     <li class="has-separator">
 
-                                        <a href="index.php">Home</a></li>
+                                        <a href="dash">Home</a></li>
                                     <li class="is-marked">
 
-                                        <a>Admins</a></li>
+                                        <a>Products</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                                                     
                                                          <form method='POST' action='/update_product/".$product['product_id']."'>
                                                             <th><a href='/update_product/".$product['product_id']."'><div  class='description__img-wrap'>
-                                                            <img class='u-img-fluid' style='border-radius: 10000px;width: 90px;height: 90px;' src='/".$product['product_image']."' alt=''></div></a></th>
+                                                            <img class='u-img-fluid' style='border-radius: 10000px;width: 90px;height: 90px;' src='public/images/categories/".$product['product_image']."' alt=''></div></a></th>
                                                             <th>".$product['product_name']."</th>
                                                             <th>".$product['product_price']."</th>
                                                             <th>".$product['product_quantity']."</th>

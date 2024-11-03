@@ -18,7 +18,7 @@
                                 <ul class="breadcrumb__list">
                                     <li class="has-separator">
 
-                                        <a href="index.php">Home</a></li>
+                                        <a href="/dash">Home</a></li>
                                     <li class="is-marked">
 
                                         <a >Edit Product</a></li>

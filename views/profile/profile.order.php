@@ -47,7 +47,7 @@
 
                                                 <div class="order-content">
                                                     <div class="product-summary">
-                                                        <img src="<?php echo htmlspecialchars($product_images[0]); ?>" alt="Product Image">
+                                                        <img src="public/images/categories/<?php echo htmlspecialchars($product_images[0]); ?>" alt="Product Image">
                                                         <p><?php echo htmlspecialchars($product_names[0]); ?></p>
                                                         <?php if (count($product_names) > 1): ?>
                                                             <span>+ <?php echo count($product_names) - 1; ?> more items</span>

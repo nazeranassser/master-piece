@@ -9,7 +9,7 @@ class ProductsController
 {
     private $productModel;
     private $orderProductModel;
-    public $uploadDir = 'images/products/';
+    public $uploadDir = 'public/images/categories/';
     public $allowedTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
     public function __construct()
     {
@@ -81,7 +81,7 @@ class ProductsController
             $targetFile = $this->uploadDir . $fileName;
       
             if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
-              $product_image = 'images/products/' . $fileName;
+              $product_image = 'public/images/categories/' . $fileName;
             } else {
               echo "حدث خطأ أثناء تحميل الصورة.";
             }
@@ -113,15 +113,15 @@ class ProductsController
             $targetFile = $this->uploadDir . $fileName;
       
             if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
-              $product_image = 'images/products/' . $fileName;
+              $product_image = '/public/images/categories/' . $fileName;
             } else {
               echo "حدث خطأ أثناء تحميل الصورة.";
             }
         } else {
             $product_image = $_POST['image'];
           }
-          var_dump($product_image);
-          die();
+        //   var_dump($product_image);
+        //   die();
           $data = [
             'product_name' => $_POST['product_name'],
             'product_description' => $_POST['product_description'],

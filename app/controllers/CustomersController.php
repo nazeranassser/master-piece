@@ -75,7 +75,7 @@ class CustomersController {
             'customer_address1' => trim($_POST['customerAddress']),
             'customer_address2' => trim($_POST['customerAddress2']),
             'customer_phone' => trim($_POST['customerPhone']),
-            'customer_image' => trim('images/products/671fb3380fb81_user.png'),
+            'customer_image' => trim('images/user.png'),
         ];
         // Validate inputs
         if(empty($data['customer_email']) || empty($data['customer_name']) || 
@@ -225,6 +225,7 @@ class CustomersController {
         ];
         if ($this->customerModel->updateCustomer($_SESSION['usersId'], $data)) {
             // Redirect or show a success message
+            $_SESSION['customerImage']= $customer_image;
             header("location:/profile-main");
         } else {
             echo "Failed to add admin.";

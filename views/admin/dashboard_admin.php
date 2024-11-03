@@ -13,7 +13,7 @@
                             <div class="breadcrumb__wrap">
                                 <ul class="breadcrumb__list">
                                     <li class="has-separator">
-                                        <a href="index.php">Home</a>
+                                        <a href="dash">Home</a>
                                     </li>                                      
                                 </ul>
                             </div>
@@ -61,7 +61,7 @@
                                                                                             
                                                             //  $sales = new sales();
                                                             //  $sales_total = $sales->totalSales();
-                                                             print_r($total[0]['total']);
+                                                            echo number_format($total[0]['total']);
                                                             ?> JD</h1>
                                                             <br>
                                                             <span class="dash__text">From <?php echo date('Y-m-d', strtotime('-30 days'));?></span>

@@ -104,7 +104,7 @@
                                                 <div class="col-lg-4 u-s-m-b-30">
                                                     <h2 class="dash__h2 u-s-m-b-8">image</h2>
 
-                                                   <img src="<?php echo $customer['customer_image'] ?>" alt="" style="border-radius: 60px;width:60px;"> 
+                                                   <img src="<?php echo $customer['customer_image']; ?>" alt="" style="border-radius: 60px;width:60px;"> 
                                                     <div class="dash__link dash__link--secondary">
 
                                                         <a href="#"></a></div>

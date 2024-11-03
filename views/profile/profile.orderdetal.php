@@ -32,7 +32,7 @@
                     $grand_total += $item_total;
                 ?>
                     <tr>
-                        <td><img src="<?php echo htmlspecialchars($item['product_image']); ?>" alt="<?php echo htmlspecialchars($item['product_name']); ?>"></td>
+                        <td><img src="/public/images/categories/<?php echo htmlspecialchars($item['product_image']); ?>" alt="<?php echo htmlspecialchars($item['product_name']); ?>"></td>
                         <td><?php echo htmlspecialchars($item['product_name']); ?></td>
                         <td><?php echo htmlspecialchars($item['quantity']); ?></td>
                         <td>$<?php echo number_format($item['product_price'], 2); ?></td>

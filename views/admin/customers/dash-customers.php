@@ -16,10 +16,10 @@
                                 <ul class="breadcrumb__list">
                                     <li class="has-separator">
 
-                                        <a href="index.html">Home</a></li>
+                                        <a href="/dash">Home</a></li>
                                     <li class="is-marked">
 
-                                        <a href="dash-address-book.php">Customers</a></li>
+                                        <a>Customers</a></li>
                                 </ul>
                             </div>
                         </div>

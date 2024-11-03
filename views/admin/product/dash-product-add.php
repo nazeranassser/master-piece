@@ -1,6 +1,6 @@
 <!--====== Main Header ======-->
 <?php include('views/partials/header_admin.php');
-var_dump($_SESSION);
+// var_dump($_SESSION);
 ?>
 
         <!--====== App Content ======-->
@@ -17,10 +17,10 @@ var_dump($_SESSION);
                                 <ul class="breadcrumb__list">
                                     <li class="has-separator">
 
-                                        <a href="index.html">Home</a></li>
+                                        <a href="/dash">Home</a></li>
                                     <li class="is-marked">
 
-                                        <a href="dash-address-add.html">My Account</a></li>
+                                        <a href="">Add Product</a></li>
                                 </ul>
                             </div>
                         </div>

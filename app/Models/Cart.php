@@ -25,9 +25,10 @@ class Cart extends Model {
         $this->db->beginTransaction();
 
         try {
+            $date = date('Y-m-d H:m:s');
             // Insert order into orders table
-            $stmt = $this->db->prepare("INSERT INTO orders (customer_id, order_total_amount, order_total_amount_after) VALUES (:customer_id, :total , :total_after)");
-            $stmt->execute(['customer_id' => $customerId, 'total' => $orderTotal , 'total_after' => $orderTotalAfter]);
+            $stmt = $this->db->prepare("INSERT INTO orders (customer_id, order_total_amount, order_total_amount_after,created_at) VALUES (:customer_id, :total , :total_after,:date)");
+            $stmt->execute(['customer_id' => $customerId, 'total' => $orderTotal , 'total_after' => $orderTotalAfter, 'date' => $date]);
             $orderId = $this->db->lastInsertId();
 
             // Insert order items into order_items table
