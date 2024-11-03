@@ -17,6 +17,18 @@ class Category extends Model{
   public function getAll(){
       return $this->get();
   }
+
+  public function updateCategory($id,$data){
+    return $this->update($id,$data);
+}
+
+public function createCategory($data){
+    return $this->create($data);
+}
+
+public function deleteCategory($id){
+    return $this->delete($id);
+}
    
 }
   

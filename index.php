@@ -114,6 +114,16 @@ $router->add('submitReview', ['controller' => 'Reviews', 'action' => 'submitRevi
 
 $router->add('messages', ['controller' => 'Messages', 'action' => 'get']);
 
+/**------------------------------------------------------------------------------- */
+
+
+$router->add('category-add', ['controller' => 'Categories', 'action' => 'addPage']);
+$router->add('new_category', ['controller' => 'Categories', 'action' => 'add']);
+$router->add('categories', ['controller' => 'Categories', 'action' => 'get']);
+$router->add('category-delete', ['controller' => 'Categories', 'action' => 'delete']);
+
+
+
 
 
 // Dispatch the request

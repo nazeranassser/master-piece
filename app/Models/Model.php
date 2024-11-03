@@ -80,9 +80,11 @@ class Model {
 
     // DELETE: Delete a record by ID
     public function delete($id) {
-        var_dump($id);
         $table_id = rtrim($this->table,'s');
         $table_id .="_id";
+        if($table_id == 'categorie_id'){
+            $table_id='category_id';
+        }
         $stmt = $this->db->prepare("DELETE FROM $this->table WHERE $table_id = :id");
         $stmt->bindParam(':id', $id);
         return $stmt->execute();
