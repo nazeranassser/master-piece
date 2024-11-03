@@ -74,11 +74,23 @@ class CategoriesController
 
     function updateCategory()
     {
+        if (isset($_FILES['image']) && in_array($_FILES['image']['type'], $this->allowedTypes)) {
+            $fileName = uniqid() . '' . basename($_FILES['image']['name']);
+            $targetFile = $this->uploadDir . $fileName;
+    
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
+                $category_image =  $fileName;
+            } else {
+                echo "Error uploading image.";
+                
+            }
+        } else {
+            $category_image = $_POST['image'] ?? null;
+        }
         $id = $_POST['category_id'];
         $data = [
-            'category_value' => $_POST['category_name'],
-            'category_amount' => $_POST['category_amount'],
-            'category_expire' => $_POST['category_expire'],
+            'category_name' => $_POST['category_name'],
+            'category_image' => $category_image,
             // 'created_at' => date("Y/m/d h:m:s"),
         ];
         if ($this->categoriesModel->update($id, $data)) {

@@ -14,6 +14,10 @@ class Category extends Model{
       parent::__construct('categories');
   }
 
+  public function findById($id) {
+    return $this->get($id);
+}
+
   public function getAll(){
       return $this->get();
   }

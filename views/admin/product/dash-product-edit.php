@@ -115,7 +115,7 @@
                                             
                                                     <!-- Preview and confirmation buttons -->
                                                     <div id="preview-container" class="preview-container" style="display:block;">
-                                                        <img id="preview-image" src='/<?php echo $product['product_image']?>' >
+                                                        <img id="preview-image" src='/public/images/categories/<?php echo $product['product_image']?>' >
                                                         <div>
                                                             <a class="btn-cancel btn btn--e-brand-b-2" id="cancel-btn">Delete Image</a>
                                                         </div>

@@ -121,6 +121,8 @@ $router->add('category-add', ['controller' => 'Categories', 'action' => 'addPage
 $router->add('new_category', ['controller' => 'Categories', 'action' => 'add']);
 $router->add('categories', ['controller' => 'Categories', 'action' => 'get']);
 $router->add('category-delete', ['controller' => 'Categories', 'action' => 'delete']);
+$router->add('category-edit/{id:\d+}', ['controller' => 'Categories', 'action' => 'editPage']);
+$router->add('category/update', ['controller' => 'Categories', 'action' => 'updateCategory']);
 
 
 

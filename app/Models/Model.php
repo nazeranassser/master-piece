@@ -46,6 +46,9 @@ class Model {
         if ($id) {
             $table_id = rtrim($this->table,'s');
             $table_id = $table_id."_id";
+            if($table_id == 'categorie_id'){
+                $table_id='category_id';
+            }
             $stmt = $this->db->prepare("SELECT * FROM $this->table WHERE $table_id = :id");
             $stmt->bindParam(':id', $id);
             $stmt->execute();
@@ -60,6 +63,9 @@ class Model {
         // Prepare SQL with column placeholders for each field
         $table_id = rtrim($this->table,'s');
         $table_id = $table_id."_id";
+        if($table_id == 'categorie_id'){
+            $table_id='category_id';
+        }
         $setString = '';
         foreach ($data as $key => $value) {
             $setString .= "$key = :$key, ";

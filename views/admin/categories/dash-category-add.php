@@ -15,9 +15,9 @@
                                 <ul class="breadcrumb__list">
                                     <li class="has-separator">
 
-                                        <a href="index.html">Home</a></li>
+                                        <a href="/dash">Home</a></li>
                                     <li class="is-marked">
-                                        <a href="dash-address-add.html">Add Admins</a></li>
+                                        <a href="">Add Category</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -46,7 +46,7 @@
                                 <div class="col-lg-9 col-md-12">
                                     <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white">
                                         <div class="dash__pad-2">
-                                            <h1 class="dash__h1 u-s-m-b-14" style="padding-bottom: 10px;">Add new Coupon</h1>
+                                            <h1 class="dash__h1 u-s-m-b-14" style="padding-bottom: 10px;">Add new Category</h1>
 
                                             <form class="dash-address-manipulation" method="POST" action="/new_category">
                                                 <div class="gl-inline">

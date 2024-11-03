@@ -20,7 +20,7 @@
                                         <a href="index.html">Home</a></li>
                                     <li class="is-marked">
 
-                                        <a href="dash-address-book.php">Admins</a></li>
+                                        <a href="dash-address-book.php">Categories</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
                                                 
                                                   foreach($categories as $category){
                                                     echo "  <tr>
-                                                         <form method='POST' action='coupon-edit/".$category['category_id']."'>
+                                                         <form method='POST' action='category-edit/".$category['category_id']."'>
                                                             <input type='hidden' value='".$category['category_id']."' name='category_id''>
                                                             <th>".$category['category_name']."<input type='hidden' value='".$category['category_name']."' name='category_name''></th>
                                                             <th><a href='/update_product/".$category['category_id']."'><div  class='description__img-wrap'>
