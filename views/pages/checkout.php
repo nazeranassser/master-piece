@@ -80,15 +80,17 @@
                 <p class="order-total"><strong>Subtotal:</strong> <?php echo number_format($orderTotal, 2); ?>JD</p>
                 <p class="order-total"><strong>Shipping:</strong> 2.00JD</p>
                 <p class="order-total"><strong>Total:</strong> <?php echo number_format($total, 2); ?>JD</p>
-                <?php if (isset($_SESSION['coupon'])): ?>
+                <!-- <?php if (isset($_SESSION['coupon'])): ?>
                     <p class="order-total"><strong>Coupon Discount:</strong>
                         -<?php echo number_format($_SESSION['coupon'], 2); ?>JD</p>
-                <?php endif; ?>
-                <form id="coupon-form" method="POST">
+                <?php endif; ?> -->
+                <!-- <form id="coupon-form" method="POST">
                     <input type="text" id="coupon_code" name="coupon_code" placeholder="Enter coupon code" required>
                     <button type="button" onclick="applyCoupon()" id="apply-coupon" class="btn">Apply</button>
+                    <?php if(isset($_SESSION['coupon'])):?>
                    <button type="button" id="remove-coupon" class="btn d-none">Remove</button>
-                </form>
+                <?php endif;?>
+                </form> -->
 
 
             <?php else: ?>
@@ -259,8 +261,9 @@ document.getElementById('apply-coupon').addEventListener('click', function() {
         if (data.success) {
             alert(data.message);
             // Hide the "Apply" button and show the "Remove" button logic
-            document.getElementById('apply-coupon').classList.add('d-none');
-            document.getElementById('remove-coupon').classList.remove('d-none');
+            document.getElementById('apply-coupon').classList.remove('d-none');
+            document.getElementById('remove-coupon').classList.add('d-none');
+            alert('Coupon applied');
             location.reload(); // Reload to reflect the coupon changes
         } else {
             alert(data.message);
@@ -275,8 +278,8 @@ document.getElementById('apply-coupon').addEventListener('click', function() {
 document.getElementById('remove-coupon').addEventListener('click', function() {
     // Logic to remove coupon session or reset the form
     form.reset();
-    document.getElementById('apply-coupon').classList.remove('d-none');
-    document.getElementById('remove-coupon').classList.add('d-none');
+    document.getElementById('apply-coupon').classList.add('d-none');
+    document.getElementById('remove-coupon').classList.remove('d-none');
     alert('Coupon removed');
     location.reload();
 });
