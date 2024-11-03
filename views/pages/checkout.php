@@ -51,9 +51,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php 
-                        // var_dump($cartItems2);
-                        // die();
+                        <?php
+
                         ?>
                         <?php foreach ($cartItems2 as $item): ?>
                             <tr>
@@ -61,16 +60,14 @@
                                 <td><?php echo htmlspecialchars($item['quantity']); ?></td>
                                 <td>
                                     <?php
-                                    if($item['discount']){
+                                    if ($item['discount']) {
                                         $_SESSION['discount'] = $item['discount'];
                                     }
-                                    // echo "00000000000000000000000000";
-                                    // var_dump($discounted_price);
-                                    // die();
-                                        if ($item['discount'] > 0):?>
+                                    if ($item['discount'] > 0): ?>
                                         <span class="original-price"><s style="color: red;"><?= number_format($item['price'], 2); ?>
                                                 JD</s></span>
-                                        <span class="discounted-price"><?=  number_format($item['discounted_price'], 2); ?> JD</span>
+                                        <span class="discounted-price"><?= number_format($item['discounted_price'], 2); ?>
+                                            JD</span>
                                     <?php else: ?>
                                         <?= number_format($item['price'], 2); ?> JD
                                     <?php endif; ?>
@@ -83,6 +80,17 @@
                 <p class="order-total"><strong>Subtotal:</strong> <?php echo number_format($orderTotal, 2); ?>JD</p>
                 <p class="order-total"><strong>Shipping:</strong> 2.00JD</p>
                 <p class="order-total"><strong>Total:</strong> <?php echo number_format($total, 2); ?>JD</p>
+                <?php if (isset($_SESSION['coupon'])): ?>
+                    <p class="order-total"><strong>Coupon Discount:</strong>
+                        -<?php echo number_format($_SESSION['coupon'], 2); ?>JD</p>
+                <?php endif; ?>
+                <form id="coupon-form" method="POST">
+                    <input type="text" id="coupon_code" name="coupon_code" placeholder="Enter coupon code" required>
+                    <button type="button" onclick="applyCoupon()" id="apply-coupon" class="btn">Apply</button>
+                   <button type="button" id="remove-coupon" class="btn d-none">Remove</button>
+                </form>
+
+
             <?php else: ?>
                 <p class="empty-cart-message">Your cart is empty.</p>
             <?php endif; ?>
@@ -227,57 +235,52 @@
         margin-top: 5px;
     }
 </style>
+
 <script>
-    document.getElementById('apply-coupon').addEventListener('click', function () {
-        const couponCode = document.getElementById('coupon-code').value;
-        if (couponCode) {
-            fetch('check_coupon.php?code=' + encodeURIComponent(couponCode))
-                .then(response => response.json())
-                .then(data => {
-                    if (data.valid) {
-                        // Update the total price
-                        const discountAmount = data.discount; // Get discount from the response
-                        const totalElement = document.getElementById('total-price');
-                        const currentTotal = parseFloat(totalElement.innerText.replace('$', ''));
-                        const newTotal = currentTotal - discountAmount;
+    function applyCoupon() {
+        document.getElementById("coupon-form").action="/applyCoupon";
+        document.getElementById("coupon-form").submit();
+    }
+document.getElementById('apply-coupon').addEventListener('click', function() {
+    let form = document.getElementById('coupon-form');
+    let formData = new FormData(form);
 
-                        // Update total display
-                        totalElement.innerText = '$' + newTotal.toFixed(2);
+    // Log formData to check if the coupon code is included
+    for (let pair of formData.entries()) {
+        console.log(pair[0] + ': ' + pair[1]);
+    }
 
-                        // Change button to remove coupon
-                        this.innerText = 'Remove Coupon';
-                        this.setAttribute('id', 'remove-coupon');
-
-                        // Clear the coupon input field
-                        document.getElementById('coupon-code').value = '';
-                    } else {
-                        alert('Invalid coupon code.');
-                    }
-                })
-                .catch(error => console.error('Error:', error));
+    fetch('applyCoupon', { // Replace with your actual controller path
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert(data.message);
+            // Hide the "Apply" button and show the "Remove" button logic
+            document.getElementById('apply-coupon').classList.add('d-none');
+            document.getElementById('remove-coupon').classList.remove('d-none');
+            location.reload(); // Reload to reflect the coupon changes
         } else {
-            alert('Please enter a coupon code.');
+            alert(data.message);
         }
+    })
+    .catch(error => {
+        console.error('Error:', error);
     });
+});
 
-    // Event listener for remove coupon button
-    document.addEventListener('click', function (event) {
-        if (event.target.id === 'remove-coupon') {
-            // Reset the total price to original
-            const totalElement = document.getElementById('total-price');
-            const originalTotal = <?php echo json_encode(number_format($orderTotal + 4.00, 2)); ?>; // Store original total
-            totalElement.innerText = originalTotal;
-
-            // Change button back to apply
-            event.target.innerText = 'Apply';
-            event.target.setAttribute('id', 'apply-coupon');
-
-            // Clear the coupon input field
-            document.getElementById('coupon-code').value = '';
-        }
-    });
+// Optionally, add a remove coupon event to handle the reset
+document.getElementById('remove-coupon').addEventListener('click', function() {
+    // Logic to remove coupon session or reset the form
+    form.reset();
+    document.getElementById('apply-coupon').classList.remove('d-none');
+    document.getElementById('remove-coupon').classList.add('d-none');
+    alert('Coupon removed');
+    location.reload();
+});
 </script>
-
 <footer>
     <?php include 'views/partials/footer.php'; ?>
 </footer>
