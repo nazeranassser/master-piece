@@ -73,7 +73,7 @@
                                                 </a>
                                                 </li>
                                                 <li>
-                                                <a href="/orders">
+                                                <a href="/messages">
                                                     <div class="admin_list">
                                                         <div class="admin_list_div" >
                                                               <img class="dash_img"  src="/images/email.png" alt="">

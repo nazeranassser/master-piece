@@ -177,9 +177,9 @@ class CustomersController {
     }
 
     public function logout(){
-        unset($_SESSION['usersId']);
-        unset($_SESSION['usersName']);
-        unset($_SESSION['customerEmail']);
+        // unset($_SESSION['usersId']);
+        // unset($_SESSION['usersName']);
+        // unset($_SESSION['customerEmail']);
         session_destroy();
         header("Location: /");
     }

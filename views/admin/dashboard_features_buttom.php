@@ -28,6 +28,13 @@
 
                                                         <span class="dash__w-name">Delivered Orders</span></div>
                                                 </li>
+                                                <li>
+                                                    <div class="dash__w-wrap">
+
+                                                        <a href="/sign-out"><span class="dash__w-text">Log Out</span></a>
+
+                                                        </div>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>

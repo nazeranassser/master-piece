@@ -92,7 +92,7 @@
                                                             <div class="dash__link dash__link--secondary u-s-m-b-8">
                                                             </div>
                                                             <h1 class="dash__h1 u-s-m-b-10" style='font-size:40px;padding-top:24px'><?php
-                                                             echo $totalOrders;
+                                                             echo $totalMessages;
                                                             ?> </h1>
                                                             <span class="dash__text"></span>
                                                         </div>

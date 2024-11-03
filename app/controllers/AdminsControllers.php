@@ -59,6 +59,7 @@ use App\Models\Admin;
 use App\Models\Order;
 use App\Models\Category;
 use App\Models\Customer;
+use App\Models\Message;
 require 'app/helpers/session_helper.php';
 
 class AdminsController {
@@ -69,6 +70,7 @@ class AdminsController {
         $this->orderModel = new Order();
         $this->categoryModel = new Category();
         $this->customerModel = new Customer();
+        $this->MessagesModel = new Message();
         $this->orderModel->showOrdersProcessing();
         $this->orderModel->showOrdersDelivered();
         $this->orderModel->showOrdersCancelled();
@@ -82,6 +84,7 @@ class AdminsController {
             $total = $this->orderModel->totalSales();
             $totalOrders = $this->orderModel->totalOrders();
             $totalCustomers = $this->customerModel->totalCustomers();
+            $totalMessages =$this->MessagesModel->totalMessages();
             require 'views/admin/dashboard_admin.php';
         }else{
             require 'views/pages/404.php';

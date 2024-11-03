@@ -19,7 +19,7 @@
                                         <a href="index.html">Home</a></li>
                                     <li class="is-marked">
 
-                                        <a href="dash-address-book.php">Customers</a></li>
+                                        <a href="dash-address-book.php">Messages</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                                     <div class="dash__box dash__box--shadow dash__box--bg-white dash__box--radius u-s-m-b-30">
                                     <div class="dash__pad-2">
                                             <div class="dash__address-header">
-                                                <h1 class="dash__h1">Customers</h1>
+                                                <h1 class="dash__h1">Messages</h1>
                                             </div>
                                         </div>
                                         <div class="dash__table-2-wrap gl-scroll">
@@ -58,31 +58,23 @@
                                                     <tr>
                                                         <th>Name</th>
                                                         <th>Email</th>
-                                                        <th>Address 1</th>
-                                                        <th>Action</th>
+                                                        <th>Subject</th>
+                                                        <th>Message</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                 <?php
                                             
                                               
-                                                  foreach($customers as $customer) {
-                                                    if($customer['is_active']==1){
-                                                        $block = "<input type='text' value='0' name='is_active' style='visibility: hidden;display: none;'>
-                                                            <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2'>Block</button>";
-                                                    }else{
-                                                        $block = "<input type='text' value='1' name='is_active' style='visibility: hidden;display: none;'>
-                                                            <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2'>Unblock</button>";
-                                                    }
+                                                  foreach($messages as $message) {
                                                     echo "  <tr>
-                                                    <form method='POST' action='/customer-details/".$customer['customer_id']."'>
-                                                            <th>".$customer['customer_name']."</th>
-                                                            <th>".$customer['customer_email']."</th>
-                                                            <th>".$customer['customer_address1']."</th>
+                                                    <form method='POST' action='/message-details/".$message['message_id']."'>
+                                                            <th>".$message['message_id']."</th>
+                                                            <th>".$message['customer_email']."</th>
+                                                            <th>".$message['message_subject']."</th>
+                                                            <th>".$message['message_text']."</th>
                                                             <th style='display: flex;''>
                                                             </form>
-                                                            <form method='POST' action='/customer/delete/".$customer['customer_id']."'>".$block."
-                                                            </form></th>
                                                         </tr>";
                                                 }
                                                 ?>

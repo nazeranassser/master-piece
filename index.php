@@ -112,6 +112,9 @@ $router->add('coupons/update/{id:\d+}', ['controller' => 'Coupons', 'action' => 
 $router->add('submitReview', ['controller' => 'Reviews', 'action' => 'submitReview']);
 
 
+$router->add('messages', ['controller' => 'Messages', 'action' => 'get']);
+
+
 
 // Dispatch the request
 $url = trim($_SERVER['REQUEST_URI'], '/'); // Trim leading and trailing slashes
