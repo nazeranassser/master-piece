@@ -1,7 +1,7 @@
 <?php
+
 include('views/partials/header_admin.php');
-// var_dump($orders);
-// die();
+
 ?>
 
         <!--====== App Content ======-->
@@ -200,10 +200,6 @@ include('views/partials/header_admin.php');
                                                     <div class="dash-l-r u-s-m-b-8">
                                                         <div class="manage-o__text-2 u-c-secondary">Shipping Fee</div>
                                                         <div class="manage-o__text-2 u-c-secondary">$0.00</div>
-                                                    </div>
-                                                    <div class="dash-l-r u-s-m-b-8">
-                                                        <div class="manage-o__text-2 u-c-secondary">Coupon</div>
-                                                        <?php echo "<div class='manage-o__text-2 ' style='color:#ff4500'>- $".$orders[0]['coupon_amount']."</div>"?>
                                                     </div>
                                                     <div class="dash-l-r u-s-m-b-8">
                                                         <div class="manage-o__text-2 u-c-secondary">Total</div>

@@ -15,7 +15,7 @@ class OrdersController {
     // }
 
     public function get() {
-        if ($orders = $this->ordersModel->get()) {
+        if ($orders = $this->ordersModel->showOrders()) {
             require 'views/admin/orders/dash-orders.php'; // Adjust path as needed
         } else {
             echo 'No admins found.';

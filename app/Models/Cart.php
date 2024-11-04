@@ -49,4 +49,13 @@ class Cart extends Model {
             throw $e;
         }
     }
+    public function addOrderProduct($orderId, $productId, $quantity, $price)
+{
+    $sql = "INSERT INTO order_products (order_id, product_id, quantity, price) 
+            VALUES ($orderId,$productId,$quantity, $price)";
+    $stmt = $this->db->prepare($sql);
+    // var_dump($stmt);
+    // die();
+    // return $stmt->execute();
+}
 }

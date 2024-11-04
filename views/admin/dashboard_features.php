@@ -24,6 +24,17 @@
                                                     </div>
                                                 </a>
                                                 </li>
+                                                <li>
+                                                <a href="/categories">
+                                                    <div class="admin_list">
+                                                        <div class="admin_list_div" >
+                                                              <img class="dash_img"  src="/images/icons8-opened-folder-50.png" alt="">
+                                                              <p>Categories</p>
+                                                        </div>
+                                                        <img style="width:12px" src="/public/images/angle-right.png" alt="">
+                                                    </div>
+                                                </a>
+                                                </li>
                                                 <?php 
                                                     if($_SESSION['is_super']==1){ echo'
                                                         <li>

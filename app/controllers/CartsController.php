@@ -149,27 +149,29 @@ class CartsController
 
 
         foreach ($cart as $item) {
-            
+
             $orderTotal += ($item['price'] * $item['quantity']);
             var_dump($orderTotal);
         }
         $orderTotal += 2;
-       
-        if (isset($_SESSION['discount']) && $_SESSION['discount']>0) {
+
+        if (isset($_SESSION['discount']) && $_SESSION['discount'] > 0) {
             var_dump($_SESSION['discount']);
             // die();
             $orderTotalAfter = $orderTotal - ($item['price'] * $_SESSION['discount']);
         } else {
             $orderTotalAfter = $orderTotal;
         }
-            // var_dump($orderTotalAfter);
-            // die();
+        // var_dump($orderTotalAfter);
+        // die();
         $orderId = $this->cartModel->createOrder($customerId, $orderTotal, $cart, $orderTotalAfter);
         unset($_SESSION['discount']);
-        //  var_dump($_SESSION);
-        // die();
+
+        foreach ($cart as $item) {
+            $this->cartModel->addOrderProduct($orderId, $item['product_id'], $item['quantity'], $item['price']);
+        }
         setcookie('cart', '', time() - 3600, '/');
 
-        header("Location: /checkout");
+        header("Location: /");
     }
 }

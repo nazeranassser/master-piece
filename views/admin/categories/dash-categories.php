@@ -79,7 +79,7 @@
                                                             <input type='hidden' value='".$category['category_id']."' name='category_id''>
                                                             <th>".$category['category_name']."<input type='hidden' value='".$category['category_name']."' name='category_name''></th>
                                                             <th><a href='/update_product/".$category['category_id']."'><div  class='description__img-wrap'>
-                                                            <img class='u-img-fluid' style='border-radius: 10000px;width: 90px;height: 90px;' src='public/images/categories/".$category['category_image']."' alt=''></div></a></th>
+                                                            <img class='u-img-fluid' style='border-radius: 10000px;width: 90px;height: 90px;' src='/public/images/categories/".$category['category_image']."' alt=''></div></a></th>
                                                             <th style='display: flex;'>
                                                             <input type='hidden' value='".$category['category_id']."' name='edit''>
                                                             <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2' style='margin-right:4px ;'>Edit</button></form>
