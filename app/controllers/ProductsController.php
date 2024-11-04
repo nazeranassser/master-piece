@@ -8,6 +8,9 @@ use App\Models\OrderProduct;
 class ProductsController
 {
     private $productModel;
+    private $categoryModel;
+    private $testimonialModel;
+    private $reviewModel;
     private $orderProductModel;
     public $uploadDir = 'public/images/categories/';
     public $allowedTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];

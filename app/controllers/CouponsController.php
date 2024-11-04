@@ -4,7 +4,8 @@ use App\Models\Product;
 use App\Models\Coupons;
 class CouponsController
 {
-    private $adminModel;
+    private $productModel;
+    private $couponsModel;   
 
     public function __construct()
     {

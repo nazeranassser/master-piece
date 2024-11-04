@@ -4,11 +4,13 @@ use App\Models\Product;
 use App\Models\Category;
 class CategoriesController
 {
-    private $adminModel;
+    private $categoriesModel;
+    private $productModel;
     public $uploadDir = 'public/images/categories/';
     public $allowedTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
     public function __construct()
     {
+
         $this->categoriesModel = new Category();
 
     }

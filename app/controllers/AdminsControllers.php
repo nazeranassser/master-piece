@@ -64,6 +64,10 @@ require 'app/helpers/session_helper.php';
 
 class AdminsController {
     private $adminModel;
+    private $orderModel;
+    private $messageModel;
+    private $customerModel;
+    private $categoryModel;
 
     public function __construct() {
         $this->adminModel = new Admin();

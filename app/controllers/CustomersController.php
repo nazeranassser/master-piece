@@ -5,6 +5,7 @@ use App\Models\Customer;
 
 
 class CustomersController {
+
     public $uploadDir = 'images/products/';
     public $allowedTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
     private $customerModel;
