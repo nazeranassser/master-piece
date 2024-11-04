@@ -19,7 +19,15 @@
                             <h5 id="wishlistProductTitle" class="card-title" style="color: black !important; "><?php echo htmlspecialchars($item['title']); ?></h5>                            <p class="card-text text-muted"><?php echo htmlspecialchars($item['description']); ?></p>
                             <p class="card-text"><strong>Price:</strong> $<?php echo htmlspecialchars($item['price']); ?></p>
                             <p class="card-text"><strong>Quantity Available:</strong> <?php echo htmlspecialchars($item['product_quantity']); ?></p>
+                           
+         
                         </div>
+                        <button class="btn btn-outline-secondary btn-sm ms-2" data-tooltip="tooltip"
+        data-placement="top" title="Add to Favorites" data-wishlist-button
+        data-product-id="<?php echo htmlspecialchars($item['product_id']); ?>">
+    <i class="fas fa-heart"></i>
+</button>
+
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -94,24 +102,7 @@
     }
 </style>
 
-<!-- Inline JavaScript for modal functionality -->
-<!-- <script>
-    // Open modal with product ID
-    function confirmDelete(productId) {
-        document.getElementById('deleteProductId').value = productId;
-        document.getElementById('deleteModal').style.display = 'flex';
-    }
 
-    // Close modal
-    function closeModal() {
-        document.getElementById('deleteModal').style.display = 'none';
-    }
+<!--====== Add to Favorites ======-->
 
-    // Close modal when clicking outside of modal-content
-    window.onclick = function(event) {
-        const modal = document.getElementById('deleteModal');
-        if (event.target == modal) {
-            closeModal();
-        }
-    };
-</script> -->
+<script src="public/js/AddtoFavorites.js"></script>
