@@ -1006,7 +1006,8 @@ custom-colors, box-mode, custom-header, custom-menu, custom-logo, featured-image
     background-color: #ffffff; }
   
   .product-o--hover-off {
-    box-shadow: 0 0 21px 0 rgba(0, 0, 0, 0.1); }
+    box-shadow: 0 0 21px 0 rgba(0, 0, 0, 0.1); 
+  }
   
   .product-o--radius {
     border-radius: 14px; }
@@ -1028,7 +1029,7 @@ custom-colors, box-mode, custom-header, custom-menu, custom-logo, featured-image
     opacity: 1;
     -webkit-transform: translateY(0);
             transform: translateY(0); }
-  
+            
   .product-o__wrap {
     position: relative; }
     .product-o__wrap:before {

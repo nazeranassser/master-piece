@@ -190,7 +190,7 @@ class ProductsController
             }
 
             if ($product) {
-                include 'views/pages/product-view.php';
+                include 'views/pages/test.php';
             } else {
                 echo "Product not found.";
             }

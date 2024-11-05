@@ -59,7 +59,7 @@ class CartsController
                     'product_name' => $product['product_name'],
                     'price' => $product['product_price'],
                     'discount' => $product['product_discount'],
-                    'quantity' => 1, // Start with 1 if newly added
+                    'quantity' => $_POST['quantity'], // Start with 1 if newly added
                     'stock_quantity' => $stockQuantity, // Include stock info for client-side checks
                     'image_url' => $product['product_image'] // Assuming this is the correct field
 

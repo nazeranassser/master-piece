@@ -1,7 +1,7 @@
 <?php require 'views/partials/header.php';
 
 $customer_id = isset($_SESSION['usersId']) ? $_SESSION['usersId'] : null;
-
+var_dump($product);
 ?>
 <div class="u-s-p-t-90">
     <div class="container">
