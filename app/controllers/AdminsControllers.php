@@ -136,12 +136,8 @@ class AdminsController {
     public function deliveryStatus() {
 
         $deliveryStatus = $_GET['id'] ?? null;
-        // echo "Product ID: " . $categoryFilter;
-        // die();
         if($deliveryStatus!='all'){ 
             $orders = $this->orderModel->getOrdersByOrderId($deliveryStatus);
-            // var_dump($orders);
-            // die();
             require 'views/admin/orders/dash-orders.php';
         }else{
             $orders = $this->orderModel->showOrders();

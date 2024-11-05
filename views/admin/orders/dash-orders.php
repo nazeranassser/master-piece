@@ -81,14 +81,109 @@ include('views/partials/header_admin.php');
                                                         
                                                         // $order = new orders();
                                                         // $order_row = $order->showOrders();
+
                                                         foreach ($orders as $order) {
+                                                            $statusColor = '';
+                                                switch ($order['order_status']) {
+                                                    case 'processing':
+                                                        $statusColor = 'background-color: gray; color: white; padding: 3px 6px; border-radius: 4px; width: 140px;';
+                                                        break;
+                                                    case 'shipped':
+                                                        $statusColor = 'background-color: yellow; color: black; padding: 3px 6px; border-radius: 4px; width: 140px;';
+                                                        break;
+                                                    case 'delivered':
+                                                        $statusColor = 'background-color: green; color: white; padding: 3px 6px; border-radius: 4px; width: 140px;';
+                                                        break;
+                                                    case 'cancelled':
+                                                        $statusColor = 'background-color: red; color: white; padding: 3px 6px; border-radius: 4px; width: 140px;';
+                                                        break;
+                                                    default:
+                                                        $statusColor = 'background-color: black; color: white; padding: 3px 6px; border-radius: 4px; width: 140px;'; // Default color if none of the cases match
+                                                        break;
+                                                }
+                                                            if ($order['order_status'] == 'all') {
+                                                                echo "<tr>
+                                                        <td>" . $order['order_id'] . "</td>
+                                                        <td>" . $order['delivery_address'] . "</td>
+                                                        <td>" . $order['customer_phone'] . "</td>
+                                                        <td>" . $order['created_at'] . "</td>
+                                                        <td><span style ='" . $statusColor . "'>" . $order['order_status'] . "</td>
+                                                        <td><div class='dash__table-total'>
+                                                                <span>" . $order['order_total_amount_after'] . " JD</span>
+                                                                <div class='dash__link dash__link--brand'>
+                                                                    <form method='GET' action='/orderDetails'>
+                                                                        <input type='text' value='" . $order['order_id'] . "' name='id' style='visibility: hidden;display: none;'>
+                                                                        <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2' style='border:0;color:#ff4500'><a>MANAGE</a></button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>";
+                                                            }
                                                             if ($order['order_status'] == 'processing') {
                                                                 echo "<tr>
                                                         <td>" . $order['order_id'] . "</td>
                                                         <td>" . $order['delivery_address'] . "</td>
                                                         <td>" . $order['customer_phone'] . "</td>
                                                         <td>" . $order['created_at'] . "</td>
+                                                        <td><span style ='" . $statusColor . "'>" . $order['order_status'] . "</td>
+                                                        <td><div class='dash__table-total'>
+                                                                <span>" . $order['order_total_amount_after'] . " JD</span>
+                                                                <div class='dash__link dash__link--brand'>
+                                                                    <form method='GET' action='/orderDetails'>
+                                                                        <input type='text' value='" . $order['order_id'] . "' name='id' style='visibility: hidden;display: none;'>
+                                                                        <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2' style='border:0;color:#ff4500'><a>MANAGE</a></button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>";
+                                                            }
+                                                            if ($order['order_status'] == 'shipped') {
+                                                                echo "<tr>
+                                                        <td>" . $order['order_id'] . "</td>
                                                         <td>" . $order['delivery_address'] . "</td>
+                                                        <td>" . $order['customer_phone'] . "</td>
+                                                        <td>" . $order['created_at'] . "</td>
+                                                        <td><span style ='" . $statusColor . "'>" . $order['order_status'] . "</td>
+                                                        <td><div class='dash__table-total'>
+                                                                <span>" . $order['order_total_amount_after'] . " JD</span>
+                                                                <div class='dash__link dash__link--brand'>
+                                                                    <form method='GET' action='/orderDetails'>
+                                                                        <input type='text' value='" . $order['order_id'] . "' name='id' style='visibility: hidden;display: none;'>
+                                                                        <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2' style='border:0;color:#ff4500'><a>MANAGE</a></button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>";
+                                                            }
+                                                            if ($order['order_status'] == 'delivered') {
+                                                                echo "<tr>
+                                                        <td>" . $order['order_id'] . "</td>
+                                                        <td>" . $order['delivery_address'] . "</td>
+                                                        <td>" . $order['customer_phone'] . "</td>
+                                                        <td>" . $order['created_at'] . "</td>
+                                                        <td><span style ='" . $statusColor . "'>" . $order['order_status'] . "</td>
+                                                        <td><div class='dash__table-total'>
+                                                                <span>" . $order['order_total_amount_after'] . " JD</span>
+                                                                <div class='dash__link dash__link--brand'>
+                                                                    <form method='GET' action='/orderDetails'>
+                                                                        <input type='text' value='" . $order['order_id'] . "' name='id' style='visibility: hidden;display: none;'>
+                                                                        <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2' style='border:0;color:#ff4500'><a>MANAGE</a></button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>";
+                                                            }
+                                                            if ($order['order_status'] == 'cancelled') {
+                                                                echo "<tr>
+                                                        <td>" . $order['order_id'] . "</td>
+                                                        <td>" . $order['delivery_address'] . "</td>
+                                                        <td>" . $order['customer_phone'] . "</td>
+                                                        <td>" . $order['created_at'] . "</td>
+                                                        <td><span style ='" . $statusColor . "'>" . $order['order_status'] . "</td>
                                                         <td><div class='dash__table-total'>
                                                                 <span>" . $order['order_total_amount_after'] . " JD</span>
                                                                 <div class='dash__link dash__link--brand'>

@@ -25,14 +25,9 @@ class Order extends Model {
 
     {
         var_dump($orderId);
-        
-        $query = "SELECT orders.order_id,orders.order_status,orders.order_total_amount_after,orders.delivery_address,orders.created_at , customers.customer_phone FROM `orders` CROSS JOIN customers WHERE order_status = ':orderId' ORDER BY order_id DESC;";
+        $query = "SELECT orders.order_id,orders.order_status,orders.order_total_amount_after,orders.delivery_address,orders.created_at , customers.customer_phone FROM `orders` CROSS JOIN customers WHERE order_status = :orderId And customers.customer_id = orders.customer_id ORDER BY order_id DESC;";
         $stmt = $this->db->prepare($query);
-        $stmt = $stmt->bindParam(':orderId', $orderId);
-        var_dump( $stmt );
-        // var_dump( $stmt );
-        // die();
-        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':orderId', $orderId);
         $stmt->execute();
         
         $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -40,18 +35,10 @@ class Order extends Model {
         
        
     }
-    public function getStatus()
-    {
-        // Assuming this returns distinct statuses or relevant filtering data.
-        $query = "SELECT DISTINCT order_status FROM orders";
-        $stmt = $this->db->prepare($query);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
 
 
     function showOrders(){
-        $sql =" SELECT orders.order_id,orders.order_status,orders.order_total_amount_after,orders.delivery_address,orders.created_at , customers.customer_phone FROM `orders` CROSS JOIN customers WHERE customers.customer_id = orders.customer_id ORDER BY order_id DESC;";
+        $sql =" SELECT orders.order_id,orders.order_status,orders.order_total_amount_after,orders.delivery_address,orders.created_at , customers.customer_phone FROM `orders` CROSS JOIN customers WHERE customers.customer_id = orders.customer_id ORDER BY order_id DESC";
         $start = $this->db->query($sql);
         if ($start) {
             $row = $start->fetchAll(PDO::FETCH_ASSOC); 
