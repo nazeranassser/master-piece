@@ -140,11 +140,11 @@ class AdminsController {
         // die();
         if($deliveryStatus!='all'){ 
             $orders = $this->orderModel->getOrdersByOrderId($deliveryStatus);
-            $deliveryStatus = $this->orderModel->getStatus();
+            // var_dump($orders);
+            // die();
             require 'views/admin/orders/dash-orders.php';
         }else{
             $orders = $this->orderModel->showOrders();
-            $deliveryStatus = $this->orderModel->getStatus();
             header('location:/orders');
         }        
     }

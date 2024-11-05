@@ -22,12 +22,23 @@ class Order extends Model {
     
 
     public function getOrdersByOrderId($orderId)
+
     {
-        $query = "SELECT orders.order_id,orders.order_status,orders.order_total_amount_after,orders.delivery_address,orders.created_at , customers.customer_phone FROM `orders` CROSS JOIN customers WHERE orders.order_status = :orderId ORDER BY order_id DESC;";
+        var_dump($orderId);
+        
+        $query = "SELECT orders.order_id,orders.order_status,orders.order_total_amount_after,orders.delivery_address,orders.created_at , customers.customer_phone FROM `orders` CROSS JOIN customers WHERE order_status = ':orderId' ORDER BY order_id DESC;";
         $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':orderId', $orderId, \PDO::PARAM_INT);
+        $stmt = $stmt->bindParam(':orderId', $orderId);
+        var_dump( $stmt );
+        // var_dump( $stmt );
+        // die();
+        $stmt = $this->db->prepare($query);
         $stmt->execute();
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        
+        $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $orders;
+        
+       
     }
     public function getStatus()
     {
@@ -35,7 +46,7 @@ class Order extends Model {
         $query = "SELECT DISTINCT order_status FROM orders";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
 
