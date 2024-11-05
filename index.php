@@ -48,7 +48,7 @@ $router->add('placeOrder', ['controller' => 'Carts', 'action' => 'placeOrder']);
 $router->add('orders', ['controller' => 'Orders', 'action' => 'get']);
 $router->add('orderDetails', ['controller' => 'Orders', 'action' => 'orderDetails']);
 $router->add('order-status', ['controller' => 'Orders', 'action' => 'orderStatus']);
-
+$router->add('cancel',['controller' => 'CancelReasons', 'action' => 'index']);
 
 /* -----------------------------------Wishlist Router---------------------------------- */
 // Route to show wishlist items

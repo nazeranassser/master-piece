@@ -89,7 +89,7 @@ include('views/partials/header_admin.php');
                                             z-index: 1000;">
 
                                                 <h3>Why do you want to cancel?</h3>
-                                                <form id="cancelReasonForm">
+                                                <form id="cancelReasonForm" action="/cancel" method="GET">
                                                     <label><input type="radio" name="reason" value="Changed my mind">
                                                         Changed my mind</label><br>
                                                     <label><input type="radio" name="reason"
