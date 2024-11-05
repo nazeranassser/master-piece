@@ -21,6 +21,24 @@ class Order extends Model {
     }
     
 
+    public function getOrdersByOrderId($orderId)
+    {
+        $query = "SELECT orders.order_id,orders.order_status,orders.order_total_amount_after,orders.delivery_address,orders.created_at , customers.customer_phone FROM `orders` CROSS JOIN customers WHERE orders.order_status = :orderId ORDER BY order_id DESC;";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':orderId', $orderId, \PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+    public function getStatus()
+    {
+        // Assuming this returns distinct statuses or relevant filtering data.
+        $query = "SELECT DISTINCT order_status FROM orders";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+
     function showOrders(){
         $sql =" SELECT orders.order_id,orders.order_status,orders.order_total_amount_after,orders.delivery_address,orders.created_at , customers.customer_phone FROM `orders` CROSS JOIN customers WHERE customers.customer_id = orders.customer_id ORDER BY order_id DESC;";
         $start = $this->db->query($sql);

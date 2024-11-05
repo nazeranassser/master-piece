@@ -1,58 +1,4 @@
 <?php
-
-// require 'Models/Admin.php';
-// // include '../Model/Admins.php';
-
-//     // $controller = new AdminController();
-//     // if ($_POST['add_admin_name']) {
-//     //    $controller->register($_POST);
-//     // }
-//     // namespace App\Controllers;
-//     // use Model\Admin;
-
-//     class AdminController {
-//     private $adminModel;
- 
-//     public function __construct() {
-//        $this->adminModel = new Admin;
-//     }
-
-
-//     public function index(){
-//         $this->get();
-//     }
-
-//     public function register($admin) {
-//        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-//         $data = [
-//             'admin_name' => $_POST['add_admin_name'],
-//             'admin_email' => $_POST['admin_email'],
-//             'admin_password' => password_hash($_POST['admin_password'], PASSWORD_DEFAULT),
-//             'date' => date("Y/m/d h:m:s"),
-//          ];
-//           if ($this->adminModel->addNew($data)) {
-//                 if($this->adminModel->showRow()){
-//                     $admins = $this->adminModel->showRow();
-//                     // var_dump($admins);
-//                     require '../../dash-admins.php';
-//                      // Redirect to success page
-//                 }
-//           }
-//        } else {
-//         //   include '../dash-admin-add.php';  // Load view if no POST request
-//        }
-//     }
-
-//     function get(){
-//         if($this->adminModel->showRow()){
-//             $admins = $this->adminModel->showRow();
-//             // var_dump($admins);
-//             require '../../dash-admins.php';
-//              // Redirect to success page
-//         }
-//     }
-//  }
-
 // namespace Controller;
 namespace App\Controllers;
 use App\Models\Admin;
@@ -74,7 +20,7 @@ class AdminsController {
         $this->orderModel = new Order();
         $this->categoryModel = new Category();
         $this->customerModel = new Customer();
-        $this->MessagesModel = new Message();
+        $this->messageModel = new Message();
         $this->orderModel->showOrdersProcessing();
         $this->orderModel->showOrdersDelivered();
         $this->orderModel->showOrdersCancelled();
@@ -88,7 +34,7 @@ class AdminsController {
             $total = $this->orderModel->totalSales();
             $totalOrders = $this->orderModel->totalOrders();
             $totalCustomers = $this->customerModel->totalCustomers();
-            $totalMessages =$this->MessagesModel->totalMessages();
+            $totalMessages =$this->messageModel->totalMessages();
             require 'views/admin/dashboard_admin.php';
         }else{
             require 'views/pages/404.php';
@@ -187,9 +133,24 @@ class AdminsController {
         }
     }
 
+    public function deliveryStatus() {
+
+        $deliveryStatus = $_GET['id'] ?? null;
+        // echo "Product ID: " . $categoryFilter;
+        // die();
+        if($deliveryStatus!='all'){ 
+            $orders = $this->orderModel->getOrdersByOrderId($deliveryStatus);
+            $deliveryStatus = $this->orderModel->getStatus();
+            require 'views/admin/orders/dash-orders.php';
+        }else{
+            $orders = $this->orderModel->showOrders();
+            $deliveryStatus = $this->orderModel->getStatus();
+            header('location:/orders');
+        }        
+    }
+
     public function filter() {
         $activeFilter = $_GET['active'] ?? null;
-        echo "Product ID: " . $activeFilter;
         // die();
         if($activeFilter && $activeFilter!='all'){
             $admins = $this->adminModel->findByFilter($activeFilter);

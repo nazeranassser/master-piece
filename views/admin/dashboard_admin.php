@@ -4,23 +4,7 @@
         <div class="app-content">
 
             <!--====== Section 1 ======-->
-            <div class="u-s-p-y-20">
-
-                <!--====== Section Content ======-->
-                <div class="section__content">
-                    <div class="container">
-                        <div class="breadcrumb">
-                            <div class="breadcrumb__wrap">
-                                <ul class="breadcrumb__list">
-                                    <li class="has-separator">
-                                        <a href="dash">Home</a>
-                                    </li>                                      
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
             <!--====== End - Section 1 ======-->
 
 
@@ -103,14 +87,14 @@
                                     </div>
                                     <div class="dash__box dash__box--shadow dash__box--bg-white dash__box--radius">
                                         <h2 class="dash__h2 u-s-p-xy-20">RECENT ORDERS</h2>
-                                        <div class="dash__table-wrap gl-scroll">
+                                        <div class="dash__table">
                                             <table class="dash__table">
                                                 <thead>
                                                     <tr>
                                                         <th>Order Id</th>
+                                                        <th>Shipping Address</th>
                                                         <th>Customer Phone</th>
                                                         <th>Placed On</th>
-                                                        <th>Delivery Address</th>
                                                         <th>Total</th>
                                                     </tr>
                                                 </thead>
@@ -125,9 +109,9 @@
                                                     if($order['order_status']=='processing'){
                                                         echo "<tr>
                                                         <td>".$order['order_id']."</td>
-                                                        <td>".$order['customer_phone']."</td>
-                                                        <td>".$order['created_at']."</td>
                                                         <td>".$order['delivery_address']."</td>
+                                                    <td>".$order['customer_phone']."</td>
+                                                        <td>".$order['created_at']."</td>
                                                         <td><div class='dash__table-total'>
                                                                 <span>".$order['order_total_amount_after']." JD</span>
                                                                 <div class='dash__link dash__link--brand'>

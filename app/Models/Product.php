@@ -207,7 +207,7 @@ public function getCategoriesFilter() {
       $query.="  WHERE c.category_id = :category";
       $stmt = $this->conn->prepare($query);
       $stmt->bindParam(':category', $category);
-    }else{
+    }else{ 
       $stmt = $this->conn->prepare($query);
     }
     $stmt->execute();

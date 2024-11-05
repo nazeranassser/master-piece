@@ -11,6 +11,8 @@ class Admin extends Model{
     private $password;
     private $date;
 
+
+    
     public function __construct() {
         parent::__construct('admins');
         

@@ -1,122 +1,128 @@
 <?php
 include('views/partials/header_admin.php');
 ?>
-        <!--====== End - Main Header ======-->
+<!--====== End - Main Header ======-->
 
 
-        <!--====== App Content ======-->
-        <div class="app-content">
+<!--====== App Content ======-->
+<div class="app-content">
 
-            <!--====== Section 1 ======-->
-            <div class="u-s-p-y-20">
+    <!--====== Section 1 ======-->
+    <div class="u-s-p-y-20">
 
-                <!--====== Section Content ======-->
-                <div class="section__content">
-                    <div class="container">
-                        <div class="breadcrumb">
-                            <div class="breadcrumb__wrap">
-                                <ul class="breadcrumb__list">
-                                    <li class="has-separator">
+        <!--====== Section Content ======-->
+        
+    <!--====== End - Section 1 ======-->
 
-                                        <a href="dash">Home</a></li>
-                                    <li class="is-marked">
 
-                                        <a>Orders</a></li>
-                                </ul>
-                            </div>
+    <!--====== Section 2 ======-->
+    <div class="u-s-p-b-60">
+
+        <!--====== Section Content ======-->
+        <div class="section__content">
+            <div class="dash">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-12">
+
+                            <!--====== Dashboard Features ======-->
+                            <?php
+                            include('views/admin/dashboard_features.php');
+                            ?>
+                            <!--====== End - Dashboard Features ======-->
                         </div>
-                    </div>
-                </div>
-            </div>
-            <!--====== End - Section 1 ======-->
+                        <div class="col-lg-9 col-md-12">
+                            <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white u-s-m-b-30">
+                                <div class="dash__pad-2">
+                                    <h1 class="dash__h1 u-s-m-b-14">Orders</h1>
 
+                                    <span class="dash__text u-s-m-b-30">Here you can see all products that have been
+                                        delivered.</span>
 
-            <!--====== Section 2 ======-->
-            <div class="u-s-p-b-60">
+                                        <div class="dash__filter">
+                                                <form method="GET" action="/deliveryStatus" id="categoryForm">
+                                                    <select class="select-box select-box--primary-style" style="border-radius:6px" name="id" id="categoryFilter" onchange="this.form.submit()">
+                                                        <option value="all">All Orders</option>
+                                                           <option value="processing" 
+                                                                <?= isset($_GET['id']) && $_GET['id'] == 'processing' ? 'selected' : '' ?>>
+                                                                Processing
+                                                            </option>
+                                                            <option value="shipped" 
+                                                                <?= isset($_GET['id']) && $_GET['id'] == 'shipped' ? 'selected' : '' ?>>
+                                                                Shipped
+                                                            </option>
+                                                            <option value="delivered" 
+                                                                <?= isset($_GET['id']) && $_GET['id'] == 'delivered' ? 'selected' : '' ?>>
+                                                                Delivered
+                                                            </option>
+                                                            <option value="cancelled" 
+                                                                <?= isset($_GET['id']) && $_GET['id'] == 'cancelled' ? 'selected' : '' ?>>
+                                                                Cancelled
+                                                            </option>
+                                                    </select>
+                                                </form>
+                                            </div>
+                                   
+                                                <table class="dash__table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Order Id</th>
+                                                            <th>Shipping Address</th>
+                                                            <th>Customer Phone</th>
+                                                            <th>Placed On</th>
+                                                            <th>Order Status</th>
+                                                            <th>Total</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
 
-                <!--====== Section Content ======-->
-                <div class="section__content">
-                    <div class="dash">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-12">
+                                                        // include('./php/show_admin.php');
+                                                        
+                                                        // $order = new orders();
+                                                        // $order_row = $order->showOrders();
+                                                        foreach ($orders as $order) {
+                                                            if ($order['order_status'] == 'processing') {
+                                                                echo "<tr>
+                                                        <td>" . $order['order_id'] . "</td>
+                                                        <td>" . $order['delivery_address'] . "</td>
+                                                        <td>" . $order['customer_phone'] . "</td>
+                                                        <td>" . $order['created_at'] . "</td>
+                                                        <td>" . $order['delivery_address'] . "</td>
+                                                        <td><div class='dash__table-total'>
+                                                                <span>" . $order['order_total_amount_after'] . " JD</span>
+                                                                <div class='dash__link dash__link--brand'>
+                                                                    <form method='GET' action='/orderDetails'>
+                                                                        <input type='text' value='" . $order['order_id'] . "' name='id' style='visibility: hidden;display: none;'>
+                                                                        <button type='submit' class='address-book-edit btn--e-transparent-platinum-b-2' style='border:0;color:#ff4500'><a>MANAGE</a></button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>";
+                                                            }
+                                                        }
+                                                        ?>
 
-                                    <!--====== Dashboard Features ======-->
-                                    <?php
-                                    include('views/admin/dashboard_features.php');
-                                    ?>
-                                    <!--====== End - Dashboard Features ======-->
-                                </div>
-                                <div class="col-lg-9 col-md-12">
-                                    <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white u-s-m-b-30">
-                                        <div class="dash__pad-2">
-                                            <h1 class="dash__h1 u-s-m-b-14">Orders</h1>
-
-                                            <span class="dash__text u-s-m-b-30">Here you can see all products that have been delivered.</span>
-                                            
-                                            <div class="m-order__list">
-    <?php foreach($orders as $order): 
-        $statusClass = '';
-        if ($order['order_status'] == 'processing') {
-            $statusClass = 'badge--processing';
-        } else if ($order['order_status'] == 'shipped') {
-            $statusClass = 'badge--shipped';
-        } else if ($order['order_status'] == 'delivered') {
-            $statusClass = 'badge--delivered';
-        }
-    ?>
-        <div class="m-order__get">
-            <div class="manage-o__header u-s-m-b-30">
-                <div class="dash-l-r">
-                    <div>
-                        <div class="manage-o__text-2 u-c-secondary">Order #<?php echo $order['order_id']; ?></div>
-                        <div class="manage-o__text u-c-silver">Placed on <?php echo $order['created_at']; ?></div>
-                    </div>
-                    <div>
-                        <div class="dash__link dash__link--brand">
-                            <form method="POST" action="/orderDetails">
-                                <input type="hidden" value="<?php echo $order['order_id']; ?>" name="id">
-                                <button type="submit" class="address-book-edit btn--e-transparent-platinum-b-2">
-                                    MANAGE
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="manage-o__description">
-                <div class="description__container">
-                    <div class="description__info-wrap" style="width:100%;display: flex; justify-content: space-between;">
-                        <div>
-                            <span class="manage-o__badge <?php echo $statusClass; ?>">
-                                <?php echo ucfirst($order['order_status']); ?>
-                            </span>
-                            <span class="manage-o__text-2 u-c-silver">Total:
-                                <span class="manage-o__text-2 u-c-secondary">
-                                    <?php echo $order['order_total_amount_after']; ?> JD
-                                </span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    <?php endforeach; ?>
-</div>
-
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!--====== End - Section Content ======-->
             </div>
-            <!--====== End - Section 2 ======-->
         </div>
-        <!--====== End - App Content ======-->
+        <!--====== End - Section Content ======-->
+    </div>
+    <!--====== End - Section 2 ======-->
+</div>
+<!--====== End - App Content ======-->
 
 
-        <!--====== Main Footer ======-->
-        <?php include('views/partials/footer_admin.php');?>
+<!--====== Main Footer ======-->
+<?php include('views/partials/footer_admin.php'); ?>

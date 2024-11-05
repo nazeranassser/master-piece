@@ -74,6 +74,7 @@ $router->add('login/admin', ['controller' => 'Admins', 'action' => 'login']);
 $router->add('edit-admin/{id:\d+}', ['controller' => 'Admins', 'action' => 'getById']);
 $router->add('delete-admin/{id:\d+}', ['controller' => 'Admins', 'action' => 'delete']);
 $router->add('admins', ['controller' => 'Admins', 'action' => 'filter']);
+$router->add('deliveryStatus', ['controller'=> 'Admins', 'action' => 'deliveryStatus']);  
 
 
 /* -----------------------------------Customers Router---------------------------------- */

@@ -5,25 +5,7 @@
         <div class="app-content">
 
             <!--====== Section 1 ======-->
-            <div class="u-s-p-y-20">
-
-                <!--====== Section Content ======-->
-                <div class="section__content">
-                    <div class="container">
-                        <div class="breadcrumb">
-                            <div class="breadcrumb__wrap">
-                                <ul class="breadcrumb__list">
-                                    <li class="has-separator">
-
-                                        <a href="/dash">Home</a></li>
-                                    <li class="is-marked">
-                                        <a href="">Add Category</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
             <!--====== End - Section 1 ======-->
 
 
