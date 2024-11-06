@@ -80,19 +80,24 @@
                 <p class="order-total"><strong>Subtotal:</strong> <?php echo number_format($orderTotal, 2); ?>JD</p>
                 <p class="order-total"><strong>Shipping:</strong> 2.00JD</p>
                 <p class="order-total"><strong>Total:</strong> <?php echo number_format($total, 2); ?>JD</p>
-                <!-- <?php if (isset($_SESSION['coupon'])): ?>
-                    <p class="order-total"><strong>Coupon Discount:</strong>
-                        -<?php echo number_format($_SESSION['coupon'], 2); ?>JD</p>
-                <?php endif; ?> -->
-                <!-- <form id="coupon-form" method="POST">
-                    <input type="text" id="coupon_code" name="coupon_code" placeholder="Enter coupon code" required>
-                    <button type="button" onclick="applyCoupon()" id="apply-coupon" class="btn">Apply</button>
-                    <?php if(isset($_SESSION['coupon'])):?>
-                   <button type="button" id="remove-coupon" class="btn d-none">Remove</button>
-                <?php endif;?>
-                </form> -->
+                <div class="coupon-section">
+                    <?php if (!isset($_SESSION['coupon'])): ?>
+                        <form method="post" action="/applyCoupon" id="applyForm">
+                            <input type="text" id="coupon_code" name="coupon_code" placeholder="Enter coupon code" required>
+                            <button type="submit" class="apply-coupon-button">Apply</button>
+                        </form>
+                    <?php endif; ?>
 
+                    <?php if (isset($_SESSION['coupon'])): ?>
+                        <p><strong>Coupon Applied:</strong> <?= htmlspecialchars($_SESSION['coupon_code']); ?></p>
+                        <p><strong>Discount Amount:</strong> <?=$_SESSION['coupon']; ?>JD</p>
+                        <p><strong>New Total:</strong> <?= $_SESSION['total']; ?>JD</p>
 
+                        <form method="post" action="/removeCoupon" id="removeForm">
+                            <button type="submit" name="remove_coupon" class="remove-coupon-button">Remove</button>
+                        </form>
+                    <?php endif; ?>
+                </div>
             <?php else: ?>
                 <p class="empty-cart-message">Your cart is empty.</p>
             <?php endif; ?>
@@ -239,6 +244,29 @@
 </style>
 
 <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const applyForm = document.getElementById('applyForm');
+        const removeForm = document.getElementById('removeForm');
+
+        if (<?= isset($_SESSION['coupon']) ? 'true' : 'false'; ?>) {
+            if (applyForm) {
+                applyForm.style.display = 'none';
+            }
+            if (removeForm) {
+                removeForm.style.display = 'block';
+            }
+        } else {
+            if (applyForm) {
+                applyForm.style.display = 'block';
+            }
+            if (removeForm) {
+                removeForm.style.display = 'none';
+            }
+        }
+    });
+</script>
+
+<!-- <script>
     function applyCoupon() {
         document.getElementById("coupon-form").action="/applyCoupon";
         document.getElementById("coupon-form").submit();
@@ -283,7 +311,7 @@ document.getElementById('remove-coupon').addEventListener('click', function() {
     alert('Coupon removed');
     location.reload();
 });
-</script>
+</script> -->
 <footer>
     <?php include 'views/partials/footer.php'; ?>
 </footer>

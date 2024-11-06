@@ -77,36 +77,71 @@ include('views/partials/header_admin.php');
                                             ?>
                                             <!-- Modal for Cancellation Reason -->
                                             <div id="cancelReasonModal" style="display: none; 
-                                            position: fixed; 
-                                            top: 50%; 
-                                            left: 50%; 
-                                            transform: translate(-50%, -50%); 
-                                            background-color: #f9f9f9; 
-                                            padding: 30px; 
-                                            border-radius: 12px; 
-                                            width: 400px; 
-                                            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); 
-                                            z-index: 1000;">
+                                    position: fixed; 
+                                    top: 50%; 
+                                    left: 50%; 
+                                    transform: translate(-50%, -50%); 
+                                    background-color: #ffffff; 
+                                    padding: 30px; 
+                                    border-radius: 12px; 
+                                    width: 400px; 
+                                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); 
+                                    z-index: 1000; 
+                                    font-family: Arial, sans-serif;">
 
-                                                <h3>Why do you want to cancel?</h3>
+                                                <h3 style="margin-bottom: 20px; font-size: 20px; color: #333;">Why do
+                                                    you want to cancel?</h3>
                                                 <form id="cancelReasonForm" action="/cancel" method="GET">
-                                                    <label><input type="radio" name="reason" value="Changed my mind">
-                                                        Changed my mind</label><br>
-                                                    <label><input type="radio" name="reason"
-                                                            value="Found a better price"> Found a better
-                                                        price</label><br>
-                                                    <label><input type="radio" name="reason"
-                                                            value="Delivery time too long"> Delivery time too
-                                                        long</label><br>
-                                                    <label><input type="radio" name="reason" value="Other"
-                                                            onclick="showOtherReasonInput()"> Other</label><br>
+                                                    <label style="display: block; margin-bottom: 10px;">
+                                                        <input type="radio" name="reason" value="Changed my mind"
+                                                            style="margin-right: 8px;">
+                                                        Changed my mind
+                                                    </label>
+                                                    <label style="display: block; margin-bottom: 10px;">
+                                                        <input type="radio" name="reason" value="Found a better price"
+                                                            style="margin-right: 8px;">
+                                                        Found a better price
+                                                    </label>
+                                                    <label style="display: block; margin-bottom: 10px;">
+                                                        <input type="radio" name="reason" value="Delivery time too long"
+                                                            style="margin-right: 8px;">
+                                                        Delivery time too long
+                                                    </label>
+                                                    <label style="display: block; margin-bottom: 10px;">
+                                                        <input type="radio" name="reason" value="Other"
+                                                            onclick="showOtherReasonInput()" style="margin-right: 8px;">
+                                                        Other
+                                                    </label>
                                                     <input type="text" id="otherReasonInput" name="other_reason"
-                                                        placeholder="Please specify..."
-                                                        style="display: none; margin-top: 10px; width: 100%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
-                                                    <button type="button" onclick="submitCancellation()">Submit</button>
-                                                    <button type="button" onclick="closeModal()">Close</button>
+                                                        placeholder="Please specify..." style="display: none; 
+               margin-top: 10px; 
+               width: 100%; 
+               padding: 8px; 
+               border: 1px solid #ccc; 
+               border-radius: 4px; 
+               font-size: 14px;">
+                                                    <div style="margin-top: 20px; text-align: right;">
+                                                        <button type="button" onclick="submitCancellation()" style="background-color: #007BFF; 
+                           color: white; 
+                           padding: 8px 16px; 
+                           border: none; 
+                           border-radius: 4px; 
+                           cursor: pointer; 
+                           margin-right: 10px;">
+                                                            Submit
+                                                        </button>
+                                                        <button type="button" onclick="closeModal()" style="background-color: #6c757d; 
+                           color: white; 
+                           padding: 8px 16px; 
+                           border: none; 
+                           border-radius: 4px; 
+                           cursor: pointer;">
+                                                            Close
+                                                        </button>
+                                                    </div>
                                                 </form>
                                             </div>
+
                                         </div>
                                     </div>
                                     <div class="manage-o__timeline">
@@ -247,6 +282,39 @@ include('views/partials/header_admin.php');
 </div>
 <!--====== End - App Content ======-->
 
+<script>
+function handleStatusChange() {
+    const selectElement = document.getElementById('categoryFilter');
+    const selectedValue = selectElement.value;
+    const options = selectElement.options;
+
+    // Reset the disabled property for all options
+    for (let i = 0; i < options.length; i++) {
+        options[i].disabled = false;
+    }
+
+    // Apply the specific disabling logic based on the selected value
+    if (selectedValue === 'cancelled') {
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].value !== 'cancelled') {
+                options[i].disabled = true; // Disable other options
+            }
+        }
+    } else if (selectedValue === 'shipped') {
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].value === 'cancelled' || options[i].value === 'processing') {
+                options[i].disabled = true; // Disable 'cancelled' and 'processing'
+            }
+        }
+    } else if (selectedValue === 'delivered') {
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].value !== 'delivered') {
+                options[i].disabled = true; // Disable all except 'delivered'
+            }
+        }
+    }
+}
+</script>
 <script>
     function handleStatusChange(selectElement) {
         if (selectElement.value === 'cancelled') {

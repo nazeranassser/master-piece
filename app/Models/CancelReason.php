@@ -26,4 +26,12 @@ class CancelReason extends Model{
         return $stmt->execute();
     }
 
+    public function getCancelReasonByOrderId($orderId)
+    {
+        $query = "SELECT * FROM cancel_reasons WHERE order_id = :order_id LIMIT 1";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':order_id', $orderId);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC); // Returns the row if found, or false if not
+    }
 }

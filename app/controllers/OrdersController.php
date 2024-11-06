@@ -36,17 +36,13 @@ class OrdersController
     public function orderDetails()
     {
         $orderFilter = $_GET['id'] ?? null;
-        // echo "Product ID: " . $orderFilter;
-        // die();
         if ($orderFilter != 'all') {
-            // var_dump($id);
-            // die();
             if ($orders = $this->ordersModel->showOrderItems($orderFilter)) {
                 require 'views/admin/orders/dash-manage-order.php';
             }
         } else {
             header("location:/404");
-        } // Adjust the path accordingly
+        }
     }
 
     function orderStatus()
@@ -56,29 +52,24 @@ class OrdersController
         $orderStatus = [
             'order_status' => $status
         ];
+
         if ($orderStatus['order_status'] == 'cancelled') {
             $adminId = $_SESSION['admin_id'];
-            var_dump($adminId);
-            // Validate POST data
-            var_dump($order_id);
             $cancelReason = $_GET['cancel_reason'];
-            var_dump($cancelReason);
             
-
             if (!empty($adminId) && !empty($order_id) && !empty($cancelReason)) {
                 // Load the model and call the method to insert the cancellation reason
                  $this->cancelReasonModel->addCancelReason($adminId, $order_id, $cancelReason);   
-                 $this->ordersModel->updateStatus($order_id, $orderStatus);             // Redirect or return success response
+                 $this->ordersModel->updateStatus($order_id, $orderStatus);      
                 header('Location: /orderDetails?id=' . $order_id);
                 }
         }
-            
         else {
             $this->ordersModel->updateStatus($order_id, $orderStatus);
-
             header('location:/orderDetails?id=' . $order_id);
         }
     }
 
 }
 
+// }

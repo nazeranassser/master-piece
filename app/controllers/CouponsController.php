@@ -91,8 +91,9 @@ class CouponsController
 
             $couponCode = $_POST['coupon_code'];
             $coupon = $this->couponsModel->validateCoupon($couponCode);
-
-            $_SESSION['total'] = $_SESSION['total'] - $coupon['coupon_amount'];
+            // var_dump($coupon);
+            // var_dump($couponCode);
+            // die();
 
             if ($coupon) {
                 $_SESSION['coupon'] = $coupon['coupon_amount'];
@@ -103,7 +104,6 @@ class CouponsController
             } else {
                 flash('error', 'Invalid coupon code.');
             }
-
         }
         header("location:/checkout");
     }
