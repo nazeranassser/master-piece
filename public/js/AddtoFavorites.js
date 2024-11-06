@@ -69,10 +69,15 @@ function handleWishlistToggle(button) {
             
             // Update wishlist count
             updateWishlistCount();
-            
+            var numLove = document.getElementById('love').innerText;
+
             // Show success message
             showMessage(isInWishlist ? 'Product removed from wishlist' : 'Product added to wishlist', 'success');
-            
+            if(!isInWishlist){
+                
+                alert(numLove);
+                document.getElementById('love').innerText-=(-1);
+            }
             // Handle removal from wishlist page
             if (isInWishlist && window.location.pathname === '/wishlist') {
                 const productCard = button.closest('.col-md-4');
@@ -87,6 +92,7 @@ function handleWishlistToggle(button) {
                         
                         // Check if wishlist is empty after removal
                         const remainingItems = document.querySelectorAll('.col-md-4');
+                        document.getElementById('love').innerText=remainingItems.length;
                         if (remainingItems.length === 0) {
                             const container = document.querySelector('.row');
                             if (container) {

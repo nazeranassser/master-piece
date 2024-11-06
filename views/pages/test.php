@@ -342,7 +342,7 @@ form{
                                 <div class="u-s-m-b-30">
                                     <div class="pd-tab__rev-score">
                                         <div class="u-s-m-b-8">
-                                            <h2>23 Reviews - 4.6 (Overall)</h2>
+                                            <h2><?= count($reviews)?> Reviews - <?php echo $product['total_review'].'.0' ?> (Overall)</h2>
                                         </div>
                                         <div class="gl-rating-style-2 u-s-m-b-8"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
                                         <div class="u-s-m-b-8">

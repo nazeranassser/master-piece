@@ -109,7 +109,7 @@ nav {
         <div class="icon nav-item" style="animation-delay: 0.6s;">
             <a href="/wishlist" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
                 <img style="width:24px" src="/images/products/wishlist.png" alt="">
-                <span class="icon-badge" style="<?= $style?>"><?php echo $coci?></span>
+                <span id='love' class="icon-badge" style="<?= $style?>"><?php echo $coci?></span>
             </a>
         </div>
         <div class="icon nav-item" style="animation-delay: 0.7s;">
