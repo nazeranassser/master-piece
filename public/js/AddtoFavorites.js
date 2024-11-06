@@ -74,8 +74,6 @@ function handleWishlistToggle(button) {
             // Show success message
             showMessage(isInWishlist ? 'Product removed from wishlist' : 'Product added to wishlist', 'success');
             if(!isInWishlist){
-                
-                alert(numLove);
                 document.getElementById('love').innerText-=(-1);
             }
             // Handle removal from wishlist page
@@ -112,9 +110,7 @@ function handleWishlistToggle(button) {
         showMessage('Please login to manage your wishlist', 'error');
         
         // Redirect to login page after a short delay
-        setTimeout(() => {
-            window.location.href = '/login';
-        }, 2000);
+       
     });
 }
 
