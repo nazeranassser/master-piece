@@ -11,7 +11,9 @@
             <p><strong>Order ID:</strong> <?php echo htmlspecialchars($order['order_ID']); ?></p>
             <p><strong>Order Date:</strong> <?php echo date('Y-m-d H:i:s', strtotime($order['order_date'])); ?></p>
             <p><strong>Status:</strong> <?php echo htmlspecialchars($order['status']); ?></p>
-            <p><strong>Total Amount:</strong> $<?php echo number_format($order['total_amount'], 2); ?></p>
+            <p><strong>Delivery service:</strong>2 JD</p>
+            <p><strong>Total Amount:</strong>JD<?php echo number_format($order['total_amount'], 2); ?></p>
+
         </div>
 
         <table class="order-table">
@@ -35,8 +37,8 @@
                         <td><img src="/public/images/categories/<?php echo htmlspecialchars($item['product_image']); ?>" alt="<?php echo htmlspecialchars($item['product_name']); ?>"></td>
                         <td><?php echo htmlspecialchars($item['product_name']); ?></td>
                         <td><?php echo htmlspecialchars($item['quantity']); ?></td>
-                        <td>$<?php echo number_format($item['product_price'], 2); ?></td>
-                        <td>$<?php echo number_format($item_total, 2); ?></td>
+                        <td>JD<?php echo number_format($item['product_price'], 2); ?></td>
+                        <td>JD<?php echo number_format($item_total, 2); ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

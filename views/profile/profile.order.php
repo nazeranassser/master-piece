@@ -56,7 +56,7 @@
                                                     <div class="order-info">
                                                         <p>Status: <strong><?php echo htmlspecialchars($order['order_status']); ?></strong></p>
                                                         <p>Quantity: <?php echo array_sum($quantities); ?></p>
-                                                        <p>Total: $<?php echo number_format($order['order_total_amount_after'], 2); ?></p>
+                                                        <p>Total: JD<?php echo number_format($order['order_total_amount_after'], 2); ?></p>
                                                     </div>
                                                     <a href="orders-detail/<?php echo $order['order_id']; ?>" class="view-details-btn" style="color:rgb(210, 105, 30)">View Details</a>
                                                 </div>

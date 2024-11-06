@@ -70,7 +70,7 @@
 
                                                         <label class="gl-label" for="quantity">Quantity *</label>
 
-                                                        <input class="input-text input-text--primary-style" name='product_quantity' type="number" id="quantity" placeholder="House Name and Street" required></div>
+                                                        <input class="input-text input-text--primary-style" name='product_quantity' type="number" id="quantity" placeholder="" required></div>
                                                 </div>
                                                      <div class="gl-inline" style='display: flex;justify-content:center; padding-left:10px;padding-bottom:10px ;'>
                                                      <div class="upload-container">
