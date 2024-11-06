@@ -90,10 +90,24 @@ class ReviewsController
             header("location: /show");
         }
         public function active1($id) {
-            $this->reviewModel->updateactive1($id);
-            header("location: /show");
+            $data = [
+                'active' => $_GET['change'],
+            ];
+            $this->reviewModel->update($id,$data);
+            header('location:/show');
         }
-   
+        public function filter() {
+            $activeFilter = $_GET['cha'] ?? null;
+            // die();
+            if($activeFilter && $activeFilter!='all'){
+                $reviews = $this->reviewModel->getAllReviewsAdminfilter($activeFilter);
+                require 'views/admin/rev/rev.php';
+            }else{
+                $reviews = $this->reviewModel->getAllReviewsAdmin();
+                require 'views/admin/rev/rev.php';
+            }
+           
+        }
     
 
 }

@@ -81,6 +81,26 @@ class Review extends Model
         $updateStmt = $this->db->prepare($query);
         $updateStmt->execute();
     }
+    public function findByFilter($active) {
+        return $this->findBy('active',$active);
+    }
+    public function getAll(){
+        return $this->get();
+    }
+    public function getAllReviewsAdminfilter($active)
+    {
+        $query = "SELECT r.*, c.customer_name 
+        FROM reviews r 
+        JOIN customers c ON r.customer_id = c.customer_id WHERE active= :active
+        ";
+        
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':active', $active);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
 
     
 

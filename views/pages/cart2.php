@@ -156,6 +156,7 @@ margin:0;
 </style>
 <?php
     $cartItems = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];
+    $totalCart = 0;
 ?>
 <div class="card2 container">
             <div class="row">
@@ -170,6 +171,7 @@ margin:0;
                     <div class="row border-top border-bottom">
                             <?php
                                   $discountedPrice = $item['price'] - ($item['price'] * ($item['discount']));
+                                  $totalCart +=($discountedPrice * $item['quantity']);
                             ?>
                         <div class="" style="display:flex;justify-content: space-between;">
                             <div class=""><div style="display: flex;align-items:center"><img class="img-fluid" style="width:100px;margin-right:24px;margin:10px 0px;border-radius:6px" src="/public/images/products/<?php echo htmlspecialchars($item['image_url']); ?>">
@@ -199,7 +201,7 @@ margin:0;
                                             </div>
                                         </div>
                             </div>
-                            <div class=""style="display: flex;align-items:center">    <span class="total-price" data-product-id="<?php echo htmlspecialchars($item['product_id']); ?>"><span id="total-price_<?php echo htmlspecialchars($item['product_id']); ?>" class="total-display" data-product-id="<?php echo htmlspecialchars($item['product_id']); ?>"><?= number_format($discountedPrice, 2); ?> JD</span></div>
+                            <div class=""style="display: flex;align-items:center">    <span class="total-price" data-product-id="<?php echo htmlspecialchars($item['product_id']); ?>"><span id="total-price_<?php echo htmlspecialchars($item['product_id']); ?>" class="total-display" data-product-id="<?php echo htmlspecialchars($item['product_id']); ?>"><?= number_format($discountedPrice, 2) * $item['quantity']; ?> JD</span></div>
                             <div class="cart-table__del-wrap" style="display: flex;align-items:center">
                                 <a class="far fa-trash-alt cart-table__delete-link"
                                     href="/removeFromCart/<?php echo htmlspecialchars($item['product_id']); ?>"></a>
@@ -209,12 +211,12 @@ margin:0;
                     <?php endforeach; ?> 
                     <div class="back-to-shop"><a href="#">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
                 </div>
-                <div class="col-md-4 summary">
+                <div style="height: 100%;" class="col-md-4 summary">
                     <div><h5><b>Summary</b></h5></div>
                     <hr>
                     <div class="row">
-                        <div class="col" style="padding-left:0;">ITEMS 3</div>
-                        <div class="col text-right">&euro; 132.00</div>
+                        <div class="col" style="padding-left:0;">ITEMS <?=count($cartItems);?></div>
+                        <div class="col text-right"><span id="cartTotalPrice"><?php echo $totalCart?></span><span> JD</span></div>
                     </div>
                     <!-- <form>
                         <p>SHIPPING</p>
@@ -237,6 +239,7 @@ margin:0;
             document.addEventListener('DOMContentLoaded', () => {
     // const totalDisplay = document.getElementById(`new_price_2`);
     const inputField1 = document.getElementById(`inputField`);
+    const cartTotalPrice = document.getElementById(`cartTotalPrice`);
     // const originalPrice = parseFloat(document.querySelector('.original-price s').textContent.replace(/[^0-9.]/g, '')); // Get original price and remove JD
     // totalDisplay.textContent = inputField1.value * originalPrice + ' JD';
         
@@ -251,10 +254,13 @@ margin:0;
 
         // Decrease quantity when minus button is clicked
         minusBtn.addEventListener('click', () => {
+            
             let value = parseInt(inputField.value);
             if (!isNaN(value) && value > 1) {
                 inputField.value = value - 1;
                 totalDisplay5.textContent = `${originalPrice * (value-1)} JD`; 
+                // alert(cartTotalPrice.textContent);
+                cartTotalPrice.textContent = `${cartTotalPrice.textContent - originalPrice.textContent}`;
                 updateCart(inputField); // Update the cart whenever the quantity changes
                 updateQuantityDisplay(inputField.dataset.productId); // Update displayed quantity
                 updateTotalPrice(inputField); // Update displayed total price
@@ -269,6 +275,7 @@ margin:0;
                 const totalDisplay6 = document.getElementById(`total-price_${inputField.dataset.productId}`);
                 // const totalDisplay6 = document.getElementById(`total-price_${inputField.dataset.productId}`);
                 inputField.value = value + 1;
+                cartTotalPrice.textContent = `${cartTotalPrice.textContent - (originalPrice.textContent*(-1))}`;
                 // alert(originalPrice);
                 totalDisplay6.textContent = `${originalPrice * (value+1)} JD`; 
                 updateCart(inputField); // Update the cart whenever the quantity changes
