@@ -164,9 +164,10 @@ margin:0;
                     <div class="title">
                         <div class="row">
                             <div class="col"><h4><b>Shopping Cart</b></h4></div>
-                            <div class="col align-self-center text-right text-muted">3 items</div>
+                            <div class="col align-self-center text-right text-muted" style="display:flex;justify-content: end;"><?php echo count($cartItems)?> Items</div>
                         </div>
                     </div>    
+                    <?php if(count($cartItems)<=0){echo '<div class="row border-top border-bottom"><h1 style="display:flex;justify-content: center;padding:20px">Your Cart Is Empty</h1></div>';}?>
                     <?php foreach ($cartItems as $productId => $item): ?>
                     <div class="row border-top border-bottom">
                             <?php

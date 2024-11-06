@@ -1,6 +1,106 @@
-<?php require 'views/partials/header2.php'; ?>
-
+<?php require 'views/partials/header2.php'; 
+$customer_id = isset($_SESSION['usersId']) ? $_SESSION['usersId'] : null;
+// var_dump($_SESSION);
+?>
 <style>
+    .star-rating {
+    display: flex;
+    justify-content: center;
+    direction: rtl; /* Reverse order for easier selection */
+    gap: 15px;
+    margin: auto;
+}
+
+.star-rating input[type="radio"] {
+    display: none; /* Hide the radio buttons */
+}
+
+.star-rating .star {
+    font-size: 24px; /* Star size */
+    color: #ccc; /* Default star color */
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.star-rating input[type="radio"]:checked ~ .star {
+    color: #ffcc00; /* Color for selected stars */
+}
+
+.star-rating .star:hover,
+.star-rating .star:hover ~ .star {
+    color: #ffcc00; /* Highlight stars on hover */
+}
+
+    .review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.review-form label {
+    font-weight: bold;
+    color: #555;
+}
+
+.review-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical; /* Allow vertical resizing */
+    min-height: 100px; /* Minimum height for textarea */
+}
+
+.review-form select,
+.review-form input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+    /* Modal styles */
+    .modal {
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .modal-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 400px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        animation: fadeIn 0.3s ease;
+    }
+    .modal-body {
+        text-align: center;
+    }
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+    .review-image {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+    /* Animation */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
 
 form{
     background-color: rgba(255, 0, 0, 0.0);
@@ -131,18 +231,6 @@ form{
                     </div>
                     <div class="u-s-m-b-15">
 
-                        <!-- <span class="pd-detail__label u-s-m-b-8">Product Policy:</span>
-                        <ul class="pd-detail__policy-list">
-                            <li><i class="fas fa-check-circle u-s-m-r-8"></i>
-
-                                <span>Buyer Protection.</span></li>
-                            <li><i class="fas fa-check-circle u-s-m-r-8"></i>
-
-                                <span>Full Refund if you don't receive your order.</span></li>
-                            <li><i class="fas fa-check-circle u-s-m-r-8"></i>
-
-                                <span>Returns accepted if product not as described.</span></li>
-                        </ul> -->
                     </div>
                 </div>
                 <!--====== End - Product Right Side Details ======-->
@@ -245,20 +333,6 @@ form{
 
 
                         <!--====== Tab 2 ======-->
-                        <!-- <div class="tab-pane" id="pd-tag">
-                            <div class="pd-tab__tag">
-                                <h2 class="u-s-m-b-15">ADD YOUR TAGS</h2>
-                                <div class="u-s-m-b-15">
-                                    <form>
-
-                                        <input class="input-text input-text--primary-style" type="text">
-
-                                        <button class="btn btn--e-brand-b-2" type="submit">ADD TAGS</button></form>
-                                </div>
-
-                                <span class="gl-text">Use spaces to separate tags. Use single quotes (') for phrases.</span>
-                            </div>
-                        </div> -->
                         <!--====== End - Tab 2 ======-->
 
 
@@ -276,20 +350,73 @@ form{
                                         </div>
 
                                         <span class="gl-text">Tell us what you think about this item</span>
+                                        <br>
+                                        <button id="theBtn" type="button" onclick="isLogin(<?php echo $customer_id; ?>)" class="btn btn--e-brand-b-2">Add Review</button>
                                     </div>
+                                    <form class="review-form" id="reviewForm" action="" method="POST" enctype="multipart/form-data" style="display:none;padding:10px 120px">
+                                        <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
+                                        <input type="hidden" id="check" name="check" value="<?php echo $check; ?>">
+                                
+                                        <div class="u-s-m-b-15">
+                                            <label for="review-text">Your Review:</label>
+                                            <textarea id="review-text" name="review_text" required></textarea>
+                                        </div>
+                                        
+                                        <div class="u-s-m-b-15">
+                                            <!-- <label for="review-rating">Rating:</label> -->
+                                            <div class="star-rating" >
+                                                <input type="radio" id="star5" name="rating" value="5" required />
+                                                <label for="star5" class="star">&#9733;</label>
+                                                <input type="radio" id="star4" name="rating" value="4" required />
+                                                <label for="star4" class="star">&#9733;</label>
+                                                <input type="radio" id="star3" name="rating" value="3" required />
+                                                <label for="star3" class="star">&#9733;</label>
+                                                <input type="radio" id="star2" name="rating" value="2" required />
+                                                <label for="star2" class="star">&#9733;</label>
+                                                <input type="radio" id="star1" name="rating" value="1" required />
+                                                <label for="star1" class="star">&#9733;</label>
+                                            </div>
+                                        </div>
+                                
+                                        <div class="u-s-m-b-15">
+                                        <div class="gl-inline">
+                                                <div class="gl-inline" style='display: flex;justify-content:center; padding-left:10px;padding-bottom:10px ;'>
+                                                     <div class="upload-container">
+                                                         <div id="drop-area" class="drop-area">
+                                                             <p>Drag & Drop your images here or <span id="browse">Browse</span></p>
+                                                             <input type="file" id="fileElem" name="review_image" accept="image/*" style="display:none">
+                                             
+                                                         </div>
+                                                 
+                                                         <!-- Preview and confirmation buttons -->
+                                                         <div id="preview-container" class="preview-container">
+                                                             <img id="preview-image" alt="Image Preview">
+                                                             <div>
+                                                                 <a class="btn-cancel btn btn--e-brand-b-2" id="cancel-btn">Delete Image</a>
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                     </div>
+                                                </div>
+                                            <!-- <label for="review-image">Upload Image:</label>
+                                            <input type="file" id="review-image" name="review_image" accept="image/*"> -->
+                                        </div>
+                                
+                                        <div class="u-s-m-b-15">
+                                            
+                                        </div>
+                                        <button id="theBtn" type="button" onclick="confirmDelete(<?php echo $customer_id; ?>)" class="btn btn--e-brand-b-2">Submit Review</button>
+                                    </form>
                                 </div>
                                 <div class="u-s-m-b-30" style="background-color:#fff;">
                                     <form>
-                                        <div class="rev-f1__group">
+                                        <div  class="rev-f1__group">
                                             <div class="u-s-m-b-15">
-                                                <h2>23 Review(s) for Man Ruched Floral Applique Tee</h2>
+                                                <h2 style="padding-top:10px"><?= count($reviews)?> Review(s) for <b style="color:#D2691E"><?php echo $product['product_name']; ?></b></h2>
                                             </div>
                                             <div class="u-s-m-b-15">
 
-                                                <label for="sort-review"></label><select class="select-box select-box--primary-style" id="sort-review">
-                                                    <option selected>Sort by: Best Rating</option>
-                                                    <option>Sort by: Worst Rating</option>
-                                                </select></div>
+                                                </div>
                                         </div>
                                         <div class="rev-f1__review">
                                             <?php
@@ -313,39 +440,6 @@ form{
                                                     echo '</div></div>';
                                                 }
                                                 ?>
-                                            <!-- <div class="review-o u-s-m-b-15">
-                                                <div class="review-o__info u-s-m-b-8">
-
-                                                    <span class="review-o__name">John Doe</span>
-
-                                                    <span class="review-o__date">27 Feb 2018 10:57:43</span></div>
-                                                <div class="review-o__rating gl-rating-style u-s-m-b-8"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-
-                                                    <span>(4)</span></div>
-                                                <p class="review-o__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                            </div>
-                                            <div class="review-o u-s-m-b-15">
-                                                <div class="review-o__info u-s-m-b-8">
-
-                                                    <span class="review-o__name">John Doe</span>
-
-                                                    <span class="review-o__date">27 Feb 2018 10:57:43</span></div>
-                                                <div class="review-o__rating gl-rating-style u-s-m-b-8"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-
-                                                    <span>(4)</span></div>
-                                                <p class="review-o__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                            </div>
-                                            <div class="review-o u-s-m-b-15">
-                                                <div class="review-o__info u-s-m-b-8">
-
-                                                    <span class="review-o__name">John Doe</span>
-
-                                                    <span class="review-o__date">27 Feb 2018 10:57:43</span></div>
-                                                <div class="review-o__rating gl-rating-style u-s-m-b-8"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-
-                                                    <span>(4)</span></div>
-                                                <p class="review-o__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                            </div> -->
                                         </div>
                                     </form>
                                 </div>
@@ -359,10 +453,52 @@ form{
     </div>
 </div>
 <!--====== End - Product Detail Tab ======-->
+<div id="buyModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-body text-center">
+            <i class="fas fa-exclamation-triangle fa-3x text-warning mb-3"></i>
+            <h5>You need to buy the product to review it.</h5>
+            <form id="deleteForm" action="/cart/<?= $product['product_id'] ?>" method="POST">
+                <!-- <a href="/cart/<?= $product['product_id'] ?>">
+                    <button class="btn btn--e-brand-b-2" type="submit">Add to Cart</button>
+                </a> -->
+                <button type="button" class="btn btn-secondary mr-2" onclick="closeModal()">Cancel</button>
+                <button type="submit" class="btn btn-danger">Add to Cart</button>
+            </form>
+        </div>
+    </div>
+    </div>
+    <div id="loginModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-body text-center">
+            <i class="fas fa-exclamation-triangle fa-3x text-warning mb-3"></i>
+            <h5 id="the_Text">Are you sure you want to delete this product from your wishlist?</h5>
+            <form id="deleteForm" action="/login" method="POST">
+                <input type="hidden" name="id" id="deleteProductId">
+                <button type="button" class="btn btn-secondary mr-2" onclick="closeModal()">Cancel</button>
+                <button type="submit" class="btn btn-danger">Login</button>
+            </form>
+        </div>
+    </div>
+    </div>
+    <div id="errorModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-body text-center">
+            <i class="fas fa-exclamation-triangle fa-3x text-warning mb-3"></i>
+            <h5 id="error_Text">Error</h5>
+            <form id="deleteForm" action="/login" method="POST">
+                <input type="hidden" name="id" id="deleteProductId">
+                <button type="button" class="btn btn-secondary mr-2" onclick="closeModal()">Ok</button>
+            </form>
+        </div>
+    </div>
+    </div>
+<!--====== End - Product Detail Tab ======-->
 <div class="u-s-p-b-90">
 
     <!--====== Section Intro ======-->
-    <div class="section__intro u-s-m-b-46">
+    <!-- <div class="section__intro u-s-m-b-46">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -374,12 +510,12 @@ form{
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!--====== End - Section Intro ======-->
 
 
     <!--====== Section Content ======-->
-    <div class="section__content">
+    <!-- <div class="section__content">
         <div class="container">
             <div class="slider-fouc">
                 <div class="owl-carousel product-slider" data-item="4">
@@ -632,11 +768,72 @@ form{
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!--====== End - Section Content ======-->
 </div>
 <!--====== End - Section 1 ======-->
 </div>
+<script>
+    function isLogin(userId){
+        if(userId != null){
+            document.getElementById('reviewForm').style.display = 'block';
+        }else{
+            document.getElementById('loginModal').style.display = 'flex';
+            document.getElementById('the_Text').innerText = 'You Must Login';
+        }
+    }
+    // Open modal with product ID
+    function confirmDelete(productId) {
+        // alert("dgdfgsdgsdgsd");
+
+        if(productId != null){
+            
+            var f = document.getElementById('check').value;
+            if(f == false){
+                document.getElementById('deleteProductId').value = productId;
+                document.getElementById('buyModal').style.display = 'flex';
+                // document.getElementById('the_Text').innerText = 'You need to buy the product to review it.';
+            }else{
+                // alert("2");
+                if(document.getElementById("review-text").value){
+                    if(document.getElementById("star1").checked || document.getElementById("star2").checked || document.getElementById("star3").checked|| document.getElementById("star4").checked||document.getElementById("star5").checked){
+                        document.getElementById("reviewForm").action = "/submitReview";
+                        document.getElementById("reviewForm").submit();
+                    }else{
+                        document.getElementById('deleteProductId').value = productId;
+                        document.getElementById('errorModal').style.display = 'flex';
+                        document.getElementById('error_Text').innerText = 'You need to rating.';
+                    }
+                }else{
+                    document.getElementById('deleteProductId').value = productId;
+                    document.getElementById('errorModal').style.display = 'flex';
+                    document.getElementById('error_Text').innerText = 'You need to fill the review.';
+                }
+                
+            }
+        }else{
+            document.getElementById('loginModal').style.display = 'flex';
+            document.getElementById('the_Text').innerText = 'You Must Login';
+
+        }
+       
+    }
+
+    // Close modal
+    function closeModal() {
+        document.getElementById('loginModal').style.display = 'none';
+        document.getElementById('buyModal').style.display = 'none';
+        document.getElementById('errorModal').style.display = 'none';
+    }
+
+    // Close modal when clicking outside of modal-content
+    window.onclick = function(event) {
+        const modal = document.getElementById('deleteModal');
+        if (event.target == modal) {
+            closeModal();
+        }
+    };
+</script>
 <script src="/public/js/AddtoFavorites.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

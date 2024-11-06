@@ -1023,7 +1023,7 @@ custom-colors, box-mode, custom-header, custom-menu, custom-logo, featured-image
   .product-o:hover .product-o__action-wrap {
     opacity: 1;
     -webkit-transform: translateY(-50%) scale(1);
-            transform: translateY(-50%) scale(1); }
+            transform: translateY(-50%) scale(1);}
   
   .product-o:hover .product-o__action-list > li {
     opacity: 1;
