@@ -70,6 +70,14 @@ class OrdersController
         }
     }
 
+    public function placeOrder() {
+        // Logic to handle placing the order, e.g., inserting order details into the database
+        
+            // Clear session variables related to the cart
+            setcookie('cart', '', time() - 3600, '/'); // Expires the cart cookie
+           
+    }
+
 }
 
 // }

@@ -226,7 +226,7 @@ margin:0;
                         <div class="col">TOTAL PRICE</div>
                         <div class="col text-right">&euro; 137.00</div>
                     </div>
-                    <button class="btn">CHECKOUT</button>
+                    <a href="/checkout"><button class="btn">CHECKOUT</button></a>
                 </div>
             </div>
             

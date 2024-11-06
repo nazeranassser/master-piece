@@ -4,6 +4,8 @@ namespace App\Models;
 use App\Models\Model;
 
 class Cart extends Model {
+    
+
 
     public function __construct() {
         $this->db = Database::getInstance()->getConnection();
@@ -21,16 +23,19 @@ class Cart extends Model {
         return $stmt->fetch(\PDO::FETCH_ASSOC); 
     }
 
-    public function createOrder($customerId, $orderTotal, $cartItems, $orderTotalAfter) {
+    public function createOrder($customerId, $orderTotal, $cartItems, $orderTotalAfter,$couponId) {
         $this->db->beginTransaction();
 
+        if (isset($_SESSION['coupon'])) {
+            $orderTotalAfter -= $_SESSION['coupon']; 
+        }
         try {
             $date = date('Y-m-d H:m:s');
             // Insert order into orders table
-            $stmt = $this->db->prepare("INSERT INTO orders (customer_id, order_total_amount, order_total_amount_after,created_at) VALUES (:customer_id, :total , :total_after,:date)");
-            $stmt->execute(['customer_id' => $customerId, 'total' => $orderTotal , 'total_after' => $orderTotalAfter, 'date' => $date]);
+            $stmt = $this->db->prepare("INSERT INTO orders (customer_id, order_total_amount, order_total_amount_after,coupon_id,created_at) VALUES (:customer_id, :total , :total_after, :couponId,:date)");
+            $stmt->execute(['customer_id' => $customerId, 'total' => $orderTotal , 'total_after' => $orderTotalAfter, 'couponId' => $couponId, 'date' => $date]);
             $orderId = $this->db->lastInsertId();
-
+            $_SESSION['orderId'] = $orderId;
             // Insert order items into order_items table
             foreach ($cartItems as $item) {
                 $stmt = $this->db->prepare("INSERT INTO order_products (order_id, product_id, quantity, price) VALUES (:order_id, :product_id, :quantity, :price)");
@@ -39,6 +44,7 @@ class Cart extends Model {
                     'product_id' => $item['product_id'],
                     'quantity' => $item['quantity'],
                     'price' => $item['price']
+                   
                 ]);
             }
 

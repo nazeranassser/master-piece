@@ -96,9 +96,10 @@ class CouponsController
             // die();
 
             if ($coupon) {
+                $_SESSION['coupon_id'] = $coupon['coupon_id'];
                 $_SESSION['coupon'] = $coupon['coupon_amount'];
                 $_SESSION['coupon_code'] = $couponCode;
-                $_SESSION['total'] = $_SESSION['total'] - $coupon['coupon_amount'];
+                $_SESSION['total'] -= $_SESSION['coupon'];
 
                 flash('success', 'Coupon applied successfully.');
             } else {

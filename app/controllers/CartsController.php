@@ -5,11 +5,14 @@ use App\Models\Cart;
 
 use App\Models\Product;
 
+use App\Models\Coupon;
+
 
 class CartsController
 {
     private $cartModel;
     private $productModel;
+    private $couponModel;
 
     public function __construct()
     {
@@ -156,12 +159,12 @@ class CartsController
         foreach ($cart as $item) {
 
             $orderTotal += ($item['price'] * $item['quantity']);
-            var_dump($orderTotal);
+            // var_dump($orderTotal);
         }
         $orderTotal += 2;
 
         if (isset($_SESSION['discount']) && $_SESSION['discount'] > 0) {
-            var_dump($_SESSION['discount']);
+            // var_dump($_SESSION['discount']);
             // die();
             $orderTotalAfter = $orderTotal - ($item['price'] * $_SESSION['discount']);
         } else {
@@ -169,7 +172,13 @@ class CartsController
         }
         // var_dump($orderTotalAfter);
         // die();
-        $orderId = $this->cartModel->createOrder($customerId, $orderTotal, $cart, $orderTotalAfter);
+        if (isset($_SESSION['coupon']) && $_SESSION['coupon'] > 0) {
+        $couponId = $_SESSION['coupon_id'];
+        }
+        else {
+            $couponId = 0;
+        }
+        $orderId = $this->cartModel->createOrder($customerId, $orderTotal, $cart, $orderTotalAfter, $couponId);
         unset($_SESSION['discount']);
 
         foreach ($cart as $item) {
@@ -177,6 +186,6 @@ class CartsController
         }
         setcookie('cart', '', time() - 3600, '/');
 
-        header("Location: /");
+        require 'views/pages/thankyou.php';
     }
 }

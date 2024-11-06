@@ -85,13 +85,14 @@
                         <form method="post" action="/applyCoupon" id="applyForm">
                             <input type="text" id="coupon_code" name="coupon_code" placeholder="Enter coupon code" required>
                             <button type="submit" class="apply-coupon-button">Apply</button>
+
                         </form>
                     <?php endif; ?>
 
                     <?php if (isset($_SESSION['coupon'])): ?>
                         <p><strong>Coupon Applied:</strong> <?= htmlspecialchars($_SESSION['coupon_code']); ?></p>
                         <p><strong>Discount Amount:</strong> <?=$_SESSION['coupon']; ?>JD</p>
-                        <p><strong>New Total:</strong> <?= $_SESSION['total']; ?>JD</p>
+                        <p><strong>New Total:</strong> <?= $total - $_SESSION['coupon']; ?>JD</p>
 
                         <form method="post" action="/removeCoupon" id="removeForm">
                             <button type="submit" name="remove_coupon" class="remove-coupon-button">Remove</button>
