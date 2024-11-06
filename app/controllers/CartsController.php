@@ -21,7 +21,7 @@ class CartsController
     {
         $cart = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];
 
-        require 'views/pages/cart.php';
+        require 'views/pages/cart2.php';
     }
     public function clearCart()
     {
@@ -52,13 +52,19 @@ class CartsController
                     echo "<script>alert('Cannot add more. Stock limit reached.');</script>";
                 }
             } else {
+                if($_POST['quantity']){
+                    $quan = $_POST['quantity'];
+
+                }else{
+                    $quan = 1;
+                }
                 // Add new product to the cart if it doesn't exist yet, with a default quantity of 1
                 $cart[$productId] = [
                     'product_id' => $product['product_id'],
                     'product_name' => $product['product_name'],
                     'price' => $product['product_price'],
                     'discount' => $product['product_discount'],
-                    'quantity' => $_POST['quantity'], // Start with 1 if newly added
+                    'quantity' => $quan, // Start with 1 if newly added
                     'stock_quantity' => $stockQuantity, // Include stock info for client-side checks
                     'image_url' => $product['product_image'] // Assuming this is the correct field
 

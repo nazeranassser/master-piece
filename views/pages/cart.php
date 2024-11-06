@@ -242,6 +242,7 @@
 //         document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/";
 //     }
 // });
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 document.addEventListener('DOMContentLoaded', () => {
     const totalDisplay = document.getElementById(`new_price_2`);
     const inputField1 = document.getElementById(`inputField`);

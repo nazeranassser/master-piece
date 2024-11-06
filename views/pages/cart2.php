@@ -168,6 +168,9 @@ margin:0;
                     </div>    
                     <?php foreach ($cartItems as $productId => $item): ?>
                     <div class="row border-top border-bottom">
+                            <?php
+                                  $discountedPrice = $item['price'] - ($item['price'] * ($item['discount']));
+                            ?>
                         <div class="" style="display:flex;justify-content: space-between;">
                             <div class=""><div style="display: flex;align-items:center"><img class="img-fluid" style="width:100px;margin-right:24px;margin:10px 0px;border-radius:6px" src="/public/images/products/<?php echo htmlspecialchars($item['image_url']); ?>">
                             <div class="cart-table__name" style="padding-left:10px">
@@ -175,17 +178,13 @@ margin:0;
                                 <div class="row">Cotton T-shirt</div>
                             </div></div></div>
                             <div class="original-price" style="display: flex;align-items:center;"><span class="original-price">
-                            <?php $discountedPrice = number_format($item['price'], 2);?>
                                 <?php if ($item['discount'] > 0): ?>
-                                  <?php
-                                  $discountedPrice = $item['price'] - ($item['price'] * ($item['discount']));
-                                  ?>
-                                      <span id="original-price_<?php echo htmlspecialchars($item['product_id']); ?>"><s style="color: red;"><?= number_format($item['price'], 2); ?> JD</s></span>
+                                      <span class="original-price"><s style="color: red;"><?= number_format($item['price'], 2);?> </s><s>JD</s></span>
                                       </span>
-                                  <span class="discounted-price"><?= number_format($discountedPrice, 2); ?>
-                                      JD</span>
+                                  <span id="original-price_<?= $item['product_id'] ?>" class="discounted-price"><?= $discountedPrice; ?>
+                                </span><span>JD</span>
                               <?php else: ?>
-                                  <?= $discountedPrice ?> JD
+                                <span id="original-price_<?= $item['product_id'] ?>" class="discounted-price"><?= $discountedPrice; ?></span> <span>JD</span>
                               <?php endif; ?>
                               <span><span class="close"></span></div>
                             <div class=""style="display: flex;align-items:center">
@@ -194,13 +193,13 @@ margin:0;
                                            
                                             <div class="input-counter">
                                                 <span class="input-counter__minus fas fa-minus"></span>
-                                                <input type="number" id='inputField_<?php echo htmlspecialchars($item['product_id']); ?>' class="input-counter__text input-counter--text-primary-style" min='1' value="<?php echo htmlspecialchars($item['quantity']); ?>" data-product-id="<?php echo htmlspecialchars($item['product_id']); ?>" max="<?php echo htmlspecialchars($item['stock_quantity']); ?>" />
-                                                <span class="cart-quantity">Quantity: <span class="quantity-display" data-product-id="<?php echo htmlspecialchars($item['product_id']); ?>"><?php echo htmlspecialchars($item['quantity']); ?></span></span>
+                                                <input type="number" id='inputField' class="input-counter__text input-counter--text-primary-style" min='1' value="<?php echo htmlspecialchars($item['quantity']); ?>" data-product-id="<?php echo htmlspecialchars($item['product_id']); ?>" max="<?php echo htmlspecialchars($item['stock_quantity']); ?>" />
+                                                <!-- <span class="cart-quantity">Quantity: <span class="quantity-display" data-product-id="<?php echo htmlspecialchars($item['product_id']); ?>"><?php echo htmlspecialchars($item['quantity']); ?></span></span> -->
                                                 <span class="input-counter__plus  fas fa-plus"></span>
                                             </div>
                                         </div>
                             </div>
-                            <div class=""style="display: flex;align-items:center"><span id="new_price" class="total-price" data-product-id="<?php echo htmlspecialchars($item['product_id']); ?>"><span id="new_price_<?php echo htmlspecialchars($item['product_id']); ?>" class="total-display" data-product-id="<?php echo htmlspecialchars($item['product_id']); ?>"><?= number_format($item['price'], 2); ?> JD</span></div>
+                            <div class=""style="display: flex;align-items:center">    <span class="total-price" data-product-id="<?php echo htmlspecialchars($item['product_id']); ?>"><span id="total-price_<?php echo htmlspecialchars($item['product_id']); ?>" class="total-display" data-product-id="<?php echo htmlspecialchars($item['product_id']); ?>"><?= number_format($discountedPrice, 2); ?> JD</span></div>
                             <div class="cart-table__del-wrap" style="display: flex;align-items:center">
                                 <a class="far fa-trash-alt cart-table__delete-link"
                                     href="/removeFromCart/<?php echo htmlspecialchars($item['product_id']); ?>"></a>
@@ -208,49 +207,6 @@ margin:0;
                         </div>
                     </div>
                     <?php endforeach; ?> 
-                    <div class="row border-top border-bottom">
-                        <div class="row main align-items-center">
-                            <div class="col-2"><img class="img-fluid" src="/public/images/products/<?php echo htmlspecialchars($item['image_url']); ?>"></div>
-                            <div class="col">
-                                <div class="row">Shirt</div>
-                                <div class="row">Cotton T-shirt</div>
-                            </div>
-                            <div class="col">
-                                <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
-                            </div>
-                            <div class="col _<?php echo htmlspecialchars($item['product_id']); ?>">&euro; 44.00 <span class="close">&#10005;</span></div>
-                            <div class="col cart-table__del-wrap">
-                                <a class="far fa-trash-alt cart-table__delete-link"
-                                    href="/removeFromCart/<?php echo htmlspecialchars($item['product_id']); ?>"></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="row main align-items-center">
-                            <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/ba3tvGm.jpg"></div>
-                            <div class="col">
-                                <div class="row text-muted">Shirt</div>
-                                <div class="row">Cotton T-shirt</div>
-                            </div>
-                            <div class="col">
-                                <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
-                            </div>
-                            <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
-                        </div>
-                    </div>
-                    <div class="row border-top border-bottom">
-                        <div class="row main align-items-center">
-                            <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/pHQ3xT3.jpg"></div>
-                            <div class="col">
-                                <div class="row text-muted">Shirt</div>
-                                <div class="row">Cotton T-shirt</div>
-                            </div>
-                            <div class="col">
-                                <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
-                            </div>
-                            <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
-                        </div>
-                    </div>
                     <div class="back-to-shop"><a href="#">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
                 </div>
                 <div class="col-md-4 summary">
@@ -275,37 +231,30 @@ margin:0;
             </div>
             
         </div>
-        <span class="original-price"><s style="color: red;"><?= number_format($item['price'], 2); ?> JD</s></span>
-    <span id="new_price" class="total-price" data-product-id="<?php echo htmlspecialchars($item['product_id']); ?>">Total: <span id="new_price_2" class="total-display" data-product-id="<?php echo htmlspecialchars($item['product_id']); ?>"><?= number_format($item['price'], 2); ?> JD</span></span>
-    
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
         <script>
             document.addEventListener('DOMContentLoaded', () => {
     // const totalDisplay = document.getElementById(`new_price_2`);
-    // const inputField1 = document.getElementById(`inputField`);
-    // const originalPrice = parseFloat(document.getElementById(`.original-price_${inputField.dataset.productId}`).textContent.replace(/[^0-9.]/g, '')); // Get original price and remove JD
+    const inputField1 = document.getElementById(`inputField`);
+    // const originalPrice = parseFloat(document.querySelector('.original-price s').textContent.replace(/[^0-9.]/g, '')); // Get original price and remove JD
     // totalDisplay.textContent = inputField1.value * originalPrice + ' JD';
         
     document.querySelectorAll('.input-counter').forEach(counter => {
+        const inputField = counter.querySelector('.input-counter__text');
+        const totalDisplay5 = document.getElementById(`total-price_${inputField.dataset.productId}`);
+        const originalPrice = document.getElementById(`original-price_${inputField.dataset.productId}`);
         const minusBtn = counter.querySelector('.input-counter__minus');
         const plusBtn = counter.querySelector('.input-counter__plus');
-        const inputField = counter.querySelector('.input-counter__text');
-        const quantityDisplay = counter.querySelector('.quantity-display');
-        const totalDisplay = document.getElementById(`new_price_${inputField.dataset.productId}`);
-        const inputField1 = document.getElementById(`inputField_${inputField.dataset.productId}`);
-        const originalPrice = parseFloat(document.getElementById(`original-price_${inputField.dataset.productId}`).textContent.replace(/[^0-9.]/g, '')); // Get original price and remove JD
-        totalDisplay.textContent = inputField1.value * originalPrice + ' JD';
-        
+        // const quantityDisplay = counter.querySelector('total-price');
+
 
         // Decrease quantity when minus button is clicked
         minusBtn.addEventListener('click', () => {
             let value = parseInt(inputField.value);
             if (!isNaN(value) && value > 1) {
                 inputField.value = value - 1;
-                const totalDisplay = document.getElementById(`new_price_${inputField.dataset.productId}`);
-                totalDisplay.textContent = `${originalPrice * (value-1)} JD`; 
-                totalDisplay.textContent = inputField1.value * originalPrice + ' JD';
+                totalDisplay5.textContent = `${originalPrice * (value-1)} JD`; 
                 updateCart(inputField); // Update the cart whenever the quantity changes
                 updateQuantityDisplay(inputField.dataset.productId); // Update displayed quantity
                 updateTotalPrice(inputField); // Update displayed total price
@@ -317,12 +266,11 @@ margin:0;
             let value = parseInt(inputField.value);
             const maxValue = inputField.max ? parseInt(inputField.max) : Infinity; // Ensure max is considered if set
             if (!isNaN(value) && value < maxValue) {
+                const totalDisplay6 = document.getElementById(`total-price_${inputField.dataset.productId}`);
+                // const totalDisplay6 = document.getElementById(`total-price_${inputField.dataset.productId}`);
                 inputField.value = value + 1;
-                const inputField1 = document.getElementById(`inputField_${inputField.dataset.productId}`);
-                const totalDisplay = document.getElementById(`new_price_${inputField.dataset.productId}`);
-                totalDisplay.textContent = inputField1.value * originalPrice + ' JD';
                 // alert(originalPrice);
-                totalDisplay.textContent = `${originalPrice * (value+1)} JD`; 
+                totalDisplay6.textContent = `${originalPrice * (value+1)} JD`; 
                 updateCart(inputField); // Update the cart whenever the quantity changes
                 updateQuantityDisplay(inputField.dataset.productId); // Update displayed quantity
                 updateTotalPrice(inputField); // Update displayed total price
@@ -364,13 +312,15 @@ margin:0;
 
     // Function to update the displayed quantity
     function updateQuantityDisplay(productId) {
-        const quantityDisplay = document.querySelector(`.quantity-display[data-product-id="${productId}"]`);
+        // alert(productId);
+        const quantityDisplay2 = document.getElementById(`total-price_${productId}`);
+        const originalPrice2 = document.getElementById(`original-price_${productId}`);
 
         const cart = getCookie('cart');
         if (cart) {
             const parsedCart = JSON.parse(cart);
             if (parsedCart[productId]) {
-                quantityDisplay.textContent = parsedCart[productId].quantity; // Update the displayed quantity
+                quantityDisplay2.textContent = parsedCart[productId].quantity * originalPrice2.textContent; // Update the displayed quantity
             }
         }
     }
@@ -379,13 +329,15 @@ margin:0;
     function updateTotalPrice(inputField) {
         const productId = inputField.dataset.productId; // Get product ID from data attribute
         const quantity = parseInt(inputField.value); // Get current quantity
-        const originalPrice = parseFloat(document.getElementById(`original-price_${inputField.dataset.productId}`).textContent.replace(/[^0-9.]/g, '')); // Get original price and remove JD
-        // Calculate total price
-        const totalPrice = (originalPrice * quantity).toFixed(2);
-        // const totalDisplay = document.querySelector(`.total-display[data-product-id="${productId}"]`);
-        const totalDisplay = document.getElementById(`new_price_${productId}`);
+        const originalPrice3 = document.getElementById(`original-price_${productId}`);
 
-        totalDisplay.textContent = `${totalPrice} JD`; // Update the displayed total price
+        
+        // Calculate total price
+        const totalPrice = (originalPrice3.textContent * quantity).toFixed(2);
+        // const totalDisplay = document.querySelector(`.total-display[data-product-id="${productId}"]`);
+        const totalDisplay3 = document.getElementById(`total-price_${productId}`);
+
+        totalDisplay3.textContent = `${totalPrice} JD`; // Update the displayed total price
     }
 
     // Helper function to get a cookie
