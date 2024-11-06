@@ -18,18 +18,20 @@
             <p><strong>First Name:</strong> <?php echo htmlspecialchars($deliveryInfo['customer_name']); ?></p>
             <p><strong>Email:</strong> <?php echo htmlspecialchars($deliveryInfo['customer_email']); ?></p>
             <p><strong>Phone:</strong> <?php echo htmlspecialchars($deliveryInfo['customer_phone']); ?></p>
-
+            <?php $_SESSION['address'] = $deliveryInfo['customer_address1'];?>
             <?php if (!empty($deliveryInfo['customer_address2'])): ?>
                 <div class="address-selection">
                     <label><strong style="color:red;">Choose one of your addresses:</strong></label><br>
                     <label>
                         <input type="radio" name="selected_address"
-                            value="<?php echo htmlspecialchars($deliveryInfo['customer_address1']); ?>" checked>
+                            value="<?php echo htmlspecialchars($deliveryInfo['customer_address1']); ?>" checked
+                            onclick="setAddress(this.value)">
                         <strong>Address 1:</strong> <?php echo htmlspecialchars($deliveryInfo['customer_address1']); ?>
                     </label><br>
                     <label>
                         <input type="radio" name="selected_address"
-                            value="<?php echo htmlspecialchars($deliveryInfo['customer_address2']); ?>">
+                            value="<?php echo htmlspecialchars($deliveryInfo['customer_address2']); ?>"
+                            onclick="setAddress(this.value)">
                         <strong>Address 2:</strong> <?php echo htmlspecialchars($deliveryInfo['customer_address2']); ?>
                     </label>
                 </div>
@@ -110,6 +112,7 @@
     <form action="placeOrder" method="POST" class="payment-form">
         <div class="radio-box">
             <input type="radio" id="cash-on-delivery" name="payment_method" value="cod" checked>
+            <input type="text" id = "address" name="address" hidden value = "<?php echo $deliveryInfo['customer_address1']; ?>">
             <label for="cash-on-delivery">Cash on Delivery</label>
         </div>
         <button type="submit" class="submit-button">PLACE ORDER</button>
@@ -265,6 +268,11 @@
             }
         }
     });
+</script>
+<script>
+function setAddress(selectedAddress) {
+    document.getElementById('address').value = selectedAddress;
+}
 </script>
 
 <!-- <script>

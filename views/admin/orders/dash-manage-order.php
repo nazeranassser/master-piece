@@ -234,8 +234,6 @@ include('views/partials/header_admin.php');
                             <h2 class="dash__h2 u-s-m-b-8">Shipping Address</h2>
                             <h2 class="dash__h2 u-s-m-b-8"><?php echo $orders[0]['customer_name'] ?></h2>
 
-                            <span class="dash__text-2"><?php echo $orders[0]['customer_address1'] ?></span>
-
                             <span class="dash__text-2"><?php echo $orders[0]['customer_phone'] ?></span>
                         </div>
                     </div>
@@ -249,15 +247,7 @@ include('views/partials/header_admin.php');
                                 <div class="manage-o__text-2 u-c-secondary">
                                     $<?php echo $orders[0]['order_total_amount'] ?>.0</div>
                             </div>
-                            <div class="dash-l-r u-s-m-b-8">
-                                <div class="manage-o__text-2 u-c-secondary">Shipping Fee</div>
-                                <div class="manage-o__text-2 u-c-secondary">$0.00</div>
-                            </div>
-                            <div class="dash-l-r u-s-m-b-8">
-                                <div class="manage-o__text-2 u-c-secondary">Total</div>
-                                <div class="manage-o__text-2 u-c-secondary">
-                                    $<?php echo $orders[0]['order_total_amount_after'] ?></div>
-                            </div>
+                            
                             <div class="dash-l-r u-s-m-b-8">
                                 <div class="manage-o__text-2 u-c-secondary"><span class="dash__text-2">Paid by Cash on
                                         Delivery</span></div>

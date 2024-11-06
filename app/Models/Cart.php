@@ -23,17 +23,18 @@ class Cart extends Model {
         return $stmt->fetch(\PDO::FETCH_ASSOC); 
     }
 
-    public function createOrder($customerId, $orderTotal, $cartItems, $orderTotalAfter,$couponId) {
+    public function createOrder($customerId, $orderTotal, $cartItems, $orderTotalAfter,$couponId,$address) {
         $this->db->beginTransaction();
 
         if (isset($_SESSION['coupon'])) {
             $orderTotalAfter -= $_SESSION['coupon']; 
         }
+
         try {
             $date = date('Y-m-d H:m:s');
             // Insert order into orders table
-            $stmt = $this->db->prepare("INSERT INTO orders (customer_id, order_total_amount, order_total_amount_after,coupon_id,created_at) VALUES (:customer_id, :total , :total_after, :couponId,:date)");
-            $stmt->execute(['customer_id' => $customerId, 'total' => $orderTotal , 'total_after' => $orderTotalAfter, 'couponId' => $couponId, 'date' => $date]);
+            $stmt = $this->db->prepare("INSERT INTO orders (customer_id, order_total_amount, order_total_amount_after,coupon_id,delivery_address,created_at) VALUES (:customer_id, :total , :total_after, :couponId, :address ,:date)");
+            $stmt->execute(['customer_id' => $customerId, 'total' => $orderTotal , 'total_after' => $orderTotalAfter, 'couponId' => $couponId, 'address' => $address,'date' => $date]);
             $orderId = $this->db->lastInsertId();
             $_SESSION['orderId'] = $orderId;
             // Insert order items into order_items table

@@ -139,7 +139,22 @@ class CartsController
         // die();
         require 'views/pages/checkout.php';
     }
-
+    public function setAddress() {
+        // Ensure this is a POST request and the address is provided
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selected_address'])) {
+            session_start();
+            
+            // Set the selected address in the session
+            $_SESSION['address'] = $_POST['selected_address'];
+            
+            // Respond with success
+            echo json_encode(['success' => true]);
+            return;
+        }
+        
+        // If something went wrong, respond with failure
+        echo json_encode(['success' => false]);
+    }
     public function placeOrder()
     {
         if (!isset($_SESSION['usersId'])) {
@@ -153,8 +168,7 @@ class CartsController
         $orderTotalAfter = 0;
         // $couponId = isset($_SESSION['coupon_id']) ? $_SESSION['coupon_id'] : null;
 
-
-
+        $address = $_POST['address'];
 
         foreach ($cart as $item) {
             // var_dump($cart);
@@ -179,7 +193,7 @@ class CartsController
         else {
             $couponId = 0;
         }
-        $orderId = $this->cartModel->createOrder($customerId, $orderTotal, $cart, $orderTotalAfter, $couponId);
+        $orderId = $this->cartModel->createOrder($customerId, $orderTotal, $cart, $orderTotalAfter, $couponId, $address);
         unset($_SESSION['discount']);
 
         foreach ($cart as $item) {
