@@ -7,11 +7,11 @@
         <div class="section__content">
             <div class="dash">
                 <div class="container">
-                    <div class="row">
+                    <div class="row" >
                         <!-- Sidebar Section -->
-                        <div class="col-lg-3 col-md-12">
-                            <div class="dash__box dash__box--bg-white dash__box--shadow u-s-m-b-30">
-                                <div class="dash__pad-1">
+                        <div class="col-lg-3 col-md-12" >
+                            <div class="dash__box dash__box--bg-white dash__box--shadow u-s-m-b-30 l1" >
+                                <div class="dash__pad-1 ">
                                     <span class="dash__text u-s-m-b-16"><?php echo htmlspecialchars($_SESSION['usersName']); ?></span>
                                     <ul class="dash__f-list">
                                         <li><a href="profile-edit">Manage My Account</a></li>

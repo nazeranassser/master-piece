@@ -103,30 +103,7 @@ $customer_id = isset($_SESSION['usersId']) ? $_SESSION['usersId'] : null;
     
 </div>
 
-        <h4>Past Reviews</h4>
-        <div class="reviews-list">
-            <?php
-            foreach ($reviews as $review) { 
-                echo '<div class="review-item">';
-                if ($review['review_image']) {
-                    echo '<img src="/public/images/reviews/' . htmlspecialchars($review['review_image']) . '" alt="Review Image" class="review-image">';
-                }
-                echo '<div class="customer-name">' . htmlspecialchars($review['customer_name']) . '</div>';
-                echo '<div class="review-text">' . htmlspecialchars($review['review_text']) . '</div>';
-                echo '<div class="review-rating">Rating: ';
-                for ($i = 0; $i < $review['review_rating']; $i++) {
-                    echo '&#9733;'; // Star symbol
-                }
-                for ($i = $review['review_rating']; $i < 5; $i++) {
-                    echo '&#9734;'; // Empty star symbol
-                }
-                echo '</div>';
-
-                echo '</div>';
-                echo '</div>';
-            }
-            ?>
-        </div>
+        
     </div>
 
 

@@ -30,7 +30,9 @@ $router->add('reviews', ['controller' => 'Products', 'action' => 'viewProduct'])
 $router->add('products/delete/{id:\d+}', ['controller' => 'Products', 'action' => 'delete']);
 // $router->add('products/update/{id:\d+}', ['controller' => 'Products', 'action' => 'update']);
 // $router->add('products', ['controller' => 'Products', 'action' => 'index']);//admins-controllers->update_admin()
-
+$router->add('show', ['controller' => 'Products', 'action' => 'showrev']);
+$router->add('active/{id:\d+}', ['controller' => 'Reviews', 'action' => 'active']);
+$router->add('disactive/{id:\d+}', ['controller' => 'Reviews', 'action' => 'active1']);
 
 /* -----------------------------------Carts Router---------------------------------- */
 
