@@ -264,10 +264,10 @@ form{
                         <div class="tab-pane" id="pd-desc">
                             <div class="pd-tab__desc">
                                 <div class="u-s-m-b-15">
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                    <p><?=$product['product_description']?></p>
                                 </div>
                                 <div class="u-s-m-b-30"><iframe src="https://www.youtube.com/embed/qKqSBm07KZk" allowfullscreen></iframe></div>
-                                <div class="u-s-m-b-30">
+                                <!-- <div class="u-s-m-b-30">
                                     <ul>
                                         <li><i class="fas fa-check u-s-m-r-8"></i>
 
@@ -279,8 +279,8 @@ form{
 
                                             <span>Returns accepted if product not as described.</span></li>
                                     </ul>
-                                </div>
-                                <div class="u-s-m-b-15">
+                                </div> -->
+                                <!-- <div class="u-s-m-b-15">
                                     <h4>PRODUCT INFORMATION</h4>
                                 </div>
                                 <div class="u-s-m-b-15">
@@ -326,7 +326,7 @@ form{
                                             </tbody>
                                         </table>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <!--====== End - Tab 1 ======-->
@@ -408,7 +408,7 @@ form{
                                         <button id="theBtn" type="button" onclick="confirmDelete(<?php echo $customer_id; ?>)" class="btn btn--e-brand-b-2">Submit Review</button>
                                     </form>
                                 </div>
-                                <div class="u-s-m-b-30" style="background-color:#fff;">
+                                <div class="u-s-m-b-30" style="">
                                     <form>
                                         <div  class="rev-f1__group">
                                             <div class="u-s-m-b-15">
@@ -418,10 +418,10 @@ form{
 
                                                 </div>
                                         </div>
-                                        <div class="rev-f1__review">
+                                        <div class="rev-f1__review" style="">
                                             <?php
                                                 foreach ($reviews as $review) { 
-                                                    echo '<div class="review-o u-s-m-b-15" style="display:flex">'.'
+                                                    echo '<div class="review-o u-s-m-b-15" style="display:flex;background-color:#fff;padding:10px">'.'
                                                     <img src="/public/images/reviews/' . htmlspecialchars($review['review_image']) . '" alt="Review Image" style="width:140px;margin-right:20px;border-radius:8px" class="review-image">'.'<div><div class="review-o__info u-s-m-b-8">';
                                                     if ($review['review_image']) {
                                                     }
@@ -437,7 +437,7 @@ form{
                                                     echo '<span>(4)</span></div>';
                                     
                                                     echo '<p class="review-o__text">'. htmlspecialchars($review['review_text']).'</p></div>';
-                                                    echo '</div></div>';
+                                                    echo '</div>';
                                                 }
                                                 ?>
                                         </div>

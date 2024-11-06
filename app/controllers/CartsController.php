@@ -157,7 +157,8 @@ class CartsController
 
 
         foreach ($cart as $item) {
-
+            // var_dump($cart);
+            // die();
             $orderTotal += ($item['price'] * $item['quantity']);
             // var_dump($orderTotal);
         }
