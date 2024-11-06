@@ -46,7 +46,10 @@
     color: white;
 }
 
-
+.delete-button {
+    background-color: #f44336;
+    color: white;
+}
 
 .show-button:hover, .delete-button:hover {
     opacity: 0.9;
@@ -70,11 +73,11 @@
 
 /* زر التفعيل */
 .active-button {
-    background: rgb(210, 105, 30); /* تدرج أخضر */
+    background: linear-gradient(45deg, #28a745, #218838); /* تدرج أخضر */
 }
 
 .active-button:hover {
-    background: rgb(248, 225, 212);
+    background: linear-gradient(45deg, #34d058, #28a745);
     box-shadow: 0px 6px 12px rgba(0, 128, 0, 0.3);
 }
 
@@ -84,7 +87,7 @@
 }
 
 .disactive-button:hover {
-    background: rgb(255, 107, 107);
+    background: linear-gradient(45deg, #e55353, #dc3545);
     box-shadow: 0px 6px 12px rgba(255, 0, 0, 0.3);
 }
 
@@ -141,7 +144,9 @@
                                     <!--====== End - Dashboard Features ======-->
                                     <div>
 
-                                        </div>
+                                        <a class="dash__custom-link btn--e-brand-b-2" href="product-add"><i class="fas fa-plus u-s-m-r-8"></i>
+
+                                            <span>Add New Product</span></a></div>
                                 </div>
                                 <div class="col-lg-9 col-md-12">
                                     <div class="dash__box dash__box--shadow dash__box--bg-white dash__box--radius u-s-m-b-30">
@@ -150,16 +155,17 @@
                                                 <h1 class="dash__h1">Products</h1>
                                             </div>
                                             <div class="dash__filter">
-                                                <form method="GET" action="/products" id="categoryForm">
-                                                    <select class="select-box select-box--primary-style" style="border-radius:6px" name="id" id="categoryFilter" onchange="this.form.submit()">
-                                                        <option value="all">All Categories</option>
-                                                        <?php foreach ($categories as $category): ?>
-                                                            
-                                                            <option value="<?= $category['category_id'] ?>" 
-                                                                <?= isset($_GET['id']) && $_GET['id'] == $category['category_id'] ? 'selected' : '' ?>>
-                                                                <?= $category['category_name']; ?>
+                                                <form method="GET" action="/show/" id="categoryForm">
+                                                    <select class="select-box select-box--primary-style" style="border-radius:6px" name="cha" id="categoryFilter" onchange="this.form.submit()">
+                                                        <option value="">All reviews</option>                                                            
+                                                            <option value="1" 
+                                                                <?= isset($_GET['cha']) && $_GET['cha'] == 1 ? 'selected' : '' ?>>
+                                                                Active reviews
                                                             </option>
-                                                        <?php endforeach; ?>
+                                                            <option value="false" 
+                                                                <?= isset($_GET['cha']) && $_GET['cha'] == 'false' ? 'selected' : '' ?>>
+                                                                Deactivate reviews
+                                                            </option>
                                                     </select>
                                                 </form>
                                             </div>
@@ -175,52 +181,55 @@
                                                             <th>Customer Name</th>
                                                             <th>Review Text</th>
                                                             <th>Rating</th>
-                                                            <th>active</th>
+                                                            
                                                             <th>Actions</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                     <?php
-                                                        foreach ($reviews as $review) {
-                                                            echo '<tr>';
-                                                            
-                                                            // عمود الصورة
-                                                            echo '<td>';
+                                            
+                                              
+                                            foreach($reviews as $review) {
+                                              if($review['active']==1){
+                                                  $active = 'Active';
+                                                  $value = 0;
+                                                  $style = "style='background-color:green; border:0;width:100px'";
+                                              }else{
+                                                  $active = 'Deactivate';
+                                                  $value = 1;
+                                                  $style = '';
+                                              }
+                                              
+                                              echo " <tr><th>" ;
+                                              
                                                             if ($review['review_image']) {
                                                                 echo '<img src="/public/images/reviews/' . htmlspecialchars($review['review_image']) . '" alt="Review Image" class="review-image">';
                                                             } else {
                                                                 echo 'No Image';
                                                             }
-                                                            echo '</td>';
-                                                            
-                                                            // عمود اسم العميل
-                                                            echo '<td>' . htmlspecialchars($review['customer_name']) . '</td>';
-                                                            
-                                                            // عمود نص المراجعة
-                                                            echo '<td>' . htmlspecialchars($review['review_text']) . '</td>';
-                                                            
-                                                            // عمود التقييم
-                                                            echo '<td>';
-                                                            for ($i = 0; $i < $review['review_rating']; $i++) {
-                                                                echo '&#9733;'; // رمز النجمة
-                                                            }
-                                                            for ($i = $review['review_rating']; $i < 5; $i++) {
-                                                                echo '&#9734;'; // رمز النجمة الفارغة
-                                                            }
-                                                            echo '</td>';
-                                                            
-                                                            // عمود الحالة
-                                                            echo '<td>' . htmlspecialchars($review['active']) . '</td>';
-                                                            
-                                                            // عمود الأزرار
-                                                            echo '<td>';
-                                                            echo '<a href="/active/' . $review['review_id'] . '" class="action-button active-button">Active</a>';
-                                                            echo '<a href="/disactive/' . $review['review_id'] . '" class="action-button disactive-button">Disactive</a>';
-                                                            echo '</td>';
-                                                            
-                                                            echo '</tr>';
-                                                        }
-                                                        ?>
+                                                            echo '</th>';
+                                            echo"  <form method='POST' action='/active/".$review['review_id']."' >
+                                                      <th>". htmlspecialchars($review['customer_name']) ."</th>
+                                                      <th>". htmlspecialchars($review['review_text']) ."</th>";
+                                                      echo '<th>';
+                                                      for ($i = 0; $i < $review['review_rating']; $i++) {
+                                                          echo '&#9733;'; // رمز النجمة
+                                                      }
+                                                      for ($i = $review['review_rating']; $i < 5; $i++) {
+                                                          echo '&#9734;'; // رمز النجمة الفارغة
+                                                      }
+                                                      echo '</th>';
+                                                     
+                                                     
+                                                     echo" </form></th>
+                                                      <th style='display: flex; justify-content:center'>
+                                                      <form method='GET' action='/disactive/".$review['review_id']."' >
+                                                      <input type='text' value='".$value."' name='change' style='visibility: hidden;display: none;'>
+                                                      <button class='address-book-edit btn btn--e-brand-b-2'". $style." >".$active."</button>
+                                                      </form></th>
+                                                  </tr>";
+                                          }
+                                          ?>
 
                                                     </tbody>
                                                 </table>
