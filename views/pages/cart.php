@@ -405,11 +405,3 @@ document.addEventListener('DOMContentLoaded', () => {
 // });
 
     </script>
-
-    <footer>
-        <?php include 'views/partials/footer.php'; ?>
-    </footer>
-
-  
-
-    

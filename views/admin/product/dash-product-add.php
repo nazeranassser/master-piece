@@ -33,7 +33,7 @@
                                             <h1 class="dash__h1 u-s-m-b-14">Add new Product</h1>
 
                                             <span class="dash__text u-s-m-b-30"></span>
-                                            <form class="dash-address-manipulation" method='POST' action='/create-product'>
+                                            <form class="dash-address-manipulation" enctype="multipart/form-data" method='POST' action='/create-product'>
                                                 <div class="gl-inline">
                                                     <div class="u-s-m-b-30">
                                                         <label class="gl-label" for="product-name">Product Name *</label>

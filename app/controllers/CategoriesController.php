@@ -81,7 +81,7 @@ class CategoriesController
             $targetFile = $this->uploadDir . $fileName;
     
             if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
-                $category_image =  $fileName;
+                $category_image = $fileName;
             } else {
                 echo "Error uploading image.";
                 

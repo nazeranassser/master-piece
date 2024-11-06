@@ -36,6 +36,10 @@ function handleFiles(files) {
         previewImage.src = URL.createObjectURL(selectedFile);
         previewContainer.style.display = 'block';
         dropArea.style.display = 'none';
+
+        const dataTransfer = new DataTransfer();
+        dataTransfer.items.add(selectedFile);
+        fileElem.files = dataTransfer.files;
     }
 }
 

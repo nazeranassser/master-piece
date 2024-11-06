@@ -91,11 +91,18 @@ form{
                     <div class="u-s-m-b-15">
                         <div class="pd-detail__inline">
 
-                        <a href="signin.html"><span class="pd-detail__click-wrap"><i class="far fa-heart u-s-m-r-6"></i>
+                        <span class="ms-2"
+                            data-tooltip="tooltip" data-placement="top"
+                            title="Add to Favorites" data-wishlist-button
+                            data-product-id="<?php echo $product['product_id']; ?>">
+                            <i class="fas fa-heart" style='font-size:24px;padding-right:10px'></i>Add to Wishlist
+                        </span>
+                        <!-- <a><span class="pd-detail__click-wrap btn-sm ms-2" data-tooltip="tooltip" data-placement="top"
+                        title="Add to Favorites"><i class="far fa-heart u-s-m-r-6"></i>
 
-                                Add to Wishlist</a>
+                                Add to Wishlist</a> -->
 
-                                <span class="pd-detail__click-count">(222)</span></span></div>
+                                <span class="pd-detail__click-count"></span></span></div>
                     </div>
                     <div class="u-s-m-b-15">
                     </div>
@@ -630,6 +637,8 @@ form{
 </div>
 <!--====== End - Section 1 ======-->
 </div>
+<script src="/public/js/AddtoFavorites.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/public/js/vendor.js"></script>
     <script src="/public/js/jquery.shopnav.js"></script>

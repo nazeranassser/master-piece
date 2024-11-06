@@ -38,7 +38,6 @@ class CartsController
 
         // Fetch product details using the cart model
         $product = $this->cartModel->getProduct($productId);
-
         if ($product) { // Ensure the product exists
             $stockQuantity = $product['product_quantity']; // Available stock in the database
 

@@ -31,7 +31,7 @@ include('views/partials/header_admin.php');?>
                                         <div class="dash__pad-2">
                                             <h1 class="dash__h1 u-s-m-b-14" style="padding-bottom: 10px;">Edit Category</h1>
 
-                                            <form class="dash-address-manipulation" method="POST" action='/category/update/'>
+                                            <form class="dash-address-manipulation" method="POST" enctype="multipart/form-data" action='/category/update/'>
                                                 <div class="gl-inline">
                                                     <div class="u-s-m-b-30">
                                                         <label class="gl-label" for="coupon_amount">Category Name *</label>

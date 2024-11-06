@@ -30,7 +30,7 @@
                                         <div class="dash__pad-2">
                                             <h1 class="dash__h1 u-s-m-b-14" style="padding-bottom: 10px;">Add new Category</h1>
 
-                                            <form class="dash-address-manipulation" method="POST" action="/new_category">
+                                            <form class="dash-address-manipulation" enctype="multipart/form-data" method="POST" action="/new_category">
                                                 <div class="gl-inline">
                                                     <div class="u-s-m-b-30">
                                                         <label class="gl-label" for="coupon_amount">Category Name *</label>

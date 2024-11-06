@@ -87,13 +87,13 @@
                                                 <div class="upload-container">
                                                     <div id="drop-area" class="drop-area" style="display:none;">
                                                         <p>Drag & Drop your images here or <span id="browse">Browse</span></p>
-                                                        <input type="file" id="fileElem" name="image" accept="image/*" style="display:none" value="<?php echo $product['product_image'];?>">
+                                                        <input type="file" id="fileElem" name="image" accept="image/*" style="display:none" value="/public/images/products/<?php echo $product['product_image'];?>">
                                         
                                                     </div>
                                             
                                                     <!-- Preview and confirmation buttons -->
                                                     <div id="preview-container" class="preview-container" style="display:block;">
-                                                        <img id="preview-image" src='/public/images/categories/<?php echo $product['product_image']?>' >
+                                                        <img id="preview-image" src='/public/images/products/<?php echo $product['product_image']?>' >
                                                         <div>
                                                             <a class="btn-cancel btn btn--e-brand-b-2" id="cancel-btn">Delete Image</a>
                                                         </div>

@@ -12,7 +12,7 @@ class ProductsController
     private $testimonialModel;
     private $reviewModel;
     private $orderProductModel;
-    public $uploadDir = 'public/images/categories/';
+    public $uploadDir = 'public/images/products/';
     public $allowedTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
     public function __construct()
     {
@@ -84,7 +84,7 @@ class ProductsController
             $targetFile = $this->uploadDir . $fileName;
       
             if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
-              $product_image = 'public/images/categories/' . $fileName;
+              $product_image =  $fileName;
             } else {
               echo "حدث خطأ أثناء تحميل الصورة.";
             }
@@ -116,7 +116,7 @@ class ProductsController
             $targetFile = $this->uploadDir . $fileName;
       
             if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
-              $product_image = '/public/images/categories/' . $fileName;
+              $product_image =  $fileName;
             } else {
               echo "حدث خطأ أثناء تحميل الصورة.";
             }
@@ -179,8 +179,7 @@ class ProductsController
         // die();
         if ($productID) {
             $product = $this->productModel->getProductById($productID);
-
-            
+            $reviews = $this->reviewModel->getAllReviews($productID);
             if(isset($_SESSION['usersId'])){
                 $id = $_SESSION['usersId'];
                 // var_dump($id );
