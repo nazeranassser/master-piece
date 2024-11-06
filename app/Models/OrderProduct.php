@@ -17,8 +17,7 @@ class OrderProduct extends Model
 
     public function __construct()
     {
-        // $this->db = Database::getInstance()->getConnection();
-        
+        $this->db = Database::getInstance()->getConnection();
     }
 
     public function checkPurchase($customer_id, $product_id)
