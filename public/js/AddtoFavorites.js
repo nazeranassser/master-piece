@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Check initial wishlist status for all products
     checkWishlistStatus();
+
+    // Initialize wishlist count
+    updateWishlistCount();
 });
 
 function initWishlistButtons() {
@@ -16,77 +19,27 @@ function initWishlistButtons() {
         });
     });
 }
-// Updated toggleFavorite function
-function toggleFavorite(button) {
-    fetch('/check-auth', {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (!data.authenticated) {
-            window.location.href = '/login?redirect=' + encodeURIComponent(window.location.pathname);
-            return;
-        }
-        
-        const productId = button.getAttribute('data-product-id');
-        const icon = button.querySelector("i");
-        const isCurrentlyFavorited = icon.classList.contains("text-danger");
-        const productCard = button.closest('.card');
 
-        // Don't update UI optimistically - wait for server response
-        const formData = new FormData();
-        formData.append('product_id', productId); // Changed back to 'product_id' to match controller
-
-        const endpoint = isCurrentlyFavorited ? '/wishlist/delete' : '/wishlist/store';
-
-        fetch(endpoint, {
-            method: 'POST',
-            body: formData
-        })
+function updateWishlistCount() {
+    fetch('/wishlist/count')
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                // Only update UI after successful server response
-                if (isCurrentlyFavorited) {
-                    icon.classList.remove("text-danger");
-                    icon.classList.add("text-secondary");
-                    if (productCard && window.location.pathname === '/wishlist') {
-                        productCard.remove();
-                    }
-                    console.log('Product removed from wishlist');
-                } else {
-                    icon.classList.remove("text-secondary");
-                    icon.classList.add("text-danger");
-                    console.log('Product added to wishlist');
+                const wishlistCount = document.querySelector('#wishlistCount');
+                if (wishlistCount) {
+                    wishlistCount.textContent = data.count;
+                    wishlistCount.style.display = data.count > 0 ? 'inline' : 'none';
                 }
-            } else {
-                console.error('Error:', data.message);
-                alert(data.message);
             }
         })
-        .catch(error => {
-            console.error('Error:', error);
-            alert(`Failed to update wishlist: ${error.message}`);
-        });
-    })
-    .catch(error => {
-        console.error('Auth check failed:', error);
-        alert('Please login to manage your wishlist');
-        window.location.href = '/login';
-    });
+        .catch(error => console.error('Error updating wishlist count:', error));
 }
 
 function handleWishlistToggle(button) {
-    // Get product ID
+    // Get product ID and current state
     const productId = button.getAttribute('data-product-id');
     const icon = button.querySelector('i');
     const isInWishlist = icon.classList.contains('text-danger');
-
-    // Update UI optimistically
-    toggleHeartIcon(icon);
 
     // Prepare form data
     const formData = new FormData();
@@ -111,36 +64,51 @@ function handleWishlistToggle(button) {
     })
     .then(data => {
         if (data.success) {
+            // Toggle heart icon
+            toggleHeartIcon(icon);
+            
+            // Update wishlist count
+            updateWishlistCount();
+            
             // Show success message
             showMessage(isInWishlist ? 'Product removed from wishlist' : 'Product added to wishlist', 'success');
             
-            // If we're on the wishlist page and removing an item, remove the product card
+            // Handle removal from wishlist page
             if (isInWishlist && window.location.pathname === '/wishlist') {
-                const productCard = button.closest('.product-card');
+                const productCard = button.closest('.col-md-4');
                 if (productCard) {
-                    productCard.remove();
+                    // Add fade-out animation
+                    productCard.style.transition = 'opacity 0.3s ease';
+                    productCard.style.opacity = '0';
+                    
+                    // Remove element after animation
+                    setTimeout(() => {
+                        productCard.remove();
+                        
+                        // Check if wishlist is empty after removal
+                        const remainingItems = document.querySelectorAll('.col-md-4');
+                        if (remainingItems.length === 0) {
+                            const container = document.querySelector('.row');
+                            if (container) {
+                                container.innerHTML = '<p class="text-center w-100">Your wishlist is currently empty.</p>';
+                            }
+                        }
+                    }, 300);
                 }
             }
         } else {
             // Revert UI change on failure
-            toggleHeartIcon(icon);
             showMessage(data.message || 'Failed to update wishlist', 'error');
         }
     })
     .catch(error => {
-        // إعادة تغيير واجهة المستخدم في حالة حدوث خطأ
-        toggleHeartIcon(icon);
-        
-        // عرض رسالة الخطأ للمستخدم
+        console.error('Error:', error);
         showMessage('Please login to manage your wishlist', 'error');
         
-        // تسجيل الخطأ في وحدة التحكم لأغراض تصحيح الأخطاء
-        console.error('خطأ:', error);
-        
-        // تحويل المستخدم إلى صفحة تسجيل الدخول بعد تأخير
+        // Redirect to login page after a short delay
         setTimeout(() => {
             window.location.href = '/login';
-        }, 2000); // تأخير لمدة 3 ثوانٍ (3000 مللي ثانية)
+        }, 2000);
     });
 }
 
@@ -159,8 +127,10 @@ function checkWishlistStatus() {
             .then(data => {
                 if (data.success && data.inWishlist) {
                     const icon = button.querySelector('i');
-                    icon.classList.remove('text-secondary');
-                    icon.classList.add('text-danger');
+                    if (icon) {
+                        icon.classList.remove('text-secondary');
+                        icon.classList.add('text-danger');
+                    }
                 }
             })
             .catch(error => console.error('Error checking wishlist status:', error));
@@ -181,7 +151,7 @@ function showMessage(message, type) {
     
     document.body.appendChild(toast);
     
-    // Show toast
+    // Show toast using Bootstrap
     const bsToast = new bootstrap.Toast(toast, {
         autohide: true,
         delay: 3000
@@ -192,4 +162,26 @@ function showMessage(message, type) {
     toast.addEventListener('hidden.bs.toast', () => {
         toast.remove();
     });
-}              
+}
+
+// Optional: Function to check authentication status
+function checkAuthStatus() {
+    return fetch('/check-auth', {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (!data.authenticated) {
+            window.location.href = '/login?redirect=' + encodeURIComponent(window.location.pathname);
+            return false;
+        }
+        return true;
+    })
+    .catch(error => {
+        console.error('Auth check failed:', error);
+        return false;
+    });
+}

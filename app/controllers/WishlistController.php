@@ -95,6 +95,9 @@ class WishlistController
 //     //     'message' => $result ? '' : ''
 //     // ]);
 //     // exit();
+// $stmt = $this->db->prepare("SELECT * FROM cake WHERE id = :id");
+// $stmt->execute(['id' => $id]);
+// return $stmt->fetch();
 // }
 public function delete()
 {
