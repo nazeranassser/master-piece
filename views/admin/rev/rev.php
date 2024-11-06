@@ -144,15 +144,13 @@
                                     <!--====== End - Dashboard Features ======-->
                                     <div>
 
-                                        <a class="dash__custom-link btn--e-brand-b-2" href="product-add"><i class="fas fa-plus u-s-m-r-8"></i>
-
-                                            <span>Add New Product</span></a></div>
+                                    </div>
                                 </div>
                                 <div class="col-lg-9 col-md-12">
                                     <div class="dash__box dash__box--shadow dash__box--bg-white dash__box--radius u-s-m-b-30">
                                         <div class="dash__pad-2" style="display:flex;justify-content: space-between;">
                                             <div class="dash__address-header">
-                                                <h1 class="dash__h1">Products</h1>
+                                                <h1 class="dash__h1">Reviwes</h1>
                                             </div>
                                             <div class="dash__filter">
                                                 <form method="GET" action="/show/" id="categoryForm">
