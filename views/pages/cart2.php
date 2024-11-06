@@ -210,7 +210,7 @@ margin:0;
                         </div>
                     </div>
                     <?php endforeach; ?> 
-                    <div class="back-to-shop"><a href="#">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
+                    <div class="back-to-shop"><a href="/">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
                 </div>
                 <div style="height: 100%;" class="col-md-4 summary">
                     <div><h5><b>Summary</b></h5></div>
