@@ -217,7 +217,7 @@
         display: block;
         width: 100%;
         padding: 10px;
-        background-color: #1f1f7a;
+        background-color: #D2691E;
         /* Custom color from your preference */
         color: #fff;
         border: none;
@@ -228,7 +228,7 @@
     }
 
     .submit-button:hover {
-        background-color: #333;
+        background-color: #FF6F61;
     }
 
     .error-message {

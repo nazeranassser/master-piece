@@ -616,7 +616,7 @@ a {
 }
 
 .checkout-button:hover {
-  background-color: #80005a; /* Change color on hover */
+  background-color: #FF6F61; /* Change color on hover */
   color: white; /* Change text color on hover */
 }
 
