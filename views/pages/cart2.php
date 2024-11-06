@@ -177,8 +177,7 @@ margin:0;
                         <div class="" style="display:flex;justify-content: space-between;">
                             <div class=""><div style="display: flex;align-items:center"><img class="img-fluid" style="width:100px;margin-right:24px;margin:10px 0px;border-radius:6px" src="/public/images/products/<?php echo htmlspecialchars($item['image_url']); ?>">
                             <div class="cart-table__name" style="padding-left:10px">
-                                <div class="row">Shirt</div>
-                                <div class="row">Cotton T-shirt</div>
+                                <div class="row"><?= $item['product_name']?></div>
                             </div></div></div>
                             <div class="original-price" style="display: flex;align-items:center;"><span class="original-price">
                                 <?php if ($item['discount'] > 0): ?>
