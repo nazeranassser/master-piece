@@ -214,9 +214,10 @@ margin:0;
                 <div style="height: 100%;" class="col-md-4 summary">
                     <div><h5><b>Summary</b></h5></div>
                     <hr>
-                    <div class="row">
-                        <div class="col" style="padding-left:0;">ITEMS <?=count($cartItems);?></div>
-                        <div class="col text-right"><span id="cartTotalPrice"><?php echo $totalCart?></span><span> JD</span></div>
+                    <div class="">
+                        <div class="col" >Number of Items : <?=count($cartItems);?></div>
+                        <br>
+                        <div class="col">Total Price : <span id="cartTotalPrice"><?php echo $totalCart?></span><span> JD</span></div>
                     </div>
                     <!-- <form>
                         <p>SHIPPING</p>
@@ -224,10 +225,10 @@ margin:0;
                         <p>GIVE CODE</p>
                         <input id="code" placeholder="Enter your code">
                     </form> -->
-                    <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                    <!-- <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                         <div class="col">TOTAL PRICE</div>
                         <div class="col text-right">&euro; 137.00</div>
-                    </div>
+                    </div> -->
                     <a href="/checkout"><button class="btn">CHECKOUT</button></a>
                 </div>
             </div>
