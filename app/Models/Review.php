@@ -24,7 +24,19 @@ class Review extends Model
         $query = "SELECT r.*, c.customer_name 
         FROM reviews r 
         JOIN customers c ON r.customer_id = c.customer_id
-        where r.product_id = $productID
+        where r.product_id = $productID AND r.active=1;
+        ";
+        
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+    public function getAllReviewsAdmin()
+    {
+        $query = "SELECT r.*, c.customer_name 
+        FROM reviews r 
+        JOIN customers c ON r.customer_id = c.customer_id
         ";
         
         $stmt = $this->db->prepare($query);
@@ -58,6 +70,16 @@ class Review extends Model
         $updateStmt = $this->db->prepare($query);
         $updateStmt->execute();
         
+    }
+    public function updateactive($id){
+        $query = "UPDATE reviews SET active = 1 WHERE review_id = $id";
+        $updateStmt = $this->db->prepare($query);
+        $updateStmt->execute();
+    }
+    public function updateactive1($id){
+        $query = "UPDATE reviews SET active = 0 WHERE review_id = $id";
+        $updateStmt = $this->db->prepare($query);
+        $updateStmt->execute();
     }
 
     

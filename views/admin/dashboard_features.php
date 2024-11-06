@@ -93,6 +93,17 @@
                                                     </div>
                                                 </a>
                                                 </li>
+                                                <li>
+                                                <a href="/show">
+                                                    <div class="admin_list">
+                                                        <div class="admin_list_div" >
+                                                              <img class="dash_img"  src="/images/icons8-star-16.png" alt="">
+                                                              <p>Reviews</p>
+                                                        </div>
+                                                        <img style="width:12px" src="/public/images/angle-right.png" alt="">
+                                                    </div>
+                                                </a>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>

@@ -85,6 +85,14 @@ class ReviewsController
             $this->reviewModel->updateProductReview($productId, $averageRating);
         }
     }
+        public function active($id) {
+            $this->reviewModel->updateactive($id);
+            header("location: /show");
+        }
+        public function active1($id) {
+            $this->reviewModel->updateactive1($id);
+            header("location: /show");
+        }
    
     
 

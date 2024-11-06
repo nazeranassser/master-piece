@@ -179,7 +179,8 @@ class ProductsController
         // die();
         if ($productID) {
             $product = $this->productModel->getProductById($productID);
-            $reviews = $this->reviewModel->getAllReviews($productID);
+
+            
             if(isset($_SESSION['usersId'])){
                 $id = $_SESSION['usersId'];
                 // var_dump($id );
@@ -212,4 +213,11 @@ class ProductsController
         $this->productModel->deleteProduct($id);
         header('location:/products');
     }
+    public function showrev(){
+        
+
+        $reviews = $this->reviewModel->getAllReviewsAdmin();
+        require 'views/admin/rev/rev.php';
+}
+
 }
