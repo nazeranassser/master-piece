@@ -28,7 +28,7 @@
                                             <p class="about__p">Revoly Cake is a specialty bakery dedicated to crafting delicious cakes that cater to those with specific dietary needs, particularly offering sugar-free and gluten-free options. With a focus on health-conscious ingredients, Revoly Cake ensures that everyone can indulge in delightful, beautifully designed cakes without compromising on their dietary preferences or restrictions. Whether for birthdays, celebrations, or just a sweet treat, Revoly Cake is committed to creating flavorful, inclusive desserts that everyone can enjoy.</p>
                                         </div>
 
-                                        <a class="about__link btn--e-secondary" href="/" target="_blank">Shop Now</a>
+                                        <a class="about__link btn--e-secondary" href="allProducts">Shop Now</a>
                                     </div>
                                 </div>
                             </div>
