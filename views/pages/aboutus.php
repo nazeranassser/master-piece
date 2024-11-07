@@ -28,7 +28,7 @@
                                             <p class="about__p">Cake Delight is your destination for exquisite, freshly baked cakes for every occasion. Each cake is crafted with the finest ingredients, ensuring a perfect taste and beautiful design that brings a smile to your face. Celebrate your special moments with our delicious, unique cake creations!</p>
                                         </div>
 
-                                        <a class="about__link btn--e-secondary" href="/" target="_blank">Shop Now</a>
+                                        <a class="about__link btn--e-secondary" href="/allProducts">Shop Now</a>
                                     </div>
                                 </div>
                             </div>

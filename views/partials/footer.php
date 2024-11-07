@@ -2,8 +2,8 @@
     <div class="container">
         <div class="row">
               <div class="col" id="company">
-                  <img src="public/images/logo.png" alt="" class="logo">
-                  <p>
+                
+              <p>
                     Turn Every Occasion into a Celebration with Our Premium Cakes! 
                     We are specialized in designings, make your business a brand.
                   </p>

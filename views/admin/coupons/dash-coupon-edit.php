@@ -50,9 +50,8 @@
                                                             <input class="input-text input-text--primary-style" name="coupon_expire" type="date" id="coupon_expire" placeholder="2025-09-18" value="<?php echo $coupon['coupon_expire']?>">
                                                             <input class="input-text input-text--primary-style" name="coupon_id" type="hidden" id="coupon_ID" placeholder="2025-09-18" value="<?php echo $coupon['coupon_id']?>">
                                                         </div>
-                                                        <div class="u-s-m-b-30">
+                                                        <!-- <div class="u-s-m-b-30">
 
-                                                            <!--====== Select Box ======-->
                                                             
                                                             <label class="gl-label" for="address-country">Coupon Active *</label><select class="select-box select-box--primary-style" id="address-country">
                                                             <option value="1" 
@@ -64,8 +63,7 @@
                                                                 Deactivate
                                                             </option>
                                                             </select>
-                                                            <!--====== End - Select Box ======-->
-                                                        </div>
+                                                        </div> -->
                                                         
                                                     </div>
 

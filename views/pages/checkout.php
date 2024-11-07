@@ -86,7 +86,7 @@
                     <?php if (!isset($_SESSION['coupon'])): ?>
                         <form method="post" action="/applyCoupon" id="applyForm">
                             <input type="text" id="coupon_code" name="coupon_code" placeholder="Enter coupon code" required>
-                            <button type="submit" class="apply-coupon-button">Apply</button>
+                            <button type="submit" class="apply-coupon-button">Apply Coupon</button>
 
                         </form>
                     <?php endif; ?>
@@ -97,7 +97,7 @@
                         <p><strong>New Total:</strong> <?= $total - $_SESSION['coupon']; ?>JD</p>
 
                         <form method="post" action="/removeCoupon" id="removeForm">
-                            <button type="submit" name="remove_coupon" class="remove-coupon-button">Remove</button>
+                            <button type="submit" name="remove_coupon" class="remove-coupon-button">Remove Coupon</button>
                         </form>
                     <?php endif; ?>
                 </div>
