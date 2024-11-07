@@ -53,14 +53,10 @@
                                                         <input class="input-text input-text--primary-style" name="password" type="password" id="address-password" required></div>
                                                         <div class="u-s-m-b-30">
 
-                                                            <!--====== Select Box ======-->
-                                                            
-                                                            <label class="gl-label" for="address-country">Active *</label><select class="select-box select-box--primary-style" id="address-country">
-                                                                <option selected value='1'>Active</option>
-                                                                <option value='0'>Deactivate</option>
-                                                            </select>
-                                                            <!--====== End - Select Box ======-->
-                                                        </div>
+                                                        <label class="gl-label" for="address-password">Confirm Password *</label>
+
+                                                        <input class="input-text input-text--primary-style" name="password2" type="password" id="address-password" required></div>
+                                                        
                                                     </div>
 
                                                 <button class="btn btn--e-brand-b-2" type="submit">SAVE</button>
