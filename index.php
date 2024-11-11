@@ -5,7 +5,7 @@ require  __DIR__ .'/app/controllers/AdminsControllers.php';
 // require  __DIR__ .'/app/controllers/ProductsControllers.php';
 // require  __DIR__ .'/app/controllers/CouponsControllers.php';
 // require  __DIR__ .'/app/controllers/OrdersControllers.php';
-
+//nazera test
 require 'vendor/autoload.php';
 // require_once __DIR__ . '/../';
 
