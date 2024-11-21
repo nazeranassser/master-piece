@@ -38,7 +38,7 @@
                                                         <label class="gl-label" for="address-name">NAME *</label>
 
                                                         <input name="add_admin" type="hidden">
-                                                        <input style="" class="input-text input-text--primary-style" name="name" type="text" id="address-name" placeholder="First Name" required></div>
+                                                        <input class="input-text input-text--primary-style" name="name" type="text" id="address-name" placeholder="First Name" required></div>
                                                     <div class="u-s-m-b-30">
 
                                                         <label class="gl-label" for="address-email">Email *</label>

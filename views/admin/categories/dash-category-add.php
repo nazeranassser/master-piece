@@ -34,7 +34,7 @@
                                                 <div class="gl-inline">
                                                     <div class="u-s-m-b-30">
                                                         <label class="gl-label" for="coupon_amount">Category Name *</label>
-                                                        <input style="" class="input-text input-text--primary-style" name="category_name" step="0.01" type="text" id="category_name" placeholder="Category Name">
+                                                        <input  class="input-text input-text--primary-style" name="category_name" step="0.01" type="text" id="category_name" placeholder="Category Name">
 
                                                     </div>
                                                     <!-- <div class="u-s-m-b-30">
